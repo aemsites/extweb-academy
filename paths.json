@@ -1,7 +1,6 @@
 {
   "mappings": [
     "/content/extweb-academy/:/",
-    "/content/extweb-academy/config:/config.json",
     "/content/extweb-academy/configuration:/.helix/config.json",
     "/content/extweb-academy/metadata:/metadata.json",
     "/content/extweb-academy/placeholders:/placeholders.json",
