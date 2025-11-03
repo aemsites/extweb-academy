@@ -2,8 +2,8 @@
 Worldbank External Web Academy Web Site Code Base
 
 ## Environments
-- Preview: https://main--extweb-academy--wbgextapp.aem.page/
-- Live: https://main--extweb-academy--wbgextapp.aem.live/
+- Preview: https://main--extweb-academy--aemsites.aem.page/
+- Live: https://main--extweb-academy--aemsites.aem.live
 
 ## Documentation
 
