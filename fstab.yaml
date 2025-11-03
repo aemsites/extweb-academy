@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-worldbank-B75-stage-comm.adobecqms.net/bin/franklin.delivery/wbgextapp/extweb-academy/main"
+    url: "https://author-worldbank-B75-stage-comm.adobecqms.net/bin/franklin.delivery/aemsites/extweb-academy/main"
     type: "markup"
     suffix: ".html"
