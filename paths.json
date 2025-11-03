@@ -2,10 +2,10 @@
   "mappings": [
     "/content/extweb-academy/:/",
     "/content/extweb-academy/config:/config.json",
+    "/content/extweb-academy/configuration:/.helix/config.json",
     "/content/extweb-academy/metadata:/metadata.json",
     "/content/extweb-academy/placeholders:/placeholders.json",
     "/content/extweb-academy/taxonomy:/taxonomy.json",
-    "/content/extweb-academy/headers:/headers.json",
     "/content/extweb-academy/redirects:/redirects.json",
     "/content/extweb-academy/query-index:/query-index.json",
     "/content/dam/extweb-academy/icons/:/icons/",
