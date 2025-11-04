@@ -214,5 +214,23 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "library-metadata",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "hidden": "true",
+        "name": "name",
+        "label": "Library Metadata (hidden)"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      }
+    ]
   }
 ]

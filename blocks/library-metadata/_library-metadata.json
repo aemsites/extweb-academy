@@ -1,0 +1,46 @@
+{
+  "definitions": [
+    {
+      "title": "Library Metadata",
+      "id": "library-metadata",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Library Metadata",
+              "model": "library-metadata",
+              "key-value": "true"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "library-metadata",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "hidden": "true",
+          "name": "name",
+          "label": "Library Metadata (hidden)"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+    "filters": [
+    {
+      "id": "library-metadata",
+      "components": []
+    }
+  ]
+}

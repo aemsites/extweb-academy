@@ -15,7 +15,8 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "library-metadata"
     ]
   },
   {
@@ -38,5 +39,9 @@
       "button",
       "title"
     ]
+  },
+  {
+    "id": "library-metadata",
+    "components": []
   }
 ]
