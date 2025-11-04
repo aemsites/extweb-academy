@@ -50,8 +50,10 @@
         "hero",
         "cards",
         "columns",
-        "fragment"
+        "fragment",
+        "library-metadata"
       ]
     }
   ]
 }
+
