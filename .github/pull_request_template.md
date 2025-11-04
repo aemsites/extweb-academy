@@ -5,7 +5,7 @@
 
 ## Issue
 
-Fixes #<gh-issue-id>
+Fixes #IssueID
 
 ## Description
 
@@ -30,4 +30,4 @@ Fixes #<gh-issue-id>
 > If applicable, also describe how the PR reviewer can verify your expected changes, including anything that should NOT change.
 
 - Before: https://main--extweb-academy--aemsites.aem.page/
-- After: https://<branch>--extweb-academy--aemsites.aem.page/
+- After: https://BranchName--extweb-academy--aemsites.aem.page/
