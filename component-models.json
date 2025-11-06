@@ -152,6 +152,10 @@
         "value": "",
         "options": [
           {
+            "name": "Default Card",
+            "value": ""
+          },
+          {
             "name": "Top Image, Bottom Text",
             "value": "top-bottom-card"
           },
