@@ -417,6 +417,7 @@ export async function fetchCountriesList() {
     .then((resp) => (resp.ok ? resp.json() : {}))
     .then((json) => (json && Object.hasOwn(json, 'data') ? json.data : []))
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.log('failed to get countries list', error);
     });
 }

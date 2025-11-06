@@ -18,10 +18,11 @@ const loadEmbed = (block, link) => {
 };
 
 export default function decorate(block) {
+  // eslint-disable-next-line no-unused-vars
   const [videoDiv, youtubeDiv, embedDiv] = [...block.children];
   const pElement = videoDiv.querySelector('div > div > p');
   const videoType = pElement ? pElement.textContent.trim() : null;
-  if (videoType == 'you-tube') {
+  if (videoType === 'you-tube') {
     if (!scriptEnabled()) {
       block.innerHTML = 'Video rendering is disabled';
       return;
@@ -49,7 +50,7 @@ export default function decorate(block) {
       observer.observe(block);
     }
   }
-  if (videoType == 'embed-code') {
+  if (videoType === 'embed-code') {
     const embedEl = embedDiv.querySelector('div > div > p');
     const embedHTML = embedEl ? embedEl.innerText.trim() : null;
     // Step 1: Decode HTML entities (&lt; and &gt;)
