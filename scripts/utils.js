@@ -2,7 +2,10 @@ import {
   div, p, section, a, button,
   span,
 } from './dom-helpers.js';
-import { fetchLanguagePlaceholders } from './scripts.js';
+
+import {
+  fetchPlaceholders,
+} from './aem.js';
 
 export const PATH_PREFIX = '/ext';
 export const TAG_ROOT = 'world-bank:';
@@ -63,6 +66,29 @@ export function setPageLanguage() {
   if (RTL_LANGUAGES.includes(currentLang)) {
     document.documentElement.dir = 'rtl';
   }
+}
+
+/**
+ * Return the placeholder file specific to language
+ * @returns
+ */
+export async function fetchLanguagePlaceholders() {
+  const langCode = getLanguage();
+  try {
+    // Try fetching placeholders with the specified language
+    return await fetchPlaceholders(`${PATH_PREFIX}/${langCode}`);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error fetching placeholders for lang: ${langCode}. Will try to get en placeholders`, error);
+    // Retry without specifying a language (using the default language)
+    try {
+      return await fetchPlaceholders(`${PATH_PREFIX}/en`);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Error fetching placeholders:', err);
+    }
+  }
+  return {}; // default to empty object
 }
 
 /**

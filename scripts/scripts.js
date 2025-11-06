@@ -10,13 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
-  fetchPlaceholders,
 } from './aem.js';
-
-import {
-  getLanguage,
-  PATH_PREFIX,
-} from './utils.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -62,29 +56,6 @@ async function loadFonts() {
   } catch (e) {
     // do nothing
   }
-}
-
-/**
- * Return the placeholder file specific to language
- * @returns
- */
-export async function fetchLanguagePlaceholders() {
-  const langCode = getLanguage();
-  try {
-    // Try fetching placeholders with the specified language
-    return await fetchPlaceholders(`${PATH_PREFIX}/${langCode}`);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(`Error fetching placeholders for lang: ${langCode}. Will try to get en placeholders`, error);
-    // Retry without specifying a language (using the default language)
-    try {
-      return await fetchPlaceholders(`${PATH_PREFIX}/en`);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('Error fetching placeholders:', err);
-    }
-  }
-  return {}; // default to empty object
 }
 
 /**
