@@ -289,5 +289,57 @@
         "label": "Description"
       }
     ]
+  },
+  {
+    "id": "video",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "Format",
+        "value": "",
+        "label": "Video Format",
+        "options": [
+          {
+            "name": "You Tube",
+            "value": "you-tube"
+          },
+          {
+            "name": "Embed Code",
+            "value": "embed-code"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "videoUrl",
+        "value": "",
+        "label": "Video URL",
+        "condition": {
+          "==": [
+            {
+              "var": "videoType"
+            },
+            "you-tube"
+          ]
+        }
+      },
+      {
+        "component": "text-area",
+        "valueType": "string",
+        "name": "embedCode",
+        "value": "",
+        "label": "Embed Code",
+        "condition": {
+          "==": [
+            {
+              "var": "videoType"
+            },
+            "embed-code"
+          ]
+        }
+      }
+    ]
   }
 ]
