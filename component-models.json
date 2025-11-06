@@ -221,6 +221,29 @@
     "id": "columns",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Column Styles",
+        "valueType": "string[]",
+        "maxSize": 4,
+        "options": [
+          {
+            "name": "Variations",
+            "children": [
+              {
+                "name": "Default",
+                "value": "columns-default-variant"
+              },
+              {
+                "name": "Heading With Description",
+                "value": "columns-heading-with-description"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "component": "text",
         "valueType": "number",
         "name": "columns",
