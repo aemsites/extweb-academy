@@ -33,6 +33,36 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Card View Layout",
+          "valueType": "string",
+          "value": "",
+          "options": [
+            {
+              "name": "Top Image, Bottom Text",
+              "value": "top-bottom-card"
+            },
+            {
+              "name": "Left Image, Right Text",
+              "value": "left-right-card"
+            },
+            {
+              "name": "Sticky Card",
+              "value": "sticky-card"
+            },
+            {
+              "name": "Sticky Columns Card",
+              "value": "sticky-columns-card"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {
@@ -48,6 +78,29 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "value": "",
+          "label": "Card Styles",
+          "valueType": "string[]",
+          "maxSize": 4,
+          "options": [
+            {
+              "name": "Card Styles",
+              "children": [
+                {
+                  "name": "Rounded image corners",
+                  "value": "rounded-image-corners"
+                },
+                {
+                  "name": "Left text border",
+                  "value": "left-text-border"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
