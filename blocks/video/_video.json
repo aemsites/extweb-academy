@@ -23,9 +23,9 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "Type",
+          "name": "Format",
           "value": "",
-          "label": "Video Type",
+          "label": "Video Format",
           "options": [
             {
               "name": "You Tube",
