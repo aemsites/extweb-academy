@@ -1,6 +1,4 @@
-
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { div as divEl } from '../../scripts/dom-helpers.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 const wrapImageWithLink = (li) => {
@@ -20,13 +18,10 @@ const wrapImageWithLink = (li) => {
 };
 
 export default function decorate(block) {
-  // check if the block has profile-summary as its classname
-  const isProfileSummary = (block.classList.contains('profile-summary'));
-
   /* change to ul, li */
-  const ul = isProfileSummary ? divEl() : document.createElement('ul');
+  const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
-    const li = isProfileSummary ? divEl() : document.createElement('li');
+    const li = document.createElement('li');
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
@@ -41,8 +36,12 @@ export default function decorate(block) {
     img.closest('picture').replaceWith(optimizedPic);
   });
 
-  [...ul.children].forEach(wrapImageWithLink);
+  //run this if the data-card-img-link="true" is set:
+  if (block.getAttribute('data-card-img-link') === 'true') {
+    [...ul.children].forEach(wrapImageWithLink);
+  }
 
   block.textContent = '';
   block.append(ul);
 }
+
