@@ -147,42 +147,37 @@
       {
         "component": "select",
         "name": "classes",
-        "label": "Card View Layout",
-        "valueType": "string[]",
-        "value": "",
-        "options": [
-          {
-            "name": "Default Card",
-            "value": ""
-          },
-          {
-            "name": "Top Image, Bottom Text",
-            "value": "top-bottom-card"
-          },
-          {
-            "name": "Left Image, Right Text",
-            "value": "left-right-card"
-          },
-          {
-            "name": "Sticky Card",
-            "value": "sticky-card"
-          },
-          {
-            "name": "Sticky Columns Card",
-            "value": "sticky-columns-card"
-          }
-        ]
-      },
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
         "label": "Card Styles",
         "valueType": "string[]",
-        "maxSize": 4,
+        "value": "",
         "options": [
           {
-            "name": "Card Styles",
+            "name": "Layout Variations",
+            "children": [
+              {
+                "name": "Default Card",
+                "value": ""
+              },
+              {
+                "name": "Top Image, Bottom Text",
+                "value": "top-bottom-card"
+              },
+              {
+                "name": "Left Image, Right Text",
+                "value": "left-right-card"
+              },
+              {
+                "name": "Sticky Card",
+                "value": "sticky-card"
+              },
+              {
+                "name": "Sticky Columns Card",
+                "value": "sticky-columns-card"
+              }
+            ]
+          },
+          {
+            "name": "Visual Styles",
             "children": [
               {
                 "name": "Rounded image corners",
