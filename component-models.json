@@ -148,20 +148,20 @@
         "component": "select",
         "name": "classes",
         "label": "Card View Layout",
-        "valueType": "string",
+        "valueType": "string[]",
         "value": "",
         "options": [
           {
-            "name": "Default View",
+            "name": "Default Card",
             "value": ""
           },
           {
-            "name": "Profile - Summary view",
-            "value": "profile-summary"
+            "name": "Top Image, Bottom Text",
+            "value": "top-bottom-card"
           },
           {
-            "name": "Senior Leadership view",
-            "value": "senior-leadership"
+            "name": "Left Image, Right Text",
+            "value": "left-right-card"
           },
           {
             "name": "Sticky Card",
@@ -172,6 +172,36 @@
             "value": "sticky-columns-card"
           }
         ]
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Card Styles",
+        "valueType": "string[]",
+        "maxSize": 4,
+        "options": [
+          {
+            "name": "Card Styles",
+            "children": [
+              {
+                "name": "Rounded image corners",
+                "value": "rounded-image-corners"
+              },
+              {
+                "name": "Left text border",
+                "value": "left-text-border"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "card-img-link",
+        "label": "Add title link to image too?",
+        "value": false
       }
     ]
   },
@@ -183,15 +213,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
-        "description": "Max 1 Item"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "value": "",
-        "label": "Alternate Text"
+        "multi": false
       },
       {
         "component": "richtext",
