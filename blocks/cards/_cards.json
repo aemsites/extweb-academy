@@ -93,7 +93,7 @@
           "valueType": "boolean",
           "name": "card-img-link",
           "label": "Add title link to image too?",
-          "value": false
+          "value": true
         }
       ]
     },
