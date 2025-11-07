@@ -148,20 +148,20 @@
         "component": "select",
         "name": "classes",
         "label": "Card View Layout",
-        "valueType": "string[]",
+        "valueType": "string",
         "value": "",
         "options": [
           {
-            "name": "Default Card",
+            "name": "Default View",
             "value": ""
           },
           {
-            "name": "Top Image, Bottom Text",
-            "value": "top-bottom-card"
+            "name": "Profile - Summary view",
+            "value": "profile-summary"
           },
           {
-            "name": "Left Image, Right Text",
-            "value": "left-right-card"
+            "name": "Senior Leadership view",
+            "value": "senior-leadership"
           },
           {
             "name": "Sticky Card",
@@ -170,29 +170,6 @@
           {
             "name": "Sticky Columns Card",
             "value": "sticky-columns-card"
-          }
-        ]
-      },
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Card Styles",
-        "valueType": "string[]",
-        "maxSize": 4,
-        "options": [
-          {
-            "name": "Card Styles",
-            "children": [
-              {
-                "name": "Rounded image corners",
-                "value": "rounded-image-corners"
-              },
-              {
-                "name": "Left text border",
-                "value": "left-text-border"
-              }
-            ]
           }
         ]
       }
@@ -206,7 +183,15 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false
+        "multi": false,
+        "description": "Max 1 Item"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "",
+        "label": "Alternate Text"
       },
       {
         "component": "richtext",

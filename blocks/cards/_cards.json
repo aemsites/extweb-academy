@@ -10,7 +10,15 @@
             "template": {
               "name": "Cards",
               "model": "cards",
-              "filter": "cards"
+              "filter": "cards",
+              "item1": {
+                "sling:resourceType": "core/franklin/components/block/v1/block/item",
+                "name": "Card",
+                "model": "card",
+                "image": "/content/dam/world-bank/sample/placeholder-black.png",
+                "imageAlt": "Alt Text",
+                "text": "<h3>Lorem Ipsum</h3><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p><p class = 'button-container'><a href='#'>Read Bio</a></p>"
+              }
             }
           }
         }
@@ -40,20 +48,20 @@
           "component": "select",
           "name": "classes",
           "label": "Card View Layout",
-          "valueType": "string[]",
+          "valueType": "string",
           "value": "",
           "options": [
             {
-              "name": "Default Card",
+              "name": "Default View",
               "value": ""
             },
             {
-              "name": "Top Image, Bottom Text",
-              "value": "top-bottom-card"
+              "name": "Profile - Summary view",
+              "value": "profile-summary"
             },
             {
-              "name": "Left Image, Right Text",
-              "value": "left-right-card"
+              "name": "Senior Leadership view",
+              "value": "senior-leadership"
             },
             {
               "name": "Sticky Card",
@@ -62,29 +70,6 @@
             {
               "name": "Sticky Columns Card",
               "value": "sticky-columns-card"
-            }
-          ]
-        },
-        {
-          "component": "multiselect",
-          "name": "classes",
-          "value": "",
-          "label": "Card Styles",
-          "valueType": "string[]",
-          "maxSize": 4,
-          "options": [
-            {
-              "name": "Card Styles",
-              "children": [
-                {
-                  "name": "Rounded image corners",
-                  "value": "rounded-image-corners"
-                },
-                {
-                  "name": "Left text border",
-                  "value": "left-text-border"
-                }
-              ]
             }
           ]
         }
@@ -98,7 +83,15 @@
           "valueType": "string",
           "name": "image",
           "label": "Image",
-          "multi": false
+          "multi": false,
+          "description": "Max 1 Item"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "value": "", 
+          "label": "Alternate Text"
         },
         {
           "component": "richtext",
@@ -119,3 +112,4 @@
     }
   ]
 }
+ 
