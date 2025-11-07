@@ -23,7 +23,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "videoType",
+          "name": "Format",
           "value": "",
           "label": "Video Format",
           "options": [
