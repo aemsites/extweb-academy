@@ -37,7 +37,7 @@
       "id": "cards",
       "fields": [
         {
-          "component": "select",
+          "component": "multiselect",
           "name": "classes",
           "label": "Card Styles",
           "valueType": "string[]",
