@@ -148,7 +148,7 @@
         "component": "select",
         "name": "classes",
         "label": "Card View Layout",
-        "valueType": "string",
+        "valueType": "string[]",
         "value": "",
         "options": [
           {
@@ -172,25 +172,6 @@
             "value": "sticky-columns-card"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "card",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
       },
       {
         "component": "multiselect",
@@ -214,6 +195,25 @@
             ]
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   },
