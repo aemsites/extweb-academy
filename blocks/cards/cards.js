@@ -36,7 +36,7 @@ export default function decorate(block) {
     img.closest('picture').replaceWith(optimizedPic);
   });
 
-  //run this if the data-card-img-link="true" is set:
+  // run this if the data-card-img-link="true" is set:
   if (block.getAttribute('data-card-img-link') === 'true') {
     [...ul.children].forEach(wrapImageWithLink);
   }
@@ -44,4 +44,3 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(ul);
 }
-

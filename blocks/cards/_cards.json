@@ -39,10 +39,13 @@
         {
           "component": "select",
           "name": "classes",
-          "label": "Card View Layout",
+          "label": "Card Styles",
           "valueType": "string[]",
           "value": "",
           "options": [
+            {
+            "name": "Layout Variations",
+            "children": [
             {
               "name": "Default Card",
               "value": ""
@@ -66,15 +69,7 @@
           ]
         },
         {
-          "component": "multiselect",
-          "name": "classes",
-          "value": "",
-          "label": "Card Styles",
-          "valueType": "string[]",
-          "maxSize": 4,
-          "options": [
-            {
-              "name": "Card Styles",
+              "name": "Visual Styles",
               "children": [
                 {
                   "name": "Rounded image corners",
