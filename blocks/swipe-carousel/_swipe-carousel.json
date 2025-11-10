@@ -72,13 +72,13 @@
             }
           ]
         },
-        {
-          "component": "text",
-          "name": "anchorText",
-          "value": "",
-          "label": "Anchor Text",
-          "valueType": "string"
-        },
+    {
+      "component": "text",
+      "name": "anchor-text",
+      "value": "",
+      "label": "Anchor Text",
+      "valueType": "string"
+    },
         {
           "component": "aem-content",
           "name": "link",
