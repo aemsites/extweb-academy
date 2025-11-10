@@ -33,6 +33,10 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Swipe Carousel Container",
+              "value": "swipe-carousel-container"
             }
           ]
         }
