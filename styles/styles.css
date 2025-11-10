@@ -18,6 +18,63 @@
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
+  
+  /* carousel specific colors */
+  --white: #fff;
+  --blue-120: #001c2d;
+  --blue-80: #053657;
+  --blue-40: #169af3;
+  --blue-60: #00538a;
+  --blue-70: #004370;
+  --blue-90: #012740;
+  --text-on-dark-emphasis: #fff;
+  --text-on-dark-subdued: rgb(255 255 255 / 70%);
+  --text-on-light-default: #131313;
+  --text-on-light-highlight: #002838;
+  --text-on-light-link-primary-enabled: #004370;
+  --background-white: #fff;
+  --outline-transparent: transparent;
+  --accent-blue-primary-60: #00538a;
+  --accent-blue-primary-70: #004370;
+  --neutral-solid-30-s: #bdccdb;
+  --neutral-alpha-95-a: #000d1af5;
+  --gray-alpha-white-90-a: #ffffffe5;
+  --divider-on-light-emphasis: #00396b3d;
+  
+  /* spacing */
+  --spacing-none: 0;
+  --spacing-xxsmall: 0.25rem;
+  --spacing-xsmall: 0.5rem;
+  --spacing-small: 0.75rem;
+  --spacing-large: 1.5rem;
+  --spacing-xlarge: 1.75rem;
+  --section-gutter-space: 28px;
+  
+  /* font sizes */
+  --font-size-100: 0.75rem;
+  --font-size-200: 0.875rem;
+  --font-size-300: 1rem;
+  --font-size-400: 1rem;
+  --font-size-500: 1rem;
+  --font-size-600: 1.125rem;
+  --font-size-700: 1.25rem;
+  --font-size-800: 1.5rem;
+  --font-size-900: 1.5rem;
+  --font-size-1000: 1.75rem;
+  --font-size-1100: 1.75rem;
+  --font-size-1200: 2.25rem;
+  
+  /* font weights */
+  --body-font-weight-regular: 400;
+  --body-font-weight-bold: 700;
+  --label-font-weight: 700;
+  --lift-button-label-font-weight: 500;
+  
+  /* screen variables */
+  --screen-width: 1456px;
+  
+  /* other */
+  --lift-button-border-radius: 4px;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -53,6 +110,29 @@
   src: local('Arial');
 }
 
+@media (width >= 768px) {
+  :root {
+    /* responsive spacing */
+    --spacing-xxsmall: 0.25rem;
+    --spacing-xsmall: 0.5rem;
+    --spacing-small: 0.75rem;
+    --spacing-large: 1.75rem;
+    --spacing-xlarge: 2rem;
+    --section-gutter-space: 48px;
+    
+    /* responsive font sizes */
+    --font-size-400: 1.125rem;
+    --font-size-500: 1.125rem;
+    --font-size-600: 1.25rem;
+    --font-size-700: 1.5rem;
+    --font-size-800: 1.75rem;
+    --font-size-900: 1.75rem;
+    --font-size-1000: 2rem;
+    --font-size-1100: 2.25rem;
+    --font-size-1200: 2.75rem;
+  }
+}
+
 @media (width >= 900px) {
   :root {
     /* body sizes */
@@ -67,6 +147,29 @@
     --heading-font-size-m: 22px;
     --heading-font-size-s: 20px;
     --heading-font-size-xs: 18px;
+  }
+}
+
+@media (width >= 1024px) {
+  :root {
+    /* responsive spacing */
+    --spacing-xxsmall: 0.5rem;
+    --spacing-xsmall: 0.75rem;
+    --spacing-small: 1rem;
+    --spacing-large: 2.5rem;
+    --spacing-xlarge: 3rem;
+    --section-gutter-space: 72px;
+    
+    /* responsive font sizes */
+    --font-size-400: 1.125rem;
+    --font-size-500: 1.25rem;
+    --font-size-600: 1.5rem;
+    --font-size-700: 1.75rem;
+    --font-size-800: 2rem;
+    --font-size-900: 2.25rem;
+    --font-size-1000: 2.5rem;
+    --font-size-1100: 3rem;
+    --font-size-1200: 3.75rem;
   }
 }
 
@@ -236,6 +339,12 @@ main > .section > div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
+}
+
+/* Swipe carousel container should extend beyond default section width */
+main > .section > div.swipe-carousel-wrapper {
+  max-width: none;
+  padding: 0;
 }
 
 main > .section:first-of-type {
