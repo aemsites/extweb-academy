@@ -21,7 +21,7 @@
 
 @media (width >= 900px) {
   .columns > div {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: unset;
     gap: 24px;
   }
@@ -30,4 +30,42 @@
     flex: 1;
     order: unset;
   }
+}
+
+/* Styling for h3 headers in columns */
+.columns h3 {
+  font-size: var(--font-size-700);
+  color: var(--text-on-light-link-primary-enabled);
+  font-style: normal;
+  font-weight: var(--body-font-weight-bold);
+  line-height: 150%;
+  letter-spacing: -0.25px;
+  text-align: center;
+  font-family: var(--body-font-family);
+}
+
+/* Styling for 3rd child paragraph in columns */
+.columns > div > div > p:nth-child(3) {
+  text-align: center;
+  font-family: var(--body-font-family);
+  color: var(--text-on-light-highlight);
+  font-size: var(--font-size-200);
+  font-style: normal;
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+}
+
+/* Resize images for heading-with-description variant */
+.columns.columns-heading-with-description picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-none);
+}
+
+.columns.columns-heading-with-description picture img {
+  width: auto;
+  height: 90px;
+  padding: 0 var(--spacing-large) 16px var(--spacing-large);
+  object-fit: contain;
 }
