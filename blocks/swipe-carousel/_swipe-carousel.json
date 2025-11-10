@@ -16,7 +16,9 @@
                 "name": "Swipe Carousel Card",
                 "model": "swipe-carousel-card",
                 "image": "/content/dam/extweb-academy/sample/placeholder.png",
-                "text": "<p>Explore our content - essential information to learn about important topics while discovering valuable resources</p>"
+                "imageAlt": "Placeholder image",
+                "text": "<p>Explore our content - essential information to learn about important topics while discovering valuable resources</p>",
+                "eyebrow": "Featured"
               }
             }
           }
