@@ -380,18 +380,16 @@
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false,
-        "description": "Max 1 Item"
+        "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
-        "value": "",
-        "label": "Alternate Text"
+        "label": "Alt Text",
+        "value": ""
       },
       {
         "component": "richtext",
