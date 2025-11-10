@@ -136,6 +136,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Swipe Carousel Container",
+            "value": "swipe-carousel-container"
           }
         ]
       }
@@ -315,56 +319,42 @@
         "component": "richtext",
         "name": "title",
         "value": "",
-        "label": "Heading",
-        "valueType": "string",
-        "description": "Main heading and description for the carousel"
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       },
       {
         "component": "select",
         "valueType": "string",
         "name": "classes",
         "value": "",
-        "label": "Variant",
+        "label": "Classes",
         "options": [
           {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "With Button",
+            "name": "Swipe Carousel With Button",
             "value": "with-button"
           }
         ]
       },
       {
         "component": "text",
-        "name": "button-text",
+        "name": "anchorText",
         "value": "",
-        "label": "Action Button Text",
-        "valueType": "string",
-        "condition": {
-          "==": [
-            {
-              "var": "classes"
-            },
-            "with-button"
-          ]
-        }
+        "label": "Anchor Text",
+        "valueType": "string"
       },
       {
         "component": "aem-content",
-        "name": "button-link",
+        "name": "link",
         "value": "",
-        "label": "Action Button Link",
-        "valueType": "string",
-        "condition": {
-          "==": [
-            {
-              "var": "classes"
-            },
-            "with-button"
-          ]
-        }
+        "label": "Link",
+        "valueType": "string"
       }
     ]
   },

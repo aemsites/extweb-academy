@@ -16,7 +16,9 @@
                 "name": "Swipe Carousel Card",
                 "model": "swipe-carousel-card",
                 "image": "/content/dam/extweb-academy/sample/placeholder.png",
-                "text": "<p>Explore our content - essential information to learn about important topics while discovering valuable resources</p>"
+                "imageAlt": "Placeholder image",
+                "text": "<p>Explore our content - essential information to learn about important topics while discovering valuable resources</p>",
+                "eyebrow": "Featured"
               }
             }
           }
@@ -47,57 +49,43 @@
           "component": "richtext",
           "name": "title",
           "value": "",
-          "label": "Heading",
-          "valueType": "string",
-          "description": "Main heading and description for the carousel"
+          "label": "Title",
+          "valueType": "string"
         },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "value": "",
-        "label": "Variant",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "With Button",
-            "value": "with-button"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "name": "button-text",
-        "value": "",
-        "label": "Action Button Text",
-        "valueType": "string",
-        "condition": {
-          "==": [
+        {
+          "component": "richtext",
+          "name": "description",
+          "value": "",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "value": "",
+          "label": "Classes",
+          "options": [
             {
-              "var": "classes"
-            },
-            "with-button"
+              "name": "Swipe Carousel With Button",
+              "value": "with-button"
+            }
           ]
+        },
+        {
+          "component": "text",
+          "name": "anchorText",
+          "value": "",
+          "label": "Anchor Text",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "value": "",
+          "label": "Link",
+          "valueType": "string"
         }
-      },
-      {
-        "component": "aem-content",
-        "name": "button-link",
-        "value": "",
-        "label": "Action Button Link",
-        "valueType": "string",
-        "condition": {
-          "==": [
-            {
-              "var": "classes"
-            },
-            "with-button"
-          ]
-        }
-      }
       ] 
     },
     {

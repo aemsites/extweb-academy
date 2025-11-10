@@ -1,6 +1,7 @@
 .swipe-carousel-container {
   display: flex;
   max-width: calc(1600px - var(--section-gutter-space));
+  margin: auto;
   padding: 0 var(--section-gutter-space);
   box-shadow: none;
 }
@@ -15,26 +16,7 @@
   padding: 0;
 }
 
-.swipe-carousel-container .button-container button {
-  background-color: var(--white);
-  border: 2px solid var(--accent-blue-primary-70);
-  padding: 6px 11px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.swipe-carousel-container .button-container button:disabled {
-  opacity: 0.5;
-  background-color: var(--neutral-solid-30-s);
-  color: rgb(0 41 77 / 42%);
-  cursor: unset;
-}
+/* Button styles moved to swipe-carousel.css for better specificity */
 
 .swipe-carousel-wrapper > .swipe-carousel {
   order: 1;
@@ -45,6 +27,9 @@
   overflow: visible;
   position: relative;
   padding-right: 0;
+  padding-left: 0;
+  max-width: 100%;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -118,33 +103,66 @@
   justify-content: center;
 }
 
-.swipe-carousel-wrapper > .button-container,
+/* Default navigation button positioning (for non-with-button variant) */
 .swipe-carousel-wrapper > .carousel-navigation-buttons {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   align-items: center;
   gap: 12px;
   order: 2;
   margin-top: 24px;
+  padding-right: var(--section-gutter-space);
 }
 
-.swipe-carousel .button-container .next,
-.carousel-navigation-buttons .button-container .next {
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-blue-primary-60);
+  background-color: transparent;
+  color: var(--accent-blue-primary-60);
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   margin: 0;
 }
 
-.swipe-carousel .button-container .prev,
-.carousel-navigation-buttons .button-container .prev {
-  margin: 0;
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button.prev::before {
+  content: '\e117';
+  display: block;
+  font-family: loopicon, monospace;
+  font-style: normal;
+  speak: never;
 }
 
-.swipe-carousel .button-container .prev:hover,
-.swipe-carousel .button-container .next:hover,
-.carousel-navigation-buttons .button-container .prev:hover,
-.carousel-navigation-buttons .button-container .next:hover {
-  opacity: 0.7;
-  transition: 0.2s;
-  background-color: var(--accent-blue-primary-70);
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button.next::before {
+  content: '\e118';
+  display: block;
+  font-family: loopicon, monospace;
+  font-style: normal;
+  speak: never;
+}
+
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button:hover {
+  background-color: var(--accent-blue-primary-60);
+  color: var(--background-white);
+}
+
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background-color: transparent;
 }
 
 .swipe-carousel .cards-card-body {
