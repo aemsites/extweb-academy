@@ -34,8 +34,8 @@ export default async function createSlider(block) {
   // Call function after page load
   const moveRightBtn = document.querySelector(`.${nextBtn}`);
   const moveLeftBtn = document.querySelector(`.${prevBtn}`);
-  const itemList = [...document.querySelectorAll('.swipe-carousel > ul > li, .carousel > ul > li')];
-  const carouselItems = document.querySelector('.swipe-carousel > ul, .carousel > ul');
+  const itemList = [...document.querySelectorAll('.swipe-carousel > ul > li')];
+  const carouselItems = document.querySelector('.swipe-carousel > ul');
 
   // Add drag-to-scroll functionality with momentum
   let isDown = false;
@@ -192,8 +192,8 @@ export default async function createSlider(block) {
   }, true);
 
   // Check if this is a with-button variant
-  const carouselBlock = wrapper.querySelector('.swipe-carousel, .carousel');
-  const isCarouselWithButton = carouselBlock && carouselBlock.classList.contains('with-button');
+  const carouselBlock = wrapper.querySelector('.swipe-carousel');
+  const isWithButtonVariant = carouselBlock && carouselBlock.classList.contains('with-button');
 
   // Observer Callback Function
   const callBack = (entries) => {
@@ -222,7 +222,7 @@ export default async function createSlider(block) {
     });
 
     // Skip button state management for with-button variant (handled by scroll event)
-    if (isCarouselWithButton) {
+    if (isWithButtonVariant) {
       return;
     }
 
@@ -260,7 +260,7 @@ export default async function createSlider(block) {
   });
 
   // For with-button variant, use scroll-based button state management
-  if (isCarouselWithButton) {
+  if (isWithButtonVariant) {
     const updateButtonStates = () => {
       const { scrollLeft } = carouselItems;
       const { scrollWidth } = carouselItems;

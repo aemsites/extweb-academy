@@ -3,7 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import createSlider from '../../scripts/slider.js';
 
 export default function decorate(block) {
-  const isBottomCarousel = block.classList.contains('with-button');
+  const hasActionButton = block.classList.contains('with-button');
 
   let i = 0;
   const slider = document.createElement('ul');
@@ -32,7 +32,7 @@ export default function decorate(block) {
         h2Element = contentEl.id;
       }
       leftContent.append(contentEl);
-    } else if (hasOnlyLink && isBottomCarousel) {
+    } else if (hasOnlyLink && hasActionButton) {
       // Link row: Extract anchorText and link
       const linkEl = cells[0].querySelector('a');
       if (linkEl) {
@@ -76,7 +76,7 @@ export default function decorate(block) {
 
   // Create button element from anchor text and link fields
   let buttonElement = null;
-  if (isBottomCarousel && anchorText && anchorLink) {
+  if (hasActionButton && anchorText && anchorLink) {
     const newButton = document.createElement('a');
     newButton.href = anchorLink;
     newButton.className = 'button';
@@ -106,8 +106,8 @@ export default function decorate(block) {
     }
   });
 
-  /* ---------- extra wrapping only for bottom carousel ---------- */
-  if (isBottomCarousel) {
+  /* ---------- extra wrapping only for with-button variant ---------- */
+  if (hasActionButton) {
     slider.querySelectorAll('li').forEach((li) => {
       const imgDiv = li.querySelector('.cards-card-image');
       const bodyDiv = li.querySelector('.cards-card-body');
@@ -143,11 +143,11 @@ export default function decorate(block) {
   }
   /* ------------------------------------------------------------- */
 
-  leftContent.className = isBottomCarousel ? 'main-heading' : 'default-content-wrapper';
+  leftContent.className = hasActionButton ? 'main-heading' : 'default-content-wrapper';
 
   // Replace original block content
   block.textContent = '';
-  if (!isBottomCarousel) {
+  if (!hasActionButton) {
     if (leftContent) {
       block.parentNode.parentNode.prepend(leftContent);
     }
@@ -158,7 +158,7 @@ export default function decorate(block) {
   createSlider(block);
 
   // Add button element to wrapper AFTER createSlider so navigation buttons exist
-  if (isBottomCarousel && buttonElement) {
+  if (hasActionButton && buttonElement) {
     const wrapper = block.parentElement;
     const navigationButtons = wrapper.querySelector('.carousel-navigation-buttons');
 
