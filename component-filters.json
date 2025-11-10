@@ -17,7 +17,8 @@
       "columns",
       "fragment",
       "library-metadata",
-      "video"
+      "video",
+      "swipe-carousel"
     ]
   },
   {
@@ -44,5 +45,11 @@
   {
     "id": "library-metadata",
     "components": []
+  },
+  {
+    "id": "swipe-carousel",
+    "components": [
+      "swipe-carousel-card"
+    ]
   }
 ]

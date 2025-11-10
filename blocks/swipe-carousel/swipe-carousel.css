@@ -1,0 +1,792 @@
+.swipe-carousel > ul {
+  list-style: none;
+  margin: 0;
+}
+
+.swipe-carousel > ul > li {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--white);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  flex: 0 0 360px;
+  min-width: 360px;
+  max-width: 360px;
+  height: 430px;
+  display: flex;
+  flex-direction: column;
+}
+
+.swipe-carousel.with-button > ul > li {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.swipe-carousel .cards-card-image {
+  line-height: 0;
+  position: relative;
+  flex-shrink: 0;
+  height: 203px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.swipe-carousel .cards-card-image picture {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.swipe-carousel > ul > li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.swipe-carousel .cards-card-body {
+  position: relative;
+  background: var(--blue-120);
+  padding: 24px;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  transition: background-color 0.3s ease;
+  text-align: left;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.swipe-carousel > ul > li:hover .cards-card-body {
+  background: var(--blue-80);
+}
+
+.swipe-carousel > ul.is-dragging > li:hover .cards-card-body {
+  background: var(--blue-120);
+}
+
+.swipe-carousel > ul > li > a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.swipe-carousel > ul > li > a:hover {
+  cursor: pointer;
+}
+
+.swipe-carousel .cards-card-body > *:first-child {
+  margin-top: 0;
+  color: rgb(255 255 255 / 95%);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.swipe-carousel .cards-card-body > *:first-child a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  display: inline;
+}
+
+.swipe-carousel .cards-card-body > *:first-child a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.swipe-carousel .cards-card-body > *:last-child {
+  color: var(--text-on-dark-subdued);
+  font-size: var(--font-size-300);
+  font-style: normal;
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  letter-spacing: -0.15px;
+  margin-bottom: var(--spacing-large);
+  text-align: left;
+  width: 100%;
+}
+
+/* Badge/Tag styling at the top of cards (eyebrow) */
+.swipe-carousel .card-eyebrow {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  background: var(--background-white);
+  color: var(--text-on-light-highlight, #002838);
+  padding: 6px 14px;
+  border-radius: var(--lift-button-border-radius);
+  border: 1px solid var(--outline-transparent);
+  font-size: 12px;
+  text-align: center;
+  font-weight: var(--lift-button-label-font-weight);
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  z-index: 2;
+}
+
+/* Container paragraph styling (must come before .swipe-carousel .cards-card-body p for specificity) */
+.swipe-carousel-container > p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.25px;
+  color: #000d1ab2;
+  text-align: center;
+  text-transform: none;
+}
+
+/* Remove default paragraph margins in carousel cards */
+.swipe-carousel .cards-card-body p {
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.swipe-carousel .cards-card-body p + p {
+  margin-top: 0.5rem;
+}
+
+/* Remove opacity effect for with-button variant */
+.swipe-carousel.with-button > ul > li.opacity,
+.swipe-carousel.with-button > ul > li.active {
+  opacity: unset;
+}
+
+/* Responsive adjustments for with-button variant */
+
+/* Mobile: 240px - 639px - Cards scale from 551px down to 158px width */
+@media (width <= 639px) {
+  .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul,
+  .swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
+    gap: 0 15px;
+  }
+
+  .swipe-carousel.with-button > ul > li {
+    flex: 0 0 clamp(240px, 75vw, 551px);
+    min-width: clamp(240px, 75vw, 551px);
+    max-width: clamp(240px, 75vw, 551px);
+    height: clamp(390px, 102vw, 430px);
+    gap: 0;
+  }
+
+  .swipe-carousel.with-button .main-heading h2{
+    font-size: var(--font-size-1000);
+    font-weight: var(--label-font-weight);
+    line-height: 115%;
+    letter-spacing: -0.6px;
+    margin-bottom: var(--spacing-small);
+  }
+
+  .swipe-carousel.with-button .main-heading p{
+    font-size: var(--font-size-500);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    letter-spacing: -0.25px;
+    color: var(--text-on-light-default);
+  }
+
+  .swipe-carousel.with-button .cards-card-image {
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .swipe-carousel.with-button .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .swipe-carousel.with-button .cards-card-body {
+    padding: var(--spacing-xlarge) var(--spacing-xlarge) var(--spacing-none) var(--spacing-xlarge);
+    flex: 1;
+    min-height: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:first-child {
+    font-size: var(--font-size-600);
+    color: var(--gray-alpha-white-90-a);
+    font-style: normal;
+    font-weight: var(--body-font-weight-bold);
+    line-height: 150%;
+    letter-spacing: -0.084px;
+    margin-bottom: var(--spacing-xsmall);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:last-child {
+    font-size: var(--font-size-300);
+    color: var(--text-on-dark-subdued);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: var(--spacing-large);
+  }
+}
+
+@media (width >= 640px) and (width <= 991px) {
+   .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul,
+  .swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
+     gap: 15px;
+   }
+
+  .swipe-carousel.with-button .main-heading h2{
+    font-size: var(--font-size-1000);
+    font-weight: var(--label-font-weight);
+    line-height: 115%;
+    letter-spacing: -0.6px;
+    margin-bottom: var(--spacing-small);
+  }
+  
+  .swipe-carousel.with-button .main-heading p{
+    font-size: var(--font-size-500);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    letter-spacing: -0.25px;
+    color: var(--text-on-light-default);
+  }
+  
+  .swipe-carousel.with-button > ul > li {
+    flex: 0 0 min(421px, 42vw);
+    min-width: min(421px, 42vw);
+    max-width: min(421px, 42vw);
+    gap: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-image {
+    height: auto;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body {
+    padding: var(--spacing-xlarge) var(--spacing-xlarge) var(--spacing-none) var(--spacing-xlarge);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: var(--text-on-dark-emphasis);
+    font-size: var(--font-size-600);
+    font-style: normal;
+    font-weight: var(--body-font-weight-bold);
+    line-height: 150%;
+    letter-spacing: -0.084px;
+    margin-bottom: var(--spacing-xsmall);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:last-child {
+  color: var(--text-on-dark-subdued);
+  font-size: var(--font-size-300);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+  }
+}
+
+@media (width >= 992px) and (width <= 1023px) {
+  .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul,
+  .swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
+     gap: 15px;
+   }
+  
+  .swipe-carousel.with-button > ul > li {
+    flex: 0 0 min(288px, 28vw);
+    min-width: min(288px, 28vw);
+    max-width: min(288px, 28vw);
+    gap: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-image {
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body {
+    padding: var(--spacing-xlarge) var(--spacing-xlarge) var(--spacing-none) var(--spacing-xlarge);
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: var(--text-on-dark-emphasis);
+    font-size: var(--font-size-600);
+    font-style: normal;
+    font-weight: var(--body-font-weight-bold);
+    line-height: 150%;
+    letter-spacing: -0.084px;
+    margin-bottom: var(--spacing-xsmall);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:last-child {
+    color: var(--text-on-dark-subdued);
+    font-size: var(--font-size-300);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: var(--spacing-large);
+  }
+
+  .swipe-carousel.with-button .main-heading h2{
+    font-size: var(--font-size-1000);
+    font-weight: var(--label-font-weight);
+    line-height: 115%;
+    letter-spacing: -0.6px;
+    margin-bottom: var(--spacing-small);
+  }
+}
+
+@media (width >= 1024px) and (width <= 1200px) {
+  .swipe-carousel.with-button > ul > li {
+    flex: 0 0 max(264px, min(360px, 30vw));
+    min-width: max(264px, min(360px, 30vw));
+    max-width: max(264px, min(360px, 30vw));
+    height: 533px;
+    gap: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-image {
+    height: auto;
+    border-radius: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .swipe-carousel.with-button .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .swipe-carousel.with-button .cards-card-body {
+    padding: var(--spacing-xlarge) var(--spacing-xlarge) var(--spacing-none) var(--spacing-xlarge);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: var(--text-on-dark-emphasis);
+    font-size: var(--font-size-600);
+    font-weight: var(--body-font-weight-bold);
+    line-height: 150%;
+    letter-spacing: -0.084px;
+    margin-bottom: var(--spacing-xsmall);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:last-child {
+    color: var(--text-on-dark-subdued);
+    font-size: var(--font-size-300);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: var(--spacing-large);
+  }
+}
+
+/* Large Desktop: 1201px - 1600px - Cards scale from 360px to 455px */
+@media (width >= 1201px) and (width <= 1600px) {
+   section > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul,
+  .swipe-carousel-container > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul {
+    column-gap:25px;
+  }
+
+  .swipe-carousel.with-button > ul > li {
+    flex: 0 0 clamp(360px, 28vw, 455px);
+    min-width: clamp(360px, 28vw, 455px);
+    max-width: clamp(360px, 28vw, 455px);
+    height: 508px;
+  }
+
+  .swipe-carousel.with-button .cards-card-image {
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: var(--text-on-dark-emphasis);
+    font-size: var(--font-size-600);
+    font-style: normal;
+    font-weight: var(--body-font-weight-bold);
+    line-height: 150%;
+    letter-spacing: -0.084px;
+    margin-bottom: var(--spacing-xsmall);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:last-child {
+    color: var(--text-on-dark-subdued);
+    font-size: var(--font-size-300);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: var(--spacing-large);
+  }
+}
+
+/* Extra Large Desktop: 1601px+ - Fixed at maximum size */
+@media (width >= 1601px) {
+  .swipe-carousel.with-button > ul > li {
+    flex: 0 0 455px;
+    min-width: 455px;
+    max-width: 455px;
+    height: 508px;
+  }
+
+  .swipe-carousel.with-button .cards-card-image {
+    height: 256px;
+    flex-shrink: 0;
+    border-radius: unset;
+  }
+
+  .swipe-carousel.with-button .cards-card-body {
+    padding: var(--spacing-xlarge) var(--spacing-xlarge) var(--spacing-none) var(--spacing-xlarge);
+  }
+
+  .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: var(--text-on-dark-emphasis);
+    font-size: var(--font-size-600);
+    font-style: normal;
+    font-weight: var(--body-font-weight-bold);
+    line-height: 150%;
+    letter-spacing: -0.084px;
+    margin-bottom: var(--spacing-xsmall);
+  }
+}
+
+/* Keep existing responsive adjustments for default (non-with-button) variant */
+@media (width >= 768px) {
+  .swipe-carousel:not(.with-button) > ul {
+    gap: 8px;
+  }
+
+  .swipe-carousel:not(.with-button) > ul > li {
+    flex: 0 0 430px;
+    min-width: 430px;
+    max-width: 430px;
+    height: 480px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-image {
+    height: 242px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-body {
+    padding: 28px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-body > *:first-child {
+    font-size: 23px;
+    margin-bottom: 14px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-body > *:last-child {
+    font-size: 15px;
+  }
+}
+
+@media (width >= 1024px) {
+  .swipe-carousel:not(.with-button) > ul {
+    gap: 8px;
+  }
+
+  .swipe-carousel:not(.with-button) > ul > li {
+    flex: 0 0 455px;
+    min-width: 455px;
+    max-width: 455px;
+    height: 508px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-image {
+    height: 256px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-body {
+    padding: 32px;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-body > *:first-child {
+    font-size: 24px;
+    margin-bottom: 16px;
+    line-height: 130%;
+  }
+
+  .swipe-carousel:not(.with-button) .cards-card-body > *:last-child {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+
+.swipe-carousel-container h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 115%;
+  letter-spacing: -0.6px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Carousel button and navigation positioning for with-button variant */
+.section > .swipe-carousel-wrapper:has(.with-button),
+.swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.swipe-carousel-wrapper > .swipe-carousel.with-button {
+  width: 100%;
+  order: 1;
+  overflow: visible;
+}
+
+.swipe-carousel.with-button .main-heading {
+  max-width: 1600px;
+  margin: 0 auto 2rem;
+  padding-left: var(--section-gutter-space);
+  padding-right: var(--section-gutter-space);
+  box-sizing: border-box;
+}
+
+.section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel,
+.swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel {
+  overflow: visible !important;
+  width: 100%;
+}
+
+.section > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul,
+.swipe-carousel-container > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul {
+  overflow: auto hidden;
+  padding-left: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-padding-left: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  grid-template-columns: none;
+  grid-template-rows: auto;
+}
+
+.section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul::-webkit-scrollbar,
+.swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keep carousel container constrained for content, carousel breaks out */
+.section.swipe-carousel-container:has(.with-button) {
+  max-width: 1600px !important;
+  padding-left: var(--section-gutter-space) !important;
+  padding-right: var(--section-gutter-space) !important;
+  margin: auto;
+  overflow: visible !important;
+}
+
+/* Default content wrapper maintains standard padding for centered content */
+.section.swipe-carousel-container:has(.with-button) > .default-content-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Carousel wrapper breaks out to use full viewport width */
+.section.swipe-carousel-container:has(.with-button) > .swipe-carousel-wrapper {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  max-width: 100vw;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow: visible !important;
+}
+
+/* Carousel itself - no extra padding since UL handles it */
+.section.swipe-carousel-container:has(.with-button) > .swipe-carousel-wrapper .swipe-carousel {
+  padding-left: 0;
+}
+
+/* Controls container - responsive flex layout */
+.swipe-carousel-wrapper > .carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  order: 2;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  gap: 20px;
+  padding-left: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+}
+
+.carousel-controls > .carousel-button {
+  flex: 0 0 auto;
+  min-width: fit-content;
+}
+
+.carousel-controls > .carousel-button .button-container {
+  margin: 0;
+}
+
+/* Style the Learn More button - with high specificity to override slider.css */
+.swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link,
+.swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
+  background-color: unset;
+  color: var(--text-on-light-link-primary-enabled);
+  padding: 0 0 var(--spacing-xxsmall) 0;
+  border-radius: 0;
+  font-size: var(--font-size-300);
+  font-weight: var(--body-font-weight-bold);
+  border-bottom: 2px solid var(--divider-on-light-emphasis);
+}
+
+.swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link:hover,
+.swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button:hover {
+  border-bottom-color: var(--blue-40);
+  background-color: unset;
+}
+
+/* Navigation buttons - positioned on right via parent justify-content */
+.carousel-controls > .carousel-navigation-buttons {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 24px;
+  min-width: fit-content;
+}
+
+.carousel-controls .carousel-navigation-buttons .button-container {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.carousel-controls .carousel-navigation-buttons .button-container button {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-blue-primary-60);
+  background-color: transparent;
+  color: var(--accent-blue-primary-60);
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  flex-shrink: 0;
+  font-family: loopicon, monospace;
+}
+
+/* Add chevron icons using loopicon font */
+.carousel-controls .carousel-navigation-buttons .button-container button.prev::before {
+  content: '\e117';
+  display: block;
+  font-family: loopicon, monospace;
+  font-style: normal;
+  speak: never;
+}
+
+.carousel-controls .carousel-navigation-buttons .button-container button.next::before {
+  content: '\e118';
+  display: block;
+  font-family: loopicon, monospace;
+  font-style: normal;
+  speak: never;
+}
+
+.carousel-controls .carousel-navigation-buttons .button-container button:hover {
+  background-color: var(--accent-blue-primary-60);
+  color: var(--background-white);
+  border-color: var(--accent-blue-primary-60);
+}
+
+.carousel-controls .carousel-navigation-buttons .button-container button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: var(--accent-blue-primary-60);
+  color: var(--accent-blue-primary-60);
+  background-color: transparent;
+}
+
+.carousel-controls .carousel-navigation-buttons .button-container button:disabled:hover {
+  background-color: transparent;
+  color: var(--accent-blue-primary-60);
+  border-color: var(--accent-blue-primary-60);
+  opacity: 0.35;
+}
+
+/* For screens below 768px, stack navigation buttons above Learn More button */
+@media (width <= 768px) {
+  .swipe-carousel-wrapper > .carousel-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .carousel-controls > .carousel-navigation-buttons {
+    order: 1;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .carousel-controls .carousel-navigation-buttons .button-container {
+    gap: 12px;
+  }
+
+  .carousel-controls .carousel-navigation-buttons .button-container button {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 14px;
+  }
+
+  .carousel-controls > .carousel-button {
+    order: 2;
+    width: 100%;
+  }
+}
+
