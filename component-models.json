@@ -373,9 +373,11 @@
     "fields": [
       {
         "component": "reference",
+        "valueType": "string",
         "name": "image",
         "label": "Image",
-        "multi": false
+        "multi": false,
+        "description": "Max 1 Item"
       },
       {
         "component": "text",
