@@ -344,7 +344,7 @@
       },
       {
         "component": "text",
-        "name": "anchorText",
+        "name": "anchor-text",
         "value": "",
         "label": "Anchor Text",
         "valueType": "string"

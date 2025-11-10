@@ -578,6 +578,7 @@
   padding-left: var(--section-gutter-space);
   padding-right: var(--section-gutter-space);
   box-sizing: border-box;
+  text-align: center;
 }
 
 .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel,
@@ -717,24 +718,29 @@
   margin: 0;
   position: relative;
   flex-shrink: 0;
-  font-family: loopicon, monospace;
 }
 
-/* Add chevron icons using loopicon font */
+/* Add chevron icons using pure CSS */
 .carousel-controls .carousel-navigation-buttons .button-container button.prev::before {
-  content: '\e117';
+  content: '';
   display: block;
-  font-family: loopicon, monospace;
-  font-style: normal;
-  speak: never;
+  width: 8px;
+  height: 8px;
+  border: 2px solid currentcolor;
+  border-width: 2px 0 0 2px;
+  transform: rotate(-45deg);
+  margin-right: -2px;
 }
 
 .carousel-controls .carousel-navigation-buttons .button-container button.next::before {
-  content: '\e118';
+  content: '';
   display: block;
-  font-family: loopicon, monospace;
-  font-style: normal;
-  speak: never;
+  width: 8px;
+  height: 8px;
+  border: 2px solid currentcolor;
+  border-width: 2px 2px 0 0;
+  transform: rotate(45deg);
+  margin-left: -2px;
 }
 
 .carousel-controls .carousel-navigation-buttons .button-container button:hover {
