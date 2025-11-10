@@ -415,8 +415,8 @@
 
 /* Large Desktop: 1201px - 1600px - Cards scale from 360px to 455px */
 @media (width >= 1201px) and (width <= 1600px) {
-   section > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul,
-  .swipe-carousel-container > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul {
+   section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul,
+  .swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
     column-gap:25px;
   }
 
@@ -586,8 +586,8 @@
   width: 100%;
 }
 
-.section > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul,
-.swipe-carousel-container > .swipe-carousel-wrapper:has(.carousel-with-button) .swipe-carousel > ul {
+.section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul,
+.swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
   overflow: auto hidden;
   padding-left: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
   padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
