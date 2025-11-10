@@ -35,12 +35,7 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
-
-  // run this if the data-card-img-link="true" is set:
-  if (block.getAttribute('data-card-img-link') === 'true') {
-    [...ul.children].forEach(wrapImageWithLink);
-  }
-
+  [...ul.children].forEach(wrapImageWithLink);
   block.textContent = '';
   block.append(ul);
 }
