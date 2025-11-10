@@ -1,0 +1,255 @@
+.carousel-container,
+.swipe-carousel-container {
+  display: flex;
+  max-width: calc(1600px - var(--section-gutter-space));
+  padding: 0 var(--section-gutter-space);
+  box-shadow: none;
+}
+
+.carousel-container>.default-content-wrapper,
+.swipe-carousel-container>.default-content-wrapper {
+  flex: 1;
+  padding: 0;
+}
+
+.carousel-container>.default-content-wrapper>p,
+.swipe-carousel-container>.default-content-wrapper>p {
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-container .button-container button,
+.swipe-carousel-container .button-container button {
+  background-color: var(--white);
+  border: 2px solid var(--accent-blue-primary-70);
+  padding: 6px 11px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-container .button-container button:disabled,
+.swipe-carousel-container .button-container button:disabled {
+  opacity: 0.5;
+  background-color: var(--neutral-solid-30-s);
+  color: rgb(0 41 77 / 42%);
+  cursor: unset;
+}
+
+.carousel-wrapper > .carousel,
+.swipe-carousel-wrapper > .swipe-carousel {
+  order: 1;
+}
+
+.section>div.carousel-wrapper,
+.section>div.swipe-carousel-wrapper {
+  flex: 2;
+  overflow: visible;
+  position: relative;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section>div.carousel-wrapper .carousel,
+.section>div.swipe-carousel-wrapper .swipe-carousel {
+  overflow: hidden;
+}
+
+.carousel>ul,
+.swipe-carousel>ul {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 455px);
+  grid-template-rows: 508px;
+  gap: 0 30px;
+  overflow: scroll hidden;
+  scroll-snap-type: both mandatory;
+  scroll-padding: 0;
+  scrollbar-width: none;
+  cursor: default;
+  user-select: none;
+}
+
+/* Unlimited cards for carousel-with-button variant */
+.carousel.carousel-with-button>ul,
+.swipe-carousel.carousel-with-button>ul {
+  grid-auto-flow: column;
+  grid-auto-columns: 455px;
+  grid-template-columns: none;
+}
+
+.carousel>ul.is-dragging,
+.swipe-carousel>ul.is-dragging {
+  cursor: default;
+  scroll-snap-type: none;
+}
+
+.carousel>ul.is-dragging *,
+.swipe-carousel>ul.is-dragging * {
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+}
+
+.carousel>ul::-webkit-scrollbar,
+.swipe-carousel>ul::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel>ul img,
+.swipe-carousel>ul img {
+  pointer-events: none;
+  user-select: none;
+}
+
+.carousel>ul a,
+.swipe-carousel>ul a {
+  user-select: none;
+  cursor: pointer;
+}
+
+.carousel>ul a:hover,
+.swipe-carousel>ul a:hover {
+  cursor: pointer;
+}
+
+.carousel>ul>li,
+.swipe-carousel>ul>li {
+  scroll-snap-align: start;
+  border: 0;
+}
+
+.carousel>ul>li>.cards-card-image,
+.swipe-carousel>ul>li>.cards-card-image {
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  aspect-ratio: auto;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-wrapper > .button-container,
+.carousel-wrapper > .carousel-navigation-buttons,
+.swipe-carousel-wrapper > .button-container,
+.swipe-carousel-wrapper > .carousel-navigation-buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 12px;
+  order: 2;
+  margin-top: 24px;
+}
+
+.carousel .button-container .next,
+.carousel-navigation-buttons .button-container .next,
+.swipe-carousel .button-container .next {
+  margin: 0;
+}
+
+.carousel .button-container .prev,
+.carousel-navigation-buttons .button-container .prev,
+.swipe-carousel .button-container .prev {
+  margin: 0;
+}
+
+.carousel .button-container .prev:hover,
+.carousel .button-container .next:hover,
+.carousel-navigation-buttons .button-container .prev:hover,
+.carousel-navigation-buttons .button-container .next:hover,
+.swipe-carousel .button-container .prev:hover,
+.swipe-carousel .button-container .next:hover {
+  opacity: 0.7;
+  transition: 0.2s;
+  background-color: var(--accent-blue-primary-70);
+}
+
+.carousel .cards-card-body,
+.swipe-carousel .cards-card-body {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: var(--neutral-alpha-95-a);
+  padding: 48px 48px 0;
+  margin: 0;
+}
+
+.carousel>ul>li.active,
+.swipe-carousel>ul>li.active {
+  opacity: 1;
+  scroll-snap-type: x;
+}
+
+.carousel>ul>li.opacity,
+.swipe-carousel>ul>li.opacity {
+  opacity: 0.2;
+}
+
+@media only screen and (width <=1024px) {
+  .section.carousel-container,
+  .section.swipe-carousel-container {
+    max-width: var(--screen-width);
+    margin: auto;
+    flex-direction: column;
+    padding: 64px 0;
+  }
+
+  .carousel>ul,
+  .swipe-carousel>ul {
+    grid-template-columns: repeat(7, 430px);
+    grid-template-rows: 480px;
+    gap: 0 8px;
+  }
+
+  /* Unlimited cards for carousel-with-button variant */
+  .carousel.carousel-with-button>ul,
+  .swipe-carousel.carousel-with-button>ul {
+    grid-auto-columns: 430px;
+    grid-template-columns: none;
+  }
+
+  .carousel-container>div.carousel-wrapper,
+  .swipe-carousel-container>div.swipe-carousel-wrapper {
+    padding-right: 0;
+    padding-left: var(--section-gutter-space);
+    overflow: visible;
+  }
+}
+
+@media only screen and (width < 768px) {
+  .section.carousel-container,
+  .section.swipe-carousel-container {
+    flex-direction: column;
+    padding: 48px 0;
+  }
+
+  .carousel>ul,
+  .swipe-carousel>ul {
+    grid-template-columns: repeat(7, 360px);
+    grid-template-rows: 430px;
+    gap: 0 4px;
+  }
+
+  /* Unlimited cards for carousel-with-button variant */
+  .carousel.carousel-with-button>ul,
+  .swipe-carousel.carousel-with-button>ul {
+    grid-auto-columns: 360px;
+    grid-template-columns: none;
+  }
+}
+
+@media only screen and (width > 1024px) {
+  main .section.carousel-container,
+  main .section.swipe-carousel-container {
+    margin: auto;
+    padding-left: var(--section-gutter-space);
+  }
+}
+
