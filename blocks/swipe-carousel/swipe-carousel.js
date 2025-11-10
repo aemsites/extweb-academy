@@ -20,12 +20,14 @@ export default function decorate(block) {
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
 
-    // Detect if this row is a card (has image or multiple cells with text/heading)
-    const isCard = cells.length >= 2
-      && (cells[0].querySelector('picture, img') || cells[1].querySelector('h3, h4'));
+    // Detect if this row is a card
+    // Cards have 2-4 cells (image, text, optional eyebrow, optional imageAlt)
+    // If it's not the first two rows (headers) and not a link-only row, it's a card
+    const isCard = cells.length >= 2 && cells.length <= 4;
 
     // Header rows (before cards): Title (and optional description)
-    // Stop treating rows as headers once we encounter a card
+    // Only the first row (i=0) is treated as header
+    // The second row (i=1) is only treated as header if it's not a card structure
     if (i === 0 || (i === 1 && !isCard)) {
       const contentEl = row;
       if (contentEl && contentEl.id) {
