@@ -55,6 +55,7 @@
         "cards",
         "columns",
         "fragment",
+	"iframe",
         "library-metadata",
         "video",
         "swipe-carousel"
