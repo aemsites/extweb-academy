@@ -134,13 +134,15 @@
   top: 30px;
   left: 40px;
   background: var(--background-white);
-  color: var(--text-on-light-highlight, #002838);
+  color: var(--text-on-light-default);
   padding: 6px 14px;
   border-radius: 2rem;
-  border: 1px solid var(--outline-transparent);
+  border: 1px solid var(
+  --outline-transparent);
   font-size: 12px;
   text-align: center;
-  font-weight: var(--body-font-weight-bold);
+  font-weight: var(
+  --body-font-weight-bold);
   font-style: normal;
   line-height: 20px;
   letter-spacing: -0.5px;
