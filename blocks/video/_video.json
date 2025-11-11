@@ -62,8 +62,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "placeholder_alt",
-          "label": "Placeholder Alt Text",
+          "name": "placeholder_imageAlt",
+          "label": "Placeholder Image Alt Text",
           "value": ""
         },
         {
