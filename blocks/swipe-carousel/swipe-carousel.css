@@ -136,11 +136,11 @@
   background: var(--background-white);
   color: var(--text-on-light-highlight, #002838);
   padding: 6px 14px;
-  border-radius: var(--lift-button-border-radius);
+  border-radius: 2rem;
   border: 1px solid var(--outline-transparent);
   font-size: 12px;
   text-align: center;
-  font-weight: var(--lift-button-label-font-weight);
+  font-weight: var(--body-font-weight-bold);
   font-style: normal;
   line-height: 20px;
   letter-spacing: -0.5px;
@@ -552,8 +552,9 @@
   font-weight: 700;
   line-height: 115%;
   letter-spacing: -0.6px;
-  margin-bottom: 1rem;
   text-align: center;
+  font-family: var(--heading-font-family);
+  margin: 0 0 var(--spacing-medium) 0;
 }
 
 /* Carousel button and navigation positioning for with-button variant */
@@ -579,6 +580,17 @@
   padding-right: var(--section-gutter-space);
   box-sizing: border-box;
   text-align: center;
+}
+
+.swipe-carousel.with-button p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.25px;
+  color: #000d1ab2;
+  text-align: center;
+  text-transform: none;
+  margin: 0 0 var(--spacing-medium) 0;
 }
 
 .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel,
