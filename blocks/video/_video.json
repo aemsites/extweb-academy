@@ -46,7 +46,7 @@
           "condition": {
             "==": [
               {
-                "var": "videoType"
+                "var": "Format"
               },
               "you-tube"
             ]
@@ -75,7 +75,7 @@
           "condition": {
             "==": [
               {
-                "var": "videoType"
+                "var": "Format"
               },
               "embed-code"
             ]
