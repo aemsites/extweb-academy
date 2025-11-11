@@ -53,6 +53,20 @@
           }
         },
         {
+          "component": "reference",
+          "valueType": "string",
+          "name": "placeholder_image",
+          "label": "Placeholder Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "placeholder_imageAlt",
+          "label": "Placeholder Image Alt Text",
+          "value": ""
+        },
+        {
           "component": "text-area",
           "valueType": "string",
           "name": "embedCode",
