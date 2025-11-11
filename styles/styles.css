@@ -112,6 +112,12 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* icon sizes */
+  --size-icon-small: 0.875rem;
+  --size-icon-regular: 1rem;
+  --size-icon-large: 1.25rem;
+  --size-icon-xxlarge: 4rem;
 }
 
 /* fallback fonts */
