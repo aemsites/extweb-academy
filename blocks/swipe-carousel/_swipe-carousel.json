@@ -74,7 +74,7 @@
         },
     {
       "component": "text",
-      "name": "anchor-text",
+      "name": "linkText",
       "value": "",
       "label": "Anchor Text",
       "valueType": "string"

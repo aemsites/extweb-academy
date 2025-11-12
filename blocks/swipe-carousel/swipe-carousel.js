@@ -9,7 +9,7 @@ export default function decorate(block) {
   const slider = document.createElement('ul');
   const leftContent = document.createElement('div');
   let h2Element;
-  let anchorText = '';
+  let linkText = '';
   let anchorLink = '';
 
   [...block.children].forEach((row) => {
@@ -20,13 +20,13 @@ export default function decorate(block) {
       && Array.from(cells).every((cell) => !cell.textContent.trim()
         && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
 
-    // Skip empty rows created by UE for description/anchorText/link fields
+    // Skip empty rows created by UE for description/linkText/link fields
     if (isEmpty) {
       i += 1;
       return;
     }
 
-    // Detect if this row is plain text (for anchorText)
+    // Detect if this row is plain text (for linkText)
     const isPlainText = cells.length === 1
       && cells[0].textContent.trim()
       && !cells[0].querySelector('picture, img, a, h1, h2, h3, h4, h5, h6');
@@ -47,18 +47,18 @@ export default function decorate(block) {
         h2Element = contentEl.id;
       }
       leftContent.append(contentEl);
-    } else if (isPlainText && hasActionButton && !anchorText) {
-      // Plain text row after title/description: Extract as anchorText
-      anchorText = cells[0].textContent.trim();
+    } else if (isPlainText && hasActionButton && !linkText) {
+      // Plain text row after title/description: Extract as linkText
+      linkText = cells[0].textContent.trim();
       // Don't process this row further
     } else if (hasOnlyLink && hasActionButton && !anchorLink) {
       // Link row: Extract the link URL
       const linkEl = cells[0].querySelector('a');
       if (linkEl) {
         anchorLink = linkEl.href;
-        // If anchorText wasn't set, use link text
-        if (!anchorText) {
-          anchorText = linkEl.textContent.trim();
+        // If linkText wasn't set, use link text
+        if (!linkText) {
+          linkText = linkEl.textContent.trim();
         }
       }
       // Don't process this row further
@@ -96,13 +96,13 @@ export default function decorate(block) {
     i += 1;
   });
 
-  // Create button element from anchor text and link fields
+  // Create button element from link text and link fields
   let buttonElement = null;
-  if (hasActionButton && anchorText && anchorLink) {
+  if (hasActionButton && linkText && anchorLink) {
     const newButton = document.createElement('a');
     newButton.href = anchorLink;
     newButton.className = 'button';
-    newButton.textContent = anchorText;
+    newButton.textContent = linkText;
     if (h2Element) {
       newButton.setAttribute('aria-describedby', h2Element);
     }
