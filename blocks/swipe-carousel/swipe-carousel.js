@@ -9,13 +9,29 @@ export default function decorate(block) {
   const slider = document.createElement('ul');
   const leftContent = document.createElement('div');
   let h2Element;
-  let anchorText = '';
+  let linkText = '';
   let anchorLink = '';
 
   [...block.children].forEach((row) => {
     const cells = row.querySelectorAll(':scope > div');
 
-    // Detect if this row is a link-only row (for anchorText/link extraction)
+    // Check if row is empty (UE creates empty rows for unused block-level fields)
+    const isEmpty = cells.length > 0
+      && Array.from(cells).every((cell) => !cell.textContent.trim()
+        && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
+
+    // Skip empty rows created by UE for description/linkText/link fields
+    if (isEmpty) {
+      i += 1;
+      return;
+    }
+
+    // Detect if this row is plain text (for linkText)
+    const isPlainText = cells.length === 1
+      && cells[0].textContent.trim()
+      && !cells[0].querySelector('picture, img, a, h1, h2, h3, h4, h5, h6');
+
+    // Detect if this row is a link-only row (for link extraction)
     const hasOnlyLink = cells.length === 1
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
@@ -24,21 +40,28 @@ export default function decorate(block) {
     const isCard = cells.length >= 2
       && (cells[0].querySelector('picture, img') || cells[1].querySelector('h3, h4'));
 
-    // Header rows (i <= 1): Title and Description
-    if (i <= 1) {
+    // First two non-empty rows are title and description
+    if (i === 0 || i === 1) {
       const contentEl = row;
-      if (contentEl && contentEl.id) {
+      if (i === 0 && contentEl && contentEl.id) {
         h2Element = contentEl.id;
       }
       leftContent.append(contentEl);
-    } else if (hasOnlyLink && hasActionButton) {
-      // Link row: Extract anchorText and link
+    } else if (isPlainText && hasActionButton && !linkText) {
+      // Plain text row after title/description: Extract as linkText
+      linkText = cells[0].textContent.trim();
+      // Don't process this row further
+    } else if (hasOnlyLink && hasActionButton && !anchorLink) {
+      // Link row: Extract the link URL
       const linkEl = cells[0].querySelector('a');
       if (linkEl) {
-        anchorText = linkEl.textContent.trim();
         anchorLink = linkEl.href;
+        // If linkText wasn't set, use link text
+        if (!linkText) {
+          linkText = linkEl.textContent.trim();
+        }
       }
-      // Don't process this row further - it's not a card
+      // Don't process this row further
     } else if (isCard) {
       // Card row: cells[0] = image, cells[1] = text, cells[2] = eyebrow (optional)
       const li = document.createElement('li');
@@ -73,13 +96,13 @@ export default function decorate(block) {
     i += 1;
   });
 
-  // Create button element from anchor text and link fields
+  // Create button element from link text and link fields
   let buttonElement = null;
-  if (hasActionButton && anchorText && anchorLink) {
+  if (hasActionButton && linkText && anchorLink) {
     const newButton = document.createElement('a');
     newButton.href = anchorLink;
     newButton.className = 'button';
-    newButton.textContent = anchorText;
+    newButton.textContent = linkText;
     if (h2Element) {
       newButton.setAttribute('aria-describedby', h2Element);
     }

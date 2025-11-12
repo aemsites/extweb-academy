@@ -4,7 +4,7 @@ import {
 
 loadCSS(`${window.hlx.codeBasePath}/styles/slider.css`);
 
-// Create navigation button (arrows are styled via CSS using loopicon font)
+// Create navigation button (arrows are styled via CSS using borders)
 function arrow(props) {
   const p = document.createElement('p');
   p.className = 'button-container';

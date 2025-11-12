@@ -27,10 +27,10 @@
   --blue-60: #00538a;
   --blue-70: #004370;
   --blue-90: #012740;
-  --text-on-dark-emphasis: #fff;
+  --text-on-dark-emphasis: #ffffffe5;
   --text-on-dark-subdued: rgb(255 255 255 / 70%);
-  --text-on-light-default: #131313;
-  --text-on-light-highlight: #002838;
+  --text-on-light-default: #000d1ab2;
+  --text-on-light-highlight: #012740;
   --text-on-light-link-primary-enabled: #004370;
   --background-white: #fff;
   --outline-transparent: transparent;
@@ -46,11 +46,14 @@
   --spacing-xxsmall: 0.25rem;
   --spacing-xsmall: 0.5rem;
   --spacing-small: 0.75rem;
+  --spacing-medium: 2rem;
   --spacing-large: 1.5rem;
   --spacing-xlarge: 1.75rem;
   --section-gutter-space: 28px;
   
   /* font sizes */
+  --body-font-family: 'Open Sans', roboto, roboto-fallback;
+  --heading-font-family: var(--body-font-family);
   --font-size-100: 0.75rem;
   --font-size-200: 0.875rem;
   --font-size-300: 1rem;
@@ -78,7 +81,7 @@
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --heading-font-family: var(--body-font-family);
 
   /* body sizes */
   --body-font-size-m: 22px;
