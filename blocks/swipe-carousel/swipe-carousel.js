@@ -15,16 +15,16 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const cells = row.querySelectorAll(':scope > div');
 
-    // Check if row is empty (UE creates empty rows for unused block-level fields)
-    const isEmpty = cells.length > 0
-      && Array.from(cells).every((cell) => !cell.textContent.trim()
-        && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
+    // // Check if row is empty (UE creates empty rows for unused block-level fields)
+    // const isEmpty = cells.length > 0
+    //   && Array.from(cells).every((cell) => !cell.textContent.trim()
+    //     && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
 
-    // Skip empty rows created by UE for description/linkText/link fields
-    if (isEmpty) {
-      i += 1;
-      return;
-    }
+    // // Skip empty rows created by UE for description/linkText/link fields
+    // if (isEmpty) {
+    //   i += 1;
+    //   return;
+    // }
 
     // Detect if this row is plain text (for linkText)
     const isPlainText = cells.length === 1
