@@ -15,16 +15,21 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const cells = row.querySelectorAll(':scope > div');
 
-    // // Check if row is empty (UE creates empty rows for unused block-level fields)
-    // const isEmpty = cells.length > 0
-    //   && Array.from(cells).every((cell) => !cell.textContent.trim()
-    //     && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
+    // Detect if this row is a card (has image or multiple cells with text/heading)
+    const isCard = cells.length >= 2
+      && (cells[0].querySelector('picture, img') || cells[1].querySelector('h3, h4'));
 
-    // // Skip empty rows created by UE for description/linkText/link fields
-    // if (isEmpty) {
-    //   i += 1;
-    //   return;
-    // }
+    // Check if row is empty (UE creates empty rows for unused block-level fields)
+    // Only check non-card rows
+    const isEmpty = !isCard && cells.length > 0
+      && Array.from(cells).every((cell) => !cell.textContent.trim()
+        && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
+
+    // Skip empty rows created by UE for description/linkText/link fields
+    if (isEmpty) {
+      i += 1;
+      return;
+    }
 
     // Detect if this row is plain text (for linkText)
     const isPlainText = cells.length === 1
@@ -35,10 +40,6 @@ export default function decorate(block) {
     const hasOnlyLink = cells.length === 1
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
-
-    // Detect if this row is a card (has image or multiple cells with text/heading)
-    const isCard = cells.length >= 2
-      && (cells[0].querySelector('picture, img') || cells[1].querySelector('h3, h4'));
 
     // First two non-empty rows are title and description
     if (i === 0 || i === 1) {
