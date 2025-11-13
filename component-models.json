@@ -396,35 +396,30 @@
         "component": "reference",
         "valueType": "string",
         "name": "image",
-        "value": "",
         "label": "Image",
         "multi": false,
-        "description": "Max 1 Item",
-        "required": true
+        "description": "Max 1 Item"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
         "label": "Alt Text",
-        "value": "",
-        "required": true
+        "value": ""
       },
       {
         "component": "richtext",
         "name": "text",
         "value": "",
         "label": "Text",
-        "valueType": "string",
-        "required": true
+        "valueType": "string"
       },
       {
         "component": "text",
         "name": "eyebrow",
         "value": "Featured",
         "label": "Eyebrow",
-        "valueType": "string",
-        "required": true
+        "valueType": "string"
       }
     ]
   },

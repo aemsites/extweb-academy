@@ -238,7 +238,11 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Swipe Carousel Card",
-                  "model": "swipe-carousel-card"
+                  "model": "swipe-carousel-card",
+                  "image": "",
+                  "imageAlt": "",
+                  "text": "",
+                  "eyebrow": "Featured"
                 }
               }
             }

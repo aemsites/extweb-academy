@@ -34,7 +34,11 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Swipe Carousel Card",
-              "model": "swipe-carousel-card"
+              "model": "swipe-carousel-card",
+              "image": "",
+              "imageAlt": "",
+              "text": "",
+              "eyebrow": "Featured"
             }
           }
         }
@@ -95,35 +99,30 @@
           "component": "reference",
           "valueType": "string",
           "name": "image",
-          "value": "",
           "label": "Image",
           "multi": false,
-          "description": "Max 1 Item",
-          "required": true
+          "description": "Max 1 Item"
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "imageAlt",
           "label": "Alt Text",
-          "value": "",
-          "required": true
+          "value": ""
         },
         {
           "component": "richtext",
           "name": "text",
           "value": "",
           "label": "Text",
-          "valueType": "string",
-          "required": true
+          "valueType": "string"
         },
         {
           "component": "text",
           "name": "eyebrow",
           "value": "Featured",
           "label": "Eyebrow",
-          "valueType": "string",
-          "required": true
+          "valueType": "string"
         }
       ]
     }
