@@ -11,6 +11,7 @@
       "text",
       "image",
       "dm-asset",
+      "custom-image",
       "button",
       "title",
       "hero",
@@ -41,7 +42,9 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "custom-image",
+      "dm-asset"
     ]
   },
   {

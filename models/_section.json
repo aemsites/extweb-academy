@@ -50,6 +50,7 @@
         "text",
         "image",
         "dm-asset",
+        "custom-image",
         "button",
         "title",
         "hero",

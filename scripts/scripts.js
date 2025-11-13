@@ -11,6 +11,7 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+import { picture, source, img } from './dom-helpers.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -56,6 +57,192 @@ async function loadFonts() {
   } catch (e) {
     // do nothing
   }
+}
+
+/**
+ * Decorates Dynamic Media images by modifying their URLs to include specific parameters
+ * and creating a <picture> element with different sources for different image formats and sizes.
+ *
+ * @param {HTMLElement} main - The main container element that includes the links to be processed.
+ */
+export function decorateDMImages(main) {
+  main.querySelectorAll('a[href^="https://delivery-p"]').forEach((a) => {
+    const url = new URL(a.href.split('?')[0]);
+    if (url.hostname.endsWith('.adobeaemcloud.com')) {
+      const pictureEl = picture(
+        source({ srcset: `${url.href}?width=1400&quality=85&preferwebp=true`, type: 'image/webp', media: '(min-width: 992px)' }),
+        source({ srcset: `${url.href}?width=1320&quality=85&preferwebp=true`, type: 'image/webp', media: '(min-width: 768px)' }),
+        source({ srcset: `${url.href}?width=780&quality=85&preferwebp=true`, type: 'image/webp', media: '(min-width: 320px)' }),
+        source({ srcset: `${url.href}?width=1400&quality=85`, media: '(min-width: 992px)' }),
+        source({ srcset: `${url.href}?width=1320&quality=85`, media: '(min-width: 768px)' }),
+        source({ srcset: `${url.href}?width=780&quality=85`, media: '(min-width: 320px)' }),
+        img({ src: `${url.href}?width=1400&quality=85`, alt: a.innerText }),
+      );
+      a.replaceWith(pictureEl);
+    }
+  });
+}
+export async function decorateDMImagesWithRendition(
+  image,
+  imageRatio,
+  modifiers,
+  disableSmartCrop,
+  title,
+  alt,
+  aspectRatioDiv,
+  objectPosDiv,
+  loadingValue,
+) {
+  const getText = (el, defaultValue = '') => {
+    if (el instanceof Element) {
+      const p = el.querySelector('p');
+      return p ? p.textContent.trim() : defaultValue;
+    }
+    return defaultValue;
+  };
+
+  const imageRendition = getText(imageRatio);
+  const quality = getText(modifiers, 'quality=85');
+  const isDisable = getText(disableSmartCrop, 'false');
+  const aspectRatio = getText(aspectRatioDiv);
+  const objectPos = getText(objectPosDiv);
+  const altValue = getText(alt);
+  const titleValue = getText(title);
+
+  if (!loadingValue) {
+    // eslint-disable-next-line no-param-reassign
+    loadingValue = 'lazy';
+  }
+
+  const sources = [];
+  const deliveryLink = image.querySelector('a[href^="https://delivery-p"]');
+
+  if (deliveryLink) {
+    const url = new URL(deliveryLink.href.split('?')[0]);
+    const originalHref = url.href;
+
+    const fileName = originalHref.substring(originalHref.lastIndexOf('/') + 1);
+    const altText = fileName.substring(0, fileName.lastIndexOf('.'));
+
+    const imgEl = img({
+      loading: loadingValue,
+      alt: altValue !== '' ? altValue : altText,
+      title: titleValue !== '' ? titleValue : altText,
+      src: originalHref.replace('/original', ''),
+    });
+
+    if (url.hostname.endsWith('.adobeaemcloud.com')) {
+      if (imageRendition !== '' && isDisable === 'false') {
+        let metaPath = url.pathname.replace('/original', '');
+        const asIndex = metaPath.indexOf('/as/');
+        if (asIndex !== -1) {
+          metaPath = metaPath.substring(0, asIndex);
+        }
+        const metadataUrl = `${url.origin}${metaPath}/metadata`;
+
+        let availableRenditions = {};
+        try {
+          const resp = await fetch(metadataUrl);
+          if (resp.ok) {
+            const json = await resp.json();
+            availableRenditions = json?.repositoryMetadata?.smartcrops || {};
+          }
+        } catch (e) {
+          console.error('Failed to fetch metadata:', e);
+        }
+
+        const breakpoints = imageRendition.split(',').reduce((acc, item) => {
+          const [resolution, size] = item.split(':');
+          if (!resolution || !size) return acc;
+          const [width, height] = size.split('x').map(Number);
+          if (width && height) {
+            acc[Number(resolution)] = { width, height };
+          }
+          return acc;
+        }, {});
+        const sortedBps = Object.entries(breakpoints).sort((a, b) => Number(b[0]) - Number(a[0]));
+
+        const [largestData] = sortedBps[0];
+        const largestKey = `${largestData.width}x${largestData.height}`;
+        let largestRenditionHref = originalHref;
+        largestRenditionHref = originalHref.replace('/original', '');
+
+        sortedBps.forEach(([bp, { width, height }]) => {
+          const key = `${width}x${height}`;
+          let renditionHref = originalHref;
+          renditionHref = renditionHref.replace('/original', '');
+
+          if (availableRenditions[key]) {
+            sources.push(
+              source({
+                type: 'image/webp',
+                media: `(min-width: ${bp}px)`,
+                srcset: `${renditionHref}?${quality}&smartcrop=${key}`,
+              }),
+            );
+          } else {
+            sources.push(
+              source({
+                type: 'image/webp',
+                media: `(min-width: ${bp}px)`,
+                srcset: `${renditionHref}?${quality}&smartcrop=${key}`,
+              }),
+            );
+          }
+        });
+        imgEl.src = `${largestRenditionHref}?${quality}&smartcrop=${largestKey}`;
+        imgEl.style.aspectRatio = 'auto';
+        imgEl.style.objectPosition = 'initial';
+      } else {
+        if (quality !== '') {
+          const imgSrc = originalHref.replace('/original', '');
+          imgEl.src = `${imgSrc}?${quality}`;
+        }
+        if (aspectRatio !== '') {
+          imgEl.style.aspectRatio = aspectRatio;
+        }
+        if (objectPos !== '') {
+          imgEl.style.objectPosition = objectPos;
+        }
+      }
+      const parent = deliveryLink.parentElement;
+      if (parent && parent.tagName.toLowerCase() === 'p') {
+        parent.replaceWith(picture(...sources, imgEl));
+      } else {
+        deliveryLink.replaceWith(picture(...sources, imgEl));
+      }
+    }
+  } else {
+    const pictureTag = image.querySelector('picture');
+    if (pictureTag) {
+      const pic = pictureTag.querySelector('img');
+      if (altValue !== '') {
+        pic.alt = altValue;
+      } else {
+        pic.alt = 'default alt';
+      }
+      if (aspectRatio !== '') {
+        pic.style.aspectRatio = aspectRatio;
+      }
+      if (objectPos !== '') {
+        pic.style.objectPosition = objectPos;
+      }
+
+      if (pic) {
+        const newImg = pic.cloneNode(true); // clone so we don't lose it
+        pictureTag.innerHTML = ''; // clear all children
+        pictureTag.appendChild(newImg); // put back only <img>
+      }
+
+      const parent = pictureTag.parentElement;
+      if (parent && parent.tagName.toLowerCase() === 'p') {
+        parent.replaceWith(pictureTag);
+      }
+    }
+  }
+  [imageRatio, alt, modifiers, disableSmartCrop, aspectRatioDiv, objectPosDiv].forEach((el) => {
+    if (el instanceof Element) el.remove();
+  });
 }
 
 /**
