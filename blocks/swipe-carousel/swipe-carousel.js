@@ -3,6 +3,11 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import createSlider from '../../scripts/slider.js';
 
 export default function decorate(block) {
+  // Ensure we only work with swipe-carousel blocks
+  if (!block.classList.contains('swipe-carousel')) {
+    return;
+  }
+
   const hasActionButton = block.classList.contains('with-button');
 
   let i = 0;
@@ -106,6 +111,55 @@ export default function decorate(block) {
       // Process text cell
       if (cells[1]) {
         cells[1].className = 'cards-card-body';
+
+        // Truncate paragraph content to ~150 characters (excluding headings)
+        const maxChars = 150;
+        const allElements = Array.from(cells[1].children);
+        const paragraphs = allElements.filter((el) => el.tagName === 'P');
+
+        // Calculate total paragraph text length
+        let totalParagraphChars = 0;
+        paragraphs.forEach((p) => {
+          totalParagraphChars += p.textContent.trim().length;
+        });
+
+        // If paragraphs exceed limit, truncate
+        if (totalParagraphChars > maxChars) {
+          let charCount = 0;
+          let truncated = false;
+
+          paragraphs.forEach((p) => {
+            if (truncated) {
+              // Remove paragraphs after truncation
+              p.remove();
+            } else {
+              const pText = p.textContent.trim();
+              const pLength = pText.length;
+
+              if (charCount + pLength <= maxChars) {
+                // Keep this paragraph as is
+                charCount += pLength;
+              } else {
+                // Truncate this paragraph
+                const remainingChars = maxChars - charCount;
+                if (remainingChars > 30) {
+                  // We have room for some of this paragraph
+                  let text = pText.substring(0, remainingChars);
+                  const lastSpace = text.lastIndexOf(' ');
+                  if (lastSpace > remainingChars * 0.75) {
+                    text = text.substring(0, lastSpace);
+                  }
+                  p.textContent = `${text}...`;
+                } else {
+                  // Not enough room, remove this paragraph
+                  p.remove();
+                }
+                truncated = true;
+              }
+            }
+          });
+        }
+
         li.append(cells[1]);
       }
 
@@ -161,8 +215,8 @@ export default function decorate(block) {
       titleLink.textContent = oldLink.textContent;
       moveInstrumentation(oldLink, titleLink);
 
-      // Find the heading (h3, h4, etc.) and wrap it with the link
-      const heading = bodyDiv.querySelector('h3, h4, h5, h6');
+      // Find any heading and wrap it with the link
+      const heading = bodyDiv.querySelector('h1, h2, h3, h4, h5, h6');
       if (heading) {
         heading.textContent = '';
         heading.appendChild(titleLink);

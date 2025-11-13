@@ -171,6 +171,13 @@
   background-color: transparent;
 }
 
+.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button:disabled:hover {
+  background-color: transparent;
+  color: var(--accent-blue-primary-60);
+  border-color: var(--accent-blue-primary-60);
+  opacity: 0.35;
+}
+
 .swipe-carousel .cards-card-body {
   font-size: 14px;
   line-height: 17px;
