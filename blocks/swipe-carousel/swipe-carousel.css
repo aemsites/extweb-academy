@@ -212,6 +212,7 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 200px;
     flex-shrink: 0;
     border-radius: 0;
     overflow: hidden;
@@ -282,6 +283,7 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 220px;
     border-radius: 0;
     flex-shrink: 0;
   }
@@ -326,6 +328,7 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 230px;
     flex-shrink: 0;
     border-radius: 0;
   }
@@ -379,6 +382,7 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 240px;
     border-radius: 0;
     flex-shrink: 0;
     overflow: hidden;
@@ -431,6 +435,7 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 240px;
     flex-shrink: 0;
     border-radius: 0;
   }

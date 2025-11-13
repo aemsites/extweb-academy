@@ -15,39 +15,56 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const cells = row.querySelectorAll(':scope > div');
 
-    // Check if row is empty (skip empty rows regardless of cell count)
+    // Check if row is empty (UE creates empty rows for unused block-level fields)
     const isEmpty = cells.length > 0
       && Array.from(cells).every((cell) => !cell.textContent.trim()
         && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
 
+    // Skip empty rows created by UE for description/linkText/link fields
     if (isEmpty) {
+      i += 1;
       return;
     }
 
-    // Detect if this row is a link-only row (for linkText/link extraction)
+    // Detect if this row is plain text (for linkText)
+    const isPlainText = cells.length === 1
+      && cells[0].textContent.trim()
+      && !cells[0].querySelector('picture, img, a, h1, h2, h3, h4, h5, h6');
+
+    // Detect if this row is a link-only row (for link extraction)
     const hasOnlyLink = cells.length === 1
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
 
-    // Card detection: 2+ cells with at least some content
-    const isCard = cells.length >= 2;
+    // Detect if this row is a card (has 2+ cells with some content)
+    const isCard = cells.length >= 2
+      && (cells[0].querySelector('picture, img')
+        || cells[1].querySelector('h3, h4, p')
+        || cells[1].textContent.trim()
+        || cells[2]?.textContent.trim());
 
-    // Header rows (before cards): Title (and optional description)
-    // Stop treating rows as headers once we encounter a card
-    if (i === 0 || (i === 1 && !isCard)) {
+    // First two non-empty rows are title and description
+    if (i === 0 || i === 1) {
       const contentEl = row;
-      if (contentEl && contentEl.id) {
+      if (i === 0 && contentEl && contentEl.id) {
         h2Element = contentEl.id;
       }
       leftContent.append(contentEl);
-    } else if (hasOnlyLink && hasActionButton) {
-      // Link row: Extract linkText and link
+    } else if (isPlainText && hasActionButton && !linkText) {
+      // Plain text row after title/description: Extract as linkText
+      linkText = cells[0].textContent.trim();
+      // Don't process this row further
+    } else if (hasOnlyLink && hasActionButton && !anchorLink) {
+      // Link row: Extract the link URL
       const linkEl = cells[0].querySelector('a');
       if (linkEl) {
-        linkText = linkEl.textContent.trim();
         anchorLink = linkEl.href;
+        // If linkText wasn't set, use link text
+        if (!linkText) {
+          linkText = linkEl.textContent.trim();
+        }
       }
-      // Don't process this row further - it's not a card
+      // Don't process this row further
     } else if (isCard) {
       // Card row: cells[0] = image, cells[1] = text, cells[2] = eyebrow (optional)
       const li = document.createElement('li');
@@ -58,8 +75,11 @@ export default function decorate(block) {
         eyebrow = cells[2].textContent.trim();
       }
 
+      // Check if image cell has actual image content
+      const hasImage = cells[0] && cells[0].querySelector('picture, img');
+
       // Process image cell
-      if (cells[0]) {
+      if (hasImage) {
         cells[0].className = 'cards-card-image';
         // Add eyebrow to image container if it exists
         if (eyebrow) {
@@ -69,6 +89,18 @@ export default function decorate(block) {
           cells[0].insertBefore(eyebrowEl, cells[0].firstChild);
         }
         li.append(cells[0]);
+      } else {
+        // Create placeholder image cell with eyebrow but no image
+        const placeholderDiv = document.createElement('div');
+        placeholderDiv.className = 'cards-card-image';
+        // Add eyebrow even when no image
+        if (eyebrow) {
+          const eyebrowEl = document.createElement('span');
+          eyebrowEl.className = 'card-eyebrow';
+          eyebrowEl.textContent = eyebrow;
+          placeholderDiv.appendChild(eyebrowEl);
+        }
+        li.append(placeholderDiv);
       }
 
       // Process text cell
@@ -153,13 +185,15 @@ export default function decorate(block) {
 
   leftContent.className = hasActionButton ? 'main-heading' : 'default-content-wrapper';
 
+  // Check if leftContent has any actual content
+  const hasLeftContent = leftContent.textContent.trim().length > 0
+    || leftContent.querySelector('picture, img, a');
+
   // Replace original block content
   block.textContent = '';
-  if (!hasActionButton) {
-    if (leftContent) {
-      block.parentNode.parentNode.prepend(leftContent);
-    }
-  } else {
+  if (!hasActionButton && hasLeftContent) {
+    block.parentNode.parentNode.prepend(leftContent);
+  } else if (hasActionButton && hasLeftContent) {
     block.appendChild(leftContent);
   }
   block.append(slider);
