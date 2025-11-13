@@ -205,6 +205,12 @@
   }
 }
 
+@media (width >= 900px) {
+  main > .section > div {
+    padding: 0 10px;
+  }
+}
+
 @media (width >= 1024px) {
   :root {
     /* responsive spacing */
@@ -404,13 +410,6 @@ main > .section > div.swipe-carousel-wrapper {
 
 main > .section:first-of-type {
   margin-top: 0;
-}
-
-
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 10px;
-  }
 }
 
 /* section metadata */
