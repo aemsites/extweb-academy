@@ -15,14 +15,23 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const cells = row.querySelectorAll(':scope > div');
 
+    // Check if single-cell row is empty (skip empty block-level fields)
+    const isEmpty = cells.length === 1
+      && !cells[0].textContent.trim()
+      && !cells[0].querySelector('picture, img, a, h1, h2, h3, h4, h5, h6');
+
+    if (isEmpty) {
+      i += 1;
+      return;
+    }
+
     // Detect if this row is a link-only row (for linkText/link extraction)
     const hasOnlyLink = cells.length === 1
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
 
-    // Detect if this row is a card (has image or multiple cells with text/heading)
-    const isCard = cells.length >= 2
-      && (cells[0].querySelector('picture, img') || cells[1].querySelector('h3, h4'));
+    // Any row with 2+ cells is a card (regardless of content)
+    const isCard = cells.length >= 2;
 
     // Header rows (before cards): Title (and optional description)
     // Stop treating rows as headers once we encounter a card
