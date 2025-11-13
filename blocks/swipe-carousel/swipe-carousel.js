@@ -21,9 +21,13 @@ export default function decorate(block) {
     const cells = row.querySelectorAll(':scope > div');
 
     // Check if row is empty (UE creates empty rows for unused block-level fields)
+    // A row is empty if ALL cells have no text AND no child elements (except empty divs)
     const isEmpty = cells.length > 0
-      && Array.from(cells).every((cell) => !cell.textContent.trim()
-        && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
+      && Array.from(cells).every((cell) => {
+        const hasText = cell.textContent.trim().length > 0;
+        const hasElements = cell.querySelector('*:not(div:empty)');
+        return !hasText && !hasElements;
+      });
 
     // Skip empty rows created by UE for description/linkText/link fields
     if (isEmpty) {
