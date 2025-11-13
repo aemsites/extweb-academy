@@ -79,10 +79,6 @@
   /* other */
   --lift-button-border-radius: 4px;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: var(--body-font-family);
-
   /* body sizes */
   --body-font-size-m: 22px;
   --body-font-size-s: 19px;
