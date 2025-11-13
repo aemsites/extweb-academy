@@ -189,8 +189,8 @@
                     "sling:resourceType": "core/franklin/components/block/v1/block/item",
                     "name": "Swipe Carousel Card",
                     "model": "swipe-carousel-card",
-                    "image": "/content/dam/extweb-academy/sample/placeholder.png",
-                    "imageAlt": "Placeholder image",
+                    "image": "",
+                    "imageAlt": "",
                     "text": "<p>Explore our content - essential information to learn about important topics while discovering valuable resources</p>",
                     "eyebrow": "Featured"
                   }
