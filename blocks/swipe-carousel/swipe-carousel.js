@@ -15,10 +15,10 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const cells = row.querySelectorAll(':scope > div');
 
-    // Check if single-cell row is empty (skip empty block-level fields)
-    const isEmpty = cells.length === 1
-      && !cells[0].textContent.trim()
-      && !cells[0].querySelector('picture, img, a, h1, h2, h3, h4, h5, h6');
+    // Check if row is empty (skip empty rows regardless of cell count)
+    const isEmpty = cells.length > 0
+      && Array.from(cells).every((cell) => !cell.textContent.trim()
+        && !cell.querySelector('picture, img, a, h1, h2, h3, h4, h5, h6'));
 
     if (isEmpty) {
       return;
@@ -29,7 +29,7 @@ export default function decorate(block) {
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
 
-    // Any row with 2+ cells is a card (regardless of content)
+    // Card detection: 2+ cells with at least some content
     const isCard = cells.length >= 2;
 
     // Header rows (before cards): Title (and optional description)
