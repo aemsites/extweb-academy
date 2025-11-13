@@ -41,12 +41,9 @@ export default function decorate(block) {
       && cells[0].querySelector('a')
       && !cells[0].querySelector('picture, img, h1, h2, h3, h4, h5, h6');
 
-    // Detect if this row is a card (has 2+ cells with some content)
-    const isCard = cells.length >= 2
-      && (cells[0].querySelector('picture, img')
-        || cells[1].querySelector('h3, h4, p')
-        || cells[1].textContent.trim()
-        || cells[2]?.textContent.trim());
+    // Detect if this row is a card (any row with 2+ cells after title/description)
+    // Be permissive to allow UE to create empty cards that will be filled in later
+    const isCard = cells.length >= 2;
 
     // First two non-empty rows are title and description
     if (i === 0 || i === 1) {
