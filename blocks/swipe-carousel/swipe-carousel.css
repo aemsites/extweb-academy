@@ -105,10 +105,6 @@
   cursor: pointer;
 }
 
-.swipe-carousel.with-button .cards-card-body a:hover {
-  text-decoration: underline;
-}
-
 .swipe-carousel .cards-card-body > *:first-child a {
   color: inherit;
   text-decoration: none;
@@ -121,11 +117,6 @@
   display: inline;
 }
 
-.swipe-carousel .cards-card-body > *:first-child a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-
 .swipe-carousel .cards-card-body > *:last-child {
   color: var(--text-on-dark-subdued);
   font-size: var(--font-size-300);
@@ -136,6 +127,47 @@
   margin-bottom: var(--spacing-large);
   text-align: left;
   width: 100%;
+}
+
+/* Link styles for headings */
+.swipe-carousel.with-button .cards-card-body h1 a,
+.swipe-carousel.with-button .cards-card-body h2 a,
+.swipe-carousel.with-button .cards-card-body h3 a,
+.swipe-carousel.with-button .cards-card-body h4 a,
+.swipe-carousel.with-button .cards-card-body h5 a,
+.swipe-carousel.with-button .cards-card-body h6 a {
+  display: inline;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.swipe-carousel.with-button .cards-card-body h1 a *,
+.swipe-carousel.with-button .cards-card-body h2 a *,
+.swipe-carousel.with-button .cards-card-body h3 a *,
+.swipe-carousel.with-button .cards-card-body h4 a *,
+.swipe-carousel.with-button .cards-card-body h5 a *,
+.swipe-carousel.with-button .cards-card-body h6 a * {
+  cursor: pointer !important;
+}
+
+.swipe-carousel.with-button .cards-card-body a:hover {
+  text-decoration: underline;
+}
+
+.swipe-carousel .cards-card-body > *:first-child a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.swipe-carousel.with-button .cards-card-body h1 a:hover,
+.swipe-carousel.with-button .cards-card-body h2 a:hover,
+.swipe-carousel.with-button .cards-card-body h3 a:hover,
+.swipe-carousel.with-button .cards-card-body h4 a:hover,
+.swipe-carousel.with-button .cards-card-body h5 a:hover,
+.swipe-carousel.with-button .cards-card-body h6 a:hover {
+  text-decoration: none !important;
+  cursor: pointer !important;
 }
 
 /* Badge/Tag styling at the top of cards (eyebrow) */
@@ -713,38 +745,6 @@
   text-align: center;
   text-transform: none;
   margin: 0 0 var(--spacing-medium) 0;
-}
-
-/* Link styles for headings */
-.swipe-carousel.with-button .cards-card-body h1 a,
-.swipe-carousel.with-button .cards-card-body h2 a,
-.swipe-carousel.with-button .cards-card-body h3 a,
-.swipe-carousel.with-button .cards-card-body h4 a,
-.swipe-carousel.with-button .cards-card-body h5 a,
-.swipe-carousel.with-button .cards-card-body h6 a {
-  display: inline;
-  cursor: pointer;
-  color: inherit;
-  text-decoration: none !important;
-}
-
-.swipe-carousel.with-button .cards-card-body h1 a *,
-.swipe-carousel.with-button .cards-card-body h2 a *,
-.swipe-carousel.with-button .cards-card-body h3 a *,
-.swipe-carousel.with-button .cards-card-body h4 a *,
-.swipe-carousel.with-button .cards-card-body h5 a *,
-.swipe-carousel.with-button .cards-card-body h6 a * {
-  cursor: pointer !important;
-}
-
-.swipe-carousel.with-button .cards-card-body h1 a:hover,
-.swipe-carousel.with-button .cards-card-body h2 a:hover,
-.swipe-carousel.with-button .cards-card-body h3 a:hover,
-.swipe-carousel.with-button .cards-card-body h4 a:hover,
-.swipe-carousel.with-button .cards-card-body h5 a:hover,
-.swipe-carousel.with-button .cards-card-body h6 a:hover {
-  text-decoration: none !important;
-  cursor: pointer !important;
 }
 
 .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel,
