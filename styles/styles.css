@@ -203,13 +203,12 @@
      --font-size-1100: 3rem;
      --font-size-1200: 3.75rem;
   }
-}
-
-@media (width >= 900px) {
+  
   main > .section > div {
     padding: 0 10px;
   }
 }
+
 
 @media (width >= 1024px) {
   :root {
