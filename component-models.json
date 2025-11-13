@@ -417,7 +417,7 @@
       {
         "component": "text",
         "name": "eyebrow",
-        "value": "",
+        "value": "Featured",
         "label": "Eyebrow",
         "valueType": "string"
       }
