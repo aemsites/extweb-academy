@@ -271,7 +271,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "dm-image",
         "label": "Image",
-        "configUrl": "../tools/asset-selector/image.config.json",
+        "configUrl": "https://raw.githubusercontent.com/aemsites/world-bank/refs/heads/main/tools/asset-selector/image.config.json",
         "valueType": "string"
       }
     ]
