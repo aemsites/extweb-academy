@@ -135,10 +135,10 @@
   src: local('Arial');
 }
 
-@media (width >= 600px) {
+@media (width >= 768px) {
   :root {
-    /* spacing */
-    --grid-margin: 3rem;
+    /* responsive spacing */
+    --spacing-xxsmall: 0.25rem;
     --spacing-xsmall: 0.5rem;
     --spacing-small: 0.75rem;
     --spacing-regular: 1.25rem;
@@ -148,32 +148,8 @@
     --spacing-xxlarge: 2.5rem;
     --spacing-huge: 3.5rem;
     --spacing-xhuge: 4rem;
-
-    /* icon sizes */
-    --size-icon-xxlarge: 6rem;
-
-    /* font sizes */
-    --font-size-400: 1.125rem;
-    --font-size-500: 1.125rem;
-    --font-size-600: 1.25rem;
-    --font-size-700: 1.5rem;
-    --font-size-700: 1.5rem;
-    --font-size-800: 1.75rem;
-    --font-size-1000: 2rem;
-    --font-size-1100: 2.25rem;
-    --font-size-1200: 2.75rem;
-  }
-}
-
-@media (width >= 768px) {
-  :root {
-    /* responsive spacing */
-    --spacing-xxsmall: 0.25rem;
-    --spacing-xsmall: 0.5rem;
-    --spacing-small: 0.75rem;
-    --spacing-large: 1.75rem;
-    --spacing-xlarge: 2rem;
     --section-gutter-space: 48px;
+    --grid-margin: 3rem;
     
     /* responsive font sizes */
     --font-size-400: 1.125rem;
@@ -430,11 +406,6 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
-@media (width >= 600px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
-}
 
 @media (width >= 900px) {
   main > .section > div {
