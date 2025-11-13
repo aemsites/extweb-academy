@@ -10,12 +10,14 @@
     "components": [
       "text",
       "image",
+      "dm-asset",
       "button",
       "title",
       "hero",
       "cards",
       "columns",
       "fragment",
+      "iframe",
       "library-metadata",
       "video",
       "swipe-carousel"
