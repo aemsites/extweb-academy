@@ -26,12 +26,12 @@
                 "name": "tab-general"
               },
               {
-                "component": "reference",
-                "valueType": "string",
+                "component": "custom-asset-namespace:custom-asset",
                 "name": "imageDefault",
-                "label": "Image (Default)",
-                "multi": false,
-                "description": "Max 1 Item"
+                "label": "Image",
+                "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+                "valueType": "string",
+                "description": "Picks from Dynamic Media"
               },
               {
                 "component": "reference",
@@ -39,7 +39,7 @@
                 "name": "imageTablet",
                 "label": "Image (Tablet)",
                 "multi": false,
-                "description": "Max 1 Item"
+                "description": "picks from AMS DAM"
               },
               {
                 "component": "reference",
@@ -47,7 +47,7 @@
                 "name": "imageMobile",
                 "label": "Image (Mobile)",
                 "multi": false,
-                "description": "Max 1 Item"
+                "description": "Picks from AMS DAM"
               },
               {
                 "component": "text",
