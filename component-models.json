@@ -267,12 +267,11 @@
         "name": "tab-general"
       },
       {
-        "component": "reference",
-        "valueType": "string",
+        "component": "custom-asset-namespace:custom-asset",
         "name": "imageDefault",
-        "label": "Image (Default)",
-        "multi": false,
-        "description": "Max 1 Item"
+        "label": "Image",
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "valueType": "string"
       },
       {
         "component": "reference",
