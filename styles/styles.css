@@ -363,3 +363,13 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+/* Styles for AEM Universal Editor mode */
+   html.adobe-ue-preview,
+   html.adobe-ue-edit {
+     height: unset;
+   
+     .iframe-wrapper {
+       height: auto;
+     }
+   }
