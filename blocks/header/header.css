@@ -4,6 +4,7 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+  padding-top: 25px;
 }
 
 header nav {
@@ -30,11 +31,13 @@ header nav[aria-expanded='true'] {
   min-height: 100dvh;
 }
 
+/* swapna-header-nav-layout: Desktop flexbox layout for horizontal organization */
 @media (width >= 900px) {
   header nav {
     display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0 24px;
     max-width: 1264px;
     padding: 0 32px;
   }
@@ -128,31 +131,48 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg);
 }
 
+/* Swapna- Removed media query for hamburger menu on desktop */
+
+/* 
 @media (width >= 900px) {
   header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
+    grid-area: hamburger;
+    height: 22px;
+    display: flex;
+    align-items: center;
   }
-}
+} */
 
 /* brand */
+
+/* swapna-header-nav-layout: Brand logo sizing and positioning */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
+  flex-basis: auto;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 header nav .nav-brand img {
-  width: 128px;
+  width: 180px;
   height: auto;
 }
 
+/* swapna-header-nav-layout: Increase brand logo size on desktop */
+@media (width >= 900px) {
+  header nav .nav-brand img {
+    width: 220px;
+  }
+}
+
 /* sections */
+
+/* swapna-header-nav-layout: Sections (Academy text) positioning */
 header nav .nav-sections {
   grid-area: sections;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   display: none;
   visibility: hidden;
 }
@@ -181,11 +201,30 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
 }
 
+/* swapna-header-nav-layout: Desktop sections styling for Academy text */
 @media (width >= 900px) {
   header nav .nav-sections {
     display: block;
     visibility: visible;
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  header nav .nav-sections .default-content-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  /* swapna-color-font-size-change for text Academy text on desktop */
+
+  header nav .nav-sections .default-content-wrapper p {
+    margin: 0;
+    color: var(--text-on-light-highlight);
+    font-size: var(--font-size-700);
+    font-style: normal;
+    font-weight: var(--label-font-weight);
+    line-height: 116%;
+    letter-spacing: -0.42px;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
@@ -263,6 +302,124 @@ header nav .nav-sections ul > li > ul > li {
 }
 
 /* tools */
+
+/* swapna-header-nav-layout: Search bar tools section styling */
 header nav .nav-tools {
   grid-area: tools;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header nav .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+  justify-content: flex-end;
+}
+
+/* swapna-header-nav-layout: Search input wrapper with rounded background */
+
+/* swapna-search-icon alignment: Adjusted padding to align icon to right edge */
+header nav .nav-tools .inline-search-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 24px;
+  padding: 4px 4px 4px 16px;
+  width: 65%;
+  gap: 8px;
+}
+
+header nav .nav-tools .inline-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* swapna-search-icon: Dark blue circular button with white icon and hover effect */
+header nav .nav-tools .inline-search-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #003e7e;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+header nav .nav-tools .inline-search-icon:hover {
+  background-color: #002d5c;
+}
+
+header nav .nav-tools .search-icon-img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+/* swapna-header-nav-layout: Desktop search bar max-width */
+@media (width >= 900px) {
+  header nav .nav-tools {
+    flex: 1 1 auto;
+    max-width: 400px;
+  }
+}
+
+/* links */
+
+/* swapna-header-nav-layout: Navigation links section (How We Work, Our Programs, etc.) */
+header nav .nav-links {
+  display: none;
+  visibility: hidden;
+}
+
+header nav[aria-expanded='true'] .nav-links {
+  display: block;
+  visibility: visible;
+}
+
+/* swapna-header-nav-layout: Desktop navigation links horizontal layout */
+@media (width >= 900px) {
+  header nav .nav-links {
+    display: flex;
+    visibility: visible;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  header nav .nav-links .default-content-wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  header nav .nav-links .default-content-wrapper p {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* swapna-header-nav-layout: Navigation link styling with hover effects */
+
+  /* swapna-color-change for text Navigation links on desktop */
+
+  header nav .nav-links .default-content-wrapper a {
+    text-decoration: none;
+    color: var(--blue-70);
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  header nav .nav-links .default-content-wrapper a:hover {
+    color: #0071bc;
+  }
 }
