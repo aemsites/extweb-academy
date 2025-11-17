@@ -144,12 +144,13 @@ function createInlineSearchBox(navTools) {
     className: 'inline-search-input',
   });
 
-  // swapna-search: Handle Enter key press in search input to redirect to search results
+  // swapna-search: Handle Enter key press in search input to redirect to search results academy
+
   searchInputBox.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       const inputValue = searchInputBox.value.trim();
       if (inputValue) {
-        const url = (listOfAllPlaceholdersData.searchRedirectUrl || 'https://www.worldbank.org/en/search?q=') + encodeURIComponent(inputValue);
+        const url = (listOfAllPlaceholdersData.searchRedirectUrl || 'https://academy.worldbank.org/en/search?q=people') + encodeURIComponent(inputValue);
         window.location.href = url;
       }
     }
@@ -293,6 +294,27 @@ export default async function decorate(block) {
   if (brandLink) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
+  } else {
+    // swapna-logo-click: start - Make logo clickable and redirect to World Bank homepage
+    // If there's no button, wrap the logo image/picture with a link
+    const brandContent = navBrand.querySelector('.default-content-wrapper');
+    if (brandContent) {
+      const picture = brandContent.querySelector('picture');
+      const imgElement = brandContent.querySelector('img');
+
+      if (picture || imgElement) {
+        // swapna-logo-click: Create anchor element for logo with World Bank homepage URL
+        const logoLink = document.createElement('a');
+        logoLink.href = 'https://www.worldbank.org/ext/en/home';
+        logoLink.setAttribute('aria-label', 'World Bank Home');
+
+        // swapna-logo-click: Wrap the picture element (or img if no picture) with the link
+        const elementToWrap = picture || imgElement;
+        elementToWrap.parentNode.insertBefore(logoLink, elementToWrap);
+        logoLink.appendChild(elementToWrap);
+      }
+    }
+    // swapna-logo-click: end - Make logo clickable and redirect to World Bank homepage
   }
 
   // swapna-nav-link: start - Handle nav-links section (4th section)
