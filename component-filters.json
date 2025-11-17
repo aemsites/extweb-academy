@@ -10,15 +10,19 @@
     "components": [
       "text",
       "image",
+      "dm-asset",
+      "custom-image",
       "button",
       "title",
       "hero",
       "cards",
       "columns",
       "fragment",
+      "iframe",
       "library-metadata",
       "video",
-      "swipe-carousel"
+      "swipe-carousel",
+      "tabs"
     ]
   },
   {
@@ -39,7 +43,9 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "custom-image",
+      "dm-asset"
     ]
   },
   {
@@ -50,6 +56,12 @@
     "id": "swipe-carousel",
     "components": [
       "swipe-carousel-card"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tab"
     ]
   }
 ]

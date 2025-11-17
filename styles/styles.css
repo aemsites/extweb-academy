@@ -27,10 +27,10 @@
   --blue-60: #00538a;
   --blue-70: #004370;
   --blue-90: #012740;
-  --text-on-dark-emphasis: #fff;
+  --text-on-dark-emphasis: #ffffffe5;
   --text-on-dark-subdued: rgb(255 255 255 / 70%);
-  --text-on-light-default: #131313;
-  --text-on-light-highlight: #002838;
+  --text-on-light-default: #000d1ab2;
+  --text-on-light-highlight: #012740;
   --text-on-light-link-primary-enabled: #004370;
   --background-white: #fff;
   --outline-transparent: transparent;
@@ -62,6 +62,8 @@
   --padding-margins-sp1: 0.75rem;
    
   /* font sizes */
+  --body-font-family: 'Open Sans', roboto, roboto-fallback;
+  --heading-font-family: var(--body-font-family);
   --font-size-100: 0.75rem;
   --font-size-200: 0.875rem;
   --font-size-300: 1rem;
@@ -92,10 +94,6 @@
   --border-radius-medium: 0.5rem;
   --border-radius-large: 1rem;
   --border-radius-x-large: 2rem;
-
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -415,4 +413,22 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Styles for AEM Universal Editor mode */
+html.adobe-ue-preview,
+html.adobe-ue-edit {
+  height: unset;
+
+  .section.hero-video-section > .default-content-wrapper {
+    height: 600px;
+  }
+
+  .section.hero-video-section > .video-wrapper {
+    height: 600px;
+  }
+
+  .section.iframe-container > .iframe-wrapper {
+    height: 600px;
+  }
 }

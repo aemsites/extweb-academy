@@ -99,6 +99,12 @@
   width: 100%;
 }
 
+.swipe-carousel.with-button .cards-card-body a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .swipe-carousel .cards-card-body > *:first-child a {
   color: inherit;
   text-decoration: none;
@@ -109,11 +115,6 @@
   line-height: inherit;
   letter-spacing: inherit;
   display: inline;
-}
-
-.swipe-carousel .cards-card-body > *:first-child a:hover {
-  color: inherit;
-  text-decoration: none;
 }
 
 .swipe-carousel .cards-card-body > *:last-child {
@@ -128,19 +129,62 @@
   width: 100%;
 }
 
+/* Link styles for headings */
+.swipe-carousel.with-button .cards-card-body h1 a,
+.swipe-carousel.with-button .cards-card-body h2 a,
+.swipe-carousel.with-button .cards-card-body h3 a,
+.swipe-carousel.with-button .cards-card-body h4 a,
+.swipe-carousel.with-button .cards-card-body h5 a,
+.swipe-carousel.with-button .cards-card-body h6 a {
+  display: inline;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.swipe-carousel.with-button .cards-card-body h1 a *,
+.swipe-carousel.with-button .cards-card-body h2 a *,
+.swipe-carousel.with-button .cards-card-body h3 a *,
+.swipe-carousel.with-button .cards-card-body h4 a *,
+.swipe-carousel.with-button .cards-card-body h5 a *,
+.swipe-carousel.with-button .cards-card-body h6 a * {
+  cursor: pointer !important;
+}
+
+.swipe-carousel.with-button .cards-card-body a:hover {
+  text-decoration: underline;
+}
+
+.swipe-carousel .cards-card-body > *:first-child a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.swipe-carousel.with-button .cards-card-body h1 a:hover,
+.swipe-carousel.with-button .cards-card-body h2 a:hover,
+.swipe-carousel.with-button .cards-card-body h3 a:hover,
+.swipe-carousel.with-button .cards-card-body h4 a:hover,
+.swipe-carousel.with-button .cards-card-body h5 a:hover,
+.swipe-carousel.with-button .cards-card-body h6 a:hover {
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
 /* Badge/Tag styling at the top of cards (eyebrow) */
 .swipe-carousel .card-eyebrow {
   position: absolute;
   top: 30px;
   left: 40px;
   background: var(--background-white);
-  color: var(--text-on-light-highlight, #002838);
+  color: var(--text-on-light-default);
   padding: 6px 14px;
-  border-radius: var(--lift-button-border-radius);
-  border: 1px solid var(--outline-transparent);
+  border-radius: 2rem;
+  border: 1px solid var(
+  --outline-transparent);
   font-size: 12px;
   text-align: center;
-  font-weight: var(--lift-button-label-font-weight);
+  font-weight: var(
+  --body-font-weight-bold);
   font-style: normal;
   line-height: 20px;
   letter-spacing: -0.5px;
@@ -210,16 +254,26 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 200px;
     flex-shrink: 0;
     border-radius: 0;
     overflow: hidden;
+    display: flex;
+  }
+
+  .swipe-carousel.with-button .cards-card-image picture {
+    display: flex;
+    width: 100%;
+    min-height: 200px;
   }
 
   .swipe-carousel.with-button .cards-card-image img {
     width: 100%;
     height: 100%;
+    min-height: 200px;
     object-fit: cover;
     object-position: center;
+    display: block;
   }
 
   .swipe-carousel.with-button .cards-card-body {
@@ -228,23 +282,30 @@
     min-height: 0;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:first-child {
+  .swipe-carousel.with-button .cards-card-body h1,
+  .swipe-carousel.with-button .cards-card-body h2,
+  .swipe-carousel.with-button .cards-card-body h3,
+  .swipe-carousel.with-button .cards-card-body h4,
+  .swipe-carousel.with-button .cards-card-body h5,
+  .swipe-carousel.with-button .cards-card-body h6 {
+    color: var(--text-on-dark-emphasis);
     font-size: var(--font-size-600);
-    color: var(--gray-alpha-white-90-a);
-    font-style: normal;
     font-weight: var(--body-font-weight-bold);
     line-height: 150%;
     letter-spacing: -0.084px;
-    margin-bottom: var(--spacing-xsmall);
+    margin: 0 0 var(--spacing-xsmall) 0;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:last-child {
-    font-size: var(--font-size-300);
+  .swipe-carousel.with-button .cards-card-body p {
     color: var(--text-on-dark-subdued);
+    font-size: var(--font-size-300);
     font-weight: var(--body-font-weight-regular);
     line-height: 150%;
-    position: relative;
-    z-index: 2;
+    letter-spacing: -0.25px;
+    margin: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body p:last-of-type {
     margin-bottom: var(--spacing-large);
   }
 }
@@ -280,32 +341,52 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 220px;
     border-radius: 0;
     flex-shrink: 0;
+    display: flex;
+  }
+
+  .swipe-carousel.with-button .cards-card-image picture {
+    display: flex;
+    width: 100%;
+    min-height: 220px;
+  }
+
+  .swipe-carousel.with-button .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   .swipe-carousel.with-button .cards-card-body {
     padding: var(--spacing-xlarge) var(--spacing-xlarge) var(--spacing-none) var(--spacing-xlarge);
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:first-child {
+  .swipe-carousel.with-button .cards-card-body h1,
+  .swipe-carousel.with-button .cards-card-body h2,
+  .swipe-carousel.with-button .cards-card-body h3,
+  .swipe-carousel.with-button .cards-card-body h4,
+  .swipe-carousel.with-button .cards-card-body h5,
+  .swipe-carousel.with-button .cards-card-body h6 {
     color: var(--text-on-dark-emphasis);
     font-size: var(--font-size-600);
-    font-style: normal;
     font-weight: var(--body-font-weight-bold);
     line-height: 150%;
     letter-spacing: -0.084px;
-    margin-bottom: var(--spacing-xsmall);
+    margin: 0 0 var(--spacing-xsmall) 0;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:last-child {
-  color: var(--text-on-dark-subdued);
-  font-size: var(--font-size-300);
-  font-weight: var(--body-font-weight-regular);
-  line-height: 150%;
-  position: relative;
-  z-index: 2;
-  margin-bottom: 0;
+  .swipe-carousel.with-button .cards-card-body p {
+    color: var(--text-on-dark-subdued);
+    font-size: var(--font-size-300);
+    font-weight: var(--body-font-weight-regular);
+    line-height: 150%;
+    letter-spacing: -0.25px;
+    margin: 0;
   }
 }
 
@@ -324,8 +405,25 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 230px;
     flex-shrink: 0;
     border-radius: 0;
+    display: flex;
+  }
+
+  .swipe-carousel.with-button .cards-card-image picture {
+    display: flex;
+    width: 100%;
+    min-height: 230px;
+  }
+
+  .swipe-carousel.with-button .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 230px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   .swipe-carousel.with-button .cards-card-body {
@@ -337,23 +435,30 @@
     justify-content: flex-start;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:first-child {
+  .swipe-carousel.with-button .cards-card-body h1,
+  .swipe-carousel.with-button .cards-card-body h2,
+  .swipe-carousel.with-button .cards-card-body h3,
+  .swipe-carousel.with-button .cards-card-body h4,
+  .swipe-carousel.with-button .cards-card-body h5,
+  .swipe-carousel.with-button .cards-card-body h6 {
     color: var(--text-on-dark-emphasis);
     font-size: var(--font-size-600);
-    font-style: normal;
     font-weight: var(--body-font-weight-bold);
     line-height: 150%;
     letter-spacing: -0.084px;
-    margin-bottom: var(--spacing-xsmall);
+    margin: 0 0 var(--spacing-xsmall) 0;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:last-child {
+  .swipe-carousel.with-button .cards-card-body p {
     color: var(--text-on-dark-subdued);
     font-size: var(--font-size-300);
     font-weight: var(--body-font-weight-regular);
     line-height: 150%;
-    position: relative;
-    z-index: 2;
+    letter-spacing: -0.25px;
+    margin: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body p:last-of-type {
     margin-bottom: var(--spacing-large);
   }
 
@@ -377,16 +482,26 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 240px;
     border-radius: 0;
     flex-shrink: 0;
     overflow: hidden;
+    display: flex;
+  }
+
+  .swipe-carousel.with-button .cards-card-image picture {
+    display: flex;
+    width: 100%;
+    min-height: 240px;
   }
 
   .swipe-carousel.with-button .cards-card-image img {
     width: 100%;
     height: 100%;
+    min-height: 240px;
     object-fit: cover;
     object-position: center;
+    display: block;
   }
 
   .swipe-carousel.with-button .cards-card-body {
@@ -429,27 +544,51 @@
 
   .swipe-carousel.with-button .cards-card-image {
     height: auto;
+    min-height: 240px;
     flex-shrink: 0;
     border-radius: 0;
+    display: flex;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:first-child {
+  .swipe-carousel.with-button .cards-card-image picture {
+    display: flex;
+    width: 100%;
+    min-height: 240px;
+  }
+
+  .swipe-carousel.with-button .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 240px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .swipe-carousel.with-button .cards-card-body h1,
+  .swipe-carousel.with-button .cards-card-body h2,
+  .swipe-carousel.with-button .cards-card-body h3,
+  .swipe-carousel.with-button .cards-card-body h4,
+  .swipe-carousel.with-button .cards-card-body h5,
+  .swipe-carousel.with-button .cards-card-body h6 {
     color: var(--text-on-dark-emphasis);
     font-size: var(--font-size-600);
-    font-style: normal;
     font-weight: var(--body-font-weight-bold);
     line-height: 150%;
     letter-spacing: -0.084px;
-    margin-bottom: var(--spacing-xsmall);
+    margin: 0 0 var(--spacing-xsmall) 0;
   }
 
-  .swipe-carousel.with-button .cards-card-body > *:last-child {
+  .swipe-carousel.with-button .cards-card-body p {
     color: var(--text-on-dark-subdued);
     font-size: var(--font-size-300);
     font-weight: var(--body-font-weight-regular);
     line-height: 150%;
-    position: relative;
-    z-index: 2;
+    letter-spacing: -0.25px;
+    margin: 0;
+  }
+
+  .swipe-carousel.with-button .cards-card-body p:last-of-type {
     margin-bottom: var(--spacing-large);
   }
 }
@@ -467,6 +606,21 @@
     height: 256px;
     flex-shrink: 0;
     border-radius: unset;
+    display: flex;
+  }
+
+  .swipe-carousel.with-button .cards-card-image picture {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swipe-carousel.with-button .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   .swipe-carousel.with-button .cards-card-body {
@@ -552,8 +706,9 @@
   font-weight: 700;
   line-height: 115%;
   letter-spacing: -0.6px;
-  margin-bottom: 1rem;
   text-align: center;
+  font-family: var(--heading-font-family);
+  margin: 0 0 var(--spacing-medium) 0;
 }
 
 /* Carousel button and navigation positioning for with-button variant */
@@ -578,6 +733,18 @@
   padding-left: var(--section-gutter-space);
   padding-right: var(--section-gutter-space);
   box-sizing: border-box;
+  text-align: center;
+}
+
+.swipe-carousel.with-button .main-heading p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.25px;
+  color: #000d1ab2;
+  text-align: center;
+  text-transform: none;
+  margin: 0 0 var(--spacing-medium) 0;
 }
 
 .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel,
@@ -717,24 +884,29 @@
   margin: 0;
   position: relative;
   flex-shrink: 0;
-  font-family: loopicon, monospace;
 }
 
-/* Add chevron icons using loopicon font */
+/* Add chevron icons using pure CSS */
 .carousel-controls .carousel-navigation-buttons .button-container button.prev::before {
-  content: '\e117';
+  content: '';
   display: block;
-  font-family: loopicon, monospace;
-  font-style: normal;
-  speak: never;
+  width: 8px;
+  height: 8px;
+  border: 2px solid currentcolor;
+  border-width: 2px 0 0 2px;
+  transform: rotate(-45deg);
+  margin-right: -2px;
 }
 
 .carousel-controls .carousel-navigation-buttons .button-container button.next::before {
-  content: '\e118';
+  content: '';
   display: block;
-  font-family: loopicon, monospace;
-  font-style: normal;
-  speak: never;
+  width: 8px;
+  height: 8px;
+  border: 2px solid currentcolor;
+  border-width: 2px 2px 0 0;
+  transform: rotate(45deg);
+  margin-left: -2px;
 }
 
 .carousel-controls .carousel-navigation-buttons .button-container button:hover {

@@ -140,6 +140,10 @@
           {
             "name": "Swipe Carousel Container",
             "value": "swipe-carousel-container"
+          },
+          {
+            "name": "Hero Video Section",
+            "value": "hero-video-section"
           }
         ]
       }
@@ -259,6 +263,155 @@
     ]
   },
   {
+    "id": "custom-image",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "General",
+        "name": "tab-general"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "imageDefault",
+        "label": "Image",
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "valueType": "string",
+        "description": "Picks from Dynamic Media"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "imageTablet",
+        "label": "Image (Tablet)",
+        "multi": false,
+        "description": "picks from AMS DAM"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "imageMobile",
+        "label": "Image (Mobile)",
+        "multi": false,
+        "description": "Picks from AMS DAM"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "tab",
+        "label": "Dynamic Media",
+        "name": "tab-dm"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "image-ratio",
+        "multi": true,
+        "value": "",
+        "label": "Image Ratio",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "modifiers",
+        "value": "",
+        "label": "Modifiers",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "disable-smartcrop",
+        "value": "true",
+        "label": "Disable Smart Crop"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "aspectRatio",
+        "value": "",
+        "label": "Aspect Ratio",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "object-position",
+        "value": "",
+        "label": "Object Position",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "loading-type",
+        "label": "Loading Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Lazy",
+            "value": "lazy"
+          },
+          {
+            "name": "Eager",
+            "value": "eager"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dm-asset",
+    "fields": [
+      {
+        "component": "text",
+        "name": "dm_alttext",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "dm-image",
+        "label": "Image",
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
@@ -291,6 +444,19 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "iframe",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "iframeUrl",
+        "value": "",
+        "label": "iFrame URL",
+        "description": "Please provide a URL to an iFrame app."
       }
     ]
   },
@@ -344,7 +510,7 @@
       },
       {
         "component": "text",
-        "name": "anchorText",
+        "name": "linkText",
         "value": "",
         "label": "Anchor Text",
         "valueType": "string"
@@ -386,8 +552,232 @@
       {
         "component": "text",
         "name": "eyebrow",
-        "value": "",
+        "value": "Featured",
         "label": "Eyebrow",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "tab",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Tab Name",
+        "name": "title",
+        "required": true,
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "description": "Select the Type of Tab",
+        "label": "Type of Tab",
+        "name": "tab-type",
+        "options": [
+          {
+            "name": "All Tab",
+            "value": "all"
+          },
+          {
+            "name": "Publication",
+            "value": "publication"
+          },
+          {
+            "name": "Project",
+            "value": "project"
+          },
+          {
+            "name": "Blogs",
+            "value": "blogs"
+          },
+          {
+            "name": "News",
+            "value": "news"
+          },
+          {
+            "name": "Events",
+            "value": "events"
+          },
+          {
+            "name": "Author Manually",
+            "value": "manual"
+          }
+        ],
+        "required": true,
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "condition": {
+          "and": [
+            {
+              "!=": [
+                {
+                  "var": "tab-type"
+                },
+                "manual"
+              ]
+            },
+            {
+              "!=": [
+                {
+                  "var": "tab-type"
+                },
+                "text-image"
+              ]
+            }
+          ]
+        },
+        "label": "URL",
+        "name": "url",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "condition": {
+          "or": [
+            {
+              "==": [
+                {
+                  "var": "tab-type"
+                },
+                "blogs"
+              ]
+            },
+            {
+              "==": [
+                {
+                  "var": "tab-type"
+                },
+                "events"
+              ]
+            }
+          ]
+        },
+        "label": "POST",
+        "name": "post",
+        "value": "false",
+        "valueType": "boolean"
+      },
+      {
+        "component": "text",
+        "condition": {
+          "==": [
+            {
+              "var": "post"
+            },
+            true
+          ]
+        },
+        "label": "Body",
+        "name": "body",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "condition": {
+          "==": [
+            {
+              "var": "tab-type"
+            },
+            "manual"
+          ]
+        },
+        "label": "Fragment Path",
+        "name": "fragmentPath",
+        "rootPath": "/content/worldbank/corporate/ext/en/fragments/country",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "condition": {
+          "!=": [
+            {
+              "var": "tab-type"
+            },
+            "manual"
+          ]
+        },
+        "label": "Tab Variant",
+        "name": "tab-variant",
+        "options": [
+          {
+            "name": "Default View",
+            "value": ""
+          },
+          {
+            "name": "2 Column View",
+            "value": "two-column-view"
+          }
+        ],
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "condition": {
+          "!=": [
+            {
+              "var": "tab-type"
+            },
+            "manual"
+          ]
+        },
+        "description": "Number of items to display in this tab",
+        "label": "Display Items",
+        "name": "display-items",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "condition": {
+          "!=": [
+            {
+              "var": "tab-type"
+            },
+            "manual"
+          ]
+        },
+        "description": "Disable Load More button for this tab",
+        "label": "Disable Load More",
+        "name": "disable-load-more",
+        "value": "false",
+        "valueType": "boolean"
+      },
+      {
+        "component": "text",
+        "condition": {
+          "==": [
+            {
+              "var": "disable-load-more"
+            },
+            true
+          ]
+        },
+        "label": "See All Button Label",
+        "name": "see-all-button-label",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "condition": {
+          "==": [
+            {
+              "var": "disable-load-more"
+            },
+            true
+          ]
+        },
+        "label": "See All Button Link",
+        "name": "see-all-button-link",
+        "value": "",
         "valueType": "string"
       }
     ]
@@ -421,11 +811,25 @@
         "condition": {
           "==": [
             {
-              "var": "videoType"
+              "var": "Format"
             },
             "you-tube"
           ]
         }
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "placeholder_image",
+        "label": "Placeholder Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "placeholder_imageAlt",
+        "label": "Placeholder Image Alt Text",
+        "value": ""
       },
       {
         "component": "text-area",
@@ -436,7 +840,7 @@
         "condition": {
           "==": [
             {
-              "var": "videoType"
+              "var": "Format"
             },
             "embed-code"
           ]
