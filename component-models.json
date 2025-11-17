@@ -587,39 +587,6 @@
     ]
   },
   {
-    "id": "tabs-image-text-item",
-    "fields": [
-      {
-        "component": "text",
-        "name": "tabName",
-        "value": "",
-        "label": "Tab Name",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "tabType",
-        "value": "image-text",
-        "label": "Tab Type",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "name": "image",
-        "value": "",
-        "label": "Image",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "textContent",
-        "value": "",
-        "label": "Text Content",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "video",
     "fields": [
       {

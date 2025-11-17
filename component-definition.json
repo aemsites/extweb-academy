@@ -297,23 +297,6 @@
           }
         },
         {
-          "title": "Tabs Image-Text Item",
-          "id": "tabs-image-text-item",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Tab",
-                  "model": "tabs-image-text-item",
-                  "tabName": "Tab Name",
-                  "tabType": "image-text"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Video",
           "id": "video",
           "plugins": {
