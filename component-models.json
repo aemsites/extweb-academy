@@ -149,12 +149,6 @@
             "component": "text",
             "name": "id",
             "label": "ID",
-            "description": "Adiciona um ID à seção"
-          },
-          {
-            "component": "text",
-            "name": "id",
-            "label": "ID",
             "description": "Adds an ID to the section"
           }
         ]
