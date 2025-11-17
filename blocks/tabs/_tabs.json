@@ -1,0 +1,283 @@
+{
+  "definitions": [
+      {
+          "title": "Tabs",
+          "id": "tabs",
+          "plugins": {
+              "xwalk": {
+                  "page": {
+                      "resourceType": "core/franklin/components/block/v1/block",
+                      "template": {
+                          "name": "Tabs",
+                          "model": "tabs",
+                          "filter": "tabs",
+                          "item1": {
+                              "sling:resourceType": "core/franklin/components/block/v1/block/item",
+                              "name": "Tab",
+                              "model": "tab",
+                              "title": "Tab"
+                          },
+                          "item2": {
+                              "sling:resourceType": "core/franklin/components/block/v1/block/item",
+                              "name": "Tab",
+                              "model": "tab",
+                              "title": "Tab"
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      {
+          "title": "Tab",
+          "id": "tab",
+          "plugins": {
+              "xwalk": {
+                  "page": {
+                      "resourceType": "core/franklin/components/block/v1/block/item",
+                      "template": {
+                          "name": "Tab",
+                          "model": "tab",
+                          "title": "Tab",
+                          "filter": "tab"
+                      }
+                  }
+              }
+          }
+      }
+  ],
+  "models": [
+      {
+          "id": "tab",
+          "fields": [
+              {
+                  "component": "text",
+                  "label": "Tab Name",
+                  "name": "title",
+                  "required": true,
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "select",
+                  "description": "Select the Type of Tab",
+                  "label": "Type of Tab",
+                  "name": "tab-type",
+                  "options": [
+                      {
+                          "name": "All Tab",
+                          "value": "all"
+                      },
+                      {
+                          "name": "Publication",
+                          "value": "publication"
+                      },
+                      {
+                          "name": "Project",
+                          "value": "project"
+                      },
+                      {
+                          "name": "Blogs",
+                          "value": "blogs"
+                      },
+                      {
+                          "name": "News",
+                          "value": "news"
+                      },
+                      {
+                          "name": "Events",
+                          "value": "events"
+                      },
+                      {
+                          "name": "Author Manually",
+                          "value": "manual"
+                      }
+                  ],
+                  "required": true,
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "text",
+                  "condition": {
+                      "and": [
+                          {
+                              "!=": [
+                                  {
+                                      "var": "tab-type"
+                                  },
+                                  "manual"
+                              ]
+                          },
+                          {
+                              "!=": [
+                                  {
+                                      "var": "tab-type"
+                                  },
+                                  "text-image"
+                              ]
+                          }
+                      ]
+                  },
+                  "label": "URL",
+                  "name": "url",
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "boolean",
+                  "condition": {
+                      "or": [
+                          {
+                              "==": [
+                                  {
+                                      "var": "tab-type"
+                                  },
+                                  "blogs"
+                              ]
+                          },
+                          {
+                              "==": [
+                                  {
+                                      "var": "tab-type"
+                                  },
+                                  "events"
+                              ]
+                          }
+                      ]
+                  },
+                  "label": "POST",
+                  "name": "post",
+                  "value": "false",
+                  "valueType": "boolean"
+              },
+              {
+                  "component": "text",
+                  "condition": {
+                      "==": [
+                          {
+                              "var": "post"
+                          },
+                          true
+                      ]
+                  },
+                  "label": "Body",
+                  "name": "body",
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "aem-content",
+                  "condition": {
+                      "==": [
+                          {
+                              "var": "tab-type"
+                          },
+                          "manual"
+                      ]
+                  },
+                  "label": "Fragment Path",
+                  "name": "fragmentPath",
+                  "rootPath": "/content/worldbank/corporate/ext/en/fragments/country",
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "select",
+                  "condition": {
+                      "!=": [
+                          {
+                              "var": "tab-type"
+                          },
+                          "manual"
+                      ]
+                  },
+                  "label": "Tab Variant",
+                  "name": "tab-variant",
+                  "options": [
+                      {
+                          "name": "Default View",
+                          "value": ""
+                      },
+                      {
+                          "name": "2 Column View",
+                          "value": "two-column-view"
+                      }
+                  ],
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "text",
+                  "condition": {
+                      "!=": [
+                          {
+                              "var": "tab-type"
+                          },
+                          "manual"
+                      ]
+                  },
+                  "description": "Number of items to display in this tab",
+                  "label": "Display Items",
+                  "name": "display-items",
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "boolean",
+                  "condition": {
+                      "!=": [
+                          {
+                              "var": "tab-type"
+                          },
+                          "manual"
+                      ]
+                  },
+                  "description": "Disable Load More button for this tab",
+                  "label": "Disable Load More",
+                  "name": "disable-load-more",
+                  "value": "false",
+                  "valueType": "boolean"
+              },
+              {
+                  "component": "text",
+                  "condition": {
+                      "==": [
+                          {
+                              "var": "disable-load-more"
+                          },
+                          true
+                      ]
+                  },
+                  "label": "See All Button Label",
+                  "name": "see-all-button-label",
+                  "value": "",
+                  "valueType": "string"
+              },
+              {
+                  "component": "text",
+                  "condition": {
+                      "==": [
+                          {
+                              "var": "disable-load-more"
+                          },
+                          true
+                      ]
+                  },
+                  "label": "See All Button Link",
+                  "name": "see-all-button-link",
+                  "value": "",
+                  "valueType": "string"
+              }
+          ]
+      }
+  ],
+  "filters": [
+      {
+          "id": "tabs",
+          "components": [
+              "tab"
+          ]
+      }
+  ]
+}

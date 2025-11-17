@@ -56,5 +56,11 @@
     "components": [
       "swipe-carousel-card"
     ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tab"
+    ]
   }
 ]
