@@ -16,3 +16,180 @@
   padding-bottom: 56.25%;
   border: 1px solid #1e1e1e;
 }
+
+body:has(main > div.section.hero-video-section) {
+  background: var(--neutral-solid-10-s);
+ }
+ 
+ 
+ .section.hero-video-section {
+   margin: 0;
+   padding: 0;
+   position: relative;
+   margin-top: -104px;
+   height: auto;
+   z-index: -2;
+ }
+ 
+ .section.hero-video-section::before {
+   background: linear-gradient(to bottom, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 0%) 100%);
+   height: 150px;
+   position: absolute;
+   top: 0;
+   display: inline-block;
+   width: 100%;
+   content: "";
+ }
+ 
+ .section.hero-video-section > .video-wrapper {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   height: 70vh;
+   position: absolute;
+   z-index: -1;
+   max-width: unset;
+ }
+ 
+ .section.hero-video-section > .video-wrapper video {
+   pointer-events: none;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
+ 
+ .section.hero-video-section > .video-wrapper::after {
+   content: "";
+   position: absolute;
+   bottom: -115px;
+   left: 0;
+   height: 82%;
+   width: 100%;
+   z-index: 1;
+   background: linear-gradient(to bottom, rgb(231 237 243 / 0%) 0%, rgb(231 237 243 / 100%) 60%, rgb(231 237 243 / 100%) 100%, rgb(231 237 243 / 0%) 100%);
+ }
+ 
+ .section.hero-video-section > .video-wrapper > .video.block {
+  height: 100%;
+ }
+ 
+ .section.hero-video-section > .video-wrapper > .video.block > div {
+  height: 100%;
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper {
+   text-align: center;
+   height: 112vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-end;
+   gap: var(--spacing-regular);
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(2) {
+   max-width: 700px;
+   padding: 0 1rem;
+   width: 100%;
+   color: var(--text-on-light-default);
+   text-align: center;
+   font-size: var(--font-size-500);
+   font-style: normal;
+   font-weight: var(--body-font-weight-regular);
+   line-height: 150%;
+   margin: 0;
+   letter-spacing: -0.25px;
+   box-sizing: border-box;
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(3) {
+   margin-top: 2.5rem;
+   color: var(--text-on-light-link-primary-enabled);
+   text-decoration: none;
+   cursor: pointer !important;
+   font-size: 16px;
+   font-family: var(--global-font-family);
+   line-height: 1.4;
+ }
+
+ .section.hero-video-section > .default-content-wrapper p:nth-child(4) {
+  animation: bounce 2s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--lift-button-gap, 4px);
+  border-radius: var(--lift-button-border-radius);
+  border: 2px solid var(--outline-on-light-link-enabled);
+  background: #fff0;
+  color: rgb(24 31 37 / 0%);
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin-top: -24px;
+}
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(3):hover {
+  color: var(--text-on-light-link-hover);
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(4):hover {
+  border-radius: var(--lift-button-border-radius, 32px);
+  border: 2px solid var(--outline-on-dark-emphasis, #169AF3);
+  background: var(--outline-on-dark-emphasis, #169AF3);
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(4)::before {
+   content: "\e116";
+   color: rgb(0 67 112);
+   font-family: loopicon, monospace !important;
+   position: absolute;
+   font-size: 12px;
+   padding-top: 3px;
+ }
+ 
+ @keyframes bounce {
+   0%, 100% {
+     transform: translateY(0);
+   }
+ 
+   50% {
+     transform: translateY(8px);
+   }
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper h1 {
+   color: var(--text-on-light-highlight);
+   text-align: center;
+   font-size: var(--font-size-1200);
+   font-style: normal;
+   font-weight: var(--heading-font-weight);
+   line-height: 112%;
+   letter-spacing: -1.8px;
+   margin: 0;
+ }
+ 
+ @media (width > 1400px) {
+  .section.hero-video-section > .video-wrapper {
+  height: 112vh;
+  }
+ } 
+ 
+ @media (width > 769px) {
+  .section.hero-video-section > .video-wrapper {
+  height: 105vh;
+  }
+ } 
+ 
+ @media (width <= 500px) {
+  .section.hero-video-section > .video-wrapper {
+  height: 60vh;
+  }
+ } 
+ 
+ @media (width < 500px) {
+  .section.hero-video-section > .video-wrapper {
+  height: 60vh;
+  }
+ }
+ 
