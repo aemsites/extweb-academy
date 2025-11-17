@@ -32,23 +32,6 @@
           }
         }
       }
-    },
-    {
-      "title": "Tabs Image-Text Item",
-      "id": "tabs-image-text-item",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Tab",
-              "model": "tabs-image-text-item",
-              "tabName": "Tab Name",
-              "tabType": "image-text"
-            }
-          }
-        }
-      }
     }
   ],
   "models": [
@@ -79,47 +62,13 @@
           "valueType": "string"
         }
       ]
-    },
-    {
-      "id": "tabs-image-text-item",
-      "fields": [
-        {
-          "component": "text",
-          "name": "tabName",
-          "value": "",
-          "label": "Tab Name",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "tabType",
-          "value": "image-text",
-          "label": "Tab Type",
-          "valueType": "string"
-        },
-        {
-          "component": "reference",
-          "name": "image",
-          "value": "",
-          "label": "Image",
-          "valueType": "string"
-        },
-        {
-          "component": "richtext",
-          "name": "textContent",
-          "value": "",
-          "label": "Text Content",
-          "valueType": "string"
-        }
-      ]
     }
   ],
   "filters": [
     {
       "id": "tabs",
       "components": [
-        "tabs-item",
-        "tabs-image-text-item"
+        "tabs-item"
       ]
     }
   ]
