@@ -37,6 +37,10 @@
             {
               "name": "Swipe Carousel Container",
               "value": "swipe-carousel-container"
+            },
+            {
+              "name": "Hero Video Section",
+              "value": "hero-video-section"
             }
           ]
         }

@@ -365,11 +365,19 @@ main .section.highlight {
 }
 
 /* Styles for AEM Universal Editor mode */
-   html.adobe-ue-preview,
-   html.adobe-ue-edit {
-     height: unset;
-   
-     .iframe-wrapper {
-       height: auto;
-     }
-   }
+html.adobe-ue-preview,
+html.adobe-ue-edit {
+  height: unset;
+
+  .section.hero-video-section > .default-content-wrapper {
+    height: 600px;
+  }
+
+  .section.hero-video-section > .video-wrapper {
+    height: 600px;
+  }
+
+  .section.iframe-container > .iframe-wrapper {
+    height: 600px;
+  }
+}
