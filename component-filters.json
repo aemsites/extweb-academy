@@ -61,7 +61,8 @@
   {
     "id": "tabs",
     "components": [
-      "tab"
+      "tabs-item",
+      "tabs-image-text-item"
     ]
   }
 ]
