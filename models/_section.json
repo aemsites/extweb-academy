@@ -64,7 +64,8 @@
         "iframe",
         "library-metadata",
         "video",
-        "swipe-carousel"
+        "swipe-carousel",
+        "tabs"
       ]
     }
   ]
