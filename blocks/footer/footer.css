@@ -13,6 +13,10 @@ footer a {
   color: var(--white);
 }
 
+footer p {
+  color: var(--white);
+}
+
 .ft-social a {
   text-decoration: none;
 }
