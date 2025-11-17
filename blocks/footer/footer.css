@@ -68,7 +68,7 @@ footer ul li {
 
 .ft-social .ft-social-list a {
   font-size: 16px;
-  font-weight: var(--font-weight-700);
+  font-weight: var(--font-weight-bold);
   line-height: 22px;
   display: block;
 }
@@ -223,7 +223,7 @@ html[dir="rtl"] .ft-social .ft-social-list:dir(rtl) ul li.ft-main-item:not(:last
 }
 
 .ft-main .ft-main-item p strong {
-  font-weight: var(--font-weight-700);
+  font-weight: var(--font-weight-bold);
 }
 
 .ft-main .ft-main-item:last-child {
