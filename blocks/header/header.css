@@ -415,7 +415,7 @@ header nav[aria-expanded='true'] .nav-links {
     text-decoration: none;
     color: var(--blue-70);
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     transition: color 0.3s ease;
   }
 
