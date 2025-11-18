@@ -2,6 +2,7 @@
   "mappings": [
     "/content/extweb-academy/:/",
     "/content/extweb-academy/configuration:/.helix/config.json",
+    "/content/extweb-academy/navigation:/navigation.json",
     "/content/extweb-academy/metadata:/metadata.json",
     "/content/extweb-academy/placeholders:/placeholders.json",
     "/content/extweb-academy/taxonomy:/taxonomy.json",
