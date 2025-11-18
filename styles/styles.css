@@ -608,12 +608,7 @@ button {
 /* links */
 a:any-link {
   color: var(--text-on-light-link-primary-enabled);
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-skip-ink: auto;
-  text-decoration-thickness: 1px;
-  text-underline-offset: auto;
-  text-underline-position: from-font;
+  text-decoration: none;
   font-weight: 400;
   font-size: var(--body-font-size);
   line-height: 25px;
@@ -623,18 +618,15 @@ a:any-link {
 
 a:hover {
   color: var(--accent-blue-primary-40);
-  text-decoration-color: var(--accent-blue-primary-40);
 }
 
 a:focus,
 a:active {
   color: var(--accent-blue-primary-90);
-  text-decoration-color: var(--accent-blue-primary-90);
 }
 
 a:visited {
   color: var(--accent-blue-primary-90);
-  text-decoration-color: var(--accent-blue-primary-90);
 }
 
 a:focus-visible,
