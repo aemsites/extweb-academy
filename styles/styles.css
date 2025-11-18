@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-:root {
+ :root {
   /* colors */
   --background-color: white;
   --light-color: #f8f8f8;
@@ -43,14 +43,24 @@
   
   /* spacing */
   --spacing-none: 0;
+  --spacing-xtiny: 0.125rem;
+  --spacing-tiny: 0.25rem;
+  --spacing-xsmall: 0.25rem;
   --spacing-xxsmall: 0.25rem;
-  --spacing-xsmall: 0.5rem;
-  --spacing-small: 0.75rem;
-  --spacing-medium: 2rem;
+  --spacing-small: 0.5rem;
+  --spacing-regular: 1rem;
+  --spacing-medium: 1.25rem;
   --spacing-large: 1.5rem;
   --spacing-xlarge: 1.75rem;
+  --spacing-xxlarge: 2rem;
+  --spacing-huge: 2.5rem;
+  --spacing-xhuge: 3rem;
   --section-gutter-space: 28px;
-  
+  --global-gutter: 1.5rem;
+  --global-section-padding: 5rem;
+  --grid-margin: 1.75rem;
+  --padding-margins-sp1: 0.75rem;
+   
   /* font sizes */
   --body-font-family: 'Open Sans', roboto, roboto-fallback;
   --heading-font-family: var(--body-font-family);
@@ -62,7 +72,7 @@
   --font-size-600: 1.125rem;
   --font-size-700: 1.25rem;
   --font-size-800: 1.5rem;
-  --font-size-900: 1.5rem;
+  --font-size-900: 1.75rem;
   --font-size-1000: 1.75rem;
   --font-size-1100: 1.75rem;
   --font-size-1200: 2.25rem;
@@ -78,10 +88,12 @@
   
   /* other */
   --lift-button-border-radius: 4px;
-
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: var(--body-font-family);
+  --border-radius-none: 0rem;
+  --border-radius-small: 0.125rem;
+  --border-radius-base: 0.25rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 1rem;
+  --border-radius-x-large: 2rem;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -97,7 +109,13 @@
   --heading-font-size-xs: 22px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 79px;
+
+  /* icon sizes */
+  --size-icon-small: 0.875rem;
+  --size-icon-regular: 1rem;
+  --size-icon-large: 1.25rem;
+  --size-icon-xxlarge: 4rem;
 }
 
 /* fallback fonts */
@@ -119,9 +137,15 @@
     --spacing-xxsmall: 0.25rem;
     --spacing-xsmall: 0.5rem;
     --spacing-small: 0.75rem;
+    --spacing-regular: 1.25rem;
+    --spacing-medium: 1.5rem;
     --spacing-large: 1.75rem;
     --spacing-xlarge: 2rem;
+    --spacing-xxlarge: 2.5rem;
+    --spacing-huge: 3.5rem;
+    --spacing-xhuge: 4rem;
     --section-gutter-space: 48px;
+    --grid-margin: 3rem;
     
     /* responsive font sizes */
     --font-size-400: 1.125rem;
@@ -150,8 +174,40 @@
     --heading-font-size-m: 22px;
     --heading-font-size-s: 20px;
     --heading-font-size-xs: 18px;
+
+     /* spacing */
+     --spacing-xxsmall: 0.5rem;
+     --spacing-xsmall: 0.75rem;
+     --spacing-small: 1rem;
+     --spacing-regular: 1.5rem;
+     --spacing-medium: 2rem;
+     --spacing-large: 2.5rem;
+     --spacing-xlarge: 3rem;
+     --spacing-xxlarge: 4rem;
+     --spacing-huge: 5rem;
+     --spacing-xhuge: 6rem;
+
+     /* icon sizes */
+     --size-icon-xxlarge: 6rem;
+     --font-size-400: 1.125rem;
+     --font-size-500: 1.25rem;
+     --font-size-600: 1.5rem;
+     --font-size-700: 1.75rem;
+     --font-size-800: 2rem;
+     --font-size-900: 2.25rem;
+     --font-size-1000: 2.5rem;
+     --font-size-1100: 3rem;
+     --font-size-1200: 3.75rem;
+
+     /* nav height */
+     --nav-height: 101px;
+  }
+  
+  main > .section > div {
+    padding: 0 32px;
   }
 }
+
 
 @media (width >= 1024px) {
   :root {
@@ -354,16 +410,28 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
-}
-
 /* section metadata */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Styles for AEM Universal Editor mode */
+html.adobe-ue-preview,
+html.adobe-ue-edit {
+  height: unset;
+
+  .section.hero-video-section > .default-content-wrapper {
+    height: 600px;
+  }
+
+  .section.hero-video-section > .video-wrapper {
+    height: 600px;
+  }
+
+  .section.iframe-container > .iframe-wrapper {
+    height: 600px;
+  }
 }

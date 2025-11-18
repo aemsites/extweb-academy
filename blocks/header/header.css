@@ -4,7 +4,6 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
-  padding-top: 25px;
 }
 
 header nav {
@@ -156,14 +155,15 @@ header .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 180px;
-  height: auto;
+  width: auto;
+  height: 44px;
 }
 
 /* swapna-header-nav-layout: Increase brand logo size on desktop */
 @media (width >= 900px) {
   header nav .nav-brand img {
-    width: 220px;
+    width: auto;
+    height: 44px;
   }
 }
 
@@ -225,6 +225,8 @@ header nav .nav-sections ul > li > ul > li {
     font-weight: var(--label-font-weight);
     line-height: 116%;
     letter-spacing: -0.42px;
+    padding-left: var(--spacing-small);
+    border-left: 1px solid var(--divider-on-light-emphasis);
   }
 
   header nav[aria-expanded='true'] .nav-sections {
