@@ -43,6 +43,7 @@
   --divider-on-light-emphasis: #00396b3d;
   --button-primary-background-enabled: var(--accent-blue-primary-70);
   --background-container-on-light-link-primary-hover: var(--blue-40);
+  --icon-on-light-link-enabled:var(--blue-70);
   
   /* spacing */
   --spacing-none: 0;
