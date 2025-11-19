@@ -23,9 +23,9 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "Format",
+          "name": "videoType",
           "value": "",
-          "label": "Video Format",
+          "label": "Video Type",
           "options": [
             {
               "name": "You Tube",
@@ -46,9 +46,24 @@
           "condition": {
             "==": [
               {
-                "var": "Format"
+                "var": "videoType"
               },
               "you-tube"
+            ]
+          }
+        },
+        {
+          "component": "text-area",
+          "valueType": "string",
+          "name": "embedCode",
+          "value": "",
+          "label": "Embed Code",
+          "condition": {
+            "==": [
+              {
+                "var": "videoType"
+              },
+              "embed-code"
             ]
           }
         },
@@ -65,21 +80,6 @@
           "name": "placeholder_imageAlt",
           "label": "Placeholder Image Alt Text",
           "value": ""
-        },
-        {
-          "component": "text-area",
-          "valueType": "string",
-          "name": "embedCode",
-          "value": "",
-          "label": "Embed Code",
-          "condition": {
-            "==": [
-              {
-                "var": "Format"
-              },
-              "embed-code"
-            ]
-          }
         }
       ]
     }
