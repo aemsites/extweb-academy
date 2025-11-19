@@ -118,8 +118,8 @@ body:has(main > div.section.hero-video-section) {
   justify-content: center;
   align-items: center;
   gap: var(--lift-button-gap, 4px);
-  border-radius: var(--lift-button-border-radius);
-  border: 2px solid var(--outline-on-light-link-enabled);
+  border-radius: var(--border-radius-x-large);
+  border: 2px solid var(--blue-70);
   background: #fff0;
   color: rgb(24 31 37 / 0%);
   cursor: pointer;
