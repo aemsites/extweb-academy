@@ -214,6 +214,7 @@ html[dir="rtl"] .ft-social .ft-social-list:dir(rtl) ul li.ft-main-item:not(:last
   white-space: nowrap!important;
   background-color: var(--white);
   color: var(--blue-70);
+  font-size: var(--font-size-300);
 }
 
 .ft-main .ft-main-item ul li a.button:hover {
