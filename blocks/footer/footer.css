@@ -216,6 +216,11 @@ html[dir="rtl"] .ft-social .ft-social-list:dir(rtl) ul li.ft-main-item:not(:last
   color: var(--blue-70);
 }
 
+.ft-main .ft-main-item ul li a.button:hover {
+  background-color: var(--background-container-on-light-link-primary-hover);
+  color: var(--white);
+}
+
 .ft-main .ft-main-item p {
   font-size: 24px;
   text-transform: uppercase;
