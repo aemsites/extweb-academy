@@ -223,7 +223,7 @@ html[dir="rtl"] .ft-social .ft-social-list:dir(rtl) ul li.ft-main-item:not(:last
 }
 
 .ft-main .ft-main-item p {
-  font-size: 24px;
+  font-size: 26px;
   text-transform: uppercase;
   font-weight: 400;
   line-height: 36px;
