@@ -144,14 +144,14 @@
           {
             "name": "Hero Video Section",
             "value": "hero-video-section"
-          },
-          {
-            "component": "text",
-            "name": "id",
-            "label": "ID",
-            "description": "Adds an ID to the section"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "id",
+        "label": "ID",
+        "description": "Adds an ID to the section"
       }
     ]
   },
