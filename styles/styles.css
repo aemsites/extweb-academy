@@ -680,6 +680,15 @@ button:focus-visible {
   outline: 2px solid var(--links-focus-color);
 }
 
+button:disabled,
+button:disabled:hover,
+a.button.disabled,
+a.button.disabled:hover {
+  background-color: var(--neutral-solid-30-s);
+  color: rgb(0 41 77 / 42%);
+  cursor: unset;
+}
+
 a.button:focus:not(:focus-visible),
 button:focus:not(:focus-visible) {
   background-color: var(--accent-blue-primary-90);
@@ -700,22 +709,6 @@ button.secondary:hover {
   color: var(--accent-blue-primary-70);
 }
 
-a.button.secondary:focus:not(:focus-visible),
-button.secondary:focus:not(:focus-visible) {
-  background-color: var(--accent-blue-primary-10);
-  border: 2px solid var(--accent-blue-primary-70);
-  color: var(--accent-blue-primary-70);
-}
-
-button:disabled,
-button:disabled:hover,
-a.button.disabled,
-a.button.disabled:hover {
-  background-color: var(--neutral-solid-30-s);
-  color: rgb(0 41 77 / 42%);
-  cursor: unset;
-}
-
 button.secondary:disabled,
 button.secondary:disabled:hover,
 a.button.secondary.disabled,
@@ -724,6 +717,13 @@ a.button.secondary.disabled:hover {
   border: 2px solid var(--neutral-solid-20-s);
   color: var(--neutral-solid-40-s);
   cursor: unset;
+}
+
+a.button.secondary:focus:not(:focus-visible),
+button.secondary:focus:not(:focus-visible) {
+  background-color: var(--accent-blue-primary-10);
+  border: 2px solid var(--accent-blue-primary-70);
+  color: var(--accent-blue-primary-70);
 }
 
 main img {
@@ -749,9 +749,9 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--screen-width);
   margin: auto;
-  padding: 0 24px;
+  padding: 0 1.75rem;
 }
 
 /* Swipe carousel container should extend beyond default section width */
@@ -762,6 +762,53 @@ main > .section > div.swipe-carousel-wrapper {
 
 main > .section:first-of-type {
   margin-top: 0;
+}
+
+/* Homepage Sticky Card Section */
+.section[data-id="sticky-section"] > .default-content-wrapper {
+  place-self: center;
+  position: sticky;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 100;
+  background-color: transparent;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-medium);
+  max-width: 100%;
+  width: 100%;
+  padding: 200px 0;
+}
+
+@media (width >=1024px) {
+.section[data-id="sticky-section"] > .default-content-wrapper {
+  width: 44%;
+  padding: 320px 0;
+  z-index: 0;
+  }
+}
+
+.section[data-id="sticky-section"] > .default-content-wrapper h2 {
+  font-family: var(--global-font-family);
+  color: var(--text-on-light-highlight);
+  margin: 0;
+  font-size: var(--font-size-1200);
+  font-style: normal;
+  font-weight: var(--heading-font-weight);
+  line-height: 112%;
+  letter-spacing: -1.8px;
+  margin-bottom: 40px;
+}
+
+.section[data-id="sticky-section"] > .default-content-wrapper > p {
+  margin-bottom: 0;
+  height: 58px;
+}
+
+.section[data-id="sticky-section"] > .default-content-wrapper >  p > a {
+  margin: 0;
 }
 
 /* section metadata */
