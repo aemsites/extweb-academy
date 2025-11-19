@@ -302,6 +302,7 @@ html[dir="rtl"] .ft-main-item:not(:last-child) {
 
   .ft-main .ft-main-item ul li a.button {
     padding: 12px 32px;
+    background-color: var(--white);
   }
 
   .ft-main .ft-main-item:last-child ul {
