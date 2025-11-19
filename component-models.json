@@ -562,10 +562,26 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "text",
-        "valueType": "string",
+        "component": "multiselect",
         "name": "classes",
-        "label": "Style"
+        "label": "Tab Styles",
+        "valueType": "string[]",
+        "value": "",
+        "options": [
+          {
+            "name": "Layout Variations",
+            "children": [
+              {
+                "name": "Default Tabs",
+                "value": ""
+              },
+              {
+                "name": "Top Image, Bottom Text",
+                "value": "top-bottom-tab"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -576,6 +592,13 @@
         "name": "tabName",
         "value": "",
         "label": "Tab Name"
+      },
+      {
+        "component": "imageuploader",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
         "component": "richtext",
