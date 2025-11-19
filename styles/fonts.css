@@ -27,6 +27,32 @@
 }
 
 @font-face {
+  font-family: loopicon;
+  src: url('../fonts/loopicon.eot?76dyqw');
+  src: url('../fonts/loopicon.eot?76dyqw#iefix') format('embedded-opentype'),
+    url('../fonts/loopicon.ttf?76dyqw') format('truetype'),
+    url('../fonts/loopicon.woff?76dyqw') format('woff'),
+    url('../fonts/loopicon.svg?76dyqw#loopicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.lp {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: loopicon, monospace !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
   font-family: roboto-condensed;
   font-style: normal;
   font-weight: 700;
