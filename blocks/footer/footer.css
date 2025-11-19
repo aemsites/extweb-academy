@@ -212,6 +212,7 @@ html[dir="rtl"] .ft-social .ft-social-list:dir(rtl) ul li.ft-main-item:not(:last
   margin: 0;
   padding: 16px 32px;
   white-space: nowrap!important;
+  background-color: var(--white);
 }
 
 .ft-main .ft-main-item p {
@@ -302,7 +303,6 @@ html[dir="rtl"] .ft-main-item:not(:last-child) {
 
   .ft-main .ft-main-item ul li a.button {
     padding: 12px 32px;
-    background-color: var(--white);
   }
 
   .ft-main .ft-main-item:last-child ul {
