@@ -41,6 +41,8 @@
   --neutral-alpha-95-a: #000d1af5;
   --gray-alpha-white-90-a: #ffffffe5;
   --divider-on-light-emphasis: #00396b3d;
+  --button-primary-background-enabled: var(--accent-blue-primary-70);
+  --background-container-on-light-link-primary-hover: var(--blue-40);
   
   /* spacing */
   --spacing-none: 0;
