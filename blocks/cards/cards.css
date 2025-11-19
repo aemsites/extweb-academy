@@ -7,15 +7,6 @@
   grid-gap: 24px;
 }
 
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
-}
-
-.cards .cards-card-body {
-  margin: 16px;
-}
-
 .cards .cards-card-image {
   line-height: 0;
 }
@@ -25,3 +16,201 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+
+/* Sticky Card Styles */
+
+.cards.sticky-card.block {
+  padding: 0;
+}
+
+.cards.sticky-card.block > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  color: white;
+}
+
+.cards.sticky-card.block > ul > li {
+  display: flex;
+  width: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 0 204px 0 #E7EDF3;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(1), .cards.sticky-card.block > ul > li:nth-child(4) {
+  width: 83.3333%;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(2), .cards.sticky-card.block > ul > li:nth-child(3) {
+  width: 75%;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(1) {
+  display: flex;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(2) {
+  margin-top: 10%;
+  right: -4rem;
+  position: relative;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(3) {
+  margin-top: 10%;
+  left: 1rem;
+  position: relative;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(4) {
+  margin-top: 10%;
+  right: -4rem;
+  position: relative;
+}
+
+.cards.sticky-card.block .cards-card-image {
+  background-color: blue;
+  width: auto;
+  position: relative;
+}
+
+.cards.sticky-card.block .cards-card-image picture {
+  background-color: green;
+}
+
+.cards.sticky-card.block .cards-card-image img {
+  width: 100%;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(1) img, .cards.sticky-card.block > ul > li:nth-child(4) img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: top;  
+}
+
+.cards.sticky-card.block > ul > li:nth-child(2) img, .cards.sticky-card.block > ul > li:nth-child(3) img {
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: top;  
+}
+
+.cards.sticky-card.block .cards-card-body {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 100%) 80%);
+  position: absolute;
+}
+
+.cards.sticky-card.block .cards-card-body h3 {
+  color: white;
+  padding: 2.5rem;
+  padding-bottom: 0;
+  margin-bottom: 0.75rem;
+}
+
+.cards.sticky-card.block .cards-card-body p {
+  color: white;
+  padding: 2.5rem;
+  padding-top: 0;
+}
+
+@media (width <=600px) {
+  .cards.sticky-card.block > ul > li:nth-child(1) img, .cards.sticky-card.block > ul > li:nth-child(4) img {
+    aspect-ratio: 4/5;
+  }
+}
+  
+@media (width >= 768px) {
+  .cards.sticky-card.block > ul > li:nth-child(2) {
+    margin-top: 10%;
+    right: -24rem;
+    position: relative;
+  }
+
+  .cards.sticky-card.block > ul > li:nth-child(1), .cards.sticky-card.block > ul > li:nth-child(4) {
+    width: 58.3333%;
+  }
+
+  .cards.sticky-card.block > ul > li:nth-child(2), .cards.sticky-card.block > ul > li:nth-child(3) {
+    width:  50%;
+  }
+
+  .cards.sticky-card.block > ul > li:nth-child(4) {
+    margin-top: 10%;
+    right: -20rem;
+    position: relative;
+  }
+
+  .cards.sticky-card.block > ul > li:nth-child(3) {
+    margin-top: 10%;
+    left: -2rem;
+    position: relative;
+  }
+}
+
+@media (width >= 992px) {
+  .cards.sticky-card.block > ul > li:nth-child(2) {
+    margin-top: 30%;
+    right: -10rem;
+  }
+
+  .cards.sticky-card.block > ul > li:nth-child(3) {
+    margin-top: -20%;
+    left: 5rem;
+  }
+
+  .cards.sticky-card.block > ul > li:nth-child(4) {
+    margin-top: 10%;
+    right: -14rem;
+  }
+}
+
+@media (width >= 1024px) {
+.cards.sticky-card.block > ul > li:nth-child(1) {
+  width: 41.6667%;
+  height: 100%;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(1) img {
+  aspect-ratio: 1 / 1;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(2) {
+  display: flex;
+  position: relative;
+  width: 33.3333%;
+  margin-top: 30%;
+  right: -10rem;
+  gap: var(--spacing-xsmall);
+  flex-shrink: 0;
+  z-index: 9;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(2) img {
+  aspect-ratio: 4 / 5;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(3) {
+  left: 5rem;
+  height: 100%;
+  width: 33.3333%;
+  margin-top: -20%;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(3) img {
+  aspect-ratio: 4 / 5;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(4) {
+  margin-top: 10%;
+  right: -14rem;
+  width: 41.6667%;
+}
+
+.cards.sticky-card.block > ul > li:nth-child(4) img {
+  aspect-ratio: 1 / 1;
+}
+}
+

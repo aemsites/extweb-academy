@@ -43,6 +43,12 @@
               "value": "hero-video-section"
             }
           ]
+        },
+        {
+          "component": "text",
+          "name": "id",
+          "label": "ID",
+          "description": "Adds an ID to the section"
         }
       ]
     }
