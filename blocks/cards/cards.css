@@ -214,3 +214,289 @@
 }
 }
 
+/* Sticky Columns Cards Implementation */
+.cards.sticky-columns-card {
+  padding: 0;
+  position: relative;
+}
+
+/* Center the main section title */
+.section:has(.cards.sticky-columns-card) h1,
+.section:has(.cards.sticky-columns-card) h2,
+.section:has(.cards.sticky-columns-card) > div > h1,
+.section:has(.cards.sticky-columns-card) > div > h2 {
+  text-align: center;
+}
+
+.cards.sticky-columns-card > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile: cards stack vertically by default */
+.cards.sticky-columns-card > ul > li:first-child {
+  grid-column: 1;
+  grid-row: 1;
+  position: static;
+}
+
+.cards.sticky-columns-card > ul > li:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.cards.sticky-columns-card > ul > li:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+/* Remove borders from sticky columns cards - World Bank Academy exact dimensions */
+.cards.sticky-columns-card > ul > li {
+  border: none;
+  background: transparent;
+  overflow: visible; /* Allow content to flow naturally */
+  border-radius: 8px;
+  width: 100%; /* Scale to fit grid cell */
+  min-width: 0; /* Allow shrinking below content size */
+  position: relative; /* For badge positioning */
+}
+
+/* Card styling */
+.cards.sticky-columns-card .cards-card-image {
+  border-radius: 8px 8px 0 0;
+  overflow: visible;
+  line-height: 0;
+  margin-bottom: 0;
+  position: relative;
+  min-width: 0; /* Allow image container to shrink */
+}
+
+.cards.sticky-columns-card .cards-card-image img {
+  width: 100%; /* Fill card width */
+  height: auto; /* Maintain aspect ratio */
+  aspect-ratio: 713 / 401.29; /* Match sticky card image dimensions */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  display: block;
+}
+
+/* Badge "New for 2025" on first card - generated with CSS */
+.cards.sticky-columns-card > ul > li:first-child .cards-card-image::before {
+  content: "New for 2025";
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  z-index: 2;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: white;
+  display: flex;
+  padding: 6px 14px;
+  justify-content: center;
+  align-items: center;
+  color: #001c2d;
+  text-align: center;
+  font-size: 12px;
+  font-weight: var(--font-weight-600);
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
+
+.cards.sticky-columns-card .cards-card-body {
+  background: var(--blue-120); /* Exact World Bank Academy dark blue */
+  padding: 32px 48px; /* Reduced vertical padding to match card height */
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  margin: 0; /* World Bank Academy margin structure */
+  transition: background-color 0.3s ease;
+  min-width: 0; /* Allow card body to shrink */
+}
+
+/* Text styling */
+.cards.sticky-columns-card .cards-card-body p {
+  color: var(--text-on-dark-subdued); /* Color from screenshot */
+  font-size: var(--font-size-300);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.cards.sticky-columns-card .cards-card-body p:not(.button-container) {
+  margin-bottom: 1.5rem;
+}
+
+.cards.sticky-columns-card .cards-card-body p:nth-of-type(1):not(.button-container) {
+  color: var(--text-on-dark-subdued); /* Same color for description paragraphs */
+  font-size: var(--font-size-300);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.cards.sticky-columns-card .cards-card-body p:nth-of-type(2) a {
+  color: #fff; /* Same color for description paragraphs */
+  font-size: var(--font-size-300);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Reduce spacing before button-containers to match left card */
+.cards.sticky-columns-card .cards-card-body p:not(.button-container):last-of-type {
+  margin-bottom: 0;
+}
+
+.cards.sticky-columns-card .cards-card-body .button-container {
+  display: inline-block;
+  margin: 0;
+  padding-right: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.cards.sticky-columns-card .cards-card-body .button-container:first-of-type {
+  margin-top: 0;
+}
+
+.cards.sticky-columns-card .cards-card-body .button-container:not(:last-of-type) {
+  border-right: 1px solid var(--divider-on-dark-emphasis, rgb(255 255 255 / 30%));
+}
+
+/* Removed specific IBRD-IDA|MIGA|IFC styling - using global styling */
+
+/* Override button styling to appear as simple text links */
+.cards.sticky-columns-card .cards-card-body .button,
+.cards.sticky-columns-card .cards-card-body a.button {
+  background: transparent; /* Remove button background */
+  color: #fff; /* White text like other links */
+  text-decoration: underline; /* Add underline */
+  text-decoration-thickness: 1px;
+  padding: 0; /* Remove button padding */
+  border: none; /* Remove button border */
+  border-radius: 0; /* Remove button rounded corners */
+  box-shadow: none; /* Remove button shadow */
+  font-weight: var(--font-weight-700);
+  display: inline;
+}
+
+/* H3 headers */
+.cards.sticky-columns-card .cards-card-body h3,
+.cards.sticky-columns-card .cards-card-body h3 a {
+  color: #fff;
+  font-size: var(--font-size-500);
+  font-weight: var(--font-weight-700);
+  margin: 0 0 0.75rem;
+  line-height: 150%;
+  letter-spacing: -0.084px;
+  text-decoration: none;
+}
+
+/* Hover effects */
+.cards.sticky-columns-card > ul > li:hover .cards-card-body {
+  background: #0a3548; /* Lighter shade of #001c2d for hover */
+}
+
+/* Change underline colors when hovering over the card */
+.cards.sticky-columns-card > ul > li:hover .cards-card-body a[href] {
+  text-decoration-color: var(--divider-on-dark-highlight);
+}
+
+/* Tablet breakpoint - keep cards stacked but allow proper sizing */
+@media (width >= 768px) and (width < 1400px) {
+  .cards.sticky-columns-card > ul {
+    padding: 2rem;
+  }
+  
+  .cards.sticky-columns-card > ul > li {
+    width: 100%;
+    max-width: 713px;
+    margin: 0 auto;
+    border-radius: 8px; /* Desktop: restore border radius */
+  }
+  
+  .cards.sticky-columns-card .cards-card-image {
+    border-radius: 8px 8px 0 0; /* Desktop: restore border radius */
+  }
+  
+  .cards.sticky-columns-card .cards-card-image img {
+    aspect-ratio: 713 / 401.29; /* Match sticky card image dimensions */
+    border-radius: 8px 8px 0 0; /* Desktop: restore border radius */
+  }
+  
+  .cards.sticky-columns-card .cards-card-body {
+    padding: 32px 48px; /* Reduced vertical padding to match card height */
+    border-radius: 0 0 8px 8px; /* Desktop: restore border radius */
+  }
+}
+
+/* Desktop breakpoint - two column layout with fixed 713px cards */
+@media (width >= 1400px) {
+  .cards.sticky-columns-card > ul {
+    grid-template-columns: minmax(713px, auto) minmax(713px, auto);
+    grid-template-rows: auto auto;
+    gap: 1.5rem 2rem;
+    padding: 3rem;
+    justify-content: center;
+    max-width: 1520px; /* Accommodate two 713px cards + gap + padding */
+  }
+  
+  .cards.sticky-columns-card > ul > li {
+    max-width: 713px; /* Match original website size */
+    width: 713px;
+    min-width: 713px; /* Prevent cards from shrinking */
+    flex-shrink: 0;
+    border-radius: 8px; /* Desktop: restore border radius */
+  }
+  
+  .cards.sticky-columns-card .cards-card-image {
+    border-radius: 8px 8px 0 0; /* Desktop: restore border radius */
+  }
+  
+  .cards.sticky-columns-card .cards-card-image img {
+    aspect-ratio: 713 / 401.29; /* Match sticky card image dimensions */
+    border-radius: 8px 8px 0 0; /* Desktop: restore border radius */
+  }
+  
+  .cards.sticky-columns-card .cards-card-body {
+    padding: 32px 48px; /* Reduced vertical padding to match card height */
+    border-radius: 0 0 8px 8px; /* Desktop: restore border radius */
+  }
+  
+  /* Tablet & Desktop: Left column - sticky behavior */
+  .cards.sticky-columns-card > ul > li:first-child {
+    grid-column: 1;
+    grid-row: 1 / -1; /* Span all rows */
+    position: sticky;
+    top: 2rem;
+    bottom: 2rem;
+    height: fit-content;
+    align-self: start;
+    width: 713px; /* Match original website size */
+    max-width: 713px;
+  }
+  
+  /* Tablet & Desktop: Right column positioning */
+  .cards.sticky-columns-card > ul > li:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    width: 713px; /* Match original website size */
+    max-width: 713px;
+  }
+  
+  .cards.sticky-columns-card > ul > li:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    width: 713px; /* Match original website size */
+    max-width: 713px;
+  }
+}
+
+@media (width >= 1480px) {
+  .cards.sticky-columns-card > ul {
+    padding: 4rem;
+  }
+}
+
