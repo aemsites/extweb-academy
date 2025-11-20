@@ -69,7 +69,8 @@
     {
       "id": "tabs",
       "components": [
-        "tabs-item"
+        "tabs-item",
+        "fragment"
       ]
     }
   ]
