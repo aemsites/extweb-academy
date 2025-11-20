@@ -26,10 +26,10 @@ const loadEmbed = (block, link, heightMobile, heightDesktop) => {
 
 export default function decorate(block) {
   const props = [...block.children].map((row) => row.firstElementChild);
-  
+
   // Get URL from first row
   const appUrl = props[0]?.textContent || props[0]?.querySelector('a')?.href || '';
-  
+
   // Get heights from rows 2 and 3
   const heightMobileText = props[1]?.textContent?.trim() || '';
   const heightDesktopText = props[2]?.textContent?.trim() || '';
