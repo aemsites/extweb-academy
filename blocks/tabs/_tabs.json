@@ -71,12 +71,6 @@
       "components": [
         "tabs-item"
       ]
-    },
-    {
-      "id": "tab",
-      "components": [
-        "fragment"
-      ]
     }
   ]
 }
