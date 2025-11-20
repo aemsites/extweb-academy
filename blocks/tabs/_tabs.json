@@ -51,7 +51,7 @@
       "fields": [
         { 
           "component": "text",
-          "name": "tabName",
+          "name": "tab-name",
           "label": "Tab Name",
           "valueType": "string"
         },
