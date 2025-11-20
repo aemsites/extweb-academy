@@ -49,6 +49,10 @@
     ]
   },
   {
+    "id": "content-fragment",
+    "components": []
+  },
+  {
     "id": "library-metadata",
     "components": []
   },
