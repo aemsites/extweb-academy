@@ -1,6 +1,5 @@
 .iframe-container {
   padding: 0;
-  min-height: 500px;
 }
 
 .iframe-container > div {
@@ -8,21 +7,36 @@
 }
 
 .iframe.block {
-  position: absolute;
   margin: 0 var(--section-gutter-space);
   border: 0;
-  inset: 0;
   overflow: hidden;
 }
 
-/* Mobile height */
-.iframe.block iframe {
-  height: var(--iframe-height-mobile, 100%);
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 65%;
+  overflow: hidden;
 }
 
-/* Desktop height */
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* When custom mobile height is set, switch from aspect ratio to fixed height */
+.iframe.block[style*="--iframe-height-mobile"] .iframe-wrapper {
+  padding-bottom: 0;
+  height: var(--iframe-height-mobile);
+}
+
+/* Desktop: use custom desktop height if set */
 @media (width >= 768px) {
-  .iframe.block iframe {
-    height: var(--iframe-height-desktop, var(--iframe-height-mobile, 100%));
+  .iframe.block[style*="--iframe-height-desktop"] .iframe-wrapper {
+    height: var(--iframe-height-desktop);
   }
 }

@@ -1,7 +1,9 @@
-const getDefaultEmbed = (url) => `<iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen="" frameborder="0"
-      scrolling="no" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      title="Content from ${url.hostname}" loading="lazy">
-    </iframe>`;
+const getDefaultEmbed = (url) => `<div class="iframe-wrapper">
+      <iframe src="${url.href}" style="border: 0; width: 100%; height: 100%;" allowfullscreen="" frameborder="0"
+        scrolling="no" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title="Content from ${url.hostname}" loading="lazy">
+      </iframe>
+    </div>`;
 
 const loadEmbed = (block, link, heightMobile, heightDesktop) => {
   if (block.classList.contains('embed-is-loaded')) {
