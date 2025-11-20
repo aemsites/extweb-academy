@@ -1,6 +1,6 @@
 const getDefaultEmbed = (url) => `<div class="iframe-wrapper">
       <iframe src="${url.href}" style="border: 0; width: 100%; height: 100%;" allowfullscreen="" frameborder="0"
-        scrolling="no" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      scrolling="no" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         title="Content from ${url.hostname}" loading="lazy">
       </iframe>
     </div>`;
