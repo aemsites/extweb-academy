@@ -11,7 +11,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 // media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 1400px)');
 
 // swapna-search: Variables for search functionality to store placeholders and search configuration
 // eslint-disable-next-line prefer-const
