@@ -274,7 +274,7 @@
       {
         "component": "aem-content-fragment",
         "name": "content-fragment",
-        "label": "Content Fragment + Variation Picker",
+        "label": "AEMContent Fragment + Variation Picker",
         "valueType": "string",
         "variationName": "contentFragmentVariation"
       }
