@@ -69,8 +69,7 @@
     {
       "id": "tabs",
       "components": [
-        "tabs-item",
-        "swipe-carousel-card"
+        "tabs-item"
       ]
     }
   ]
