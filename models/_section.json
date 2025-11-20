@@ -71,7 +71,8 @@
         "library-metadata",
         "video",
         "swipe-carousel",
-        "tabs"
+        "tabs",
+        "content-fragment"
       ]
     }
   ]
