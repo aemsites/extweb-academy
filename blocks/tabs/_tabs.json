@@ -39,43 +39,21 @@
       "id": "tabs",
       "fields": [
         {
-          "component": "multiselect",
+          "component": "text",
+          "valueType": "string",
           "name": "classes",
-          "label": "Tab Styles",
-          "valueType": "string[]",
-          "value": "",
-          "options": [
-            {
-              "name": "Layout Variations",
-              "children": [
-                {
-                  "name": "Default Tabs",
-                  "value": ""
-                },
-                {
-                  "name": "Top Image, Bottom Text",
-                  "value": "top-bottom-tab"
-                }
-              ]
-            }
-          ]
+          "label": "Style"
         }
       ]
     },
     {
       "id": "tabs-item",
       "fields": [
-        {
+        { 
+          "component": "text",
           "name": "tabName",
-          "value": "",
-          "label": "Tab Name"
-        },
-        {
-          "component": "imageuploader",
-          "valueType": "string",
-          "name": "image",
-          "label": "Image",
-          "multi": false
+          "label": "Tab Name",
+          "valueType": "string"
         },
         {
           "component": "richtext",
@@ -91,7 +69,8 @@
     {
       "id": "tabs",
       "components": [
-        "tabs-item"
+        "tabs-item",
+        "swipe-carousel-card"
       ]
     }
   ]
