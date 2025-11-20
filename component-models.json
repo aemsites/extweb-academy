@@ -469,16 +469,16 @@
         "valueType": "string",
         "name": "heightMobile",
         "value": "",
-        "label": "height in px (mobile):",
-        "description": "Custom height for mobile in pixels (e.g., 500). Leave empty for default 100% height."
+        "label": "Height in px (mobile)",
+        "description": "Custom height for mobile in pixels (e.g., 500). Leave empty for default."
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "heightDesktop",
         "value": "",
-        "label": "height in px (desktop):",
-        "description": "Custom height for desktop in pixels (e.g., 800). Leave empty for default 100% height."
+        "label": "Height in px (desktop)",
+        "description": "Custom height for desktop in pixels (e.g., 800). Leave empty for default."
       }
     ]
   },
