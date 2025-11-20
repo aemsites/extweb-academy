@@ -10,9 +10,9 @@
             "template": {
               "name": "Iframe",
               "model": "iframe",
-              "iframeUrl": "",
-              "heightMobile": "",
-              "heightDesktop": ""
+              "iframeUrl": "https://",
+              "heightMobile": "1000",
+              "heightDesktop": "1500"
             }
           }
         }
