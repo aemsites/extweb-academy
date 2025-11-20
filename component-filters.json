@@ -22,7 +22,8 @@
       "library-metadata",
       "video",
       "swipe-carousel",
-      "tabs"
+      "tabs",
+      "content-fragment"
     ]
   },
   {
@@ -45,7 +46,18 @@
       "button",
       "title",
       "custom-image",
-      "dm-asset"
+      "dm-asset",
+      "content-fragment"
+    ]
+  },
+  {
+    "id": "content-fragment",
+    "components": []
+  },
+  {
+    "id": "hero",
+    "components": [
+      "content-fragment"
     ]
   },
   {

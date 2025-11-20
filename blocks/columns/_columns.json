@@ -75,7 +75,8 @@
         "button",
         "title",
         "custom-image",
-        "dm-asset"
+        "dm-asset",
+        "content-fragment"
       ]
     }
   ]

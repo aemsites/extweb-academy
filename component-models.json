@@ -269,6 +269,18 @@
     ]
   },
   {
+    "id": "content-fragment",
+    "fields": [
+      {
+        "component": "aem-content-fragment",
+        "name": "content-fragment",
+        "label": "AEMContent Fragment + Variation Picker",
+        "valueType": "string",
+        "variationName": "contentFragmentVariation"
+      }
+    ]
+  },
+  {
     "id": "custom-image",
     "fields": [
       {

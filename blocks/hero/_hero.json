@@ -44,5 +44,12 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "hero",
+      "components": [
+        "content-fragment"
+      ]
+    }
+  ]
 }
