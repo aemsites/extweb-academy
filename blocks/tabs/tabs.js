@@ -1,40 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
-import { toClassName, buildBlock, decorateBlock } from '../../scripts/aem.js';
+import { toClassName } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
-/**
- * check if link text is same as the href
- * @param {Element} link the link element
- * @returns {boolean} true or false
- */
-export function linkTextIncludesHref(link) {
-  const href = link.getAttribute('href');
-  const textcontent = link.textContent;
-
-  return textcontent.includes(href);
-}
-
-/**
-   * Builds fragment blocks from links to fragments
-   * @param {Element} main The container element
-   */
-export function buildFragmentBlocks(main) {
-  main.querySelectorAll('a[href]').forEach((a) => {
-    const url = new URL(a.href);
-    if (linkTextIncludesHref(a) && url.pathname.includes('/fragments/')) {
-      const block = buildBlock('fragment', url.pathname);
-      const parent = a.parentElement;
-      a.replaceWith(block);
-      decorateBlock(block);
-      if (parent.tagName === 'P' && parent.querySelector('.block')) {
-        const div = document.createElement('div');
-        div.className = parent.className;
-        while (parent.firstChild) div.appendChild(parent.firstChild);
-        parent.replaceWith(div);
-      }
-    }
-  });
-}
 
 export default async function decorate(block) {
   // build tablist
@@ -83,5 +49,4 @@ export default async function decorate(block) {
   });
 
   block.prepend(tablist);
-  buildFragmentBlocks(block);
 }
