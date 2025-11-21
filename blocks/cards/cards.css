@@ -1,22 +1,54 @@
-.cards > ul {
+[class="cards block"] > ul,
+[class="block cards"] > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  grid-gap: 24px;
+  grid-template-columns: repeat(1, minmax(257px, 1fr));
+  grid-gap: 30px;
 }
 
 .cards .cards-card-image {
   line-height: 0;
 }
 
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.cards .cards-card-body a {
+  color: unset;
+  text-decoration: unset;
+  font-weight: unset;
+  font-size: unset;
+  line-height: unset;
 }
 
+.cards .cards-card-body h3 {
+  font-size: var(--font-size-500);
+  line-height: 116%;
+  color: var(--text-on-light-link-primary-enabled);
+  font-weight: var(--label-font-weight);
+  letter-spacing: -0.25px;
+  position: relative;
+  z-index: 10;
+  margin-bottom: var(--spacing-small);
+}
+
+.cards .cards-card-body p {
+  font-size: var(--font-size-200);
+  line-height: 150%;
+  color: var(--text-on-light-highlight);
+  font-weight: var(--body-font-weight-regular);
+  margin: unset;
+  margin-bottom: 16px;
+}
+
+.cards > ul > li img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius-medium);
+}
+
+@media (width >= 1024px) {
+
+}
 
 /* Sticky Card Styles */
 
@@ -84,6 +116,7 @@
 
 .cards.sticky-card.block .cards-card-image img {
   width: 100%;
+  margin: unset;
 }
 
 .cards.sticky-card.block > ul > li:nth-child(1) img, .cards.sticky-card.block > ul > li:nth-child(4) img {
@@ -104,6 +137,12 @@
 }
 
 .cards.sticky-card.block .cards-card-body h3 {
+  font-feature-settings: "liga" off, "clig" off;
+  font-style: normal;
+  font-weight: var(--label-font-weight);
+  line-height: 115%;
+  letter-spacing: -0.54px;
+  font-size: var(--font-size-900);
   color: white;
   padding: 2.5rem;
   padding-bottom: 0;
@@ -111,7 +150,12 @@
 }
 
 .cards.sticky-card.block .cards-card-body p {
-  color: white;
+  font-size: var(--font-size-500);
+  font-style: normal;
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  letter-spacing: -0.25px;
+  color: rgba(255 255 255 / 0.75);
   padding: 2.5rem;
   padding-top: 0;
 }
@@ -168,50 +212,59 @@
 }
 
 @media (width >= 1024px) {
-.cards.sticky-card.block > ul > li:nth-child(1) {
-  width: 41.6667%;
-  height: 100%;
-}
+  [class="cards block"] > ul,
+  [class="block cards"] > ul {
+    grid-template-columns: repeat(3, minmax(257px, 1fr));
+  }
+  
+  .cards.sticky-card.block > ul {
+    grid-template-columns: unset;
+  }
+    
+  .cards.sticky-card.block > ul > li:nth-child(1) {
+    width: 41.6667%;
+    height: 100%;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(1) img {
-  aspect-ratio: 1 / 1;
-}
+  .cards.sticky-card.block > ul > li:nth-child(1) img {
+    aspect-ratio: 1 / 1;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(2) {
-  display: flex;
-  position: relative;
-  width: 33.3333%;
-  margin-top: 30%;
-  right: -10rem;
-  gap: var(--spacing-xsmall);
-  flex-shrink: 0;
-  z-index: 9;
-}
+  .cards.sticky-card.block > ul > li:nth-child(2) {
+    display: flex;
+    position: relative;
+    width: 33.3333%;
+    margin-top: 30%;
+    right: -10rem;
+    gap: var(--spacing-xsmall);
+    flex-shrink: 0;
+    z-index: 9;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(2) img {
-  aspect-ratio: 4 / 5;
-}
+  .cards.sticky-card.block > ul > li:nth-child(2) img {
+    aspect-ratio: 4 / 5;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(3) {
-  left: 5rem;
-  height: 100%;
-  width: 33.3333%;
-  margin-top: -20%;
-}
+  .cards.sticky-card.block > ul > li:nth-child(3) {
+    left: 5rem;
+    height: 100%;
+    width: 33.3333%;
+    margin-top: -20%;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(3) img {
-  aspect-ratio: 4 / 5;
-}
+  .cards.sticky-card.block > ul > li:nth-child(3) img {
+    aspect-ratio: 4 / 5;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(4) {
-  margin-top: 10%;
-  right: -14rem;
-  width: 41.6667%;
-}
+  .cards.sticky-card.block > ul > li:nth-child(4) {
+    margin-top: 10%;
+    right: -14rem;
+    width: 41.6667%;
+  }
 
-.cards.sticky-card.block > ul > li:nth-child(4) img {
-  aspect-ratio: 1 / 1;
-}
+  .cards.sticky-card.block > ul > li:nth-child(4) img {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 /* Sticky Columns Cards Implementation */
@@ -266,6 +319,14 @@
   width: 100%; /* Scale to fit grid cell */
   min-width: 0; /* Allow shrinking below content size */
   position: relative; /* For badge positioning */
+}
+
+.cards.sticky-columns-card > ul > li p:last-child > a {
+  padding-bottom: var(--spacing-xxsmall);
+  border-bottom: 2px solid var(--divider-on-dark-emphasis);
+}
+.cards.sticky-columns-card > ul > li:hover p:last-child > a {
+  border-bottom: 2px solid var(--divider-on-dark-highlight);
 }
 
 /* Card styling */
@@ -332,10 +393,13 @@
 }
 
 .cards.sticky-columns-card .cards-card-body p:nth-of-type(1):not(.button-container) {
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  position: relative;
+  z-index: 2;
+  margin-bottom: var(--spacing-large);
   color: var(--text-on-dark-subdued); /* Same color for description paragraphs */
   font-size: var(--font-size-300);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
 }
 
 .cards.sticky-columns-card .cards-card-body p:nth-of-type(2) a {
@@ -370,24 +434,31 @@
 /* Override button styling to appear as simple text links */
 .cards.sticky-columns-card .cards-card-body .button,
 .cards.sticky-columns-card .cards-card-body a.button {
+  font-size: var(--Font-size-200);
+  font-weight: var(--body-font-weight-bold);
+  line-height: 180%;
+  padding: 0;
+  padding-bottom: var(--spacing-xxsmall);
   background: transparent; /* Remove button background */
   color: #fff; /* White text like other links */
-  text-decoration: underline; /* Add underline */
+   /* Add underline */
   text-decoration-thickness: 1px;
-  padding: 0; /* Remove button padding */
+   /* Remove button padding */
   border: none; /* Remove button border */
   border-radius: 0; /* Remove button rounded corners */
   box-shadow: none; /* Remove button shadow */
-  font-weight: var(--font-weight-700);
   display: inline;
+  border-bottom: 2px solid var(--divider-on-dark-emphasis);
 }
+
 
 /* H3 headers */
 .cards.sticky-columns-card .cards-card-body h3,
 .cards.sticky-columns-card .cards-card-body h3 a {
+  font-size: var(--font-size-600);
+  font-style: normal;
+  font-weight: var(--body-font-weight-bold);
   color: #fff;
-  font-size: var(--font-size-500);
-  font-weight: var(--font-weight-700);
   margin: 0 0 0.75rem;
   line-height: 150%;
   letter-spacing: -0.084px;
@@ -396,7 +467,7 @@
 
 /* Hover effects */
 .cards.sticky-columns-card > ul > li:hover .cards-card-body {
-  background: #0a3548; /* Lighter shade of #001c2d for hover */
+  background: var(--blue-80); /* Lighter shade of #001c2d for hover */
 }
 
 /* Change underline colors when hovering over the card */
@@ -458,10 +529,12 @@
   .cards.sticky-columns-card .cards-card-image img {
     aspect-ratio: 713 / 401.29; /* Match sticky card image dimensions */
     border-radius: 8px 8px 0 0; /* Desktop: restore border radius */
+    margin: unset;
   }
   
   .cards.sticky-columns-card .cards-card-body {
-    padding: 32px 48px; /* Reduced vertical padding to match card height */
+     /* Reduced vertical padding to match card height */
+    padding: var(--spacing-xlarge);
     border-radius: 0 0 8px 8px; /* Desktop: restore border radius */
   }
   
