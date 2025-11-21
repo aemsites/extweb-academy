@@ -10,15 +10,20 @@
     "components": [
       "text",
       "image",
+      "dm-asset",
+      "custom-image",
       "button",
       "title",
       "hero",
       "cards",
       "columns",
       "fragment",
+      "iframe",
       "library-metadata",
       "video",
-      "swipe-carousel"
+      "swipe-carousel",
+      "tabs",
+      "content-fragment"
     ]
   },
   {
@@ -39,7 +44,20 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "custom-image",
+      "dm-asset",
+      "content-fragment"
+    ]
+  },
+  {
+    "id": "content-fragment",
+    "components": []
+  },
+  {
+    "id": "hero",
+    "components": [
+      "content-fragment"
     ]
   },
   {
@@ -50,6 +68,12 @@
     "id": "swipe-carousel",
     "components": [
       "swipe-carousel-card"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tabs-item"
     ]
   }
 ]

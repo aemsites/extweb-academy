@@ -37,8 +37,18 @@
             {
               "name": "Swipe Carousel Container",
               "value": "swipe-carousel-container"
+            },
+            {
+              "name": "Hero Video Section",
+              "value": "hero-video-section"
             }
           ]
+        },
+        {
+          "component": "text",
+          "name": "id",
+          "label": "ID",
+          "description": "Adds an ID to the section"
         }
       ]
     }
@@ -49,16 +59,20 @@
       "components": [
         "text",
         "image",
+        "dm-asset",
+        "custom-image",
         "button",
         "title",
         "hero",
         "cards",
         "columns",
         "fragment",
-	"iframe",
+        "iframe",
         "library-metadata",
         "video",
-        "swipe-carousel"
+        "swipe-carousel",
+        "tabs",
+        "content-fragment"
       ]
     }
   ]

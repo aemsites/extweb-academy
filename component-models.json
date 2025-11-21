@@ -140,8 +140,18 @@
           {
             "name": "Swipe Carousel Container",
             "value": "swipe-carousel-container"
+          },
+          {
+            "name": "Hero Video Section",
+            "value": "hero-video-section"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "id",
+        "label": "ID",
+        "description": "Adds an ID to the section"
       }
     ]
   },
@@ -259,6 +269,167 @@
     ]
   },
   {
+    "id": "content-fragment",
+    "fields": [
+      {
+        "component": "aem-content-fragment",
+        "name": "content-fragment",
+        "label": "AEMContent Fragment + Variation Picker",
+        "valueType": "string",
+        "variationName": "contentFragmentVariation"
+      }
+    ]
+  },
+  {
+    "id": "custom-image",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "General",
+        "name": "tab-general"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "imageDefault",
+        "label": "Image",
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "valueType": "string",
+        "description": "Picks from Dynamic Media"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "imageTablet",
+        "label": "Image (Tablet)",
+        "multi": false,
+        "description": "picks from AMS DAM"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "imageMobile",
+        "label": "Image (Mobile)",
+        "multi": false,
+        "description": "Picks from AMS DAM"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "tab",
+        "label": "Dynamic Media",
+        "name": "tab-dm"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "image-ratio",
+        "multi": true,
+        "value": "",
+        "label": "Image Ratio",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "modifiers",
+        "value": "",
+        "label": "Modifiers",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            false
+          ]
+        }
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "disable-smartcrop",
+        "value": "true",
+        "label": "Disable Smart Crop"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "aspectRatio",
+        "value": "",
+        "label": "Aspect Ratio",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "object-position",
+        "value": "",
+        "label": "Object Position",
+        "condition": {
+          "===": [
+            {
+              "var": "disable-smartcrop"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "loading-type",
+        "label": "Loading Type",
+        "value": "",
+        "options": [
+          {
+            "name": "Lazy",
+            "value": "lazy"
+          },
+          {
+            "name": "Eager",
+            "value": "eager"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dm-asset",
+    "fields": [
+      {
+        "component": "text",
+        "name": "dm_alttext",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "dm-image",
+        "label": "Image",
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
@@ -291,6 +462,35 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "iframe",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "iframeUrl",
+        "value": "",
+        "label": "iFrame URL",
+        "description": "Please provide a URL to an iFrame app."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heightMobile",
+        "value": "",
+        "label": "Height in px (mobile)",
+        "description": "Custom height for mobile in pixels (e.g., 500). Leave empty for default."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heightDesktop",
+        "value": "",
+        "label": "Height in px (desktop)",
+        "description": "Custom height for desktop in pixels (e.g., 800). Leave empty for default."
       }
     ]
   },
@@ -386,8 +586,37 @@
       {
         "component": "text",
         "name": "eyebrow",
-        "value": "",
+        "value": "Featured",
         "label": "Eyebrow",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "tabs",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style"
+      }
+    ]
+  },
+  {
+    "id": "tabs-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tab-name",
+        "label": "Tab Name",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "value": "",
+        "label": "Content",
         "valueType": "string"
       }
     ]
@@ -398,9 +627,9 @@
       {
         "component": "select",
         "valueType": "string",
-        "name": "Format",
+        "name": "videoType",
         "value": "",
-        "label": "Video Format",
+        "label": "Video Type",
         "options": [
           {
             "name": "You Tube",
@@ -421,9 +650,24 @@
         "condition": {
           "==": [
             {
-              "var": "Format"
+              "var": "videoType"
             },
             "you-tube"
+          ]
+        }
+      },
+      {
+        "component": "text-area",
+        "valueType": "string",
+        "name": "embedCode",
+        "value": "",
+        "label": "Embed Code",
+        "condition": {
+          "==": [
+            {
+              "var": "videoType"
+            },
+            "embed-code"
           ]
         }
       },
@@ -440,21 +684,6 @@
         "name": "placeholder_imageAlt",
         "label": "Placeholder Image Alt Text",
         "value": ""
-      },
-      {
-        "component": "text-area",
-        "valueType": "string",
-        "name": "embedCode",
-        "value": "",
-        "label": "Embed Code",
-        "condition": {
-          "==": [
-            {
-              "var": "Format"
-            },
-            "embed-code"
-          ]
-        }
       }
     ]
   }

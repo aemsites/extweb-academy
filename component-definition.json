@@ -129,6 +129,52 @@
           }
         },
         {
+          "title": "AEM Content Fragment",
+          "id": "content-fragment",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Content Fragment",
+                  "model": "content-fragment",
+                  "key-value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Custom Image",
+          "id": "custom-image",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Custom Image",
+                  "model": "custom-image"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Dynamic Media Asset",
+          "id": "dm-asset",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Dynamic Media Asset",
+                  "model": "dm-asset"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Fragment",
           "id": "fragment",
           "plugins": {
@@ -153,6 +199,21 @@
                 "template": {
                   "name": "Hero",
                   "model": "hero"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Iframe",
+          "id": "iframe",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Iframe",
+                  "model": "iframe"
                 }
               }
             }
@@ -189,8 +250,8 @@
                     "sling:resourceType": "core/franklin/components/block/v1/block/item",
                     "name": "Swipe Carousel Card",
                     "model": "swipe-carousel-card",
-                    "image": "/content/dam/extweb-academy/sample/placeholder.png",
-                    "imageAlt": "Placeholder image",
+                    "image": "",
+                    "imageAlt": "",
                     "text": "<p>Explore our content - essential information to learn about important topics while discovering valuable resources</p>",
                     "eyebrow": "Featured"
                   }
@@ -208,7 +269,44 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Swipe Carousel Card",
-                  "model": "swipe-carousel-card"
+                  "model": "swipe-carousel-card",
+                  "image": "",
+                  "imageAlt": "",
+                  "text": "",
+                  "eyebrow": "Featured"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs",
+          "id": "tabs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Tabs",
+                  "filter": "tabs",
+                  "model": "tabs"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Item",
+          "id": "tabs-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Tab",
+                  "model": "tabs-item",
+                  "tabName": "Tab Name",
+                  "content": "<p>Lorem Ipsum</p>"
                 }
               }
             }
