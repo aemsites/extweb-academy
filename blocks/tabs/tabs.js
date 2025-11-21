@@ -8,6 +8,10 @@ export default async function decorate(block) {
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
 
+  // check if this is a vertical variant
+  const isVertical = block.classList.contains('vertical');
+  const triggerEvent = isVertical ? 'mouseenter' : 'click';
+
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
   tabs.forEach((tab, i) => {
@@ -33,7 +37,7 @@ export default async function decorate(block) {
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
-    button.addEventListener('click', () => {
+    button.addEventListener(triggerEvent, () => {
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
         panel.setAttribute('aria-hidden', true);
       });
