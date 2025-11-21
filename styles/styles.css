@@ -285,7 +285,7 @@
   --font-size-600: 1.125rem;
   --font-size-700: 1.25rem;
   --font-size-800: 1.5rem;
-  --font-size-900: 1.5rem;
+  --font-size-900: 1.75rem;
   --font-size-1000: 1.75rem;
   --font-size-1100: 1.75rem;
   --font-size-1200: 2.25rem;
@@ -337,7 +337,7 @@
   --eyebrow-font-size-s: 12px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 79px;
 
   /* icon sizes */
   --size-icon-small: 0.875rem;
