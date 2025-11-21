@@ -42,6 +42,7 @@
 
 .cards > ul > li img {
   width: 100%;
+  aspect-ratio: 155/87;
   object-fit: cover;
   border-radius: var(--border-radius-medium);
 }
