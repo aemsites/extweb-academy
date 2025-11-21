@@ -1,6 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { getLanguage, PATH_PREFIX } from '../../scripts/utils.js';
 
 /**
  * Switch block handler
@@ -91,10 +90,9 @@ function addElementProperties(element) {
  * @param {Element} [element] Element containing icons
  */
 function addAnchorTag(element) {
-  const lang = getLanguage();
   const anchorLink = document.createElement('a');
   const logoImage = element.querySelector('img');
-  anchorLink.href = `${PATH_PREFIX}/${lang}`;
+  anchorLink.href = '/en/home';
   anchorLink.title = logoImage.alt;
   anchorLink.appendChild(element);
   return anchorLink;
