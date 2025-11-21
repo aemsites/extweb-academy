@@ -83,6 +83,16 @@
   --blue-70: #004370;
   --blue-80: #053657;
   --blue-90: #012740;
+  --text-on-dark-emphasis: #ffffffe5;
+  --text-on-dark-subdued: rgb(255 255 255 / 70%);
+  --text-on-light-default: #000d1ab2;
+  --text-on-light-highlight: #012740;
+  --text-on-light-link-primary-enabled: #004370;
+  --background-white: #fff;
+  --outline-transparent: transparent;
+  --accent-blue-primary-60: #00538a;
+  --accent-blue-primary-70: #004370;
+  --accent-blue-primary-90: #012740;
   --blue-100: #002035;
   --blue-120: #001c2d;
   --blue-60-alpha-60-a: #00538a99;
@@ -169,6 +179,10 @@
   --gray-alpha-white-60-a: #fff9;
   --gray-alpha-white-75-a: #ffffffbf;
   --gray-alpha-white-90-a: #ffffffe5;
+  --divider-on-light-emphasis: #00396b3d;
+  --button-primary-background-enabled: var(--accent-blue-primary-70);
+  --background-container-on-light-link-primary-hover: var(--blue-40);
+  --icon-on-light-link-enabled:var(--blue-70);
   
   /* Brand Colors */
   --brand-blue: #009fda;
@@ -293,6 +307,7 @@
   /* Typography - Font Weights */
   --body-font-weight-regular: 400;
   --body-font-weight-bold: 700;
+  --font-weight-bold: 700;
   --body-font-weight-italic: italic;
   --label-font-weight: 700;
   --heading-font-weight: 700;
