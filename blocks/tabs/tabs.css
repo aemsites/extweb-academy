@@ -4,6 +4,9 @@
   max-width: 100%;
   font-size: var(--body-font-size-xs);
   overflow-x: auto;
+  right: 0;
+  position: relative;
+  white-space: nowrap;
 }
 
 @media (width >= 600px) {
@@ -21,11 +24,11 @@
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border: 1px solid #dadada;
+  border: 1px solid transparent;
   border-radius: 0;
   padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
+  background-color: transparent;
+  color: var(--text-on-light-link-primary-enabled);
   font-weight: bold;
   line-height: unset;
   text-align: initial;
@@ -41,9 +44,10 @@
 
 
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
+  border-bottom: 4px solid var(--blue-40);
+  background-color: transparent;
   cursor: initial;
+  color: var(--text-on-light-emphasis);
 }
 
 .tabs .tabs-panel {
