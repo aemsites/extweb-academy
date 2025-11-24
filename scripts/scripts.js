@@ -20,7 +20,7 @@ import {
   getLanguage,
 } from './utils.js';
 
-export const LANGUAGE_ROOT = `/ext/${getLanguage()}`;
+export const LANGUAGE_ROOT = `/${getLanguage()}`;
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
