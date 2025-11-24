@@ -1,5 +1,6 @@
 .iframe-container {
   padding: 0;
+  min-height: 500px
 }
 
 .iframe-container > div {
