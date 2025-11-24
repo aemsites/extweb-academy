@@ -15,6 +15,13 @@ import {
 } from './aem.js';
 import { picture, source, img } from './dom-helpers.js';
 
+// eslint-disable-next-line import/no-cycle
+import {
+  getLanguage,
+} from './utils.js';
+
+export const LANGUAGE_ROOT = `/ext/${getLanguage()}`;
+
 /**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
@@ -361,6 +368,21 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+}
+
+/**
+ * Fetch filtered search results
+ * @returns List of search results
+ */
+export async function fetchSearch() {
+  window.searchData = window.searchData || {};
+  if (Object.keys(window.searchData).length === 0) {
+    const path = `${LANGUAGE_ROOT === '/ja' ? '/en' : LANGUAGE_ROOT}/query-index.json?limit=500&offset=0`;
+
+    const resp = await fetch(path);
+    window.searchData = JSON.parse(await resp.text()).data;
+  }
+  return window.searchData;
 }
 
 async function loadPage() {
