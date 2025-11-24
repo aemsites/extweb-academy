@@ -404,17 +404,14 @@ html[dir="rtl"] .ft-main-item:first-child {
   white-space: break-spaces;
 }
 
-/* Styles for very small screens (390px and below) */
-@media (width <= 390px) {
-  .ft-social .ft-social-list:first-child > ul > li a {
-    display: flex;
-    justify-content: flex-start;
-  }
+.ft-social .ft-social-list:first-child > ul > li a {
+  display: flex;
+  justify-content: flex-start;
+}
 
-  .ft-social .ft-social-list:first-child > ul > li a img {
-    width: 100%;
-    object-fit: contain;
-  }
+.ft-social .ft-social-list:first-child > ul > li a img {
+  width: 100%;
+  object-fit: contain;
 }
 
 /* Tablet and larger screens (768px and up) */
@@ -435,11 +432,13 @@ html[dir="rtl"] .ft-main-item:first-child {
     border-left: 0;
     border-bottom: 0;
     padding-bottom: 0;
+    width: unset;
   }
 
   .ft-social .ft-social-list:nth-child(2) {
     padding-top: 13px;
     margin-right: auto;
+    width: unset;
   }
 
   .ft-social .ft-social-list:nth-child(2) ul {
@@ -483,6 +482,10 @@ html[dir="rtl"] .ft-main-item:first-child {
   }
 
   .ft-main .ft-main-item a {
+    padding: 0;
+  }
+
+  .ft-main .ft-main-item a:not(.button) {
     padding: 0;
   }
 
@@ -564,7 +567,6 @@ html[dir="rtl"] .ft-main-item:first-child {
   .ft-main .ft-main-item:last-child ul li a {
     font-size: 14px;
     width: auto;
-    padding: 0;
     text-align: left;
   }
 
