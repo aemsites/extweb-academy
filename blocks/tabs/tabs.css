@@ -1,3 +1,4 @@
+/* General tabs styling */
 .tabs .tabs-list {
   display: flex;
   gap: 0.5ch;
@@ -63,3 +64,52 @@
 .tabs .tabs-panel[aria-hidden='true'] {
   display: none;
 }
+
+
+/* h2 styling for tab-carousel-section */
+main .section.tab-carousel-section h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--font-size-1000);
+  line-height: 115%;
+  margin-bottom: var(--spacing-small);
+  color: var(--accent-blue-primary-90);
+  text-align: center;
+}
+
+/* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
+main .section.tab-carousel-section > div > p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-500);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 1.4;
+  margin: 0 0 var(--spacing-medium);
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Scoped to tabs-panel to avoid affecting tab buttons */
+main .section.tab-carousel-section .tabs-panel h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-medium);
+  color: var(--accent-blue-primary-90);
+}
+
+
+/* body-text styling for tab-carousel-section */
+
+/* Scoped to tabs-panel to avoid affecting tab buttons */
+main .section.tab-carousel-section .tabs-panel .body-text,
+main .section.tab-carousel-section .tabs-panel p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-500);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 1.4;
+  margin: 0 0 var(--spacing-regular);
+  color: var(--text-color);
+}
+
+
