@@ -204,25 +204,6 @@
             ]
           }
         ]
-      },
-      {
-        "component": "text",
-        "condition": {
-          "or": [
-            {
-              "in": [
-                "left-text-border",
-                {
-                  "var": "classes"
-                }
-              ]
-            }
-          ]
-        },
-        "label": "Left Text Border Color in hex format (#1a2b3c)",
-        "name": "left-border-color",
-        "value": "",
-        "valueType": "string"
       }
     ]
   },
