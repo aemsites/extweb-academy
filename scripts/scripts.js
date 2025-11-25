@@ -18,6 +18,7 @@ import { picture, source, img } from './dom-helpers.js';
 // eslint-disable-next-line import/no-cycle
 import {
   getLanguage,
+  isInternalPage,
 } from './utils.js';
 
 export const LANGUAGE_ROOT = `/${getLanguage()}`;
@@ -353,8 +354,11 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  // Only load header/footer if not an internal/fragment page
+  if (!isInternalPage()) {
+    loadHeader(doc.querySelector('header'));
+    loadFooter(doc.querySelector('footer'));
+  }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
@@ -377,7 +381,7 @@ function loadDelayed() {
 export async function fetchSearch() {
   window.searchData = window.searchData || {};
   if (Object.keys(window.searchData).length === 0) {
-    const path = `/query-index.json?limit=500&offset=0`;
+    const path = '/query-index.json?limit=500&offset=0';
     const resp = await fetch(path);
     window.searchData = JSON.parse(await resp.text()).data;
   }
