@@ -202,27 +202,27 @@
                 "value": "left-text-border"
               }
             ]
-          },
-          {
-            "component": "text",
-            "condition": {
-              "or": [
-                {
-                  "==": [
-                    {
-                      "var": "Visual Styles"
-                    },
-                    "Left text border"
-                  ]
-                }
-              ]
-            },
-            "label": "Left Text Border Color in hex format (#1a2b3c)",
-            "name": "left-border-color",
-            "value": "",
-            "valueType": "string"
           }
         ]
+      },
+      {
+        "component": "text",
+        "condition": {
+          "or": [
+            {
+              "==": [
+                {
+                  "var": "classes"
+                },
+                "Left text border"
+              ]
+            }
+          ]
+        },
+        "label": "Left Text Border Color in hex format (#1a2b3c)",
+        "name": "left-border-color",
+        "value": "",
+        "valueType": "string"
       }
     ]
   },
