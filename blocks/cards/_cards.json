@@ -88,11 +88,11 @@
                   "condition": {
                       "or": [
                           {
-                              "contains": [
+                              "in": [
+                                  "left-text-border",
                                   {
                                       "var": "classes"
-                                  },
-                                  "left-text-border"
+                                  }
                               ]
                           }
                       ]
