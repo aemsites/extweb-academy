@@ -137,11 +137,14 @@ header .nav-brand {
   font-weight: 700;
   line-height: 1;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 header nav .nav-brand img {
   width: auto;
   height: 44px;
+  display: block;
 }
 
 /* swapna-header-nav-layout: Increase brand logo size on desktop */
@@ -151,7 +154,9 @@ header nav .nav-brand img {
 /* swapna-header-nav-layout: Sections (Academy text) positioning */
 header nav .nav-sections {
   grid-area: sections;
-  flex: 0 0 auto;  
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
@@ -254,8 +259,345 @@ header nav[aria-expanded='true'] .nav-links {
 
 /* swapna-header-nav-layout: Desktop navigation links horizontal layout */
 
+/* Swapna-mobile: 3-dots menu button styling */
+header nav .nav-three-dots {
+  grid-area: tools;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 22px;
+}
+
+header nav .nav-three-dots button {
+  height: auto;
+  width: auto;
+  margin: 0;
+  border: 0;
+  padding: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Swapna-mobile: Close button container - fixed position in top right corner */
+header nav .nav-close-button {
+  display: none;
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+/* Swapna-mobile: Close button styling - circular blue button */
+header nav .nav-close-button button {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #003e7e;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  margin-right: 50px;
+}
+
+header nav .nav-three-dots button:hover {
+  background-color: transparent;
+}
+
+/* Swapna-mobile: Close button hover effect */
+header nav .nav-close-button button:hover {
+  background-color: #002d5c;
+}
+
+header nav .nav-three-dots-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+header nav .nav-three-dots-icon span {
+  width: 5px;
+  height: 5px;
+  background-color: #003e7e;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Swapna-mobile: Close button X icon container */
+header nav .nav-close-button-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+/* Swapna-mobile: Close button X icon lines */
+header nav .nav-close-button-icon::before,
+header nav .nav-close-button-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+/* Swapna-mobile: Close button X icon - first line rotated 45deg */
+header nav .nav-close-button-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Swapna-mobile: Close button X icon - second line rotated -45deg */
+header nav .nav-close-button-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Swapna-mobile: Hide nav-tools and nav-links by default on mobile/tablet */
+@media (width < 1500px) {
+  /* Swapna-mobile: Change grid layout to align hamburger, brand, and sections horizontally */
+  header nav {
+    grid-template:
+      'hamburger brand sections tools' var(--nav-height) / auto auto 1fr auto;
+    border-bottom: 1px solid #00396b14; 
+    max-width: 1352px;
+  }
+
+  /* Swapna-mobile: Ensure hamburger, brand, and sections are aligned horizontally */
+  header nav .nav-hamburger {
+    display: flex;
+    align-items: center;
+  }
+
+  header .nav-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Swapna-mobile: Align brand wrapper content for proper vertical centering */
+  header .nav-brand .default-content-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  header nav .nav-sections {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Swapna-mobile: Align sections wrapper content for proper vertical centering */
+  header nav .nav-sections .default-content-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  /* swapna-color-font-size-change for text Academy text on mobile */
+  header nav .nav-sections .default-content-wrapper p {
+    margin: 0;
+    color: var(--text-on-light-highlight);
+    font-size: var(--font-size-700);
+    font-style: normal;
+    font-weight: var(--label-font-weight);
+    line-height: 116%;
+    letter-spacing: -0.42px;
+    padding-left: var(--spacing-small);
+    border-left: 1px solid var(--divider-on-light-emphasis);
+  }
+
+  header nav .nav-tools {
+    display: none;
+    visibility: hidden;
+  }
+
+  header nav .nav-links {
+    display: none;
+    visibility: hidden;
+  }
+
+  /* Swapna-mobile: Show 3-dots button on mobile/tablet */
+  header nav .nav-three-dots {
+    display: flex;
+  }
+
+  /* Swapna-mobile: Show nav-tools when menu is expanded with proper styling */
+  header nav[aria-expanded='true'] .nav-tools {
+    display: flex;
+    visibility: visible;
+    grid-area: tools;
+    width: 100%;
+    padding: 100px 24px 20px;
+    background-color: #e5ebf1;
+  }
+
+  /* Swapna-mobile: Style nav-tools wrapper for expanded menu */
+  header nav[aria-expanded='true'] .nav-tools .default-content-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Swapna-mobile: Adjust nav-tools search wrapper for mobile menu */
+  header nav[aria-expanded='true'] .nav-tools .inline-search-wrapper {
+    max-width: 100%;
+    width: 95%;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 8px 8px 8px 24px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  }
+
+  /* Swapna-mobile: Style search input in expanded menu */
+  header nav[aria-expanded='true'] .nav-tools .inline-search-input {
+    font-size: 16px;
+    color: #4a5568;
+  }
+
+  /* Swapna-mobile: Style search icon in expanded menu */
+  header nav[aria-expanded='true'] .nav-tools .inline-search-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #003e7e;
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  /* Swapna-mobile: Style search icon image in expanded menu */
+  header nav[aria-expanded='true'] .nav-tools .search-icon-img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+  }
+
+  /* Swapna-mobile: Search icon hover effect in expanded menu */
+  header nav[aria-expanded='true'] .nav-tools .inline-search-icon:hover {
+    background-color: #002d5c;
+  }
+
+  /* Swapna-mobile: Show nav-links when menu is expanded */
+  header nav[aria-expanded='true'] .nav-links {
+    display: block;
+    visibility: visible;
+    grid-area: links;
+    width: 100%;
+    padding: 12px 24px 40px;
+    background-color: #e5ebf1;
+  }
+
+  /* Swapna-mobile: Style nav-links wrapper for expanded menu */
+  header nav[aria-expanded='true'] .nav-links .default-content-wrapper {
+    width: 100%;
+  }
+
+  /* Swapna-mobile: Style nav-links items for mobile menu */
+  header nav[aria-expanded='true'] .nav-links .default-content-wrapper p {
+    margin: 0 0 20px;
+    padding: 0;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  header nav[aria-expanded='true'] .nav-links .default-content-wrapper p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Swapna-mobile: Add chevron icon before each link */
+  header nav[aria-expanded='true'] .nav-links .default-content-wrapper p::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background-color: #c5d4e0;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Swapna-mobile: Add chevron arrow icon */
+  header nav[aria-expanded='true'] .nav-links .default-content-wrapper p::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    width: 8px;
+    height: 8px;
+    border-right: 3.0px solid #5a6c7d;
+    border-bottom: 3.0px solid #5a6c7d;
+    transform: rotate(-45deg);
+    margin-top: 2px;
+  }
+
+  /* Swapna-mobile: Style nav-links anchor text */
+  header nav[aria-expanded='true'] .nav-links .default-content-wrapper a {
+    text-decoration: none;
+    color: #4a5568;
+    font-size: var(--font-size-900);
+    font-style: normal;
+    font-weight: var(--label-font-weight);
+    line-height: 115%;
+    letter-spacing: -0.54px;
+  }
+
+  /* Swapna-mobile: Show close button when 3-dots menu is expanded */
+  header nav[aria-expanded='true'] .nav-close-button {
+    display: block;
+  }
+
+  /* Swapna-mobile: Adjust grid when 3-dots menu is expanded - show only tools and links */
+  header nav[aria-expanded='true'] {
+    grid-template:
+      'tools tools' auto
+      'links links' auto / 1fr 1fr;
+    overflow-y: auto;
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    background-color: #e5ebf1;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Swapna-mobile: Hide hamburger when 3-dots menu is expanded */
+  header nav[aria-expanded='true'] .nav-hamburger {
+    display: none;
+  }
+
+  /* Swapna-mobile: Hide brand (logo) when 3-dots menu is expanded */
+  header nav[aria-expanded='true'] .nav-brand {
+    display: none;
+  }
+
+  /* Swapna-mobile: Hide sections (Academy text) when 3-dots menu is expanded */
+  header nav[aria-expanded='true'] .nav-sections {
+    display: none;
+  }
+
+  /* Swapna-mobile: Hide 3-dots button when menu is expanded */
+  header nav[aria-expanded='true'] .nav-three-dots {
+    display: none;
+  }
+}
+
 /* Desktop styles - consolidated media query for all width >= 900px */
-@media (width >= 1400px) {
+@media (width >= 1500px) {
   /* Desktop flexbox layout for horizontal organization */
   header nav {
     display: flex;
@@ -414,5 +756,10 @@ header nav[aria-expanded='true'] .nav-links {
 
   header nav .nav-links .default-content-wrapper a:hover {
     color: #0071bc;
+  }
+
+  /* Swapna-mobile: Hide 3-dots button on desktop */
+  header nav .nav-three-dots {
+    display: none;
   }
 }
