@@ -320,6 +320,7 @@ export default async function decorate(block) {
   // Add home-specific class to block for CSS targeting
   if (isHome) {
     block.classList.add('header-home');
+    // Note: body.home class is already added in scripts.js loadEager()
   }
 
   // load nav as fragment - use nav-home for home page, regular nav for others
@@ -331,7 +332,7 @@ export default async function decorate(block) {
     navPath = new URL(navMeta, window.location).pathname;
   } else {
     // Default: use nav-home for home page, /nav for other pages
-    navPath = isHome ? '/nav-home' : '/nav';
+    navPath = isHome ? '/fragments/nav-home' : '/nav';
   }
 
   const fragment = await loadFragment(navPath);
@@ -404,6 +405,11 @@ export default async function decorate(block) {
         }
       });
     });
+  } else {
+    // If no nav-sections found, create an empty placeholder to prevent errors
+    const placeholderSections = document.createElement('div');
+    placeholderSections.className = 'nav-sections';
+    nav.appendChild(placeholderSections);
   }
 
   // swapna-search: start - Setup search functionality in nav-tools section
@@ -501,7 +507,7 @@ export default async function decorate(block) {
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load
   // Only call toggleMenu for mobile to prevent setting aria-expanded='true' on desktop
   // This ensures hamburger icon shows 3 lines (not X) on desktop when page loads
-  if (!isDesktop.matches) {
+  if (!isDesktop.matches && navSections) {
     toggleMenu(nav, navSections, false);
   }
   // swapna-desktop-hamburger: end - Keep aria-expanded='false' on desktop page load

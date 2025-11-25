@@ -725,57 +725,91 @@ header nav[aria-expanded='true'] .nav-three-dots {
   }
 }
 
-/* Home Page Header Styles */
-/* Apply specific styles when header-home class is present */
+/* Home Page Header Styles - Apply specific styles when header-home class is present */
 
-/* Example: Different background for home page header */
-header .header-home .nav-wrapper {
-  /* Add home-specific styles here */
-  /* Example: background-color: var(--light-color); */
+/* Remove any background from the header block itself on home page */
+body.home header .header-home {
+  background-color: transparent;
 }
 
-/* Example: Different nav layout for home page */
-header .header-home nav.nav-home {
-  /* Add home-specific nav styles here */
-  /* Example: max-width: 100%; */
+/* Transparent background for home page header - high specificity */
+body.home header .header-home .nav-wrapper {
+  background-color: transparent;
+  border-bottom: none;
+  z-index: 1000;
+  position: relative;
 }
 
-/* Example: Hide or show specific elements on home page */
-header .header-home .nav-sections {
-  /* Customize sections for home page */
+/* Adjust text color for visibility on hero images */
+body.home header .header-home nav.nav-home {
+  color: var(--white);
+  background-color: transparent;
 }
 
-header .header-home .nav-brand {
-  /* Customize brand/logo for home page */
+/* Make hamburger icon white on home page */
+body.home header .header-home .nav-hamburger-icon,
+body.home header .header-home .nav-hamburger-icon::before,
+body.home header .header-home .nav-hamburger-icon::after {
+  background: var(--white);
 }
 
-header .header-home .nav-tools {
-  /* Customize search/tools for home page */
+body.home header .header-home .nav-hamburger button {
+  color: var(--white);
+  background-color: transparent;
 }
 
-header .header-home .nav-links {
-  /* Customize navigation links for home page */
+/* Make sections text white on home page */
+body.home header .header-home .nav-sections {
+  color: var(--white);
+}
+
+/* Make brand/logo visible on transparent background */
+body.home header .header-home .nav-brand {
+  color: var(--white);
+}
+
+body.home header .header-home .nav-brand img {
+  filter: brightness(0) invert(1);
+}
+
+/* Style search/tools for transparent header */
+body.home header .header-home .nav-tools {
+  color: var(--white);
+}
+
+/* Style navigation links for transparent header */
+body.home header .header-home .nav-links {
+  color: var(--white);
+}
+
+body.home header .header-home .nav-links a {
+  color: var(--white);
 }
 
 /* Desktop-specific home page header styles */
 @media (width >= 1400px) {
-  header .header-home nav.nav-home {
-    /* Desktop-specific home header styles */
+  body.home header .header-home .nav-brand img {
+    filter: brightness(0) invert(1);
   }
-  
-  header .header-home .nav-brand img {
-    /* Adjust logo size on home page desktop */
+
+  body.home header .header-home .nav-sections {
+    color: var(--white);
   }
-  
-  header .header-home .nav-sections {
-    /* Adjust sections layout on home page desktop */
+
+  body.home header .header-home .nav-sections p {
+    color: var(--white);
+    border-left-color: rgb(255 255 255 / 30%);
   }
-  
-  header .header-home .nav-tools {
-    /* Adjust search/tools layout on home page desktop */
+
+  body.home header .header-home .nav-tools {
+    color: var(--white);
   }
-  
-  header .header-home .nav-links {
-    /* Adjust nav links layout on home page desktop */
+
+  body.home header .header-home .nav-links a {
+    color: var(--white);
+  }
+
+  body.home header .header-home .nav-links a:hover {
+    color: rgb(255 255 255 / 80%);
   }
 }
