@@ -258,9 +258,7 @@ export function getHref() {
  */
 export function isInternalPage() {
   const pageUrl = getHref();
-  // eslint-disable-next-line consistent-return
-  INTERNAL_PAGES.forEach((element) => { if (pageUrl.indexOf(element) > 0) return true; });
-  return false;
+  return INTERNAL_PAGES.some((element) => pageUrl.includes(element));
 }
 
 export function formatDate(dObjStr) {
