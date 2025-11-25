@@ -377,8 +377,7 @@ function loadDelayed() {
 export async function fetchSearch() {
   window.searchData = window.searchData || {};
   if (Object.keys(window.searchData).length === 0) {
-    const path = `${LANGUAGE_ROOT === '/ja' ? '/en' : LANGUAGE_ROOT}/query-index.json?limit=500&offset=0`;
-
+    const path = `/query-index.json?limit=500&offset=0`;
     const resp = await fetch(path);
     window.searchData = JSON.parse(await resp.text()).data;
   }
