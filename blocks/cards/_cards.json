@@ -92,7 +92,7 @@
                           {
                               "var": "classes"
                           },
-                          "left-text-border"
+                          ".*left-text-border.*"
                       ]
                   }
               ]
