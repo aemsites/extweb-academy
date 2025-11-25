@@ -95,8 +95,8 @@
                       }
                   ]
               },
-              "label": "Border Color in hex format",
-              "name": "border_color",
+              "label": "Left Text Border Color in hex format (#1a2b3c)",
+              "name": "left-border-color",
               "value": "",
               "valueType": "string"
             }
