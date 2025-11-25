@@ -1,5 +1,4 @@
-[class="cards block"] > ul,
-[class="block cards"] > ul {
+.cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -11,6 +10,12 @@
 .cards .cards-card-image {
   line-height: 0;
 }
+
+.cards.rounded-image-corners .cards-card-image img {
+border-radius: var(--border-radius-medium);  
+}
+
+.cards.left-text-border .cards-card-body {border-left: 2px solid #F8BF61;padding-left: var(--spacing-regular);}
 
 .cards .cards-card-body a {
   color: unset;
@@ -44,7 +49,6 @@
   width: 100%;
   aspect-ratio: 155/87;
   object-fit: cover;
-  border-radius: var(--border-radius-medium);
 }
 
 @media (width >= 1024px) {
@@ -213,8 +217,7 @@
 }
 
 @media (width >= 1024px) {
-  [class="cards block"] > ul,
-  [class="block cards"] > ul {
+  .cards > ul {
     grid-template-columns: repeat(3, minmax(257px, 1fr));
   }
   

@@ -80,6 +80,25 @@
                   "value": "left-text-border"
                 }
               ]
+            },
+            {
+              "component": "text",
+              "condition": {
+                  "or": [
+                      {
+                          "==": [
+                              {
+                                  "var": "Visual Styles"
+                              },
+                              "Left text border"
+                          ]
+                      }
+                  ]
+              },
+              "label": "Border Color in hex format",
+              "name": "border_color",
+              "value": "",
+              "valueType": "string"
             }
           ]
         }
