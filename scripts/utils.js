@@ -258,7 +258,7 @@ export function getHref() {
  */
 export function isInternalPage() {
   const pageUrl = getHref();
-  return INTERNAL_PAGES.some((element) => pageUrl.includes(element));
+  return INTERNAL_PAGES.some((element) => pageUrl.indexOf(element) > 0);
 }
 
 export function formatDate(dObjStr) {
