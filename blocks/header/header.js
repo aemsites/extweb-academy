@@ -296,19 +296,56 @@ function toggleThreeDotsMenu(nav, forceExpanded = null) {
 // Swapna-mobile: end - toggleThreeDotsMenu function
 
 /**
+ * Checks if the current page is the home page
+ * @returns {boolean} True if current page is home page
+ */
+function isHomePage() {
+  const { pathname } = window.location;
+  // Check if pathname is root, /en, or ends with /home
+  return pathname === '/'
+    || pathname === '/en'
+    || pathname === '/en/'
+    || pathname.endsWith('/home')
+    || pathname.endsWith('/home/');
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
+  // Determine if we're on the home page
+  const isHome = isHomePage();
+
+  // Add home-specific class to block for CSS targeting
+  if (isHome) {
+    block.classList.add('header-home');
+  }
+
+  // load nav as fragment - use nav-home for home page, regular nav for others
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath;
+
+  if (navMeta) {
+    // If nav metadata is explicitly set, use it
+    navPath = new URL(navMeta, window.location).pathname;
+  } else {
+    // Default: use nav-home for home page, /nav for other pages
+    navPath = isHome ? '/nav-home' : '/nav';
+  }
+
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
+
+  // Add home-specific class to nav element for CSS targeting
+  if (isHome) {
+    nav.classList.add('nav-home');
+  }
+
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools', 'links'];

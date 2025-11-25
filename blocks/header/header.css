@@ -724,3 +724,58 @@ header nav[aria-expanded='true'] .nav-three-dots {
     display: none;
   }
 }
+
+/* Home Page Header Styles */
+/* Apply specific styles when header-home class is present */
+
+/* Example: Different background for home page header */
+header .header-home .nav-wrapper {
+  /* Add home-specific styles here */
+  /* Example: background-color: var(--light-color); */
+}
+
+/* Example: Different nav layout for home page */
+header .header-home nav.nav-home {
+  /* Add home-specific nav styles here */
+  /* Example: max-width: 100%; */
+}
+
+/* Example: Hide or show specific elements on home page */
+header .header-home .nav-sections {
+  /* Customize sections for home page */
+}
+
+header .header-home .nav-brand {
+  /* Customize brand/logo for home page */
+}
+
+header .header-home .nav-tools {
+  /* Customize search/tools for home page */
+}
+
+header .header-home .nav-links {
+  /* Customize navigation links for home page */
+}
+
+/* Desktop-specific home page header styles */
+@media (width >= 1400px) {
+  header .header-home nav.nav-home {
+    /* Desktop-specific home header styles */
+  }
+  
+  header .header-home .nav-brand img {
+    /* Adjust logo size on home page desktop */
+  }
+  
+  header .header-home .nav-sections {
+    /* Adjust sections layout on home page desktop */
+  }
+  
+  header .header-home .nav-tools {
+    /* Adjust search/tools layout on home page desktop */
+  }
+  
+  header .header-home .nav-links {
+    /* Adjust nav links layout on home page desktop */
+  }
+}
