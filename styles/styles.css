@@ -780,7 +780,7 @@ main > .section:first-of-type {
 }
 
 /* Homepage Sticky Card Section */
-.section[data-id="sticky-section"] > .default-content-wrapper {
+.section[id="sticky-section"] > .default-content-wrapper {
   place-self: center;
   position: sticky;
   top: 0;
@@ -798,14 +798,14 @@ main > .section:first-of-type {
 }
 
 @media (width >=1024px) {
-.section[data-id="sticky-section"] > .default-content-wrapper {
+.section[id="sticky-section"] > .default-content-wrapper {
   width: 44%;
   padding: 320px 0;
   z-index: 0;
   }
 }
 
-.section[data-id="sticky-section"] > .default-content-wrapper h2 {
+.section[id="sticky-section"] > .default-content-wrapper h2 {
   font-family: var(--global-font-family);
   color: var(--text-on-light-highlight);
   margin: 0;
@@ -817,12 +817,12 @@ main > .section:first-of-type {
   margin-bottom: 40px;
 }
 
-.section[data-id="sticky-section"] > .default-content-wrapper > p {
+.section[id="sticky-section"] > .default-content-wrapper > p {
   margin-bottom: 0;
   height: 58px;
 }
 
-.section[data-id="sticky-section"] > .default-content-wrapper >  p > a {
+.section[id="sticky-section"] > .default-content-wrapper >  p > a {
   margin: 0;
 }
 
