@@ -1,4 +1,21 @@
 /* General tabs styling */
+
+.section.tab-carousel-section > .tabs-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: unset;
+}
+
+.section.tab-carousel-section > .tabs-wrapper > .tabs.block {
+  width: 100%;
+}
+
+.section.tab-carousel-section .swipe-carousel-container {
+  max-width: unset;
+  padding: 0;
+}
+
 .tabs .tabs-list {
   display: flex;
   gap: 5.15px;
@@ -94,30 +111,17 @@
     border-bottom: 3px solid transparent;
   }
 
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+    padding-right: 2rem; /* Reduced right padding */
+  }
+
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
-    flex: 0 0 calc((100% - 4rem) / 3);
+    flex: 0 0 calc((100% - rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
     min-width: 455px;
     max-width: 455px;
-    height: auto; /* Allow cards to expand to fit full text */
+    height: 508px;
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
-  }
-
-  /* Ensure card body can expand for full text */
-  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel.with-button .cards-card-body {
-    overflow: visible;
-    max-height: none;
-    height: auto;
-  }
-
-  /* Ensure paragraphs inside card body show full text */
-  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel.with-button .cards-card-body p {
-    overflow: visible;
-    text-overflow: clip;
-    white-space: normal;
-    max-height: none;
-    height: auto;
-    display: block;
   }
 }
 
@@ -182,10 +186,8 @@ main .section.tab-carousel-section > div > p {
 .tabs .tabs-panel {
   margin-top: 20px;
   margin-bottom: 40px;
-  padding: 24px;
   border: 1px solid transparent;
   overflow: auto;
-  margin-left: -190px;
   width: 100%;
 }
 
@@ -231,5 +233,6 @@ main .section.tab-carousel-section .tabs-panel p {
   position: relative;
   z-index: 2;
   height: auto;
+  overflow: visible;
   
 }
