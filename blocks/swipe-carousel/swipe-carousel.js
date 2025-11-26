@@ -116,19 +116,29 @@ export default function decorate(block) {
       if (cells[1]) {
         cells[1].className = 'cards-card-body';
 
-        // Truncate paragraph content to ~150 characters (excluding headings)
-        const maxChars = 150;
+        // Check if inside tabs section with a slight delay to allow classes to be added
+        // Use setTimeout 0 to defer check until after current execution stack
         const allElements = Array.from(cells[1].children);
         const paragraphs = allElements.filter((el) => el.tagName === 'P');
+        
+        // Defer truncation logic to allow section classes to be fully set
+        setTimeout(() => {
+          const parentSection = block.closest('.section');
+          const isInTabsSection = parentSection && (
+            parentSection.classList.contains('tabs-container') ||
+            parentSection.classList.contains('tab-carousel-section')
+          );
+          
+          const maxChars = isInTabsSection ? Infinity : 150;
 
-        // Calculate total paragraph text length
-        let totalParagraphChars = 0;
-        paragraphs.forEach((p) => {
-          totalParagraphChars += p.textContent.trim().length;
-        });
+          // Calculate total paragraph text length
+          let totalParagraphChars = 0;
+          paragraphs.forEach((p) => {
+            totalParagraphChars += p.textContent.trim().length;
+          });
 
-        // If paragraphs exceed limit, truncate
-        if (totalParagraphChars > maxChars) {
+          // If paragraphs exceed limit, truncate
+          if (totalParagraphChars > maxChars) {
           let charCount = 0;
           let truncated = false;
 
@@ -163,6 +173,7 @@ export default function decorate(block) {
             }
           });
         }
+        }, 0); // End setTimeout - defer truncation to allow classes to be set
 
         li.append(cells[1]);
       }
