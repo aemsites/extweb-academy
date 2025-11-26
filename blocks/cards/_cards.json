@@ -39,14 +39,10 @@
               {
                 "component": "text",
                 "condition": {
-                    "or": [
+                    "in": [
+                        "left-text-border",
                         {
-                            "in": [
-                                "left-text-border",
-                                {
-                                    "var": "classes"
-                                }
-                            ]
+                            "var": "classes"
                         }
                     ]
                 },
@@ -103,14 +99,10 @@
                       {
                           "name": "Left Text Border Color",
                           "condition": {
-                                "or": [
+                                "in": [
+                                    "left-text-border",
                                     {
-                                        "in": [
-                                            "left-text-border",
-                                            {
-                                                "var": "classes"
-                                            }
-                                        ]
+                                        "var": "classes"
                                     }
                                 ]
                             },
