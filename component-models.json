@@ -202,42 +202,38 @@
                 "value": "left-text-border"
               }
             ]
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "left-border-color-preset",
-        "label": "Left Text Border Color",
-        "valueType": "string",
-        "value": "",
-        "condition": {
-          "some": [
-            {
-              "var": "classes"
-            },
-            {
-              "==": [
+          },
+          {
+            "name": "Left Text Border Color",
+            "condition": {
+              "some": [
                 {
-                  "var": ""
+                  "var": "classes"
                 },
-                "left-text-border"
+                {
+                  "==": [
+                    {
+                      "var": ""
+                    },
+                    "left-text-border"
+                  ]
+                }
               ]
-            }
-          ]
-        },
-        "options": [
-          {
-            "name": "Gold",
-            "value": "lb-gold"
-          },
-          {
-            "name": "Silver",
-            "value": "lb-silver"
-          },
-          {
-            "name": "Bronze",
-            "value": "lb-bronze"
+            },
+            "children": [
+              {
+                "name": "Gold",
+                "value": "lb-gold"
+              },
+              {
+                "name": "Silver",
+                "value": "lb-silver"
+              },
+              {
+                "name": "Bronze",
+                "value": "lb-bronze"
+              }
+            ]
           }
         ]
       }
