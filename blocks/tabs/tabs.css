@@ -1,33 +1,114 @@
 /* General tabs styling */
 .tabs .tabs-list {
   display: flex;
-  gap: 0.5ch;
+  gap: 5.15px;
   max-width: 100%;
   font-size: var(--body-font-size-xs);
   overflow-x: auto;
-  right: 0;
   position: relative;
   white-space: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  scrollbar-width: none;
+  left: 0;
+  scroll-snap-type: x mandatory;
+  padding: 0;
+  padding-inline-start: 0;
+  border-bottom: 2px solid var(--divider-on-light-subdued); /* Grey line under all tabs */
+
 }
 
-@media (width >= 600px) {
+/* Hide scrollbar for webkit browsers */
+.tabs .tabs-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Show only ~3 tabs on smaller screens, keep first tab visible */
+@media (width < 768px) {
   .tabs .tabs-list {
-    font-size: var(--body-font-size-s);
+    /* Assuming average tab width + gap, adjust multiplier as needed */
+    max-width: calc(33.33% * 3);
+    justify-content: flex-start;
+    border-bottom: 2px solid var(--divider-on-light-subdued);
+
+    /* Ensure first tab stays visible when scrolling */
+    scroll-padding-left: 0;
+  }
+
+  /* First tab stays fixed on the left */
+  .tabs .tabs-list button:first-child {
+    flex-shrink: 0;
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 768px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+    border-bottom: 2px solid var(--divider-on-light-subdued);
+    }
+
+     /* Set gap between carousel cards */
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+    gap: 1rem;
+    justify-content: flex-start; /* Align cards to the left */
+  }
+    
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+      flex: 0 0 calc((100% - 2rem) / 3);
+      min-width: 260px;
+      max-width: calc((100% - rem) / 3);
+      height: auto;
+      min-height: 500px;
+      color: var(--text-on-dark-emphasys);
+  }
+}
+
+@media (width >= 1024px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
+    justify-content: center;
+    border-bottom: 3px solid transparent;
+  }
+
+    /* Set gap between carousel cards */
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+      gap: 0 30px;
+      justify-content: flex-start; /* Align cards to the left */
+      margin-left: -2.5rem;
+    }
+
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+    flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
+    min-width: 410px;
+    max-width: calc((100% - 5rem) / 3);
+    height: auto;
+    min-height: 600px;
+    color: var(--text-on-dark-emphasys);
+  }
+}
+
+@media (width >= 1600px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-m);
+    justify-content: center;
+    border-bottom: 3px solid transparent;
+  }
+
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+    flex: 0 0 calc((100% - rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
+    min-width: 455px;
+    max-width: 455px;
+    height: 508px;
+    min-height: 600px;
+    color: var(--text-on-dark-emphasys);
   }
 }
 
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border-bottom: 3px solid transparent;
+  margin-bottom: 0;
+  border-bottom: none;
   border-radius: 0;
   padding: 0.5em;
   background-color: transparent;
@@ -40,25 +121,55 @@
   white-space: unset;
   transition: background-color 0.2s;
   font-size: var(--font-size-300);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-width: fit-content;
+  width: 100%;
 }
 
 .tabs .tabs-list button p {
   margin: 0;
+  border-bottom: none
+}
+
+/* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
+main .section.tab-carousel-section > div > p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-500);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  margin: var(--spacing-none);
+  margin-bottom: 40px;
+  color: var(--text-on-light-default);
+  text-align: center;
+  letter-spacing: -0.25px;
+}
+
+
+
+
+.tabs .tabs-list button[aria-selected='true'] p{
+  border-bottom: 4px solid var(--blue-40);
+  width: auto;
 }
 
 
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 4px solid var(--blue-40);
   background-color: transparent;
   cursor: initial;
   color: var(--text-on-light-emphasis);
+  margin-bottom: -2px;
+  width: auto;
 }
 
 .tabs .tabs-panel {
-  margin-top: -1px;
+  margin-top: 20px;
+  margin-bottom: 40px;
   padding: 24px;
   border: 1px solid transparent;
   overflow: auto;
+  margin-left: -190px;
+  width: 100%;
 }
 
 .tabs .tabs-panel[aria-hidden='true'] {
@@ -77,25 +188,15 @@ main .section.tab-carousel-section h2 {
   text-align: center;
 }
 
-/* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
-main .section.tab-carousel-section > div > p {
-  font-family: var(--global-font-family);
-  font-size: var(--font-size-500);
-  font-weight: var(--body-font-weight-regular);
-  line-height: 1.4;
-  margin: 0 0 var(--spacing-medium);
-  color: var(--text-color);
-  text-align: center;
-}
+
 
 /* Scoped to tabs-panel to avoid affecting tab buttons */
 main .section.tab-carousel-section .tabs-panel h2 {
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-600);
   line-height: 1.2;
   margin: 0 0 var(--spacing-medium);
-  color: var(--accent-blue-primary-90);
 }
 
 
@@ -105,11 +206,13 @@ main .section.tab-carousel-section .tabs-panel h2 {
 main .section.tab-carousel-section .tabs-panel .body-text,
 main .section.tab-carousel-section .tabs-panel p {
   font-family: var(--global-font-family);
-  font-size: var(--font-size-500);
+  font-size: var(--font-size-300);
   font-weight: var(--body-font-weight-regular);
-  line-height: 1.4;
+  line-height: 150%;
   margin: 0 0 var(--spacing-regular);
-  color: var(--text-color);
+  color: var(--text-on-dark-subdued);
+  position: relative;
+  z-index: 2;
+  height: auto;
+  
 }
-
-
