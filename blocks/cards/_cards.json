@@ -99,6 +99,35 @@
                                   "value": "left-text-border"
                               }
                           ]
+                      },
+                      {
+                          "name": "Left Text Border Color",
+                          "children": [
+                              {
+                                  "name": "Gold",
+                                  "value": "lb-gold"
+                              },
+                              {
+                                  "name": "Silver",
+                                  "value": "lb-silver"
+                              },
+                              {
+                                  "name": "Bronze",
+                                  "value": "lb-bronze"
+                              }
+                          ],
+                          "condition": {
+                            "or": [
+                                {
+                                    "in": [
+                                        "left-text-border",
+                                        {
+                                            "var": "classes"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                       }
                   ]
               }
