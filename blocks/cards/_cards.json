@@ -83,21 +83,6 @@
                       },
                       {
                           "name": "Left Text Border Color",
-                          "condition": {
-                                "some": [
-                                    {
-                                        "var": "classes"
-                                    },
-                                    {
-                                        "==": [
-                                            {
-                                                "var": ""
-                                            },
-                                            "left-text-border"
-                                        ]
-                                    }
-                                ]
-                            },
                           "children": [
                               {
                                   "name": "Gold",
