@@ -296,31 +296,16 @@ function toggleThreeDotsMenu(nav, forceExpanded = null) {
 // Swapna-mobile: end - toggleThreeDotsMenu function
 
 /**
- * Checks if the current page is the home page
- * @returns {boolean} True if current page is home page
- */
-function isHomePage() {
-  const { pathname } = window.location;
-  // Check if pathname is root, /en, or ends with /home
-  return pathname === '/'
-    || pathname === '/en'
-    || pathname === '/en/'
-    || pathname.endsWith('/home')
-    || pathname.endsWith('/home/');
-}
-
-/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // Determine if we're on the home page
-  const isHome = isHomePage();
+  // Check if we're on the home page (body.home class is added early in scripts.js)
+  const isHome = document.body.classList.contains('home');
 
   // Add home-specific class to block for CSS targeting
   if (isHome) {
     block.classList.add('header-home');
-    // Note: body.home class is already added in scripts.js loadEager()
   }
 
   // load nav as fragment - use nav-home for home page, regular nav for others
