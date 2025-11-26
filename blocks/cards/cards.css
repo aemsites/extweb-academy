@@ -15,7 +15,34 @@
 border-radius: var(--border-radius-medium);  
 }
 
-.cards.left-text-border .cards-card-body {border-left: 2px solid #F8BF61;padding-left: var(--spacing-regular);}
+.cards.left-text-border .cards-card-body {
+  border-left: 2px solid #000000;
+  padding-left: var(--spacing-regular);
+}
+
+.cards.left-text-border.lb-dark-red .cards-card-body {
+  border-left: 2px solid #91302f;
+}
+
+.cards.left-text-border.lb-gray .cards-card-body {
+  border-left: 2px solid #949494;
+}
+
+.cards.left-text-border.lb-dark-blue .cards-card-body {
+  border-left: 2px solid #004972;
+}
+
+.cards.left-text-border.lb-green .cards-card-body {
+  border-left: 2px solid #1CAA54;
+}
+
+.cards.left-text-border.lb-purple .cards-card-body {
+  border-left: 2px solid #944B9B;
+}
+
+.cards.left-text-border.lb-yellow .cards-card-body {
+  border-left: 2px solid #F7B841;
+}
 
 .cards .cards-card-body a {
   color: unset;

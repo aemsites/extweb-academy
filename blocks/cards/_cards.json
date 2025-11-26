@@ -76,7 +76,7 @@
                                   "value": "rounded-image-corners"
                               },
                               {
-                                  "name": "Left text border",
+                                  "name": "Left text border (Default: Black)",
                                   "value": "left-text-border"
                               }
                           ]
@@ -85,17 +85,29 @@
                           "name": "Left Text Border Color",
                           "children": [
                               {
-                                  "name": "Gold",
-                                  "value": "lb-gold"
+                                  "name": "Dark Red (#91302f)",
+                                  "value": "lb-dark-red"
                               },
                               {
-                                  "name": "Silver",
-                                  "value": "lb-silver"
+                                  "name": "Gray (#949494)",
+                                  "value": "lb-gray"
                               },
                               {
-                                  "name": "Bronze",
-                                  "value": "lb-bronze"
-                              }
+                                  "name": "Dark Blue (#004972)",
+                                  "value": "lb-dark-blue"
+                              },
+                              {
+                                  "name": "Green (#1CAA54)",
+                                  "value": "lb-green"
+                              },
+                              {
+                                  "name": "Purple (#944B9B)",
+                                  "value": "lb-purple"
+                              },
+                              {
+                                  "name": "Yellow (#F7B841)",
+                                  "value": "lb-yellow"
+                              }           
                           ]
                       }
                   ]
