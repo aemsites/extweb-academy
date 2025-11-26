@@ -524,11 +524,6 @@ header {
   height: var(--nav-height);
 }
 
-/* Remove header height on home page so it overlays the content */
-body.home header {
-  height: 0;
-}
-
 header .header,
 footer .footer {
   visibility: hidden;
@@ -782,17 +777,6 @@ main > .section > div.swipe-carousel-wrapper {
 
 main > .section:first-of-type {
   margin-top: 0;
-}
-
-/* Home page: remove top margin so content goes under transparent header */
-body.home main > .section:first-of-type {
-  margin-top: calc(var(--nav-height) * -1);
-  padding-top: var(--nav-height);
-}
-
-/* Home page only: hide the dark gradient on video section so header is truly transparent */
-body.home .section.hero-video-section::before {
-  display: none;
 }
 
 /* Homepage Sticky Card Section */

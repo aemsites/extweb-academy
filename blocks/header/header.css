@@ -727,6 +727,11 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
 /* Home Page Header Styles - Apply specific styles when header-home class is present */
 
+/* Remove header height on home page so it overlays the content */
+body.home header {
+  height: 0;
+}
+
 /* Remove any background from the header block itself on home page */
 body.home header .header-home {
   background-color: transparent;
@@ -784,6 +789,17 @@ body.home header .header-home .nav-links {
 
 body.home header .header-home .nav-links a {
   color: var(--white);
+}
+
+/* Allow content to go under transparent header on home page */
+body.home main > .section:first-of-type {
+  margin-top: calc(var(--nav-height) * -1);
+  padding-top: var(--nav-height);
+}
+
+/* Hide video section gradient on home page for transparent header effect */
+body.home .section.hero-video-section::before {
+  display: none;
 }
 
 /* Desktop-specific home page header styles */
