@@ -317,7 +317,7 @@ export default async function decorate(block) {
     navPath = new URL(navMeta, window.location).pathname;
   } else {
     // Default: use nav-home for home page, /nav for other pages
-    navPath = isHome ? '/fragments/nav-home' : '/nav';
+    navPath = isHome ? '/nav-home' : '/nav';
   }
 
   const fragment = await loadFragment(navPath);

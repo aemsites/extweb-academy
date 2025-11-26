@@ -11,7 +11,7 @@ export const PATH_PREFIX = '/ext';
 export const TAG_ROOT = 'world-bank:';
 export const SUPPORTED_LANGUAGES = ['en', 'zh', 'ru', 'fr', 'es', 'ar', 'ja'];
 export const RTL_LANGUAGES = ['ar']; // list of RTL Languages
-export const INTERNAL_PAGES = ['/footer', '/nav', '/nav-home', '/fragments', '/fragments/nav-home', '/data', '/drafts'];
+export const INTERNAL_PAGES = ['/footer', '/nav', '/nav-home', '/fragments', '/data', '/drafts'];
 
 let lang;
 
