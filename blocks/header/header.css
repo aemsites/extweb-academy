@@ -397,7 +397,6 @@ header nav[aria-expanded='true'] .nav-tools {
   display: flex;
   visibility: visible;
   grid-area: tools;
-  width: 100%;
   padding: 100px 24px 20px;
   background-color: #e5ebf1;
 }
