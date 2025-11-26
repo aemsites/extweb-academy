@@ -224,6 +224,18 @@
           },
           {
             "name": "Left Text Border Color",
+            "condition": {
+              "or": [
+                {
+                  "in": [
+                    "left-text-border",
+                    {
+                      "var": "classes"
+                    }
+                  ]
+                }
+              ]
+            },
             "children": [
               {
                 "name": "Gold",
@@ -237,19 +249,7 @@
                 "name": "Bronze",
                 "value": "lb-bronze"
               }
-            ],
-            "condition": {
-              "or": [
-                {
-                  "in": [
-                    "left-text-border",
-                    {
-                      "var": "classes"
-                    }
-                  ]
-                }
-              ]
-            }
+            ]
           }
         ]
       }
