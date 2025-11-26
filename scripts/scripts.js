@@ -18,7 +18,6 @@ import { picture, source, img } from './dom-helpers.js';
 // eslint-disable-next-line import/no-cycle
 import {
   getLanguage,
-  isInternalPage,
 } from './utils.js';
 
 export const LANGUAGE_ROOT = `/${getLanguage()}`;
@@ -379,18 +378,12 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  // Only load header/footer if not an internal/fragment page
-  if (!isInternalPage()) {
-    // Load header only if not already loaded (home page loads it early)
-    const headerLoaded = doc.querySelector('header .header[data-block-status="loaded"]');
-    if (!headerLoaded) {
-      loadHeader(doc.querySelector('header'));
-    }
-    loadFooter(doc.querySelector('footer'));
-  } else {
-    // Add class to body for internal pages to handle styling
-    document.body.classList.add('internal-page');
+  // Load header only if not already loaded (home page loads it early)
+  const headerLoaded = doc.querySelector('header .header[data-block-status="loaded"]');
+  if (!headerLoaded) {
+    loadHeader(doc.querySelector('header'));
   }
+  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

@@ -539,12 +539,6 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
-/* Hide empty header and footer on internal/fragment pages */
-body.internal-page header,
-body.internal-page footer {
-  display: none;
-}
-
 h1,
 h2,
 h3,
