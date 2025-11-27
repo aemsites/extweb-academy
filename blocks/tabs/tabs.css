@@ -50,11 +50,11 @@
   display: none;
 }
 
+
 /* Show only ~3 tabs on smaller screens, keep first tab visible */
 @media (width < 768px) {
   .tabs .tabs-list {
     /* Assuming average tab width + gap, adjust multiplier as needed */
-    max-width: calc(33.33% * 3);
     justify-content: flex-start;
     border-bottom: 2px solid var(--divider-on-light-subdued);
 
@@ -74,12 +74,12 @@
 main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
   gap: 1rem;
   justify-content: flex-start; /* Align cards to the left */
+  margin-left: -3rem;
 }
   
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
-    flex: 0 0 calc((100% - 2rem) / 3);
-    min-width: 2px;
-    max-width: calc((100% - rem) / 3);
+    min-width: 429px;
+    max-width: 567px;
     height: auto;
     min-height: 500px;
 }
@@ -91,16 +91,21 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     border-bottom: 2px solid var(--divider-on-light-subdued);
     }
 
+    .tabs .tabs-list button:first-child {
+      flex-shrink: 0;
+    }
+
      /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
     gap: 1rem;
     justify-content: flex-start; /* Align cards to the left */
+    margin-left: -4.5rem;
   }
     
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
       flex: 0 0 calc((100% - 2rem) / 3);
-      min-width: 260px;
-      max-width: calc((100% - rem) / 3);
+      min-width: 330px;
+      max-width: 430px;
       height: auto;
       min-height: 500px;
   }
@@ -128,7 +133,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
     flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
     min-width: 330px;
-    max-width: calc((100% - 5rem) / 3);
+    max-width: 485px;
     height: auto;
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
