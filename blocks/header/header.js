@@ -10,8 +10,11 @@ import {
   span,
 } from '../../scripts/dom-helpers.js';
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 1400px)');
+// swapna-mobile: Media query match that indicates mobile/tablet width
+const isDesktop = window.matchMedia('(min-width: 1500px)');
+
+// Swapna-mobile: Media query for showing 3-dots menu (below 1500px)
+const showThreeDotsMenu = window.matchMedia('(max-width: 1499px)');
 
 // swapna-search: Variables for search functionality to store placeholders and search configuration
 // eslint-disable-next-line prefer-const
@@ -267,6 +270,31 @@ function closeSearchOnFocusOut(e, navTools) {
 }
 // swapna-search-close-on-focus: end - closeSearchOnFocusOut function
 
+// Swapna-mobile: start - toggleThreeDotsMenu function to show/hide nav-tools and nav-links
+/**
+ * Toggles the 3-dots menu to show/hide nav-tools and nav-links
+ * @param {Element} nav - The nav element
+ * @param {*} forceExpanded - Optional param to force menu expand behavior when not null
+ */
+function toggleThreeDotsMenu(nav, forceExpanded = null) {
+  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
+  const threeDotsButton = nav.querySelector('.nav-three-dots button');
+
+  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+
+  if (threeDotsButton) {
+    threeDotsButton.setAttribute('aria-label', expanded ? 'Open menu' : 'Close menu');
+  }
+
+  // Swapna-mobile: Prevent body scroll when menu is open
+  if (!expanded && showThreeDotsMenu.matches) {
+    document.body.style.overflowY = 'hidden';
+  } else {
+    document.body.style.overflowY = '';
+  }
+}
+// Swapna-mobile: end - toggleThreeDotsMenu function
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -389,6 +417,50 @@ export default async function decorate(block) {
   nav.setAttribute('aria-expanded', 'false');
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
 
+  // Swapna-mobile: start - Create 3-dots menu button for mobile/tablet (< 1500px)
+  const threeDotsMenu = div(
+    { class: 'nav-three-dots' },
+    button(
+      {
+        type: 'button',
+        'aria-controls': 'nav',
+        'aria-label': 'Open menu',
+        onclick: () => { toggleThreeDotsMenu(nav); },
+      },
+      div(
+        { class: 'nav-three-dots-icon' },
+        span(),
+        span(),
+        span(),
+      ),
+    ),
+  );
+
+  // Swapna-mobile: Insert 3-dots menu after nav-sections (before nav-tools)
+  const navToolsElement = nav.querySelector('.nav-tools');
+  if (navToolsElement) {
+    nav.insertBefore(threeDotsMenu, navToolsElement);
+  }
+  // Swapna-mobile: end - Create 3-dots menu button
+
+  // Swapna-mobile: start - Create close button for 3-dots menu
+  const closeButton = div(
+    { class: 'nav-close-button' },
+    button(
+      {
+        type: 'button',
+        'aria-controls': 'nav',
+        'aria-label': 'Close menu',
+        onclick: () => { toggleThreeDotsMenu(nav); },
+      },
+      div({ class: 'nav-close-button-icon' }),
+    ),
+  );
+
+  // Swapna-mobile: Append close button to nav
+  nav.appendChild(closeButton);
+  // Swapna-mobile: end - Create close button for 3-dots menu
+
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load
   // Only call toggleMenu for mobile to prevent setting aria-expanded='true' on desktop
   // This ensures hamburger icon shows 3 lines (not X) on desktop when page loads
@@ -399,6 +471,16 @@ export default async function decorate(block) {
 
   // prevent mobile nav behavior on window resize
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+
+  // Swapna-mobile: start - Handle 3-dots menu behavior on window resize
+  showThreeDotsMenu.addEventListener('change', () => {
+    if (!showThreeDotsMenu.matches) {
+      // Swapna-mobile: When going to desktop (>= 1500px), close the 3-dots menu
+      nav.setAttribute('aria-expanded', 'false');
+      document.body.style.overflowY = '';
+    }
+  });
+  // Swapna-mobile: end - Handle 3-dots menu behavior on window resize
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
