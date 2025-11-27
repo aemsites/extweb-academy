@@ -300,15 +300,38 @@ function toggleThreeDotsMenu(nav, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
+  // Check if we're on the home page (body.home class is added early in scripts.js)
+  const isHome = document.body.classList.contains('home');
+
+  // Add home-specific class to block for CSS targeting
+  if (isHome) {
+    block.classList.add('header-home');
+  }
+
+  // load nav as fragment - use nav-home for home page, regular nav for others
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath;
+
+  if (navMeta) {
+    // If nav metadata is explicitly set, use it
+    navPath = new URL(navMeta, window.location).pathname;
+  } else {
+    // Default: use nav-home for home page, /nav for other pages
+    navPath = isHome ? '/nav-home' : '/nav';
+  }
+
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
+
+  // Add home-specific class to nav element for CSS targeting
+  if (isHome) {
+    nav.classList.add('nav-home');
+  }
+
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools', 'links'];
@@ -367,6 +390,11 @@ export default async function decorate(block) {
         }
       });
     });
+  } else {
+    // If no nav-sections found, create an empty placeholder to prevent errors
+    const placeholderSections = document.createElement('div');
+    placeholderSections.className = 'nav-sections';
+    nav.appendChild(placeholderSections);
   }
 
   // swapna-search: start - Setup search functionality in nav-tools section
@@ -464,7 +492,7 @@ export default async function decorate(block) {
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load
   // Only call toggleMenu for mobile to prevent setting aria-expanded='true' on desktop
   // This ensures hamburger icon shows 3 lines (not X) on desktop when page loads
-  if (!isDesktop.matches) {
+  if (!isDesktop.matches && navSections) {
     toggleMenu(nav, navSections, false);
   }
   // swapna-desktop-hamburger: end - Keep aria-expanded='false' on desktop page load

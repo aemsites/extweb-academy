@@ -724,3 +724,108 @@ header nav[aria-expanded='true'] .nav-three-dots {
     display: none;
   }
 }
+
+/* Home Page Header Styles - Apply specific styles when header-home class is present */
+
+/* Remove header height on home page so it overlays the content */
+body.home header {
+  height: 0;
+}
+
+/* Remove any background from the header block itself on home page */
+body.home header .header-home {
+  background-color: transparent;
+}
+
+/* Transparent background for home page header - high specificity */
+body.home header .header-home .nav-wrapper {
+  background-color: transparent;
+  border-bottom: none;
+  z-index: 1000;
+  position: relative;
+}
+
+/* Adjust text color for visibility on hero images */
+body.home header .header-home nav.nav-home {
+  color: var(--white);
+  background-color: transparent;
+}
+
+/* Make hamburger icon white on home page */
+body.home header .header-home .nav-hamburger-icon,
+body.home header .header-home .nav-hamburger-icon::before,
+body.home header .header-home .nav-hamburger-icon::after {
+  background: var(--white);
+}
+
+body.home header .header-home .nav-hamburger button {
+  color: var(--white);
+  background-color: transparent;
+}
+
+/* Make sections text white on home page */
+body.home header .header-home .nav-sections {
+  color: var(--white);
+}
+
+/* Make brand/logo visible on transparent background */
+body.home header .header-home .nav-brand {
+  color: var(--white);
+}
+
+body.home header .header-home .nav-brand img {
+  filter: brightness(0) invert(1);
+}
+
+/* Style search/tools for transparent header */
+body.home header .header-home .nav-tools {
+  color: var(--white);
+}
+
+/* Style navigation links for transparent header */
+body.home header .header-home .nav-links {
+  color: var(--white);
+}
+
+body.home header .header-home .nav-links a {
+  color: var(--white);
+}
+
+/* Allow content to go under transparent header on home page */
+body.home main > .section:first-of-type {
+  margin-top: calc(var(--nav-height) * -1);
+  padding-top: var(--nav-height);
+}
+
+/* Hide video section gradient on home page for transparent header effect */
+body.home .section.hero-video-section::before {
+  display: none;
+}
+
+/* Desktop-specific home page header styles */
+@media (width >= 1400px) {
+  body.home header .header-home .nav-brand img {
+    filter: brightness(0) invert(1);
+  }
+
+  body.home header .header-home .nav-sections {
+    color: var(--white);
+  }
+
+  body.home header .header-home .nav-sections p {
+    color: var(--white);
+    border-left-color: rgb(255 255 255 / 30%);
+  }
+
+  body.home header .header-home .nav-tools {
+    color: var(--white);
+  }
+
+  body.home header .header-home .nav-links a {
+    color: var(--white);
+  }
+
+  body.home header .header-home .nav-links a:hover {
+    color: rgb(255 255 255 / 80%);
+  }
+}
