@@ -16,6 +16,16 @@
   padding: 0;
 }
 
+.section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
+  margin-top: 36px;
+  padding-left: calc((89vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+} 
+
+.section.tab-carousel-section .swipe-carousel.with-button .cards-card-image {
+  zoom: 80%;
+}
+
 .tabs .tabs-list {
   display: flex;
   gap: 5.15px;
@@ -68,7 +78,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
     flex: 0 0 calc((100% - 2rem) / 3);
-    min-width: 220px;
+    min-width: 2px;
     max-width: calc((100% - rem) / 3);
     height: auto;
     min-height: 500px;
@@ -97,6 +107,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
   main .section.tab-carousel-section .swipe-carousel.with-button .cards-card-body > *:first-child {
     color: #ffffffe5; 
+    font-size: var(--font-size-600);
 }
 }
 
@@ -109,18 +120,19 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-      gap: 0 30px;
+      gap: 0 25px;
       justify-content: flex-start; /* Align cards to the left */
-      margin-left: -2.5rem;
+      margin-left: -4.5rem;
     }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
     flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
-    min-width: 410px;
+    min-width: 330px;
     max-width: calc((100% - 5rem) / 3);
     height: auto;
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
+    line-height: 22.4px;
   }
 }
 
@@ -139,7 +151,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     flex: 0 0 calc((100% - rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
     min-width: 455px;
     max-width: 455px;
-    height: 508px;
+    height: auto;
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
   }
@@ -239,7 +251,7 @@ main .section.tab-carousel-section .tabs-panel p {
   font-family: var(--global-font-family);
   font-size: var(--font-size-300);
   font-weight: var(--body-font-weight-regular);
-  line-height: 150%;
+  line-height: 24px;
   margin: 0 0 var(--spacing-regular);
   color: var(--text-on-dark-subdued);
   position: relative;
