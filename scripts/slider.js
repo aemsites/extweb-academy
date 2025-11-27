@@ -32,10 +32,17 @@ export default async function createSlider(block) {
   wrapper.append(buttonContainer);
 
   // Call function after page load
-  const moveRightBtn = document.querySelector(`.${nextBtn}`);
-  const moveLeftBtn = document.querySelector(`.${prevBtn}`);
-  const itemList = [...document.querySelectorAll('.swipe-carousel > ul > li')];
-  const carouselItems = document.querySelector('.swipe-carousel > ul');
+  // Use block-specific selectors instead of document.querySelector to support multiple carousels
+  const moveRightBtn = wrapper.querySelector(`.${nextBtn}`);
+  const moveLeftBtn = wrapper.querySelector(`.${prevBtn}`);
+  const carouselItems = block.querySelector('ul');
+
+  // Safety check: ensure required elements exist
+  if (!moveRightBtn || !moveLeftBtn || !carouselItems) {
+    return;
+  }
+
+  const itemList = [...carouselItems.children];
 
   // Add drag-to-scroll functionality with momentum
   let isDown = false;
@@ -202,10 +209,14 @@ export default async function createSlider(block) {
     let disableRightBtn = false;
 
     if (dir === 'rtl') {
-      document.querySelector('.next').style.right = 'auto';
-      document.querySelector('.prev').style.right = 'auto';
-      document.querySelector('.next').style.left = '0';
-      document.querySelector('.prev').style.left = '0';
+      if (moveRightBtn) {
+        moveRightBtn.style.right = 'auto';
+        moveRightBtn.style.left = '0';
+      }
+      if (moveLeftBtn) {
+        moveLeftBtn.style.right = 'auto';
+        moveLeftBtn.style.left = '0';
+      }
     }
 
     entries.forEach((entry) => {

@@ -142,6 +142,10 @@
             "value": "swipe-carousel-container"
           },
           {
+            "name": "Tab Carousel Section",
+            "value": "tab-carousel-section"
+          },
+          {
             "name": "Hero Video Section",
             "value": "hero-video-section"
           }
