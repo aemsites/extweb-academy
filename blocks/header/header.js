@@ -84,13 +84,22 @@ function toggleAllNavSections(sections, expanded = false) {
  * @param {Element} navSections The nav sections within the container element
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
-function toggleMenu(nav, navSections, forceExpanded = null) {
+async function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const hamButton = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
   hamButton.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+
+  // Load megamenu fragment when opening navigation
+  if (!expanded && !navSections.dataset.megamenuLoaded) {
+    const megamenuFragment = await loadFragment('/fragments/megamenu');
+    if (megamenuFragment && navSections) {
+      navSections.insertBefore(megamenuFragment, navSections.firstElementChild);
+      navSections.dataset.megamenuLoaded = 'true';
+    }
+  }
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
