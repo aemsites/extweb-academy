@@ -97,7 +97,8 @@
                 "valueType": "boolean",
                 "name": "disable-smartcrop",
                 "value": "true",
-                "label": "Disable Smart Crop"
+                "label": "Disable Smart Crop",
+                "description": "If toggled off, only 1st image is used and the others are ignored"
               },
               {
                 "component": "text",
@@ -105,6 +106,7 @@
                 "name": "aspectRatio",
                 "value": "",
                 "label": "Aspect Ratio",
+                "description": "Use format of width/height, e.g. 16/9",
                 "condition": {
                   "===": [
                     {

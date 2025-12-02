@@ -75,23 +75,6 @@ async function loadFonts() {
  *
  * @param {HTMLElement} main - The main container element that includes the links to be processed.
  */
-export function decorateDMImages(main) {
-  main.querySelectorAll('a[href^="https://delivery-p"]').forEach((a) => {
-    const url = new URL(a.href.split('?')[0]);
-    if (url.hostname.endsWith('.adobeaemcloud.com')) {
-      const pictureEl = picture(
-        source({ srcset: `${url.href}?width=1400&quality=85&preferwebp=true`, type: 'image/webp', media: '(min-width: 992px)' }),
-        source({ srcset: `${url.href}?width=1320&quality=85&preferwebp=true`, type: 'image/webp', media: '(min-width: 768px)' }),
-        source({ srcset: `${url.href}?width=780&quality=85&preferwebp=true`, type: 'image/webp', media: '(min-width: 320px)' }),
-        source({ srcset: `${url.href}?width=1400&quality=85`, media: '(min-width: 992px)' }),
-        source({ srcset: `${url.href}?width=1320&quality=85`, media: '(min-width: 768px)' }),
-        source({ srcset: `${url.href}?width=780&quality=85`, media: '(min-width: 320px)' }),
-        img({ src: `${url.href}?width=1400&quality=85`, alt: a.innerText }),
-      );
-      a.replaceWith(pictureEl);
-    }
-  });
-}
 export async function decorateDMImagesWithRendition(
   image,
   imageRatio,
@@ -141,6 +124,7 @@ export async function decorateDMImagesWithRendition(
       src: originalHref.replace('/original', ''),
     });
 
+    // case: AEMaaCS DAM asset
     if (url.hostname.endsWith('.adobeaemcloud.com')) {
       if (imageRendition !== '' && isDisable === 'false') {
         let metaPath = url.pathname.replace('/original', '');
@@ -205,6 +189,7 @@ export async function decorateDMImagesWithRendition(
         imgEl.style.aspectRatio = 'auto';
         imgEl.style.objectPosition = 'initial';
       } else {
+        // case: Dynamic Media asset
         if (quality !== '') {
           const imgSrc = originalHref.replace('/original', '');
           imgEl.src = `${imgSrc}?${quality}`;

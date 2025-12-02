@@ -5,7 +5,7 @@ import { decorateDMImagesWithRendition } from '../../scripts/scripts.js';
 export default async function decorate(block) {
   const pictures = [...block.querySelectorAll('picture')];
   const [
-    imgD, imgT, imgM, alt,
+    imageDefault, imageTablet, imageMobile, alt,
     imageRatio,
     modifiers,
     disableSmartCrop,
@@ -42,9 +42,9 @@ export default async function decorate(block) {
 
   const isDisable = getText(disableSmartCrop, 'false');
 
-  if (isDisable === 'false' && imgD && imgD.innerHTML.trim() !== '') {
+  if (isDisable === 'false' && imageDefault && imageDefault.innerHTML.trim() !== '') {
     await decorateDMImagesWithRendition(
-      imgD,
+      imageDefault,
       imageRatio,
       modifiers,
       disableSmartCrop,
@@ -54,9 +54,9 @@ export default async function decorate(block) {
       objectPosDiv,
       loadingValue,
     );
-    paragraph.appendChild(imgD);
-    imgT?.remove();
-    imgM?.remove();
+    paragraph.appendChild(imageDefault);
+    imageTablet?.remove();
+    imageMobile?.remove();
   } else {
     // eslint-disable-next-line no-inner-declarations
     function getImageSrc(wrapper) {
@@ -78,9 +78,9 @@ export default async function decorate(block) {
     }
 
     // Get sources from wrappers
-    const desktopSrc = getImageSrc(imgD);
-    let tabletSrc = getImageSrc(imgT);
-    let mobileSrc = getImageSrc(imgM);
+    const desktopSrc = getImageSrc(imageDefault);
+    let tabletSrc = getImageSrc(imageTablet);
+    let mobileSrc = getImageSrc(imageMobile);
 
     if (mobileSrc === null || mobileSrc === undefined) {
       mobileSrc = tabletSrc;
