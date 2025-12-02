@@ -403,7 +403,7 @@ export default async function decorate(block) {
   // swapna-DOM-helper: start - Create hamburger menu using DOM helper functions
   // instead of innerHTML for better performance and security
   const hamburger = div(
-    { class: 'nav-hamburger', onclick: () => { toggleMenu(nav, navSections); } },
+    { class: 'nav-hamburger' },
     button(
       {
         type: 'button',
@@ -413,6 +413,41 @@ export default async function decorate(block) {
       span({ class: 'nav-hamburger-icon' }),
     ),
   );
+
+  // Load megamenu content fragment and add it to hamburger
+  const megamenuFragment = await loadFragment('/fragments/megamenu');
+  const megamenuOverlay = div(
+    { class: 'megamenu-overlay' },
+    div(
+      { class: 'megamenu-content' },
+      button(
+        {
+          type: 'button',
+          class: 'megamenu-close',
+          'aria-label': 'Close menu',
+        },
+        span({ class: 'megamenu-close-icon' }),
+      ),
+      megamenuFragment,
+    ),
+  );
+  hamburger.appendChild(megamenuOverlay);
+
+  // Toggle megamenu overlay on hamburger click
+  const hamButton = hamburger.querySelector('button:not(.megamenu-close)');
+  hamButton.addEventListener('click', () => {
+    megamenuOverlay.classList.toggle('active');
+    document.body.style.overflow = megamenuOverlay.classList.contains('active') ? 'hidden' : '';
+  });
+
+  // Close megamenu on close button click
+  const megamenuCloseButton = megamenuOverlay.querySelector('.megamenu-close');
+  megamenuCloseButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    megamenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
