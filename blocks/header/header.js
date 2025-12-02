@@ -308,16 +308,15 @@ export default async function decorate(block) {
     block.classList.add('header-home');
   }
 
-  // load nav as fragment - use nav-home for home page, regular nav for others
+  // Determine which navigation to load:
+  // - Use nav metadata if explicitly set in page properties
+  // - Otherwise, use /nav-home for home page, /nav for other pages
   const navMeta = getMetadata('nav');
-  let navPath;
-
+  let navPath = '/nav';
   if (navMeta) {
-    // If nav metadata is explicitly set, use it
     navPath = new URL(navMeta, window.location).pathname;
-  } else {
-    // Default: use nav-home for home page, /nav for other pages
-    navPath = isHome ? '/nav-home' : '/nav';
+  } else if (isHome) {
+    navPath = '/nav-home';
   }
 
   const fragment = await loadFragment(navPath);

@@ -329,6 +329,9 @@ function isHomePage() {
     || pathname === '/en/'
     || pathname.endsWith('/home')
     || pathname.endsWith('/home/');
+}
+
+/**
  * Loads a template.
  * @param {Element} doc The container element
  * @param {string} templateName The name of the template
