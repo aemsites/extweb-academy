@@ -16,7 +16,7 @@ export default async function decorate(block) {
   const loadingValue = loadingDiv?.textContent.trim() || 'eager';
 
   const p = alt.querySelector('p');
-  let altText = 'Default Alt';
+  let altText = 'Add alt text for all images';
   if (p) {
     altText = p.textContent.trim();
   }

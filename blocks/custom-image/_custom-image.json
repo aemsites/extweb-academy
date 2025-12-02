@@ -52,7 +52,7 @@
               {
                 "component": "text",
                 "valueType": "string",
-                "name": "imageDefaultAlt",
+                "name": "alt",
                 "value": "Default alt",
                 "label": "Alt Text"
               },
