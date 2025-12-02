@@ -334,6 +334,98 @@ export default async function decorate(block) {
 
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // Process home page navigation - ensure proper classes for styling
+  if (isHome) {
+    const columnsBlock = nav.querySelector('.columns');
+    if (columnsBlock) {
+      const columnsRow = columnsBlock.querySelector(':scope > div');
+      if (columnsRow) {
+        // Process first column (Logo) - wrap with link to homepage
+        const firstColumn = columnsRow.children[0];
+        if (firstColumn) {
+          firstColumn.classList.add('nav-logo-column');
+          const picture = firstColumn.querySelector('picture');
+          if (picture && !picture.parentElement.matches('a')) {
+            // Wrap picture with link to homepage
+            const logoLink = document.createElement('a');
+            logoLink.href = 'https://academy.worldbank.org/';
+            logoLink.setAttribute('aria-label', 'World Bank Group Academy Home');
+            logoLink.className = 'nav-logo-link';
+            picture.parentNode.insertBefore(logoLink, picture);
+            logoLink.appendChild(picture);
+          }
+        }
+
+        // Process second column (Academy) - mark for styling
+        const secondColumn = columnsRow.children[1];
+        if (secondColumn) {
+          secondColumn.classList.add('nav-academy-column');
+          // Remove button classes from Academy link
+          const academyLink = secondColumn.querySelector('a');
+          if (academyLink) {
+            academyLink.classList.remove('button', 'primary', 'secondary');
+          }
+        }
+
+        // Process third column (Navigation links)
+        const thirdColumn = columnsRow.children[2];
+        if (thirdColumn) {
+          thirdColumn.classList.add('nav-links-column');
+
+          // Check if content is already in ul/li format (from Universal Editor)
+          const existingList = thirdColumn.querySelector(':scope > ul');
+          if (existingList) {
+            // Add class to the existing list for CSS targeting
+            existingList.classList.add('nav-links-list');
+            existingList.setAttribute('role', 'list');
+
+            // Process list items - remove button classes and mark search icon
+            existingList.querySelectorAll('li').forEach((li) => {
+              const link = li.querySelector('a');
+              const icon = li.querySelector('.icon');
+
+              if (link) {
+                link.classList.remove('button', 'primary', 'secondary');
+              }
+              if (icon) {
+                li.classList.add('nav-search');
+              }
+            });
+          } else {
+            // Fallback: Handle paragraph-based content (legacy support)
+            const navList = document.createElement('ul');
+            navList.className = 'nav-links-list';
+            navList.setAttribute('role', 'list');
+
+            const paragraphs = thirdColumn.querySelectorAll(':scope > p');
+            paragraphs.forEach((p) => {
+              const li = document.createElement('li');
+              const link = p.querySelector('a');
+              const icon = p.querySelector('.icon');
+
+              if (link) {
+                link.classList.remove('button', 'primary', 'secondary');
+                li.appendChild(link.cloneNode(true));
+              } else if (icon) {
+                li.className = 'nav-search';
+                li.appendChild(icon.cloneNode(true));
+              }
+
+              if (li.hasChildNodes()) {
+                navList.appendChild(li);
+              }
+            });
+
+            if (navList.hasChildNodes()) {
+              thirdColumn.innerHTML = '';
+              thirdColumn.appendChild(navList);
+            }
+          }
+        }
+      }
+    }
+  }
+
   const classes = ['brand', 'sections', 'tools', 'links'];
   classes.forEach((c, i) => {
     const section = nav.children[i];

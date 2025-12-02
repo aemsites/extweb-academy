@@ -735,6 +735,7 @@ body.home header {
 /* Remove any background from the header block itself on home page */
 body.home header .header-home {
   background-color: transparent;
+  position: relative;
 }
 
 /* Transparent background for home page header - high specificity */
@@ -743,6 +744,19 @@ body.home header .header-home .nav-wrapper {
   border-bottom: none;
   z-index: 1000;
   position: relative;
+}
+
+/* Dark gradient overlay for better text visibility on home page header */
+body.home header .header-home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(180deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 45%) 50%, rgb(0 0 0 / 20%) 75%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Adjust text color for visibility on hero images */
@@ -804,28 +818,252 @@ body.home .section.hero-video-section::before {
 
 /* Desktop-specific home page header styles */
 @media (width >= 1400px) {
-  body.home header .header-home .nav-brand img {
-    filter: brightness(0) invert(1);
+  /* Hide hamburger on desktop for home page */
+  body.home header .header-home .nav-hamburger {
+    display: none;
   }
 
-  body.home header .header-home .nav-sections {
+  /* Hide 3-dots button on desktop for home page */
+  body.home header .header-home .nav-three-dots {
+    display: none;
+  }
+
+  /* Home page nav layout on desktop */
+  body.home header .header-home nav.nav-home {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    max-width: 1452px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    border-bottom: none;
+  }
+
+  /* Home page nav-brand contains the columns block */
+  body.home header .header-home .nav-brand {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Reset section container styles for nav-brand */
+  body.home header .header-home .nav-brand.columns-container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  body.home header .header-home .nav-brand .columns-wrapper {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Style the columns block inside nav-brand */
+  body.home header .header-home .nav-brand .columns {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  /* The columns block direct child is the row container - override column layout */
+  body.home header .header-home .nav-brand .columns > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+  }
+
+  /* Override default columns equal-width distribution */
+  body.home header .header-home .nav-brand .columns > div > div {
+    width: auto;
+    flex: 0 0 auto;
+    order: unset;
+  }
+
+  /* First column - Logo */
+  body.home header .header-home .nav-brand .columns > div > div:first-child {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:first-child picture {
+    display: flex;
+    align-items: center;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:first-child img {
+    height: 40px;
+    width: auto;
+    max-width: 200px;
+    filter: none;
+  }
+
+  /* Logo link styling */
+  body.home header .header-home .nav-brand .nav-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  /* Second column - Academy text */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(2) {
+    flex: 0 0 auto;
+    padding-left: 16px;
+    margin-left: 16px;
+    border-left: 1px solid rgb(255 255 255 / 40%);
+    display: flex;
+    align-items: center;
+    min-width: fit-content;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(2) p {
+    margin: 0;
     color: var(--white);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
   }
 
-  body.home header .header-home .nav-sections p {
+  /* Handle list structure in Academy column (when using UE lists) */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(2) ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(2) ul li {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Third column - Navigation links and search */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    gap: 32px;
+  }
+
+  /* Legacy paragraph support (if JS transformation hasn't run yet) */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) p {
+    margin: 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  /* Link styles for both columns - base states first */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(2) a {
     color: var(--white);
-    border-left-color: rgb(255 255 255 / 30%);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    background: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 
-  body.home header .header-home .nav-tools {
-    color: var(--white);
+  /* Navigation links - gray by default */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) a {
+    color: rgb(255 255 255 / 75%);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.2s ease;
+    background: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
 
-  body.home header .header-home .nav-links a {
-    color: var(--white);
-  }
-
-  body.home header .header-home .nav-links a:hover {
+  /* Hover states - after base states */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(2) a:hover {
     color: rgb(255 255 255 / 80%);
+    background: none;
+    background-color: transparent;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) a:hover {
+    color: var(--white);
+    background: none;
+    background-color: transparent;
+    border: none;
+  }
+
+  /* Navigation list styling */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) ul {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) ul li {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Search icon styling for home page - gray by default, white on hover */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+    vertical-align: middle;
+  }
+
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .icon:hover img {
+    opacity: 1;
+  }
+
+  /* Hide nav-sections on home page desktop (content is in columns) */
+  body.home header .header-home .nav-sections {
+    display: none;
+  }
+
+  /* Hide nav-links on home page desktop (content is in columns) */
+  body.home header .header-home .nav-links {
+    display: none;
+  }
+
+  /* Hide nav-tools on home page desktop (search is in columns) */
+  body.home header .header-home .nav-tools {
+    display: none;
   }
 }
