@@ -157,6 +157,80 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 } */
 
+/* Megamenu overlay styles */
+header nav .nav-hamburger .megamenu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 50%);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+header nav .nav-hamburger .megamenu-overlay.active {
+  display: block;
+}
+
+header nav .nav-hamburger .megamenu-content {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fff;
+  padding: 80px 24px 40px;
+}
+
+header nav .nav-hamburger .megamenu-close {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #003e7e;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  transition: background-color 0.3s ease;
+}
+
+header nav .nav-hamburger .megamenu-close:hover {
+  background-color: #002d5c;
+}
+
+header nav .nav-hamburger .megamenu-close-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+header nav .nav-hamburger .megamenu-close-icon::before,
+header nav .nav-hamburger .megamenu-close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+header nav .nav-hamburger .megamenu-close-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+header nav .nav-hamburger .megamenu-close-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
 /* brand */
 
 /* swapna-header-nav-layout: Brand logo sizing and positioning */
