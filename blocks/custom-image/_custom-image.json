@@ -34,25 +34,25 @@
                 "description": "Picks from Dynamic Media"
               },
               {
-                "component": "reference",
+                "component": "custom-asset-namespace:custom-asset",
                 "valueType": "string",
                 "name": "imageTablet",
                 "label": "Image (Tablet)",
-                "multi": false,
-                "description": "picks from AMS DAM"
+                "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+                "multi": false
               },
               {
-                "component": "reference",
+                "component": "custom-asset-namespace:custom-asset",
                 "valueType": "string",
                 "name": "imageMobile",
                 "label": "Image (Mobile)",
-                "multi": false,
-                "description": "Picks from AMS DAM"
+                "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+                "multi": false
               },
               {
                 "component": "text",
                 "valueType": "string",
-                "name": "alt",
+                "name": "imageDefaultAlt",
                 "value": "Default alt",
                 "label": "Alt Text"
               },
