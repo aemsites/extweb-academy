@@ -23,14 +23,79 @@ let listOfAllPlaceholdersData = {};
 // swapna-search-close-on-focus: Variable to store search container reference
 let searchContainer;
 
-// Home page search dropdown - stores reference to the dropdown element
-let homeSearchDropdown = null;
+// Home page search dropdown - tracks if dropdown is currently open
+let isHomeSearchOpen = false;
 
 /**
- * Creates the home page search dropdown overlay
- * @returns {HTMLElement} The search dropdown element
+ * Closes the home page search dropdown and removes it from DOM
  */
-function createHomeSearchDropdown() {
+function closeHomeSearchDropdown() {
+  const dropdown = document.querySelector('.home-search-dropdown');
+  if (!dropdown) return;
+
+  // Start close animation
+  dropdown.classList.remove('open');
+  dropdown.setAttribute('aria-hidden', 'true');
+
+  // Remove active state from search icon
+  const searchIcon = document.querySelector('.header-home .lp-search');
+  if (searchIcon) {
+    searchIcon.classList.remove('active');
+  }
+
+  // Remove from DOM after animation completes (300ms matches CSS transition)
+  setTimeout(() => {
+    dropdown.remove();
+  }, 300);
+
+  isHomeSearchOpen = false;
+}
+
+/**
+ * Removes dropdown event listeners
+ */
+function removeDropdownEventListeners() {
+  // eslint-disable-next-line no-use-before-define
+  document.removeEventListener('click', handleClickOutside);
+  // eslint-disable-next-line no-use-before-define
+  document.removeEventListener('keydown', handleEscapeKey);
+}
+
+/**
+ * Handles Escape key to close dropdown
+ */
+function handleEscapeKey(e) {
+  if (e.key === 'Escape') {
+    closeHomeSearchDropdown();
+    removeDropdownEventListeners();
+  }
+}
+
+/**
+ * Handles click outside to close dropdown
+ */
+function handleClickOutside(e) {
+  const dropdown = document.querySelector('.home-search-dropdown');
+  if (dropdown && !dropdown.contains(e.target) && !e.target.closest('.lp-search')) {
+    closeHomeSearchDropdown();
+    removeDropdownEventListeners();
+  }
+}
+
+/**
+ * Opens the home page search dropdown (creates and adds to DOM)
+ */
+function openHomeSearchDropdown() {
+  // Only on home page
+  if (!document.body.classList.contains('home')) return;
+
+  // Don't open if already open
+  if (isHomeSearchOpen) return;
+
+  const headerHome = document.querySelector('.header-home');
+  if (!headerHome) return;
+
+  // Create dropdown element
   const dropdown = document.createElement('div');
   dropdown.className = 'home-search-dropdown';
   dropdown.setAttribute('aria-hidden', 'true');
@@ -68,10 +133,7 @@ function createHomeSearchDropdown() {
       performSearch();
     }
     if (e.key === 'Escape') {
-      homeSearchDropdown?.classList.remove('open');
-      homeSearchDropdown?.setAttribute('aria-hidden', 'true');
-      const searchIcon = document.querySelector('.header-home .lp-search');
-      if (searchIcon) searchIcon.classList.remove('active');
+      closeHomeSearchDropdown();
     }
   });
 
@@ -80,73 +142,38 @@ function createHomeSearchDropdown() {
   container.appendChild(inputWrapper);
   dropdown.appendChild(container);
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (homeSearchDropdown
-        && !homeSearchDropdown.contains(e.target)
-        && !e.target.closest('.lp-search')) {
-      homeSearchDropdown.classList.remove('open');
-      homeSearchDropdown.setAttribute('aria-hidden', 'true');
-      const searchIcon = document.querySelector('.header-home .lp-search');
-      if (searchIcon) searchIcon.classList.remove('active');
-    }
+  // Add to DOM
+  headerHome.appendChild(dropdown);
+  isHomeSearchOpen = true;
+
+  // Trigger open animation on next frame (allows CSS transition to work)
+  requestAnimationFrame(() => {
+    dropdown.classList.add('open');
+    dropdown.setAttribute('aria-hidden', 'false');
+    input.focus();
   });
 
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && homeSearchDropdown?.classList.contains('open')) {
-      homeSearchDropdown.classList.remove('open');
-      homeSearchDropdown.setAttribute('aria-hidden', 'true');
-      const searchIcon = document.querySelector('.header-home .lp-search');
-      if (searchIcon) searchIcon.classList.remove('active');
-    }
-  });
+  // Update search icon state
+  const searchIcon = document.querySelector('.header-home .lp-search');
+  if (searchIcon) {
+    searchIcon.classList.add('active');
+  }
 
-  return dropdown;
+  // Add event listeners for closing (with slight delay to prevent immediate close)
+  setTimeout(() => {
+    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('keydown', handleEscapeKey);
+  }, 10);
 }
 
 /**
  * Toggles the home page search dropdown visibility
- * @param {boolean|null} forceState - Optional: true to open, false to close, null to toggle
  */
-function toggleHomeSearchDropdown(forceState = null) {
-  // Only on home page
-  if (!document.body.classList.contains('home')) return;
-
-  // Create dropdown if it doesn't exist
-  if (!homeSearchDropdown) {
-    homeSearchDropdown = createHomeSearchDropdown();
-    // Append to .header-home which has position: relative
-    const headerHome = document.querySelector('.header-home');
-    if (headerHome) {
-      headerHome.appendChild(homeSearchDropdown);
-    }
-  }
-
-  const isOpen = homeSearchDropdown.classList.contains('open');
-  const shouldOpen = forceState !== null ? forceState : !isOpen;
-
-  if (shouldOpen) {
-    homeSearchDropdown.classList.add('open');
-    homeSearchDropdown.setAttribute('aria-hidden', 'false');
-    // Focus the input when opening
-    const input = homeSearchDropdown.querySelector('.home-search-input');
-    if (input) {
-      setTimeout(() => input.focus(), 100);
-    }
-    // Update search icon state
-    const searchIcon = document.querySelector('.header-home .lp-search');
-    if (searchIcon) {
-      searchIcon.classList.add('active');
-    }
+function toggleHomeSearchDropdown() {
+  if (isHomeSearchOpen) {
+    closeHomeSearchDropdown();
   } else {
-    homeSearchDropdown.classList.remove('open');
-    homeSearchDropdown.setAttribute('aria-hidden', 'true');
-    // Remove active state from search icon
-    const searchIcon = document.querySelector('.header-home .lp-search');
-    if (searchIcon) {
-      searchIcon.classList.remove('active');
-    }
+    openHomeSearchDropdown();
   }
 }
 
