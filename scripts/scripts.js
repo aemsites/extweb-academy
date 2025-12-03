@@ -325,9 +325,7 @@ export function decorateMain(main) {
  */
 async function loadTemplate(doc, templateName) {
   try {
-    const cssLoaded = new Promise((resolve) => {
-      loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`, resolve);
-    });
+    const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
     const decorationComplete = new Promise((resolve) => {
       (async () => {
         try {
