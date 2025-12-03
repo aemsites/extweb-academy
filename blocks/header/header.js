@@ -23,6 +23,133 @@ let listOfAllPlaceholdersData = {};
 // swapna-search-close-on-focus: Variable to store search container reference
 let searchContainer;
 
+// Home page search dropdown - stores reference to the dropdown element
+let homeSearchDropdown = null;
+
+/**
+ * Creates the home page search dropdown overlay
+ * @returns {HTMLElement} The search dropdown element
+ */
+function createHomeSearchDropdown() {
+  const dropdown = document.createElement('div');
+  dropdown.className = 'home-search-dropdown';
+  dropdown.setAttribute('aria-hidden', 'true');
+
+  const container = document.createElement('div');
+  container.className = 'home-search-container';
+
+  const inputWrapper = document.createElement('div');
+  inputWrapper.className = 'home-search-input-wrapper';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'home-search-input';
+  input.placeholder = 'Search Academy';
+  input.setAttribute('aria-label', 'Search Academy');
+
+  const searchBtn = document.createElement('button');
+  searchBtn.className = 'home-search-btn lp lp-search';
+  searchBtn.setAttribute('aria-label', 'Submit search');
+  searchBtn.type = 'button';
+
+  // Handle search submission
+  const performSearch = () => {
+    const query = input.value.trim();
+    if (query) {
+      const searchUrl = listOfAllPlaceholdersData.searchRedirectUrl
+        || 'https://www.worldbank.org/en/search?q=';
+      window.location.href = searchUrl + encodeURIComponent(query);
+    }
+  };
+
+  searchBtn.addEventListener('click', performSearch);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+    if (e.key === 'Escape') {
+      homeSearchDropdown?.classList.remove('open');
+      homeSearchDropdown?.setAttribute('aria-hidden', 'true');
+      const searchIcon = document.querySelector('.header-home .lp-search');
+      if (searchIcon) searchIcon.classList.remove('active');
+    }
+  });
+
+  inputWrapper.appendChild(input);
+  inputWrapper.appendChild(searchBtn);
+  container.appendChild(inputWrapper);
+  dropdown.appendChild(container);
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (homeSearchDropdown
+        && !homeSearchDropdown.contains(e.target)
+        && !e.target.closest('.lp-search')) {
+      homeSearchDropdown.classList.remove('open');
+      homeSearchDropdown.setAttribute('aria-hidden', 'true');
+      const searchIcon = document.querySelector('.header-home .lp-search');
+      if (searchIcon) searchIcon.classList.remove('active');
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && homeSearchDropdown?.classList.contains('open')) {
+      homeSearchDropdown.classList.remove('open');
+      homeSearchDropdown.setAttribute('aria-hidden', 'true');
+      const searchIcon = document.querySelector('.header-home .lp-search');
+      if (searchIcon) searchIcon.classList.remove('active');
+    }
+  });
+
+  return dropdown;
+}
+
+/**
+ * Toggles the home page search dropdown visibility
+ * @param {boolean|null} forceState - Optional: true to open, false to close, null to toggle
+ */
+function toggleHomeSearchDropdown(forceState = null) {
+  // Only on home page
+  if (!document.body.classList.contains('home')) return;
+
+  // Create dropdown if it doesn't exist
+  if (!homeSearchDropdown) {
+    homeSearchDropdown = createHomeSearchDropdown();
+    // Append to .header-home which has position: relative
+    const headerHome = document.querySelector('.header-home');
+    if (headerHome) {
+      headerHome.appendChild(homeSearchDropdown);
+    }
+  }
+
+  const isOpen = homeSearchDropdown.classList.contains('open');
+  const shouldOpen = forceState !== null ? forceState : !isOpen;
+
+  if (shouldOpen) {
+    homeSearchDropdown.classList.add('open');
+    homeSearchDropdown.setAttribute('aria-hidden', 'false');
+    // Focus the input when opening
+    const input = homeSearchDropdown.querySelector('.home-search-input');
+    if (input) {
+      setTimeout(() => input.focus(), 100);
+    }
+    // Update search icon state
+    const searchIcon = document.querySelector('.header-home .lp-search');
+    if (searchIcon) {
+      searchIcon.classList.add('active');
+    }
+  } else {
+    homeSearchDropdown.classList.remove('open');
+    homeSearchDropdown.setAttribute('aria-hidden', 'true');
+    // Remove active state from search icon
+    const searchIcon = document.querySelector('.header-home .lp-search');
+    if (searchIcon) {
+      searchIcon.classList.remove('active');
+    }
+  }
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -388,6 +515,26 @@ export default async function decorate(block) {
               }
               if (icon) {
                 li.classList.add('nav-search');
+                // Add font-based search icon (same as target site)
+                const fontIcon = document.createElement('span');
+                fontIcon.className = 'lp lp-search';
+                fontIcon.setAttribute('role', 'button');
+                fontIcon.setAttribute('aria-label', 'Search');
+                fontIcon.setAttribute('tabindex', '0');
+                li.appendChild(fontIcon);
+
+                // Add click handler to toggle search dropdown
+                fontIcon.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleHomeSearchDropdown();
+                });
+                fontIcon.addEventListener('keydown', (e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleHomeSearchDropdown();
+                  }
+                });
               }
             });
           } else {
@@ -408,6 +555,26 @@ export default async function decorate(block) {
               } else if (icon) {
                 li.className = 'nav-search';
                 li.appendChild(icon.cloneNode(true));
+                // Add font-based search icon (same as target site)
+                const fontIcon = document.createElement('span');
+                fontIcon.className = 'lp lp-search';
+                fontIcon.setAttribute('role', 'button');
+                fontIcon.setAttribute('aria-label', 'Search');
+                fontIcon.setAttribute('tabindex', '0');
+                li.appendChild(fontIcon);
+
+                // Add click handler to toggle search dropdown
+                fontIcon.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleHomeSearchDropdown();
+                });
+                fontIcon.addEventListener('keydown', (e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleHomeSearchDropdown();
+                  }
+                });
               }
 
               if (li.hasChildNodes()) {

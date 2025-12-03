@@ -744,6 +744,7 @@ body.home header .header-home .nav-wrapper {
   border-bottom: none;
   z-index: 1000;
   position: relative;
+  padding-top: 16px;
 }
 
 /* Dark gradient overlay for better text visibility on home page header */
@@ -836,7 +837,7 @@ body.home .section.hero-video-section::before {
     gap: 0;
     max-width: 1452px;
     margin: 0 auto;
-    padding: 28px 24px;
+    padding: 32px 0; /* Removed horizontal padding - was causing alignment issues */
     border-bottom: none;
   }
 
@@ -879,7 +880,7 @@ body.home .section.hero-video-section::before {
     flex-flow: row nowrap;
     align-items: center;
     width: 100%;
-    gap: 16px;
+    gap: 0; /* No gap - spacing controlled per element */
   }
 
   /* Override default columns equal-width distribution */
@@ -894,6 +895,10 @@ body.home .section.hero-video-section::before {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: var(--spacing-large); /* Space between logo and separator */
+    border-right: 2px solid rgb(255 255 255 / 24%);
   }
 
   body.home header .header-home .nav-brand .columns > div > div:first-child picture {
@@ -902,7 +907,7 @@ body.home .section.hero-video-section::before {
   }
 
   body.home header .header-home .nav-brand .columns > div > div:first-child img {
-    height: 40px;
+    height: 40px; /* Adjusted to match target */
     width: auto;
     max-width: 200px;
     filter: none;
@@ -915,21 +920,24 @@ body.home .section.hero-video-section::before {
     text-decoration: none;
   }
 
-  /* Second column - Academy text */
+  /* Second column - Academy text with separator */
   body.home header .header-home .nav-brand .columns > div > div:nth-child(2) {
     flex: 0 0 auto;
-    padding-left: 16px;
-    margin-left: 16px;
-    border-left: 1px solid rgb(255 255 255 / 40%);
+    padding-left: 20px; /* Space after separator */
+    margin-left: 5px; /* Space before separator */
+    margin-right: 0;
     display: flex;
     align-items: center;
+    align-self: stretch; /* Makes separator extend full height */
     min-width: fit-content;
+    height: 36px; /* Fixed height for separator line */
   }
 
   body.home header .header-home .nav-brand .columns > div > div:nth-child(2) p {
     margin: 0;
     color: var(--white);
-    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px; /* Matches target */
     font-weight: 600;
     letter-spacing: -0.3px;
   }
@@ -955,7 +963,7 @@ body.home .section.hero-video-section::before {
     align-items: center;
     justify-content: flex-end;
     margin-left: auto;
-    gap: 32px;
+    gap: 0; /* No gap - spacing on individual items */
   }
 
   /* Legacy paragraph support (if JS transformation hasn't run yet) */
@@ -971,8 +979,9 @@ body.home .section.hero-video-section::before {
   body.home header .header-home .nav-brand .columns > div > div:nth-child(2) a {
     color: var(--white);
     text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px; /* Academy text size - matches target */
+    font-weight: 700;
     letter-spacing: -0.3px;
     background: none;
     background-color: transparent;
@@ -985,9 +994,12 @@ body.home .section.hero-video-section::before {
   body.home header .header-home .nav-brand .columns > div > div:nth-child(3) a {
     color: rgb(255 255 255 / 75%);
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
-    transition: color 0.2s ease;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px; /* Match target site nav links */
+    font-style: normal;
+    font-weight: 600; /* SemiBold - requires OpenSans-SemiBold.woff2 in /fonts */
+    line-height: 180%;
+    transition: color 0.3s ease;
     background: none;
     background-color: transparent;
     border: none;
@@ -995,6 +1007,7 @@ body.home .section.hero-video-section::before {
     margin: 0;
     border-radius: 0;
     box-shadow: none;
+    font-feature-settings: "liga" off, "clig" off;
   }
 
   /* Hover states - after base states */
@@ -1015,41 +1028,54 @@ body.home .section.hero-video-section::before {
   body.home header .header-home .nav-brand .columns > div > div:nth-child(3) ul {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 0; /* No gap - spacing on individual items */
     list-style: none;
     margin: 0;
+    margin-left: 56px; /* Gap between Academy and nav links */
     padding: 0;
   }
 
   body.home header .header-home .nav-brand .columns > div > div:nth-child(3) ul li {
-    margin: 0;
+    margin-left: 24px; /* Spacing between nav items - matches target */
     padding: 0;
     white-space: nowrap;
     display: flex;
     align-items: center;
   }
 
-  /* Search icon styling for home page - gray by default, white on hover */
+  /* First nav item - no extra margin since ul has margin-left */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) ul li:first-child {
+    margin-left: 0; /* First item has no left margin */
+  }
+
+  /* Last nav item (search icon) - spacing from Contact */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) ul li:last-child {
+    margin-left: 32px; /* Space before search icon */
+  }
+
+  /* Search icon styling for home page - uses loopicon font like target site */
   body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: none; /* Hide SVG icon */
+  }
+
+  /* Font-based search icon - same styling as nav links */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .lp-search {
+    font-family: loopicon, monospace !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: rgb(255 255 255 / 75%);
+    font-size: 18px;
     cursor: pointer;
-    height: auto;
-    vertical-align: middle;
+    transition: color 0.3s ease;
   }
 
-  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .icon img {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1);
-    opacity: 0.75;
-    transition: opacity 0.2s ease;
-    vertical-align: middle;
-  }
-
-  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .icon:hover img {
-    opacity: 1;
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .lp-search:hover {
+    color: var(--white);
   }
 
   /* Hide nav-sections on home page desktop (content is in columns) */
@@ -1065,5 +1091,80 @@ body.home .section.hero-video-section::before {
   /* Hide nav-tools on home page desktop (search is in columns) */
   body.home header .header-home .nav-tools {
     display: none;
+  }
+
+  /* Home page search dropdown overlay */
+  .home-search-dropdown {
+    position: absolute;
+    top: 100%; /* Below the header-home element */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    padding: 40px 60px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .home-search-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .home-search-container {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 85px 60px; /* Increased vertical padding to match target site (~244px height) */
+    box-shadow: 0 8px 32px rgb(0 0 0 / 15%);
+  }
+
+  .home-search-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #003e7e;
+    padding-bottom: 8px;
+  }
+
+  .home-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #333;
+    background: transparent;
+    padding: 8px 0;
+  }
+
+  .home-search-input::placeholder {
+    color: #666;
+    font-weight: 400;
+  }
+
+  .home-search-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: loopicon, monospace !important;
+    font-size: 24px;
+    color: #003e7e;
+    padding: 8px;
+    transition: color 0.2s ease;
+  }
+
+  .home-search-btn::before {
+    content: "\e132";
+  }
+
+  .home-search-btn:hover {
+    color: #002d5c;
+  }
+
+  /* Active state for search icon when dropdown is open - just color change, no size change */
+  body.home header .header-home .nav-brand .columns > div > div:nth-child(3) .lp-search.active {
+    color: var(--white);
   }
 }

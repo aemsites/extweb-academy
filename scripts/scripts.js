@@ -418,7 +418,7 @@ async function loadLazy(doc) {
   // Load header only if not already loaded (home page loads it early)
   const headerLoaded = doc.querySelector('header .header[data-block-status="loaded"]');
   if (!headerLoaded) {
-    loadHeader(doc.querySelector('header'));
+  loadHeader(doc.querySelector('header'));
   }
   loadFooter(doc.querySelector('footer'));
 
