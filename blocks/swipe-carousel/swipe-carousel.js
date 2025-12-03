@@ -116,53 +116,63 @@ export default function decorate(block) {
       if (cells[1]) {
         cells[1].className = 'cards-card-body';
 
-        // Truncate paragraph content to ~150 characters (excluding headings)
-        const maxChars = 150;
+        // Check if inside tabs section with a slight delay to allow classes to be added
+        // Use setTimeout 0 to defer check until after current execution stack
         const allElements = Array.from(cells[1].children);
         const paragraphs = allElements.filter((el) => el.tagName === 'P');
 
-        // Calculate total paragraph text length
-        let totalParagraphChars = 0;
-        paragraphs.forEach((p) => {
-          totalParagraphChars += p.textContent.trim().length;
-        });
+        // Defer truncation logic to allow section classes to be fully set
+        setTimeout(() => {
+          const parentSection = block.closest('.section');
+          const isInTabsSection = parentSection && (
+            parentSection.classList.contains('tabs-container')
+            || parentSection.classList.contains('tab-carousel-section')
+          );
+          const maxChars = isInTabsSection ? Infinity : 150;
 
-        // If paragraphs exceed limit, truncate
-        if (totalParagraphChars > maxChars) {
-          let charCount = 0;
-          let truncated = false;
-
+          // Calculate total paragraph text length
+          let totalParagraphChars = 0;
           paragraphs.forEach((p) => {
-            if (truncated) {
-              // Remove paragraphs after truncation
-              p.remove();
-            } else {
-              const pText = p.textContent.trim();
-              const pLength = pText.length;
-
-              if (charCount + pLength <= maxChars) {
-                // Keep this paragraph as is
-                charCount += pLength;
-              } else {
-                // Truncate this paragraph
-                const remainingChars = maxChars - charCount;
-                if (remainingChars > 30) {
-                  // We have room for some of this paragraph
-                  let text = pText.substring(0, remainingChars);
-                  const lastSpace = text.lastIndexOf(' ');
-                  if (lastSpace > remainingChars * 0.75) {
-                    text = text.substring(0, lastSpace);
-                  }
-                  p.textContent = `${text}...`;
-                } else {
-                  // Not enough room, remove this paragraph
-                  p.remove();
-                }
-                truncated = true;
-              }
-            }
+            totalParagraphChars += p.textContent.trim().length;
           });
-        }
+
+          // If paragraphs exceed limit, truncate
+          if (totalParagraphChars > maxChars) {
+            let charCount = 0;
+            let truncated = false;
+
+            paragraphs.forEach((p) => {
+              if (truncated) {
+              // Remove paragraphs after truncation
+                p.remove();
+              } else {
+                const pText = p.textContent.trim();
+                const pLength = pText.length;
+
+                if (charCount + pLength <= maxChars) {
+                // Keep this paragraph as is
+                  charCount += pLength;
+                } else {
+                // Truncate this paragraph
+                  const remainingChars = maxChars - charCount;
+                  if (remainingChars > 30) {
+                  // We have room for some of this paragraph
+                    let text = pText.substring(0, remainingChars);
+                    const lastSpace = text.lastIndexOf(' ');
+                    if (lastSpace > remainingChars * 0.75) {
+                      text = text.substring(0, lastSpace);
+                    }
+                    p.textContent = `${text}...`;
+                  } else {
+                  // Not enough room, remove this paragraph
+                    p.remove();
+                  }
+                  truncated = true;
+                }
+              }
+            });
+          }
+        }, 0); // End setTimeout - defer truncation to allow classes to be set
 
         li.append(cells[1]);
       }
