@@ -177,9 +177,97 @@ header nav .nav-hamburger .megamenu-overlay.active {
 header nav .nav-hamburger .megamenu-content {
   position: relative;
   width: 100%;
-  min-height: 100%;
-  background-color: #fff;
-  padding: 80px 24px 40px;
+  max-height: 900px;
+  color: var(--white);
+  background-color: var(--accent-blue-primary-90);
+  padding: 100px 0px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+  width: 340px;
+  max-width: 340px;
+  row-gap: 5px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel {
+  width: 900px;
+  max-width: 900px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab {
+  color: var(--white);
+  background-color: var(--accent-blue-primary-90);
+  border: 0;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 40px;
+  font-size: var(--body-font-size-500);
+  justify-content: left;
+  cursor: pointer;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
+  background-color: var(--white);
+  color: var(--accent-blue-primary-90);
+  cursor: pointer;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 0px 72px;
+  border-style: solid;
+  border-width: 0px 0px 0px 1px;
+  border-color: initial;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style: none;
+  max-height: 600px;
+  row-gap: 48px;
+  column-gap: 8px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-top: 16px;
+  padding-top: 16px;
+  padding-left: 0;
+  border-width: 1px 0px 0px 0px;
+  border-style: solid;
+  row-gap: 8px;
+  text-transform: none;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li {
+  display: flex;
+  flex-direction: column;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li > ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  row-gap: 8px;
 }
 
 header nav .nav-hamburger .megamenu-close {
