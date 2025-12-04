@@ -91,6 +91,8 @@
     margin-bottom: 4px;
 }
 
+
+
 main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
   gap: 1rem;
   justify-content: flex-start; /* Align cards to the left */
@@ -234,7 +236,6 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   margin: 0;
 }
 
-
 /* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
 main .section.tab-carousel-section > div > p {
   font-family: var(--global-font-family);
@@ -308,7 +309,8 @@ main .section.tab-carousel-section .tabs-panel p {
   z-index: 2;
   height: auto;
   overflow: visible;
-  margin-top: 0.5rem;
-
-  
+  margin-top: 0.5rem;  
 }
+
+
+
