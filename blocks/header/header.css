@@ -1040,13 +1040,13 @@ header .header-home nav .nav-links .default-content-wrapper a {
 
   /* Mobile search dropdown - matches desktop design adapted for mobile */
   .home-search-dropdown {
-    position: fixed;
-    top: 110px; /* Moved closer to header */
+    position: absolute;
+    top: 100%; /* Below the header */
     left: 0;
     right: 0;
     width: 100%;
     max-width: 100%;
-    padding: 12px 20px; /* Reduced padding */
+    padding: 12px 20px;
     box-sizing: border-box;
     transform: none;
     opacity: 0;
@@ -1070,7 +1070,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
   .home-search-input-wrapper {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #5b92c4; /* Thinner, lighter blue underline */
+    border-bottom: 2px solid #003e7e; /* Same as desktop */
     padding-bottom: 12px;
   }
 
@@ -1079,7 +1079,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
     border: none;
     outline: none;
     font-family: 'Open Sans', sans-serif;
-    font-size: 24px; /* Larger font size */
+    font-size: 24px;
     font-weight: 400;
     color: #333;
     background: transparent;
@@ -1087,15 +1087,15 @@ header .header-home nav .nav-links .default-content-wrapper a {
   }
 
   .home-search-input::placeholder {
-    color: #999; /* Lighter gray placeholder */
+    color: #666; /* Same as desktop */
     font-weight: 400;
   }
 
   .home-search-btn {
     background: transparent;
     border: none;
-    color: #c75300; /* Red-orange color like target */
-    font-size: 18px; /* Smaller icon */
+    color: #003e7e; /* Same as desktop */
+    font-size: 18px;
     cursor: pointer;
     padding: 8px;
     display: flex;
@@ -1108,7 +1108,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
   .home-search-btn:hover {
     background: transparent;
     background-color: transparent;
-    color: #c75300;
+    color: #003e7e; /* Same as desktop */
   }
 }
 
