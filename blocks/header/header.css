@@ -180,7 +180,7 @@ header nav .nav-hamburger .megamenu-content {
   max-height: 900px;
   color: var(--white);
   background-color: var(--accent-blue-primary-90);
-  padding: 100px 0px;
+  padding: 100px 0;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-list {
@@ -192,22 +192,14 @@ header nav .nav-hamburger .megamenu-content .tabs-list {
   row-gap: 5px;
 }
 
-header nav .nav-hamburger .megamenu-content .tabs-panel {
-  width: 900px;
-  max-width: 900px;
-}
-
 header nav .nav-hamburger .megamenu-content .tabs-tab {
   color: var(--white);
   background-color: var(--accent-blue-primary-90);
   border: 0;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-right: 40px;
-  font-size: var(--body-font-size-500);
+  padding: 10px 40px 10px 20px;
+  font-size: var(--font-size-500);
   justify-content: left;
   cursor: pointer;
 }
@@ -216,25 +208,40 @@ header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
   background-color: var(--white);
   color: var(--accent-blue-primary-90);
   cursor: pointer;
+  text-decoration: underline;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel {
   display: flex;
-  flex-direction: column;
-  padding: 0px 0px 0px 72px;
+  flex-flow: column wrap;
+  padding: 0 0 0 72px;
   border-style: solid;
-  border-width: 0px 0px 0px 1px;
-  border-color: initial;
+  border-width: 0 0 0 1px;
+  border-color: var(--divider-on-dark-default);
+  width: 900px;
+  max-width: 900px;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   list-style: none;
   max-height: 600px;
-  row-gap: 48px;
-  column-gap: 8px;
+  gap: 48px 8px;
+  font-size: var(--font-size-300);
+  letter-spacing: 0.06em;
+  color: rgb(255 255 255 / 89.8%);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel a {
+  text-decoration: none;
+  font-size: var(--font-size-300);
+  color: rgb(255 255 255 / 75%);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel a:any-link:hover {
+  text-decoration: underline;
+  color: var(--white);
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li {
@@ -250,10 +257,12 @@ header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul {
   margin-top: 16px;
   padding-top: 16px;
   padding-left: 0;
-  border-width: 1px 0px 0px 0px;
+  border-width: 1px 0 0;
   border-style: solid;
+  border-color: var(--divider-on-dark-default);
   row-gap: 8px;
   text-transform: none;
+  font-size: var(--font-size-300);
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li {
@@ -279,7 +288,7 @@ header nav .nav-hamburger .megamenu-close {
   border: 0;
   border-radius: 50%;
   padding: 0;
-  background-color: #003e7e;
+  background-color: #fff;
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -290,13 +299,18 @@ header nav .nav-hamburger .megamenu-close {
 }
 
 header nav .nav-hamburger .megamenu-close:hover {
-  background-color: #002d5c;
+  background-color: #003e7e;
 }
 
 header nav .nav-hamburger .megamenu-close-icon {
   position: relative;
   width: 20px;
   height: 20px;
+}
+
+header nav .nav-hamburger .megamenu-close:hover .megamenu-close-icon::before,
+header nav .nav-hamburger .megamenu-close:hover .megamenu-close-icon::after {
+  background-color: #fff;
 }
 
 header nav .nav-hamburger .megamenu-close-icon::before,
@@ -307,7 +321,7 @@ header nav .nav-hamburger .megamenu-close-icon::after {
   left: 50%;
   width: 20px;
   height: 2px;
-  background-color: #fff;
+  background-color: #003e7e;
   border-radius: 2px;
 }
 
@@ -776,6 +790,17 @@ header nav[aria-expanded='true'] .nav-hamburger,
 header nav[aria-expanded='true'] .nav-brand,
 header nav[aria-expanded='true'] .nav-three-dots {
   display: none;
+}
+
+@media (width >= 1024px) and (width < 1400px) {
+  header nav .nav-hamburger .megamenu-content .tabs-panel {
+    padding: 0 0 0 56px;
+    max-height: none;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
+    max-height: none;
+  }
 }
 
 /* ======================================== */
