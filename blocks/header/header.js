@@ -23,160 +23,6 @@ let listOfAllPlaceholdersData = {};
 // swapna-search-close-on-focus: Variable to store search container reference
 let searchContainer;
 
-// Home page search dropdown - tracks if dropdown is currently open
-let isHomeSearchOpen = false;
-
-/**
- * Closes the home page search dropdown and removes it from DOM
- */
-function closeHomeSearchDropdown() {
-  const dropdown = document.querySelector('.home-search-dropdown');
-  if (!dropdown) return;
-
-  // Start close animation
-  dropdown.classList.remove('open');
-  dropdown.setAttribute('aria-hidden', 'true');
-
-  // Remove active state from search icon
-  const searchIcon = document.querySelector('.header-home .lp-search');
-  if (searchIcon) {
-    searchIcon.classList.remove('active');
-  }
-
-  // Remove from DOM after animation completes (300ms matches CSS transition)
-  setTimeout(() => {
-    dropdown.remove();
-  }, 300);
-
-  isHomeSearchOpen = false;
-}
-
-/**
- * Removes dropdown event listeners
- */
-function removeDropdownEventListeners() {
-  // eslint-disable-next-line no-use-before-define
-  document.removeEventListener('click', handleClickOutside);
-  // eslint-disable-next-line no-use-before-define
-  document.removeEventListener('keydown', handleEscapeKey);
-}
-
-/**
- * Handles Escape key to close dropdown
- */
-function handleEscapeKey(e) {
-  if (e.key === 'Escape') {
-    closeHomeSearchDropdown();
-    removeDropdownEventListeners();
-  }
-}
-
-/**
- * Handles click outside to close dropdown
- */
-function handleClickOutside(e) {
-  const dropdown = document.querySelector('.home-search-dropdown');
-  if (dropdown && !dropdown.contains(e.target) && !e.target.closest('.lp-search')) {
-    closeHomeSearchDropdown();
-    removeDropdownEventListeners();
-  }
-}
-
-/**
- * Opens the home page search dropdown (creates and adds to DOM)
- */
-function openHomeSearchDropdown() {
-  // Only on home page
-  if (!document.body.classList.contains('home')) return;
-
-  // Don't open if already open
-  if (isHomeSearchOpen) return;
-
-  const headerHome = document.querySelector('.header-home');
-  if (!headerHome) return;
-
-  // Create dropdown element
-  const dropdown = document.createElement('div');
-  dropdown.className = 'home-search-dropdown';
-  dropdown.setAttribute('aria-hidden', 'true');
-
-  const container = document.createElement('div');
-  container.className = 'home-search-container';
-
-  const inputWrapper = document.createElement('div');
-  inputWrapper.className = 'home-search-input-wrapper';
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'home-search-input';
-  input.placeholder = 'Search Academy';
-  input.setAttribute('aria-label', 'Search Academy');
-
-  const searchBtn = document.createElement('button');
-  searchBtn.className = 'home-search-btn lp lp-search';
-  searchBtn.setAttribute('aria-label', 'Submit search');
-  searchBtn.type = 'button';
-
-  // Handle search submission
-  const performSearch = () => {
-    const query = input.value.trim();
-    if (query) {
-      const searchUrl = listOfAllPlaceholdersData.searchRedirectUrl
-        || 'https://www.worldbank.org/en/search?q=';
-      window.location.href = searchUrl + encodeURIComponent(query);
-    }
-  };
-
-  searchBtn.addEventListener('click', performSearch);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      performSearch();
-    }
-    if (e.key === 'Escape') {
-      closeHomeSearchDropdown();
-    }
-  });
-
-  inputWrapper.appendChild(input);
-  inputWrapper.appendChild(searchBtn);
-  container.appendChild(inputWrapper);
-  dropdown.appendChild(container);
-
-  // Add to DOM
-  headerHome.appendChild(dropdown);
-  isHomeSearchOpen = true;
-
-  // Trigger open animation on next frame (allows CSS transition to work)
-  requestAnimationFrame(() => {
-    dropdown.classList.add('open');
-    dropdown.setAttribute('aria-hidden', 'false');
-    input.focus();
-  });
-
-  // Update search icon state
-  const searchIcon = document.querySelector('.header-home .lp-search');
-  if (searchIcon) {
-    searchIcon.classList.add('active');
-  }
-
-  // Add event listeners for closing (with slight delay to prevent immediate close)
-  setTimeout(() => {
-    document.addEventListener('click', handleClickOutside);
-    document.addEventListener('keydown', handleEscapeKey);
-  }, 10);
-}
-
-/**
- * Toggles the home page search dropdown visibility
- */
-function toggleHomeSearchDropdown() {
-  if (isHomeSearchOpen) {
-    closeHomeSearchDropdown();
-  } else {
-    openHomeSearchDropdown();
-  }
-}
-
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -284,9 +130,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 function createInlineSearchBox(navTools) {
   const contentWrapper = navTools.querySelector('.default-content-wrapper');
-  if (!contentWrapper) return; // Exit early if no content wrapper
   const searchIconParagraph = contentWrapper.querySelector('p');
-  if (!searchIconParagraph) return; // Exit early if no paragraph
 
   // swapna-search: Create wrapper for search box
   const searchWrapper = div({ class: 'inline-search-wrapper' });
@@ -370,7 +214,6 @@ function createInlineSearchBox(navTools) {
  * @param {Element} contentWrapper - The content wrapper element
  */
 function setAccessibilityAttrForSearchIcon(contentWrapper) {
-  if (!contentWrapper) return; // Exit early if no content wrapper
   // swapna-search: Find the icon element (not the input)
   const iconTag = [...contentWrapper.children].find((child) => child.classList.contains('icon') || child.querySelector('.icon'));
   if (iconTag) {
@@ -457,231 +300,29 @@ function toggleThreeDotsMenu(nav, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as defined in metadata (defined in page or defined in metadata.xlsx)
+  // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragment(navPath);
 
-  // Check if this is a home navigation based on the nav path (set via metadata)
+  // Add home-specific class IMMEDIATELY (before loading fragment) to prevent flash
   const isHomeNav = navPath.includes('nav-home');
-
-  // Add home-specific class to block for CSS targeting
   if (isHomeNav) {
     block.classList.add('header-home');
   }
+
+  const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
 
-  // Add home-specific class to nav element for CSS targeting
+  // Add nav-home class for CSS targeting
   if (isHomeNav) {
     nav.classList.add('nav-home');
   }
 
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
-
-  // Process home page navigation - ensure proper classes for styling
-  if (isHomeNav) {
-    const columnsBlock = nav.querySelector('.columns');
-    if (columnsBlock) {
-      const columnsRow = columnsBlock.querySelector(':scope > div');
-      if (columnsRow) {
-        // Process first column (Logo) - wrap with link to homepage
-        const firstColumn = columnsRow.children[0];
-        if (firstColumn) {
-          firstColumn.classList.add('nav-logo-column');
-          const picture = firstColumn.querySelector('picture');
-          if (picture && !picture.parentElement.matches('a')) {
-            // Wrap picture with link to homepage
-            const logoLink = document.createElement('a');
-            logoLink.href = 'https://academy.worldbank.org/';
-            logoLink.setAttribute('aria-label', 'World Bank Group Academy Home');
-            logoLink.className = 'nav-logo-link';
-            picture.parentNode.insertBefore(logoLink, picture);
-            logoLink.appendChild(picture);
-          }
-        }
-
-        // Process second column (Academy) - mark for styling
-        const secondColumn = columnsRow.children[1];
-        if (secondColumn) {
-          secondColumn.classList.add('nav-academy-column');
-          // Remove button classes from Academy link
-          const academyLink = secondColumn.querySelector('a');
-          if (academyLink) {
-            academyLink.classList.remove('button', 'primary', 'secondary');
-          }
-        }
-
-        // Process third column (Navigation links)
-        const thirdColumn = columnsRow.children[2];
-        if (thirdColumn) {
-          thirdColumn.classList.add('nav-links-column');
-
-          // Check if content is already in ul/li format (from Universal Editor)
-          const existingList = thirdColumn.querySelector(':scope > ul');
-          if (existingList) {
-            // Add class to the existing list for CSS targeting
-            existingList.classList.add('nav-links-list');
-            existingList.setAttribute('role', 'list');
-
-            // Process list items - remove button classes and mark search icon
-            existingList.querySelectorAll('li').forEach((li) => {
-              const link = li.querySelector('a');
-              const icon = li.querySelector('.icon');
-
-              if (link) {
-                link.classList.remove('button', 'primary', 'secondary');
-              }
-              if (icon) {
-                li.classList.add('nav-search');
-                // Add font-based search icon (same as target site)
-                const fontIcon = document.createElement('span');
-                fontIcon.className = 'lp lp-search';
-                fontIcon.setAttribute('role', 'button');
-                fontIcon.setAttribute('aria-label', 'Search');
-                fontIcon.setAttribute('tabindex', '0');
-                li.appendChild(fontIcon);
-
-                // Add click handler to toggle search dropdown
-                fontIcon.addEventListener('click', (e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  toggleHomeSearchDropdown();
-                });
-                fontIcon.addEventListener('keydown', (e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleHomeSearchDropdown();
-                  }
-                });
-              }
-            });
-          } else {
-            // Fallback: Handle paragraph-based content (legacy support)
-            const navList = document.createElement('ul');
-            navList.className = 'nav-links-list';
-            navList.setAttribute('role', 'list');
-
-            const paragraphs = thirdColumn.querySelectorAll(':scope > p');
-            paragraphs.forEach((p) => {
-              const li = document.createElement('li');
-              const link = p.querySelector('a');
-              const icon = p.querySelector('.icon');
-
-              if (link) {
-                link.classList.remove('button', 'primary', 'secondary');
-                li.appendChild(link.cloneNode(true));
-              } else if (icon) {
-                li.className = 'nav-search';
-                li.appendChild(icon.cloneNode(true));
-                // Add font-based search icon (same as target site)
-                const fontIcon = document.createElement('span');
-                fontIcon.className = 'lp lp-search';
-                fontIcon.setAttribute('role', 'button');
-                fontIcon.setAttribute('aria-label', 'Search');
-                fontIcon.setAttribute('tabindex', '0');
-                li.appendChild(fontIcon);
-
-                // Add click handler to toggle search dropdown
-                fontIcon.addEventListener('click', (e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  toggleHomeSearchDropdown();
-                });
-                fontIcon.addEventListener('keydown', (e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleHomeSearchDropdown();
-                  }
-                });
-              }
-
-              if (li.hasChildNodes()) {
-                navList.appendChild(li);
-              }
-            });
-
-            if (navList.hasChildNodes()) {
-              thirdColumn.innerHTML = '';
-              thirdColumn.appendChild(navList);
-            }
-          }
-        }
-      }
-    }
-
-    // Create mobile-specific elements for home page
-    // 1. Mobile search trigger (positioned between logo/Academy and hamburger)
-    const mobileSearchTrigger = div({ class: 'mobile-search-trigger' });
-    const mobileSearchIcon = span({
-      class: 'lp lp-search',
-      role: 'button',
-      'aria-label': 'Search',
-      tabindex: '0',
-    });
-    mobileSearchIcon.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleHomeSearchDropdown();
-    });
-    mobileSearchIcon.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleHomeSearchDropdown();
-      }
-    });
-    mobileSearchTrigger.appendChild(mobileSearchIcon);
-    nav.appendChild(mobileSearchTrigger);
-
-    // 2. Mobile menu panel (slides in from right when hamburger is clicked)
-    const mobileMenuPanel = div({ class: 'mobile-menu-panel' });
-
-    // Close button
-    const closeBtn = button({
-      class: 'mobile-menu-close',
-      'aria-label': 'Close menu',
-    });
-    closeBtn.innerHTML = '✕';
-    closeBtn.addEventListener('click', () => {
-      nav.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-    mobileMenuPanel.appendChild(closeBtn);
-
-    // Menu links (clone from third column in columns block)
-    const mobileMenuLinks = div({ class: 'mobile-menu-links' });
-    const columnsBlockForMobile = nav.querySelector('.columns');
-    if (columnsBlockForMobile) {
-      const columnsRowForMobile = columnsBlockForMobile.querySelector(':scope > div');
-      if (columnsRowForMobile && columnsRowForMobile.children[2]) {
-        const thirdColumnForMobile = columnsRowForMobile.children[2];
-        const existingUl = thirdColumnForMobile.querySelector('ul');
-        if (existingUl) {
-          const clonedUl = existingUl.cloneNode(true);
-          // Remove search item and icon items from cloned list
-          const searchLi = clonedUl.querySelector('.nav-search');
-          if (searchLi) searchLi.remove();
-          // Remove any icon spans
-          clonedUl.querySelectorAll('.icon, .lp-search').forEach((el) => el.remove());
-          mobileMenuLinks.appendChild(clonedUl);
-        }
-      }
-    }
-    mobileMenuPanel.appendChild(mobileMenuLinks);
-
-    // Footer with "back to worldbank.org" link
-    const mobileMenuFooter = div({ class: 'mobile-menu-footer' });
-    const footerLink = document.createElement('a');
-    footerLink.href = 'https://www.worldbank.org/ext/en/home';
-    footerLink.innerHTML = 'back to <strong>worldbank.org</strong>';
-    mobileMenuFooter.appendChild(footerLink);
-    mobileMenuPanel.appendChild(mobileMenuFooter);
-
-    nav.appendChild(mobileMenuPanel);
-  }
 
   const classes = ['brand', 'sections', 'tools', 'links'];
   classes.forEach((c, i) => {
@@ -739,11 +380,6 @@ export default async function decorate(block) {
         }
       });
     });
-  } else {
-    // If no nav-sections found, create an empty placeholder to prevent errors
-    const placeholderSections = document.createElement('div');
-    placeholderSections.className = 'nav-sections';
-    nav.appendChild(placeholderSections);
   }
 
   // swapna-search: start - Setup search functionality in nav-tools section
@@ -838,23 +474,6 @@ export default async function decorate(block) {
   nav.appendChild(closeButton);
   // Swapna-mobile: end - Create close button for 3-dots menu
 
-  // Home page mobile: Add search icon to nav-tools for mobile view
-  if (isHomeNav && navTools) {
-    // Create mobile search icon using loopicon font
-    const mobileSearchIcon = span({
-      class: 'lp lp-search mobile-search-icon',
-      role: 'button',
-      'aria-label': 'Search',
-      tabindex: '0',
-      onclick: () => { toggleHomeSearchDropdown(); },
-      onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') toggleHomeSearchDropdown(); },
-    });
-
-    // Insert mobile search icon at the beginning of nav-tools
-    navTools.insertBefore(mobileSearchIcon, navTools.firstChild);
-  }
-  // End: Home page mobile search icon
-
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load
   // Only call toggleMenu for mobile to prevent setting aria-expanded='true' on desktop
   // This ensures hamburger icon shows 3 lines (not X) on desktop when page loads
@@ -864,7 +483,9 @@ export default async function decorate(block) {
   // swapna-desktop-hamburger: end - Keep aria-expanded='false' on desktop page load
 
   // prevent mobile nav behavior on window resize
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  if (navSections) {
+    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  }
 
   // Swapna-mobile: start - Handle 3-dots menu behavior on window resize
   showThreeDotsMenu.addEventListener('change', () => {

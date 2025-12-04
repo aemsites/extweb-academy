@@ -12,7 +12,6 @@ import {
   loadSection,
   loadSections,
   loadCSS,
-  getMetadata,
 } from './aem.js';
 import { picture, source, img } from './dom-helpers.js';
 
@@ -319,73 +318,17 @@ export function decorateMain(main) {
 }
 
 /**
- * Checks if the current page is the home page
- * @returns {boolean} True if current page is home page
- */
-function isHomePage() {
-  const { pathname } = window.location;
-  return pathname === '/'
-    || pathname === '/en'
-    || pathname === '/en/'
-    || pathname.endsWith('/home')
-    || pathname.endsWith('/home/');
-}
-
-/**
- * Loads a template.
- * @param {Element} doc The container element
- * @param {string} templateName The name of the template
- */
-async function loadTemplate(doc, templateName) {
-  try {
-    const cssLoaded = new Promise((resolve) => {
-      loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`, resolve);
-    });
-    const decorationComplete = new Promise((resolve) => {
-      (async () => {
-        try {
-          const mod = await import(`../templates/${templateName}/${templateName}.js`);
-          if (mod.default) {
-            await mod.default(doc);
-          }
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(`failed to load module for ${templateName}`, error);
-        }
-        resolve();
-      })();
-    });
-    await Promise.all([cssLoaded, decorationComplete]);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(`failed to load block ${templateName}`, error);
-  }
-}
-
-/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-
-  // Add home class early to prevent flash of gray header
-  const isHome = isHomePage();
-  if (isHome) {
-    document.body.classList.add('home');
-  }
-
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
-  }
-
-  // Load header early for home page to prevent delay
-  if (isHome) {
-    loadHeader(doc.querySelector('header'));
   }
 
   try {
@@ -403,11 +346,6 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  const templateName = getMetadata('template');
-  if (templateName) {
-    await loadTemplate(doc, templateName);
-  }
-
   const main = doc.querySelector('main');
   await loadSections(main);
 
@@ -415,11 +353,7 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  // Load header only if not already loaded (home page loads it early)
-  const headerLoaded = doc.querySelector('header .header[data-block-status="loaded"]');
-  if (!headerLoaded) {
   loadHeader(doc.querySelector('header'));
-  }
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -443,7 +377,7 @@ function loadDelayed() {
 export async function fetchSearch() {
   window.searchData = window.searchData || {};
   if (Object.keys(window.searchData).length === 0) {
-    const path = '/query-index.json?limit=500&offset=0';
+    const path = `/query-index.json?limit=500&offset=0`;
     const resp = await fetch(path);
     window.searchData = JSON.parse(await resp.text()).data;
   }
