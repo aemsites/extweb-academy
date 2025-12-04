@@ -42,7 +42,7 @@ export default async function decorate(block) {
 
   const isDisable = getText(disableSmartCrop, 'false');
 
-  if (isDisable === 'false' && imageDefault && imageDefault.innerHTML.trim() !== '') {
+  if (!isDisable && imageDefault && imageDefault.innerHTML.trim() !== '') {
     await decorateDMImagesWithRendition(
       imageDefault,
       imageRatio,

@@ -82,7 +82,7 @@ export async function decorateDMImagesWithRendition(
   disableSmartCrop,
   title,
   alt,
-  aspectRatioDiv,
+  aspectRatio,
   objectPosDiv,
   loadingValue,
 ) {
@@ -97,7 +97,7 @@ export async function decorateDMImagesWithRendition(
   const imageRendition = getText(imageRatio);
   const quality = getText(modifiers, 'quality=85');
   const isDisable = getText(disableSmartCrop, 'false');
-  const aspectRatio = getText(aspectRatioDiv);
+  const aspectRatioValue = getText(aspectRatio);
   const objectPos = getText(objectPosDiv);
   const altValue = getText(alt);
   const titleValue = getText(title);
@@ -109,23 +109,30 @@ export async function decorateDMImagesWithRendition(
 
   const sources = [];
   const deliveryLink = image.querySelector('a[href^="https://delivery-p"]');
-
+  /*  the code only looked for links starting with https://delivery-p,
+so images from author repositories (which have URLs starting with https://author-p)
+were not being processed as Dynamic Media assets. They would fall through
+to the else block and be treated as regular images, which is why you were seeing
+paths instead of full URLs.
+*/
+  // case: Dynamic Media asset
   if (deliveryLink) {
     const url = new URL(deliveryLink.href.split('?')[0]);
     const originalHref = url.href;
 
     const fileName = originalHref.substring(originalHref.lastIndexOf('/') + 1);
     const altText = fileName.substring(0, fileName.lastIndexOf('.'));
-
+/* never used
     const imgEl = img({
       loading: loadingValue,
       alt: altValue !== '' ? altValue : altText,
       title: titleValue !== '' ? titleValue : altText,
       src: originalHref.replace('/original', ''),
     });
-
-    // case: AEMaaCS DAM asset
+*/
+    // case: DM and AEMaaCS DAM asset
     if (url.hostname.endsWith('.adobeaemcloud.com')) {
+      console.log('image in the column?', url);
       if (imageRendition !== '' && isDisable === 'false') {
         let metaPath = url.pathname.replace('/original', '');
         const asIndex = metaPath.indexOf('/as/');
@@ -133,6 +140,7 @@ export async function decorateDMImagesWithRendition(
           metaPath = metaPath.substring(0, asIndex);
         }
         const metadataUrl = `${url.origin}${metaPath}/metadata`;
+        console.log('metadataUrl', metadataUrl);
 
         let availableRenditions = {};
         try {
@@ -189,13 +197,12 @@ export async function decorateDMImagesWithRendition(
         imgEl.style.aspectRatio = 'auto';
         imgEl.style.objectPosition = 'initial';
       } else {
-        // case: Dynamic Media asset
         if (quality !== '') {
           const imgSrc = originalHref.replace('/original', '');
           imgEl.src = `${imgSrc}?${quality}`;
         }
         if (aspectRatio !== '') {
-          imgEl.style.aspectRatio = aspectRatio;
+          imgEl.style.aspectRatio = aspectRatioValue;
         }
         if (objectPos !== '') {
           imgEl.style.objectPosition = objectPos;
@@ -209,6 +216,7 @@ export async function decorateDMImagesWithRendition(
       }
     }
   } else {
+    // not DM
     const pictureTag = image.querySelector('picture');
     if (pictureTag) {
       const pic = pictureTag.querySelector('img');
@@ -218,7 +226,7 @@ export async function decorateDMImagesWithRendition(
         pic.alt = 'default alt';
       }
       if (aspectRatio !== '') {
-        pic.style.aspectRatio = aspectRatio;
+        pic.style.aspectRatio = aspectRatioValue;
       }
       if (objectPos !== '') {
         pic.style.objectPosition = objectPos;
@@ -235,8 +243,8 @@ export async function decorateDMImagesWithRendition(
         parent.replaceWith(pictureTag);
       }
     }
-  }
-  [imageRatio, alt, modifiers, disableSmartCrop, aspectRatioDiv, objectPosDiv].forEach((el) => {
+  } // end AEM 6.5 DAM case
+  [imageRatio, alt, modifiers, disableSmartCrop, aspectRatio, objectPosDiv].forEach((el) => {
     if (el instanceof Element) el.remove();
   });
 }

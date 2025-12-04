@@ -8,17 +8,17 @@
   .auto-image-container-v1 {
     margin: var(--spacing-none);
   }
-  
+
   .auto-image-container-v1 picture img {
-    width: 100%;
-            border-radius: 8px 8px 0 0;
-  
-  
+    height: 272px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
   }
-    @media (width <=390px) {
+  
+    @media (width >=390px) {
       .auto-image-container-v1 picture img {
-      height: 272px;
-      object-fit: cover;
-              border-radius: 8px 8px 0 0;
+      height: unset;
+      object-fit: unset;
+      margin: var(--spacing-none);
     }
   }
