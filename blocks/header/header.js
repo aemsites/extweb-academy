@@ -689,6 +689,13 @@ export default async function decorate(block) {
 
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+
+  const institutions = Array.from(hamburger.querySelectorAll('li'))
+    .find((li) => li.textContent.includes('Institutions'));
+  if (institutions) {
+    institutions.classList.add('footer');
+  }
+
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
 
   // Swapna-mobile: start - Create 3-dots menu button for mobile/tablet (< 1500px)

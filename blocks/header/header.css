@@ -227,7 +227,7 @@ header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
   flex-flow: column wrap;
   list-style: none;
   max-height: 600px;
-  gap: 48px 8px;
+  gap: 48px;
   font-size: var(--font-size-300);
   letter-spacing: 0.06em;
   color: rgb(255 255 255 / 89.8%);
@@ -277,6 +277,37 @@ header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li 
   margin-top: 10px;
   padding-left: 20px;
   row-gap: 8px;
+}
+
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer {
+  flex-grow: 2;
+  flex-direction: row;
+  position: absolute;
+  bottom: 70px;
+  
+  /* width: 100%; */
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--divider-on-dark-default);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
+  border: none;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li {
+  padding: 0 25px;
+  margin: 0;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:not(:last-child) {
+  border-right: 1px solid var(--divider-on-dark-default);
 }
 
 header nav .nav-hamburger .megamenu-close {
@@ -811,6 +842,14 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
 /* Desktop styles - consolidated media query for all width >= 1400px */
 @media (width >= 1400px) {
+  header nav .nav-hamburger .megamenu-content .tabs-panel {
+    padding: 0 0 0 72px;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
+    max-height: 600px;
+  }
+
   /* Desktop flexbox layout for horizontal organization */
   header nav {
     display: flex;
