@@ -284,7 +284,9 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 function createInlineSearchBox(navTools) {
   const contentWrapper = navTools.querySelector('.default-content-wrapper');
+  if (!contentWrapper) return; // Exit early if no content wrapper
   const searchIconParagraph = contentWrapper.querySelector('p');
+  if (!searchIconParagraph) return; // Exit early if no paragraph
 
   // swapna-search: Create wrapper for search box
   const searchWrapper = div({ class: 'inline-search-wrapper' });
@@ -368,6 +370,7 @@ function createInlineSearchBox(navTools) {
  * @param {Element} contentWrapper - The content wrapper element
  */
 function setAccessibilityAttrForSearchIcon(contentWrapper) {
+  if (!contentWrapper) return; // Exit early if no content wrapper
   // swapna-search: Find the icon element (not the input)
   const iconTag = [...contentWrapper.children].find((child) => child.classList.contains('icon') || child.querySelector('.icon'));
   if (iconTag) {
@@ -454,26 +457,18 @@ function toggleThreeDotsMenu(nav, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // Check if we're on the home page (body.home class is added early in scripts.js)
-  const isHome = document.body.classList.contains('home');
+  // load nav as defined in metadata (defined in page or defined in metadata.xlsx)
+  const navMeta = getMetadata('nav');
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const fragment = await loadFragment(navPath);
+
+  // Check if this is a home navigation based on the nav path (set via metadata)
+  const isHomeNav = navPath.includes('nav-home');
 
   // Add home-specific class to block for CSS targeting
-  if (isHome) {
+  if (isHomeNav) {
     block.classList.add('header-home');
   }
-
-  // Determine which navigation to load:
-  // - Use nav metadata if explicitly set in page properties
-  // - Otherwise, use /nav-home for home page, /nav for other pages
-  const navMeta = getMetadata('nav');
-  let navPath = '/nav';
-  if (navMeta) {
-    navPath = new URL(navMeta, window.location).pathname;
-  } else if (isHome) {
-    navPath = '/nav-home';
-  }
-
-  const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
@@ -481,14 +476,14 @@ export default async function decorate(block) {
   nav.id = 'nav';
 
   // Add home-specific class to nav element for CSS targeting
-  if (isHome) {
+  if (isHomeNav) {
     nav.classList.add('nav-home');
   }
 
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   // Process home page navigation - ensure proper classes for styling
-  if (isHome) {
+  if (isHomeNav) {
     const columnsBlock = nav.querySelector('.columns');
     if (columnsBlock) {
       const columnsRow = columnsBlock.querySelector(':scope > div');
@@ -617,6 +612,75 @@ export default async function decorate(block) {
         }
       }
     }
+
+    // Create mobile-specific elements for home page
+    // 1. Mobile search trigger (positioned between logo/Academy and hamburger)
+    const mobileSearchTrigger = div({ class: 'mobile-search-trigger' });
+    const mobileSearchIcon = span({
+      class: 'lp lp-search',
+      role: 'button',
+      'aria-label': 'Search',
+      tabindex: '0',
+    });
+    mobileSearchIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleHomeSearchDropdown();
+    });
+    mobileSearchIcon.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHomeSearchDropdown();
+      }
+    });
+    mobileSearchTrigger.appendChild(mobileSearchIcon);
+    nav.appendChild(mobileSearchTrigger);
+
+    // 2. Mobile menu panel (slides in from right when hamburger is clicked)
+    const mobileMenuPanel = div({ class: 'mobile-menu-panel' });
+
+    // Close button
+    const closeBtn = button({
+      class: 'mobile-menu-close',
+      'aria-label': 'Close menu',
+    });
+    closeBtn.innerHTML = '✕';
+    closeBtn.addEventListener('click', () => {
+      nav.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+    mobileMenuPanel.appendChild(closeBtn);
+
+    // Menu links (clone from third column in columns block)
+    const mobileMenuLinks = div({ class: 'mobile-menu-links' });
+    const columnsBlockForMobile = nav.querySelector('.columns');
+    if (columnsBlockForMobile) {
+      const columnsRowForMobile = columnsBlockForMobile.querySelector(':scope > div');
+      if (columnsRowForMobile && columnsRowForMobile.children[2]) {
+        const thirdColumnForMobile = columnsRowForMobile.children[2];
+        const existingUl = thirdColumnForMobile.querySelector('ul');
+        if (existingUl) {
+          const clonedUl = existingUl.cloneNode(true);
+          // Remove search item and icon items from cloned list
+          const searchLi = clonedUl.querySelector('.nav-search');
+          if (searchLi) searchLi.remove();
+          // Remove any icon spans
+          clonedUl.querySelectorAll('.icon, .lp-search').forEach((el) => el.remove());
+          mobileMenuLinks.appendChild(clonedUl);
+        }
+      }
+    }
+    mobileMenuPanel.appendChild(mobileMenuLinks);
+
+    // Footer with "back to worldbank.org" link
+    const mobileMenuFooter = div({ class: 'mobile-menu-footer' });
+    const footerLink = document.createElement('a');
+    footerLink.href = 'https://www.worldbank.org/ext/en/home';
+    footerLink.innerHTML = 'back to <strong>worldbank.org</strong>';
+    mobileMenuFooter.appendChild(footerLink);
+    mobileMenuPanel.appendChild(mobileMenuFooter);
+
+    nav.appendChild(mobileMenuPanel);
   }
 
   const classes = ['brand', 'sections', 'tools', 'links'];
@@ -773,6 +837,23 @@ export default async function decorate(block) {
   // Swapna-mobile: Append close button to nav
   nav.appendChild(closeButton);
   // Swapna-mobile: end - Create close button for 3-dots menu
+
+  // Home page mobile: Add search icon to nav-tools for mobile view
+  if (isHomeNav && navTools) {
+    // Create mobile search icon using loopicon font
+    const mobileSearchIcon = span({
+      class: 'lp lp-search mobile-search-icon',
+      role: 'button',
+      'aria-label': 'Search',
+      tabindex: '0',
+      onclick: () => { toggleHomeSearchDropdown(); },
+      onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') toggleHomeSearchDropdown(); },
+    });
+
+    // Insert mobile search icon at the beginning of nav-tools
+    navTools.insertBefore(mobileSearchIcon, navTools.firstChild);
+  }
+  // End: Home page mobile search icon
 
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load
   // Only call toggleMenu for mobile to prevent setting aria-expanded='true' on desktop
