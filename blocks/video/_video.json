@@ -23,7 +23,7 @@
         {
           "component": "select",
           "valueType": "string",
-          "name": "videoType",
+          "name": "video-type",
           "value": "",
           "label": "Video Type",
           "options": [
@@ -46,7 +46,7 @@
           "condition": {
             "==": [
               {
-                "var": "videoType"
+                "var": "video-type"
               },
               "you-tube"
             ]
@@ -61,7 +61,7 @@
           "condition": {
             "==": [
               {
-                "var": "videoType"
+                "var": "video-type"
               },
               "embed-code"
             ]

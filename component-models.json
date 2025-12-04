@@ -142,6 +142,10 @@
             "value": "swipe-carousel-container"
           },
           {
+            "name": "Tab Carousel Section",
+            "value": "tab-carousel-section"
+          },
+          {
             "name": "Hero Video Section",
             "value": "hero-video-section"
           }
@@ -326,20 +330,20 @@
         "description": "Picks from Dynamic Media"
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "imageTablet",
         "label": "Image (Tablet)",
-        "multi": false,
-        "description": "picks from AMS DAM"
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "multi": false
       },
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "imageMobile",
         "label": "Image (Mobile)",
-        "multi": false,
-        "description": "Picks from AMS DAM"
+        "configUrl": "https://raw.githubusercontent.com/aemsites/extweb-academy/refs/heads/main/tools/asset-selector/image.config.json",
+        "multi": false
       },
       {
         "component": "text",
@@ -389,7 +393,8 @@
         "valueType": "boolean",
         "name": "disable-smartcrop",
         "value": "true",
-        "label": "Disable Smart Crop"
+        "label": "Disable Smart Crop",
+        "description": "If toggled off, only 1st image is used and the others are ignored"
       },
       {
         "component": "text",
@@ -397,6 +402,7 @@
         "name": "aspectRatio",
         "value": "",
         "label": "Aspect Ratio",
+        "description": "Use format of width/height, e.g. 16/9",
         "condition": {
           "===": [
             {
@@ -656,7 +662,7 @@
       {
         "component": "select",
         "valueType": "string",
-        "name": "videoType",
+        "name": "video-type",
         "value": "",
         "label": "Video Type",
         "options": [
@@ -679,7 +685,7 @@
         "condition": {
           "==": [
             {
-              "var": "videoType"
+              "var": "video-type"
             },
             "you-tube"
           ]
@@ -694,7 +700,7 @@
         "condition": {
           "==": [
             {
-              "var": "videoType"
+              "var": "video-type"
             },
             "embed-code"
           ]

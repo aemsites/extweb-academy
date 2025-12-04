@@ -1,58 +1,282 @@
+/* General tabs styling */
+
+.section.tab-carousel-section > .tabs-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: unset;
+}
+
+.section.tab-carousel-section > .tabs-wrapper > .tabs.block {
+  width: 100%;
+}
+
+.section.tab-carousel-section .swipe-carousel-container {
+  max-width: unset;
+  padding: 0;
+}
+
+.section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
+  margin-top: 25px;
+  margin-left: -1.5rem;
+  flex: 0 0 auto;
+  display: flex;
+  padding-left: calc((89vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+} 
+
+.section.tab-carousel-section .swipe-carousel.with-button .cards-card-image {
+  zoom: 80%;
+}
+
+.section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
+  margin-top: -36px;
+  margin-left: -1.1rem;
+}
+
 .tabs .tabs-list {
   display: flex;
-  gap: 0.5ch;
+  gap: 5.15px;
   max-width: 100%;
   font-size: var(--body-font-size-xs);
   overflow-x: auto;
+  position: relative;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  scrollbar-width: none;
+  left: 0;
+  scroll-snap-type: x mandatory;
+  padding: 0;
+  padding-inline-start: 0;
+  border-bottom: 3px solid var(--divider-on-light-subdued); /* Grey line under all tabs */
+  scroll-padding-left: 0;
 }
 
-@media (width >= 600px) {
-  .tabs .tabs-list {
-    font-size: var(--body-font-size-s);
-  }
-}
-
-@media (width >= 900px) {
-  .tabs .tabs-list {
-    font-size: var(--body-font-size-m);
-  }
+/* Hide scrollbar for webkit browsers */
+.tabs .tabs-list::-webkit-scrollbar {
+  display: none;
 }
 
 .tabs .tabs-list button {
   flex: 0 0 max-content;
   margin: 0;
-  border: 1px solid #dadada;
+  margin-bottom: 0;
+  border-bottom: none;
   border-radius: 0;
+  border-bottom-width: 3px;
   padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
+  background-color: transparent;
+  color: var(--text-on-light-link-primary-enabled);
   font-weight: bold;
-  line-height: unset;
+  line-height: 40px;
   text-align: initial;
   text-overflow: unset;
   overflow: unset;
   white-space: unset;
   transition: background-color 0.2s;
+  font-size: var(--font-size-300);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-width: fit-content;
+  width: 100%;
 }
+
+  /* First tab stays fixed on the left */
+  .tabs .tabs-list button:first-child {
+    flex-shrink: 0;
+  }
+
+  main .section.tab-carousel-section .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: white; 
+}
+
+main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+  gap: 1rem;
+  justify-content: flex-start; /* Align cards to the left */
+  margin-left: -1.5rem;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+  width:280px;
+  height: auto;
+  min-height: 500px;
+
+}
+
+@media (width >= 768px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+    border-bottom: 2px solid var(--divider-on-light-subdued);
+    }
+
+    .tabs .tabs-list button:first-child {
+      flex-shrink: 0;
+    }
+
+     /* Set gap between carousel cards */
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+    gap: 1rem;
+    justify-content: flex-start; /* Align cards to the left */
+    margin-left: -6.5rem;
+  }
+    
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+      flex: 0 0 calc((100% - 2rem) / 3);
+      min-width: 330px;
+      max-width: 430px;
+      height: auto;
+      min-height: 500px;
+  }
+
+  main .section.tab-carousel-section .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: #ffffffe5; 
+    font-size: var(--font-size-600);
+}
+}
+
+@media (width >= 1024px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-m);
+    justify-content: center;
+    border-bottom: 3px solid transparent;
+  }
+
+    /* Set gap between carousel cards */
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+      gap: 0 25px;
+      justify-content: flex-start; /* Align cards to the left */
+      margin-left: -4.5rem;
+    }
+
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+    flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
+    min-width: 330px;
+    max-width: 485px;
+    height: auto;
+    min-height: 600px;
+    color: var(--text-on-dark-emphasys);
+    line-height: 22.4px;
+  }
+
+  .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
+    margin-top: -20px;
+    margin-left: 1.7rem;
+  }
+}
+
+@media (width >= 1600px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-m);
+    justify-content: center;
+    border-bottom: 3px solid transparent;
+  }
+
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+    padding-right: 2rem; /* Reduced right padding */
+  }
+
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+    flex: 0 0 calc((100% - rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
+    min-width: 455px;
+    max-width: 455px;
+    height: auto;
+    min-height: 600px;
+    color: var(--text-on-dark-emphasys);
+  }
+
+  .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
+    margin-top: -20px;
+    margin-left: 3rem;
+  }
+
+}
+
+
 
 .tabs .tabs-list button p {
   margin: 0;
 }
 
 
+
+
+
+/* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
+main .section.tab-carousel-section > div > p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-500);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  margin: var(--spacing-none);
+  margin-bottom: 15px;
+  color: var(--text-on-light-default);
+  text-align: center;
+  letter-spacing: -0.25px;
+}
+
+.tabs .tabs-list button[aria-selected='true'] p{
+  border-bottom: 4px solid var(--blue-40);
+  width: auto;
+}
+
+
 .tabs .tabs-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
+  background-color: transparent;
   cursor: initial;
+  color: var(--text-on-light-emphasis);
+  width: auto;
 }
 
 .tabs .tabs-panel {
-  margin-top: -1px;
-  padding: 24px;
-  border: 1px solid #dadada;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border: 1px solid transparent;
   overflow: auto;
+  width: 100%;
 }
 
 .tabs .tabs-panel[aria-hidden='true'] {
   display: none;
+}
+
+
+/* h2 styling for tab-carousel-section */
+main .section.tab-carousel-section h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--font-size-1000);
+  line-height: 115%;
+  margin-bottom: var(--spacing-small);
+  color: var(--accent-blue-primary-90);
+  text-align: center;
+}
+
+/* Scoped to tabs-panel to avoid affecting tab buttons */
+main .section.tab-carousel-section .tabs-panel h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--font-size-600);
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-medium);
+}
+
+/* body-text styling for tab-carousel-section */
+
+/* Scoped to tabs-panel to avoid affecting tab buttons */
+main .section.tab-carousel-section .tabs-panel .body-text,
+main .section.tab-carousel-section .tabs-panel p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-300);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 22.4px;
+  margin: 0 0 var(--spacing-regular);
+  color: var(--text-on-dark-subdued);
+  position: relative;
+  z-index: 2;
+  height: auto;
+  overflow: visible;
+  
 }
