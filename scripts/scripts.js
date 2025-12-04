@@ -122,17 +122,16 @@ paths instead of full URLs.
 
     const fileName = originalHref.substring(originalHref.lastIndexOf('/') + 1);
     const altText = fileName.substring(0, fileName.lastIndexOf('.'));
-/* never used
+
     const imgEl = img({
       loading: loadingValue,
       alt: altValue !== '' ? altValue : altText,
       title: titleValue !== '' ? titleValue : altText,
       src: originalHref.replace('/original', ''),
     });
-*/
+
     // case: DM and AEMaaCS DAM asset
     if (url.hostname.endsWith('.adobeaemcloud.com')) {
-      console.log('image in the column?', url);
       if (imageRendition !== '' && isDisable === 'false') {
         let metaPath = url.pathname.replace('/original', '');
         const asIndex = metaPath.indexOf('/as/');
