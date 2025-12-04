@@ -23,6 +23,122 @@ let listOfAllPlaceholdersData = {};
 // swapna-search-close-on-focus: Variable to store search container reference
 let searchContainer;
 
+// Home page search dropdown - tracks if dropdown is currently open
+let isHomeSearchOpen = false;
+
+/**
+ * Closes the home page search dropdown and removes it from DOM
+ */
+function closeHomeSearchDropdown() {
+  const dropdown = document.querySelector('.home-search-dropdown');
+  if (!dropdown) return;
+
+  dropdown.classList.remove('open');
+  dropdown.setAttribute('aria-hidden', 'true');
+
+  const searchIcon = document.querySelector('.header-home .lp-search');
+  if (searchIcon) {
+    searchIcon.classList.remove('active');
+  }
+
+  setTimeout(() => {
+    dropdown.remove();
+  }, 300);
+
+  isHomeSearchOpen = false;
+}
+
+/**
+ * Handles click outside to close dropdown
+ */
+function handleClickOutside(e) {
+  const dropdown = document.querySelector('.home-search-dropdown');
+  if (dropdown && !dropdown.contains(e.target) && !e.target.closest('.lp-search')) {
+    closeHomeSearchDropdown();
+    document.removeEventListener('click', handleClickOutside);
+  }
+}
+
+/**
+ * Opens the home page search dropdown
+ */
+function openHomeSearchDropdown() {
+  if (isHomeSearchOpen) return;
+
+  const headerHome = document.querySelector('.header-home');
+  if (!headerHome) return;
+
+  const dropdown = document.createElement('div');
+  dropdown.className = 'home-search-dropdown';
+  dropdown.setAttribute('aria-hidden', 'true');
+
+  const container = document.createElement('div');
+  container.className = 'home-search-container';
+
+  const inputWrapper = document.createElement('div');
+  inputWrapper.className = 'home-search-input-wrapper';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'home-search-input';
+  input.placeholder = 'Search Academy';
+  input.setAttribute('aria-label', 'Search Academy');
+
+  const searchBtn = document.createElement('button');
+  searchBtn.className = 'home-search-btn lp lp-search';
+  searchBtn.setAttribute('aria-label', 'Submit search');
+  searchBtn.type = 'button';
+
+  const performSearch = () => {
+    const query = input.value.trim();
+    if (query) {
+      const searchUrl = listOfAllPlaceholdersData.searchRedirectUrl
+        || 'https://academy.worldbank.org/en/search?q=';
+      window.location.href = searchUrl + encodeURIComponent(query);
+    }
+  };
+
+  searchBtn.addEventListener('click', performSearch);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') performSearch();
+    if (e.key === 'Escape') closeHomeSearchDropdown();
+  });
+
+  inputWrapper.appendChild(input);
+  inputWrapper.appendChild(searchBtn);
+  container.appendChild(inputWrapper);
+  dropdown.appendChild(container);
+
+  headerHome.appendChild(dropdown);
+  isHomeSearchOpen = true;
+
+  requestAnimationFrame(() => {
+    dropdown.classList.add('open');
+    dropdown.setAttribute('aria-hidden', 'false');
+    input.focus();
+  });
+
+  const searchIcon = document.querySelector('.header-home .lp-search');
+  if (searchIcon) {
+    searchIcon.classList.add('active');
+  }
+
+  setTimeout(() => {
+    document.addEventListener('click', handleClickOutside);
+  }, 10);
+}
+
+/**
+ * Toggles the home page search dropdown
+ */
+function toggleHomeSearchDropdown() {
+  if (isHomeSearchOpen) {
+    closeHomeSearchDropdown();
+  } else {
+    openHomeSearchDropdown();
+  }
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -323,6 +439,74 @@ export default async function decorate(block) {
   }
 
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+
+  // Process home nav structure - add search icon and mobile support
+  if (isHomeNav) {
+    const columnsBlock = nav.querySelector('.columns');
+    if (columnsBlock) {
+      const columns = columnsBlock.querySelectorAll(':scope > div > div');
+
+      // Process third column (navigation links)
+      if (columns.length >= 3) {
+        const thirdColumn = columns[2];
+        thirdColumn.classList.add('home-nav-links');
+
+        // Add font-based search icon to the navigation (for desktop)
+        const searchIcon = document.createElement('span');
+        searchIcon.className = 'lp lp-search home-search-icon';
+        searchIcon.setAttribute('role', 'button');
+        searchIcon.setAttribute('tabindex', '0');
+        searchIcon.setAttribute('aria-label', 'Search');
+
+        searchIcon.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleHomeSearchDropdown();
+        });
+
+        searchIcon.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleHomeSearchDropdown();
+          }
+        });
+
+        thirdColumn.appendChild(searchIcon);
+
+        // Hide the original SVG search icon
+        const svgIcon = thirdColumn.querySelector('.icon-search');
+        if (svgIcon) {
+          svgIcon.style.display = 'none';
+        }
+      }
+    }
+
+    // Create mobile search trigger (for mobile/tablet views)
+    const mobileSearchTrigger = document.createElement('div');
+    mobileSearchTrigger.className = 'mobile-search-trigger';
+
+    const mobileSearchIcon = document.createElement('span');
+    mobileSearchIcon.className = 'lp lp-search';
+    mobileSearchIcon.setAttribute('role', 'button');
+    mobileSearchIcon.setAttribute('tabindex', '0');
+    mobileSearchIcon.setAttribute('aria-label', 'Search');
+
+    mobileSearchIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleHomeSearchDropdown();
+    });
+
+    mobileSearchIcon.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHomeSearchDropdown();
+      }
+    });
+
+    mobileSearchTrigger.appendChild(mobileSearchIcon);
+    nav.appendChild(mobileSearchTrigger);
+  }
 
   const classes = ['brand', 'sections', 'tools', 'links'];
   classes.forEach((c, i) => {

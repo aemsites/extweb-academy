@@ -743,19 +743,6 @@ header nav[aria-expanded='true'] .nav-three-dots {
   padding-top: 16px;
 }
 
-/* Dark gradient overlay for better text visibility on home page header */
-.header-home::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 150px;
-  background: linear-gradient(to bottom, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 0%) 100%);
-  pointer-events: none;
-  z-index: -1;
-}
-
 /* Adjust text color for visibility on hero images */
 .header-home nav.nav-home {
   color: var(--white);
@@ -820,14 +807,18 @@ header .header-home nav .nav-links .default-content-wrapper a {
     order: 1;
   }
 
-  /* Keep columns visible but make responsive */
+  /* Keep columns visible and on same line - don't stack */
   .header-home .nav-brand .columns {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     align-items: center;
   }
 
   .header-home .nav-brand .columns > div {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     align-items: center;
     gap: 0;
   }
@@ -836,12 +827,24 @@ header .header-home nav .nav-links .default-content-wrapper a {
   .header-home .nav-brand .columns > div > div:first-child {
     display: flex;
     align-items: center;
+    flex: 0 0 auto;
+    padding-right: 12px;
+    border-right: none; /* No border - only second column has border-left */
   }
 
   .header-home .nav-brand .columns > div > div:first-child img {
     height: 32px;
     width: auto;
     filter: brightness(0) invert(1);
+  }
+  
+  /* Second column - Academy on same line */
+  .header-home .nav-brand .columns > div > div:nth-child(2) {
+    display: flex !important;
+    flex: 0 0 auto;
+    padding-left: 12px;
+    margin-left: 0;
+    border-left: 1px solid rgb(255 255 255 / 40%); /* Single separator line */
   }
 
   /* ========== MOBILE MENU PANEL (must come before column styles for specificity) ========== */
@@ -955,7 +958,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    padding: 0 16px;
+    padding: 0 4px; /* Reduced padding for closer icons */
     cursor: pointer;
     order: 2; /* Position after brand (order 1) and before hamburger (order 3) */
   }
@@ -974,12 +977,13 @@ header .header-home nav .nav-links .default-content-wrapper a {
     display: flex !important;
     align-items: center;
     padding: 0;
+    padding-left: 8px; /* Small gap from search icon */
     order: 3; /* Position after search icon */
   }
 
   .header-home .nav-hamburger button {
     background-color: transparent;
-    padding: 8px;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1034,25 +1038,77 @@ header .header-home nav .nav-links .default-content-wrapper a {
     display: none;
   }
 
-  /* Mobile search dropdown */
+  /* Mobile search dropdown - matches desktop design adapted for mobile */
   .home-search-dropdown {
     position: fixed;
-    top: 70px;
+    top: 110px; /* Moved closer to header */
     left: 0;
     right: 0;
     width: 100%;
     max-width: 100%;
-    padding: 20px;
+    padding: 12px 20px; /* Reduced padding */
+    box-sizing: border-box;
     transform: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .home-search-dropdown.open {
+    opacity: 1;
+    visibility: visible;
   }
 
   .home-search-container {
-    border-radius: 12px;
-    padding: 40px 24px;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px 32px 50px; /* Slightly reduced padding */
+    box-shadow: 0 8px 32px rgb(0 0 0 / 15%);
+  }
+
+  .home-search-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #5b92c4; /* Thinner, lighter blue underline */
+    padding-bottom: 12px;
   }
 
   .home-search-input {
-    font-size: 16px;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px; /* Larger font size */
+    font-weight: 400;
+    color: #333;
+    background: transparent;
+    padding: 8px 0;
+  }
+
+  .home-search-input::placeholder {
+    color: #999; /* Lighter gray placeholder */
+    font-weight: 400;
+  }
+
+  .home-search-btn {
+    background: transparent;
+    border: none;
+    color: #c75300; /* Red-orange color like target */
+    font-size: 18px; /* Smaller icon */
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+  }
+
+  /* No hover effect on search button - overrides global button:hover */
+  .home-search-btn:hover {
+    background: transparent;
+    background-color: transparent;
+    color: #c75300;
   }
 }
 
@@ -1391,15 +1447,18 @@ header .header-home nav .nav-links .default-content-wrapper a {
     font-size: 24px;
     color: #003e7e;
     padding: 8px;
-    transition: color 0.2s ease;
+    border-radius: 0;
   }
 
   .home-search-btn::before {
     content: "\e132";
   }
 
+  /* No hover effect on search button - overrides global button:hover */
   .home-search-btn:hover {
-    color: #002d5c;
+    background: transparent;
+    background-color: transparent;
+    color: #003e7e;
   }
 
   /* Active state for search icon when dropdown is open - just color change, no size change */
