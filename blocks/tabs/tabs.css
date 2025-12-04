@@ -35,9 +35,9 @@
 
 .tabs .tabs-list {
   display: flex;
-  gap: 5.15px;
+  gap: 5.5px;
   max-width: 100%;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-300);
   overflow-x: auto;
   position: relative;
   white-space: nowrap;
@@ -45,12 +45,12 @@
   justify-content: flex-start;
   scrollbar-width: none;
   left: 0;
-  scroll-snap-type: x mandatory;
   padding: 0;
   padding-inline-start: 0;
   border-bottom: 3px solid var(--divider-on-light-subdued); /* Grey line under all tabs */
   scroll-padding-left: 0;
   margin-left: 1.5rem;
+  margin-bottom: 0;
 }
 
 /* Hide scrollbar for webkit browsers */
@@ -121,6 +121,10 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
       flex-shrink: 0;
     }
 
+    main .section.tab-carousel-section >.tabs-wrapper {
+      margin-top: 15px;
+    }
+
      /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
     gap: 1rem;
@@ -162,6 +166,10 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
    justify-content: center;
    }
 
+   main .section.tab-carousel-section >.tabs-wrapper {
+    margin-top: 40px;
+  }
+
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
       gap: 0 25px;
@@ -194,7 +202,9 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     border-bottom: 3px solid transparent;
   }
 
-  
+  main .section.tab-carousel-section >.tabs-wrapper {
+    margin-top: 50px;
+  }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
     padding-left: var(--grid-margin);
@@ -232,7 +242,7 @@ main .section.tab-carousel-section > div > p {
   font-weight: var(--body-font-weight-regular);
   line-height: 150%;
   margin: var(--spacing-none);
-  margin-bottom: 15px;
+  margin-bottom: 0;
   color: var(--text-on-light-default);
   text-align: center;
   letter-spacing: -0.25px;
