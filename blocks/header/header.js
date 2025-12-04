@@ -246,7 +246,9 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 function createInlineSearchBox(navTools) {
   const contentWrapper = navTools.querySelector('.default-content-wrapper');
+  if (!contentWrapper) return; // Exit early if no content wrapper found
   const searchIconParagraph = contentWrapper.querySelector('p');
+  if (!searchIconParagraph) return; // Exit early if no search icon paragraph found
 
   // swapna-search: Create wrapper for search box
   const searchWrapper = div({ class: 'inline-search-wrapper' });
@@ -330,6 +332,7 @@ function createInlineSearchBox(navTools) {
  * @param {Element} contentWrapper - The content wrapper element
  */
 function setAccessibilityAttrForSearchIcon(contentWrapper) {
+  if (!contentWrapper) return; // Exit early if no content wrapper found
   // swapna-search: Find the icon element (not the input)
   const iconTag = [...contentWrapper.children].find((child) => child.classList.contains('icon') || child.querySelector('.icon'));
   if (iconTag) {
@@ -506,6 +509,88 @@ export default async function decorate(block) {
 
     mobileSearchTrigger.appendChild(mobileSearchIcon);
     nav.appendChild(mobileSearchTrigger);
+
+    // Create mobile menu panel for home navigation
+    const mobileMenuPanel = document.createElement('div');
+    mobileMenuPanel.className = 'mobile-menu-panel';
+
+    // Close button
+    const closeButton = document.createElement('button');
+    closeButton.className = 'mobile-menu-close';
+    closeButton.setAttribute('aria-label', 'Close menu');
+    closeButton.innerHTML = '<span class="close-icon">×</span>';
+    closeButton.addEventListener('click', () => {
+      nav.setAttribute('aria-expanded', 'false');
+      document.body.style.overflowY = '';
+    });
+    mobileMenuPanel.appendChild(closeButton);
+
+    // Menu links container
+    const mobileMenuLinks = document.createElement('div');
+    mobileMenuLinks.className = 'mobile-menu-links';
+
+    // Get links from the third column content (from Universal Editor)
+    const homeColumnsBlock = nav.querySelector('.columns');
+    const homeThirdColumn = homeColumnsBlock?.querySelectorAll(':scope > div > div')[2];
+
+    // Variables to store back link content
+    let backLinkContent = null;
+
+    if (homeThirdColumn) {
+      // The menu links are in a <ul> list, find all list items with links
+      const menuList = homeThirdColumn.querySelector('ul');
+      if (menuList) {
+        const listItems = menuList.querySelectorAll('li');
+        listItems.forEach((li) => {
+          const linkElement = li.querySelector('a');
+          const hasBackIcon = li.querySelector('.icon-back');
+          const hasSearchIcon = li.querySelector('.icon-search');
+
+          // Check if this has the back icon - hide it from desktop and extract for mobile footer
+          if (hasBackIcon) {
+            if (linkElement) {
+              backLinkContent = {
+                text: linkElement.textContent,
+                url: linkElement.href,
+              };
+            }
+            // Hide this item from desktop view immediately
+            li.style.display = 'none';
+            li.classList.add('mobile-back-link-source');
+            return; // Skip to next item
+          }
+
+          // Skip items with search icon or other icon-only items
+          if (hasSearchIcon || (li.querySelector('.icon') && !linkElement)) {
+            return; // Skip to next item
+          }
+
+          // Regular menu link - add to mobile menu
+          if (linkElement) {
+            const link = document.createElement('a');
+            link.href = linkElement.href;
+            link.textContent = linkElement.textContent;
+            link.className = 'mobile-menu-link';
+            mobileMenuLinks.appendChild(link);
+          }
+        });
+      }
+    }
+
+    // Only add menu links container if there's content from Universal Editor
+    if (mobileMenuLinks.children.length > 0) {
+      mobileMenuPanel.appendChild(mobileMenuLinks);
+    }
+
+    // Back to link - only add if content with :back: marker exists in Universal Editor
+    if (backLinkContent) {
+      const backLink = document.createElement('div');
+      backLink.className = 'mobile-menu-back';
+      backLink.innerHTML = `<span>back to </span><a href="${backLinkContent.url}">${backLinkContent.text}</a>`;
+      mobileMenuPanel.appendChild(backLink);
+    }
+
+    nav.appendChild(mobileMenuPanel);
   }
 
   const classes = ['brand', 'sections', 'tools', 'links'];
@@ -599,8 +684,19 @@ export default async function decorate(block) {
 
   // swapna-DOM-helper: start - Create hamburger menu using DOM helper functions
   // instead of innerHTML for better performance and security
+  const hamburgerClickHandler = () => {
+    if (isHomeNav) {
+      // For home nav, toggle the mobile menu panel
+      const expanded = nav.getAttribute('aria-expanded') === 'true';
+      nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      document.body.style.overflowY = expanded ? '' : 'hidden';
+    } else if (navSections) {
+      toggleMenu(nav, navSections);
+    }
+  };
+
   const hamburger = div(
-    { class: 'nav-hamburger', onclick: () => { toggleMenu(nav, navSections); } },
+    { class: 'nav-hamburger', onclick: hamburgerClickHandler },
     button(
       {
         type: 'button',

@@ -756,6 +756,11 @@ header .header-home nav .nav-hamburger-icon::after {
   background: var(--white);
 }
 
+/* Hide :back: marked items from desktop view - they're only for mobile menu footer */
+header .header-home .mobile-back-link-source {
+  display: none;
+}
+
 header .header-home nav .nav-hamburger button {
   color: var(--white);
   background-color: transparent;
@@ -792,8 +797,9 @@ header .header-home nav .nav-links .default-content-wrapper a {
 /* Mobile/Tablet home page header styles (up to 1399px) */
 @media (width < 1400px) {
   /* Home page mobile nav layout - use flexbox for simpler positioning */
-  .header-home nav.nav-home {
-    display: flex !important;
+  /* Using header prefix for higher specificity to override global rules */
+  header .header-home nav.nav-home {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 24px;
@@ -802,29 +808,29 @@ header .header-home nav .nav-links .default-content-wrapper a {
   }
 
   /* Nav brand takes first position */
-  .header-home .nav-brand {
+  header .header-home .nav-brand {
     flex: 1;
     order: 1;
   }
 
   /* Keep columns visible and on same line - don't stack */
-  .header-home .nav-brand .columns {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+  header .header-home .nav-brand .columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
   }
 
-  .header-home .nav-brand .columns > div {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+  header .header-home .nav-brand .columns > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0;
   }
 
   /* First column - Logo (responsive) */
-  .header-home .nav-brand .columns > div > div:first-child {
+  header .header-home .nav-brand .columns > div > div:first-child {
     display: flex;
     align-items: center;
     flex: 0 0 auto;
@@ -832,15 +838,15 @@ header .header-home nav .nav-links .default-content-wrapper a {
     border-right: none; /* No border - only second column has border-left */
   }
 
-  .header-home .nav-brand .columns > div > div:first-child img {
+  header .header-home .nav-brand .columns > div > div:first-child img {
     height: 32px;
     width: auto;
     filter: brightness(0) invert(1);
   }
   
   /* Second column - Academy on same line */
-  .header-home .nav-brand .columns > div > div:nth-child(2) {
-    display: flex !important;
+  header .header-home .nav-brand .columns > div > div:nth-child(2) {
+    display: flex;
     flex: 0 0 auto;
     padding-left: 12px;
     margin-left: 0;
@@ -866,47 +872,61 @@ header .header-home nav .nav-links .default-content-wrapper a {
     padding: 0;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-links a,
-  .header-home .mobile-menu-panel .mobile-menu-footer a {
+  .header-home .mobile-menu-panel .mobile-menu-link,
+  .header-home .mobile-menu-panel .mobile-menu-back a {
     display: block;
     color: #333;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-links a {
-    padding: 16px 0;
-    font-size: 18px;
+  .header-home .mobile-menu-panel .mobile-menu-link {
+    padding: 12px 0;
+    font-size: 18px; /* Smaller font size to match target */
     font-weight: 400;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-footer a {
-    font-size: 14px;
+  /* Underline on hover - matches target with Primary-Blue-40-WBG */
+  .header-home .mobile-menu-panel .mobile-menu-link:hover {
+    text-decoration: none;
+    border-bottom-color: #169af3; /* Primary-Blue-40-WBG */
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-links a:hover,
-  .header-home .mobile-menu-panel .mobile-menu-footer a:hover {
-    color: #003e7e;
-  }
-
-  /* Mobile menu footer styles */
-  .header-home .mobile-menu-panel .mobile-menu-footer {
-    margin-top: auto;
+  .header-home .mobile-menu-panel .mobile-menu-back {
+    margin-top: 24px; /* Position directly after menu items, not at bottom */
     padding-top: 24px;
     border-top: 1px solid #e0e0e0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-footer strong {
-    font-weight: 700;
+  .header-home .mobile-menu-panel .mobile-menu-back a {
+    display: inline;
+    font-weight: 400; /* Same weight as regular text to match target */
+    color: #333;
+    text-decoration: none;
+    font-size: 14px; /* Same size as surrounding text */
   }
 
-  /* Close button styles */
-  .header-home .mobile-menu-panel .mobile-menu-close {
+  /* No hover color change - keep subtle */
+  .header-home .mobile-menu-panel .mobile-menu-back a:hover {
+    text-decoration: none;
+  }
+
+  /* Close button styles - light blue circle with white X */
+  header .header-home .mobile-menu-panel .mobile-menu-close {
     align-self: flex-end;
-    width: 32px;
-    height: 32px;
+    min-width: 36px;
+    max-width: 36px;
+    min-height: 36px;
+    max-height: 36px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background-color: #003e7e;
+    background-color: #169af3; /* Primary-Blue-40-WBG */
     color: var(--white);
     border: none;
     cursor: pointer;
@@ -914,7 +934,21 @@ header .header-home nav .nav-links .default-content-wrapper a {
     align-items: center;
     justify-content: center;
     font-size: 18px;
+    font-weight: 300;
     margin-bottom: 24px;
+    line-height: 1;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  header .header-home .mobile-menu-panel .mobile-menu-close .close-icon {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  header .header-home .mobile-menu-panel .mobile-menu-close:hover {
+    background-color: #0d7fd4; /* Slightly darker on hover */
   }
 
   /* ========== COLUMN STYLES ========== */
@@ -954,8 +988,8 @@ header .header-home nav .nav-links .default-content-wrapper a {
   /* ========== MOBILE HEADER ELEMENTS ========== */
 
   /* Mobile search icon - positioned between brand and hamburger */
-  .header-home .mobile-search-trigger {
-    display: flex !important;
+  header .header-home .mobile-search-trigger {
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 4px; /* Reduced padding for closer icons */
@@ -963,18 +997,18 @@ header .header-home nav .nav-links .default-content-wrapper a {
     order: 2; /* Position after brand (order 1) and before hamburger (order 3) */
   }
 
-  .header-home .mobile-search-trigger .lp-search {
+  header .header-home .mobile-search-trigger .lp-search {
     font-size: 20px;
     color: var(--white);
   }
 
-  .header-home .mobile-search-trigger .lp-search:hover {
+  header .header-home .mobile-search-trigger .lp-search:hover {
     opacity: 0.8;
   }
 
   /* Mobile hamburger - positioned last */
-  .header-home .nav-hamburger {
-    display: flex !important;
+  header .header-home .nav-hamburger {
+    display: flex;
     align-items: center;
     padding: 0;
     padding-left: 8px; /* Small gap from search icon */
@@ -1015,27 +1049,50 @@ header .header-home nav .nav-links .default-content-wrapper a {
   .header-home nav.nav-home[aria-expanded='true'] .mobile-menu-panel {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* Align content to top */
+    align-items: stretch;
     position: fixed;
     top: 0;
     right: 0;
-    width: 320px;
-    height: 100vh;
+    width: 280px; /* Smaller width to match target */
+    height: 100vh; /* Full height like target */
     background-color: var(--white);
     box-shadow: -4px 0 16px rgb(0 0 0 / 15%);
     z-index: 10000;
-    padding: 24px;
+    padding: 20px;
+    border-top-left-radius: 16px; /* Rounded corner on top-left */
   }
 
   /* Show mobile menu links when expanded */
   .header-home nav.nav-home[aria-expanded='true'] .mobile-menu-links {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    /* No flex: 1 - let container be only as tall as its content */
   }
 
-  /* Hide the default hamburger in expanded state (we use close button instead) */
-  .header-home nav.nav-home[aria-expanded='true'] .nav-hamburger {
-    display: none;
+  /* Prevent grid template change for home nav - fixes header jump */
+  /* Using header prefix for higher specificity to override global rules */
+  header .header-home nav.nav-home[aria-expanded='true'] {
+    grid-template: unset;
+    min-height: 79px; /* Fixed height to prevent jump - same as closed state */
+    height: 79px;
+    padding: 16px 24px; /* Keep same padding as closed state */
+    background-color: transparent; /* Override global background */
+  }
+
+  /* Keep nav-brand visible when menu is expanded */
+  header .header-home nav.nav-home[aria-expanded='true'] .nav-brand {
+    display: flex;
+  }
+
+  /* Keep mobile search trigger visible when menu is expanded */
+  header .header-home nav.nav-home[aria-expanded='true'] .mobile-search-trigger {
+    display: flex;
+  }
+
+  /* Keep hamburger visible in expanded state */
+  header .header-home nav.nav-home[aria-expanded='true'] .nav-hamburger {
+    display: flex;
   }
 
   /* Mobile search dropdown - matches desktop design adapted for mobile */
@@ -1354,8 +1411,8 @@ header .header-home nav .nav-links .default-content-wrapper a {
   }
 
   /* Font-based search icon - same styling as nav links */
-  .header-home .nav-brand .columns > div > div:nth-child(3) .lp-search {
-    font-family: loopicon, monospace !important;
+  header .header-home .nav-brand .columns > div > div:nth-child(3) .lp-search {
+    font-family: loopicon, monospace;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -1439,11 +1496,11 @@ header .header-home nav .nav-links .default-content-wrapper a {
     font-weight: 400;
   }
 
-  .home-search-btn {
+  header .header-home .home-search-btn {
     background: transparent;
     border: none;
     cursor: pointer;
-    font-family: loopicon, monospace !important;
+    font-family: loopicon, monospace;
     font-size: 24px;
     color: #003e7e;
     padding: 8px;
