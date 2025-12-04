@@ -685,6 +685,93 @@ export default async function decorate(block) {
     e.stopPropagation();
     megamenuOverlay.classList.remove('active');
     document.body.style.overflow = '';
+    // Reset mobile menu state when closing
+    megamenuOverlay.classList.remove('mobile-panel-active');
+  });
+
+  // Mobile hamburger menu behavior (< 1024px)
+  const isMobileMenu = window.matchMedia('(max-width: 1023px)');
+
+  // Function to reset mobile menu to initial state (tabs list view)
+  function resetMobileMenuState() {
+    megamenuOverlay.classList.remove('mobile-panel-active');
+    const tabsPanels = megamenuOverlay.querySelectorAll('.tabs-panel');
+    tabsPanels.forEach((panel) => {
+      panel.classList.remove('mobile-active');
+    });
+  }
+
+  // Function to setup mobile menu behavior
+  function setupMobileMenuBehavior() {
+    const tabButtons = megamenuOverlay.querySelectorAll('.tabs-tab');
+    const tabsPanels = megamenuOverlay.querySelectorAll('.tabs-panel');
+
+    // Add back buttons to each panel if not already added
+    tabsPanels.forEach((panel) => {
+      if (!panel.querySelector('.mobile-back-button')) {
+        const backButton = button(
+          {
+            type: 'button',
+            class: 'mobile-back-button',
+            'aria-label': 'Back to menu',
+          },
+          span({ class: 'mobile-back-icon' }),
+        );
+        backButton.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (isMobileMenu.matches) {
+            megamenuOverlay.classList.remove('mobile-panel-active');
+            panel.classList.remove('mobile-active');
+          }
+        });
+        panel.prepend(backButton);
+      }
+    });
+
+    // Add click handlers to tab buttons for mobile behavior
+    tabButtons.forEach((tabBtn, index) => {
+      // Remove existing mobile handler if any
+      tabBtn.removeEventListener('click', tabBtn.mobileClickHandler);
+
+      // Create mobile click handler
+      tabBtn.mobileClickHandler = (e) => {
+        if (isMobileMenu.matches) {
+          e.stopPropagation();
+          // Hide tabs list and show selected panel
+          megamenuOverlay.classList.add('mobile-panel-active');
+          // Mark the corresponding panel as active
+          tabsPanels.forEach((panel, i) => {
+            if (i === index) {
+              panel.classList.add('mobile-active');
+            } else {
+              panel.classList.remove('mobile-active');
+            }
+          });
+        }
+      };
+
+      tabBtn.addEventListener('click', tabBtn.mobileClickHandler);
+    });
+  }
+
+  // Setup mobile behavior after megamenu fragment is loaded
+  // Wait for tabs to be decorated
+  setTimeout(() => {
+    setupMobileMenuBehavior();
+  }, 100);
+
+  // Reset mobile state when menu is opened
+  hamButton.addEventListener('click', () => {
+    if (isMobileMenu.matches) {
+      resetMobileMenuState();
+    }
+  });
+
+  // Handle resize events
+  isMobileMenu.addEventListener('change', () => {
+    if (!isMobileMenu.matches) {
+      resetMobileMenuState();
+    }
   });
 
   nav.prepend(hamburger);
