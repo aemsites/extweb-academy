@@ -3,7 +3,7 @@
 
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { fetchPlaceholders } from '../../scripts/placeholders.js';
+// import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -108,10 +108,10 @@ async function buildBreadcrumbsFromNavTree(nav, currentUrl) {
     crumbs.unshift({ title: getMetadata('og:title'), url: currentUrl });
   }
 
-  const placeholders = await fetchPlaceholders();
-  const homePlaceholder = placeholders.breadcrumbsHomeLabel || 'Home';
+  // const placeholders = await fetchPlaceholders();
+  // const homePlaceholder = placeholders.breadcrumbsHomeLabel || 'Home';
 
-  crumbs.unshift({ title: homePlaceholder, url: homeUrl });
+  // crumbs.unshift({ title: homePlaceholder, url: homeUrl });
 
   // last link is current page and should not be linked
   if (crumbs.length > 1) {
