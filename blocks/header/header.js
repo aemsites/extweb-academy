@@ -296,6 +296,21 @@ function toggleThreeDotsMenu(nav, forceExpanded = null) {
 // Swapna-mobile: end - toggleThreeDotsMenu function
 
 /**
+ * Recursively removes all data-aue-* attributes from an element and its descendants
+ * This is a hacky fix we seem to need for SP21 and SP23
+ * @param {Element} element The element to strip attributes from
+ */
+function stripAueAttributes(element) {
+  // Remove data-aue-* attributes from this element
+  [...element.attributes]
+    .filter((attr) => attr.name.startsWith('data-aue-'))
+    .forEach((attr) => element.removeAttribute(attr.name));
+
+  // Recursively strip from all children
+  Array.from(element.children).forEach((child) => stripAueAttributes(child));
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -309,7 +324,13 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.querySelector(':scope .section'));
+  if (fragment) {
+    // prevent header content from appearing in UE tree
+    stripAueAttributes(fragment);
+
+    // Append all sections from fragment
+    while (fragment.firstElementChild) { nav.append(fragment.firstElementChild); }
+  }
 
   const classes = ['brand', 'sections', 'tools', 'links'];
   classes.forEach((c, i) => {
