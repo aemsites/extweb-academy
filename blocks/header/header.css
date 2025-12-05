@@ -343,29 +343,23 @@ header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li 
 
 /* Mobile-first: footer in panels */
 header nav .nav-hamburger .megamenu-content .tabs-panel .footer {
-  flex-grow: 2;
-  flex-direction: column;
-  position: relative;
-  bottom: auto;
-  align-items: flex-start;
-  padding-top: 40px;
-  margin-top: 40px;
-  border-top: 1px solid var(--divider-on-dark-default);
+  padding-top: 14px;
+  margin-top: 14px;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
   border: none;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0;
-  padding: 0;
+  margin-top: 16px;
+  padding-top: 16px;
   margin-left: 0;
+  border-top: 1px solid var(--divider-on-dark-default);
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li {
-  padding: 10px 0;
+  /* padding: 10px 0; */
   margin: 0;
-  border-bottom: 1px solid var(--divider-on-dark-default);
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:last-child {
@@ -981,14 +975,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
   /* Restore desktop footer styling */
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer {
-    flex-grow: 2;
-    flex-direction: row;
-    position: absolute;
-    bottom: 70px;
-    align-items: center;
     padding-top: 40px;
-    margin-top: 0;
+    margin-top: 40px;
     border-top: 1px solid var(--divider-on-dark-default);
+    flex-direction: row;
   }
 
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
