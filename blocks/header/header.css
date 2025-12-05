@@ -726,6 +726,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
 }
 
 /* Home Page Header Styles - Apply specific styles when header-home class is present */
+
 /* Note: header height is set to 0 in styles.css using body.homepage selector for early loading */
 
 /* Remove any background from the header block itself on home page */
@@ -794,14 +795,16 @@ header .header-home nav .nav-links .default-content-wrapper a {
   color: var(--white);
 }
 
-/* Mobile/Tablet home page header styles (up to 1399px) */
-@media (width < 1400px) {
+/* Mobile/Tablet home page header styles (up to 1280px) */
+@media (width < 1281px) {
   /* Home page mobile nav layout - use flexbox for simpler positioning */
+
   /* Using header prefix for higher specificity to override global rules */
   header .header-home nav.nav-home {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0; /* Override global 24px gap */
     padding: 16px 24px;
     background-color: transparent;
     border-bottom: none;
@@ -814,19 +817,25 @@ header .header-home nav .nav-links .default-content-wrapper a {
   }
 
   /* Keep columns visible and on same line - don't stack */
+
+  /* Override global columns.css rules that change at 900px */
   header .header-home .nav-brand .columns {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     align-items: center;
   }
 
   header .header-home .nav-brand .columns > div {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     align-items: center;
     gap: 0;
+  }
+
+  /* Override global columns.css - prevent flex: 1 and order changes */
+  header .header-home .nav-brand .columns > div > div {
+    flex: 0 0 auto;
+    order: unset;
   }
 
   /* First column - Logo (responsive) */
@@ -848,12 +857,13 @@ header .header-home nav .nav-links .default-content-wrapper a {
   header .header-home .nav-brand .columns > div > div:nth-child(2) {
     display: flex;
     flex: 0 0 auto;
+    align-items: center; /* Vertically center Academy text */
     padding-left: 12px;
     margin-left: 0;
     border-left: 1px solid rgb(255 255 255 / 40%); /* Single separator line */
   }
 
-  /* ========== MOBILE MENU PANEL (must come before column styles for specificity) ========== */
+  /* ========== MOBILE MENU PANEL ========== */
 
   /* Mobile menu panel - hidden by default */
   .header-home .mobile-menu-panel {
@@ -861,70 +871,114 @@ header .header-home nav .nav-links .default-content-wrapper a {
   }
 
   /* Mobile menu links base styles */
-  .header-home .mobile-menu-panel .mobile-menu-links ul {
+  header .header-home .mobile-menu-panel .mobile-menu-links ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-links li {
+  header .header-home .mobile-menu-panel .mobile-menu-links li {
     margin: 0;
     padding: 0;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-link,
-  .header-home .mobile-menu-panel .mobile-menu-back a {
+  header .header-home .mobile-menu-panel .mobile-menu-link,
+  header .header-home .mobile-menu-panel .mobile-menu-back a {
     display: block;
     color: #333;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-link {
-    padding: 12px 0;
-    font-size: 18px; /* Smaller font size to match target */
+  header .header-home .mobile-menu-panel .mobile-menu-link {
+    display: inline-block; /* Shrink to text width for underline effect */
+    padding: 12px 0 4px; /* More top padding for spacing, less bottom for closer underline */
+    font-size: 20px; /* Match target font size */
     font-weight: 400;
     border-bottom: 2px solid transparent;
     transition: border-color 0.2s ease;
   }
 
   /* Underline on hover - matches target with Primary-Blue-40-WBG */
-  .header-home .mobile-menu-panel .mobile-menu-link:hover {
+  header .header-home .mobile-menu-panel .mobile-menu-link:hover {
     text-decoration: none;
     border-bottom-color: #169af3; /* Primary-Blue-40-WBG */
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-back {
+  header .header-home .mobile-menu-panel .mobile-menu-back {
     margin-top: 24px; /* Position directly after menu items, not at bottom */
-    padding-top: 24px;
+    padding-top: 12px; /* Closer to the gray line */
     border-top: 1px solid #e0e0e0;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #333;
   }
 
-  .header-home .mobile-menu-panel .mobile-menu-back a {
-    display: inline;
-    font-weight: 400; /* Same weight as regular text to match target */
+  header .header-home .mobile-menu-panel .mobile-menu-back a {
+    display: inline-block; /* Shrink to text width for underline effect */
+    font-weight: 400;
     color: #333;
     text-decoration: none;
-    font-size: 14px; /* Same size as surrounding text */
+    font-size: 14px;
+    padding-bottom: 4px; /* Space for underline */
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
   }
 
-  /* No hover color change - keep subtle */
-  .header-home .mobile-menu-panel .mobile-menu-back a:hover {
+  header .header-home .mobile-menu-panel .mobile-menu-back a strong {
+    font-weight: 700; /* Bold for worldbank.org */
+  }
+
+  /* Hover effect - same blue underline as menu items */
+  header .header-home .mobile-menu-panel .mobile-menu-back a:hover {
     text-decoration: none;
+    border-bottom-color: #169af3; /* Primary-Blue-40-WBG */
   }
 
-  /* Close button styles - light blue circle with white X */
+  /* ========== ACADEMY COLUMN STYLES (higher specificity - must come after mobile menu panel) ========== */
+
+  /* Remove bullet from Academy list in mobile */
+  header .header-home .nav-brand .columns > div > div:nth-child(2) ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  header .header-home .nav-brand .columns > div > div:nth-child(2) a {
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 32px; /* Match logo height for consistent vertical alignment */
+    height: 32px; /* Fixed height to match logo */
+    display: flex;
+    align-items: center;
+  }
+
+  /* Academy list item - reset any global margins/padding */
+  header .header-home .nav-brand .columns > div > div:nth-child(2) li {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Close button styles - light blue circle with white X, positioned absolutely */
   header .header-home .mobile-menu-panel .mobile-menu-close {
-    align-self: flex-end;
-    min-width: 36px;
-    max-width: 36px;
-    min-height: 36px;
-    max-height: 36px;
-    width: 36px;
-    height: 36px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
     border-radius: 50%;
     background-color: #169af3; /* Primary-Blue-40-WBG */
     color: var(--white);
@@ -935,7 +989,6 @@ header .header-home nav .nav-links .default-content-wrapper a {
     justify-content: center;
     font-size: 18px;
     font-weight: 300;
-    margin-bottom: 24px;
     line-height: 1;
     padding: 0;
     box-sizing: border-box;
@@ -945,43 +998,15 @@ header .header-home nav .nav-links .default-content-wrapper a {
     font-size: 20px;
     font-weight: 300;
     line-height: 1;
+    color: var(--black);
   }
 
   header .header-home .mobile-menu-panel .mobile-menu-close:hover {
     background-color: #0d7fd4; /* Slightly darker on hover */
   }
 
-  /* ========== COLUMN STYLES ========== */
-
-  /* Second column - Academy text (responsive) */
-  .header-home .nav-brand .columns > div > div:nth-child(2) {
-    display: flex;
-    align-items: center;
-    padding-left: 16px;
-    margin-left: 16px;
-    border-left: 1px solid rgb(255 255 255 / 50%);
-  }
-
-  /* Remove bullet from Academy list */
-  .header-home .nav-brand .columns > div > div:nth-child(2) ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .header-home .nav-brand .columns > div > div:nth-child(2) a {
-    color: var(--white);
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    background: none;
-    border: none;
-    padding: 0;
-  }
-
   /* Third column - HIDE entirely on mobile (search icon will be separate) */
-  .header-home .nav-brand .columns > div > div:nth-child(3) {
+  header .header-home .nav-brand .columns > div > div:nth-child(3) {
     display: none;
   }
 
@@ -992,7 +1017,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4px; /* Reduced padding for closer icons */
+    padding: 0;
     cursor: pointer;
     order: 2; /* Position after brand (order 1) and before hamburger (order 3) */
   }
@@ -1011,7 +1036,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
     display: flex;
     align-items: center;
     padding: 0;
-    padding-left: 8px; /* Small gap from search icon */
+    margin-left: 16px; /* Small gap from search icon */
     order: 3; /* Position after search icon */
   }
 
@@ -1054,23 +1079,27 @@ header .header-home nav .nav-links .default-content-wrapper a {
     position: fixed;
     top: 0;
     right: 0;
-    width: 280px; /* Smaller width to match target */
+    width: 276px; /* Match target width - includes padding */
     height: 100vh; /* Full height like target */
     background-color: var(--white);
     box-shadow: -4px 0 16px rgb(0 0 0 / 15%);
     z-index: 10000;
-    padding: 20px;
+    padding: 96px 56px 56px; /* top 96px, right/left/bottom 56px */
     border-top-left-radius: 16px; /* Rounded corner on top-left */
+    box-sizing: border-box; /* Include padding in width calculation */
   }
 
   /* Show mobile menu links when expanded */
   .header-home nav.nav-home[aria-expanded='true'] .mobile-menu-links {
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* Don't stretch items - underline only as wide as text */
+
     /* No flex: 1 - let container be only as tall as its content */
   }
 
   /* Prevent grid template change for home nav - fixes header jump */
+
   /* Using header prefix for higher specificity to override global rules */
   header .header-home nav.nav-home[aria-expanded='true'] {
     grid-template: unset;
@@ -1099,13 +1128,12 @@ header .header-home nav .nav-links .default-content-wrapper a {
   .home-search-dropdown {
     position: absolute;
     top: 100%; /* Below the header */
-    left: 0;
-    right: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 80px); /* 40px margin on each side */
     max-width: 100%;
-    padding: 12px 20px;
+    padding: 20px 0;
     box-sizing: border-box;
-    transform: none;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -1129,10 +1157,12 @@ header .header-home nav .nav-links .default-content-wrapper a {
     align-items: center;
     border-bottom: 2px solid #003e7e; /* Same as desktop */
     padding-bottom: 12px;
+    overflow: hidden; /* Prevent icon from going outside */
   }
 
   .home-search-input {
     flex: 1;
+    min-width: 0; /* Allow input to shrink */
     border: none;
     outline: none;
     font-family: 'Open Sans', sans-serif;
@@ -1151,7 +1181,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
   .home-search-btn {
     background: transparent;
     border: none;
-    color: #003e7e; /* Same as desktop */
+    color: #ec553a; /* Orange-red for mobile */
     font-size: 18px;
     cursor: pointer;
     padding: 8px;
@@ -1159,18 +1189,118 @@ header .header-home nav .nav-links .default-content-wrapper a {
     align-items: center;
     justify-content: center;
     border-radius: 0;
+    flex-shrink: 0; /* Prevent icon from being squeezed */
+  }
+
+  /* Ensure search button color overrides global button styles */
+  .home-search-container .home-search-btn,
+  .home-search-container .home-search-btn.lp,
+  .home-search-container .home-search-btn.lp-search {
+    color: #ec553a; /* Orange-red for mobile */
+    background: transparent;
+    background-color: transparent;
   }
 
   /* No hover effect on search button - overrides global button:hover */
-  .home-search-btn:hover {
+  .home-search-container .home-search-btn:hover,
+  .home-search-container .home-search-btn.lp:hover,
+  .home-search-container .home-search-btn.lp-search:hover {
     background: transparent;
     background-color: transparent;
-    color: #003e7e; /* Same as desktop */
+    color: #ec553a; /* Orange-red for mobile */
+  }
+}
+
+/* ======================================== */
+
+/* RESPONSIVE BREAKPOINTS FOR MOBILE HEADER */
+
+/* ======================================== */
+
+/* Tablet breakpoint - smaller logo and text */
+@media (width < 768px) {
+  header .header-home .nav-brand .columns > div > div:first-child img {
+    height: 28px; /* Smaller logo */
+  }
+
+  header .header-home .nav-brand .columns > div > div:nth-child(2) a {
+    font-size: 18px; /* Smaller Academy text */
+    line-height: 28px; /* Match logo height */
+    height: 28px; /* Match logo height */
+  }
+
+  header .header-home nav.nav-home {
+    padding: 12px 20px; /* Slightly less padding */
+  }
+}
+
+/* Small mobile breakpoint - even smaller */
+@media (width < 576px) {
+  header .header-home .nav-brand .columns > div > div:first-child img {
+    height: 24px; /* Even smaller logo */
+  }
+
+  header .header-home .nav-brand .columns > div > div:nth-child(2) a {
+    font-size: 16px; /* Smaller Academy text */
+    line-height: 24px; /* Match logo height */
+    height: 24px; /* Match logo height */
+  }
+
+  header .header-home .nav-brand .columns > div > div:first-child {
+    padding-right: 8px; /* Less padding between logo and Academy */
+  }
+
+  header .header-home .nav-brand .columns > div > div:nth-child(2) {
+    padding-left: 8px;
+  }
+
+  header .header-home nav.nav-home {
+    padding: 12px 16px; /* Less side padding */
+  }
+}
+
+/* Extra small mobile breakpoint */
+@media (width < 400px) {
+  header .header-home .nav-brand .columns > div > div:first-child img {
+    height: 20px; /* Minimum logo size */
+  }
+
+  header .header-home .nav-brand .columns > div > div:nth-child(2) a {
+    font-size: 14px; /* Minimum Academy text size */
+    line-height: 20px; /* Match logo height */
+    height: 20px; /* Match logo height */
+  }
+
+  header .header-home .nav-brand .columns > div > div:first-child {
+    padding-right: 6px;
+  }
+
+  header .header-home .nav-brand .columns > div > div:nth-child(2) {
+    padding-left: 6px;
+  }
+
+  header .header-home nav.nav-home {
+    padding: 10px 12px;
+  }
+
+  /* Smaller search dropdown margins on very small screens */
+  .home-search-dropdown {
+    width: calc(100% - 32px); /* 16px margin on each side */
+  }
+
+  /* Smaller hamburger and search icons */
+  header .header-home .mobile-search-trigger .lp-search {
+    font-size: 18px;
+  }
+
+  header .header-home .nav-hamburger-icon {
+    height: 18px;
+    width: 18px;
   }
 }
 
 /* Desktop-specific home page header styles */
-@media (width >= 1400px) {
+@media (width >= 1281px) {
   /* Hide hamburger on desktop for home page */
   .header-home .nav-hamburger {
     display: none;
@@ -1189,8 +1319,9 @@ header .header-home nav .nav-links .default-content-wrapper a {
     gap: 0;
     max-width: 1452px;
     margin: 0 auto;
-    padding: 32px 0; /* Removed horizontal padding - was causing alignment issues */
+    padding: 32px 72px; /* Horizontal padding for proper spacing from edges */
     border-bottom: none;
+    box-sizing: border-box;
   }
 
   /* Home page nav-brand contains the columns block */
@@ -1451,13 +1582,14 @@ header .header-home nav .nav-links .default-content-wrapper a {
     top: 100%; /* Below the header-home element */
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    max-width: 1400px;
-    padding: 40px 60px;
+    width: calc(100% - 120px); /* Always maintain 60px margin on each side */
+    max-width: 1280px;
+    padding: 40px 0; /* Remove horizontal padding, use width calc instead */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 1000;
+    box-sizing: border-box;
   }
 
   .home-search-dropdown.open {
@@ -1512,7 +1644,7 @@ header .header-home nav .nav-links .default-content-wrapper a {
   }
 
   /* No hover effect on search button - overrides global button:hover */
-  .home-search-btn:hover {
+  header .header-home .home-search-btn:hover {
     background: transparent;
     background-color: transparent;
     color: #003e7e;

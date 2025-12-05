@@ -586,7 +586,8 @@ export default async function decorate(block) {
     if (backLinkContent) {
       const backLink = document.createElement('div');
       backLink.className = 'mobile-menu-back';
-      backLink.innerHTML = `<span>back to </span><a href="${backLinkContent.url}">${backLinkContent.text}</a>`;
+      // Entire text is a link, with worldbank.org in bold
+      backLink.innerHTML = `<a href="${backLinkContent.url}">back to <strong>${backLinkContent.text}</strong></a>`;
       mobileMenuPanel.appendChild(backLink);
     }
 
