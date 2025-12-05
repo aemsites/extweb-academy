@@ -298,7 +298,7 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
-  buildFragmentBlocks(main);
+ // buildFragmentBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }
