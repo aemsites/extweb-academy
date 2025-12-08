@@ -189,7 +189,6 @@ header nav .nav-sections {
   align-items: center;
 }
 
-/* Hide nav-sections on mobile for home header */
 .header-home .nav-sections {
   display: none;
 }
@@ -230,7 +229,6 @@ header nav .nav-tools {
   align-items: center;
 }
 
-/* Hide nav-tools on mobile for home header */
 .header-home .nav-tools {
   display: none;
 }
@@ -303,7 +301,6 @@ header nav .nav-three-dots {
   padding-right: 24px;
 }
 
-/* Hide nav-three-dots on mobile for home header */
 .header-home .nav-three-dots {
   display: none;
 }
@@ -807,20 +804,11 @@ header nav[aria-expanded='true'] .nav-three-dots {
   }
 }
 
-/*
- * ========================================
- * HOME PAGE HEADER STYLES
- * Mobile-first approach
- * ========================================
- */
-
-/* Base styles - all screen sizes */
 .header-home {
   background-color: transparent;
   position: relative;
 }
 
-/* Prevent horizontal shift when mobile menu is open (scrollbar disappears) */
 body:has(.header-home nav.nav-home[aria-expanded='true']) {
   overflow-y: scroll !important;
   scrollbar-gutter: stable;
@@ -853,7 +841,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   filter: brightness(0) invert(1);
 }
 
-/* Columns layout */
 .header-home .nav-brand .columns,
 .header-home .nav-brand .columns > div {
   display: flex;
@@ -867,7 +854,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   order: unset;
 }
 
-/* First column - Logo */
 .header-home .nav-brand .columns > div > div:first-child {
   display: flex;
   align-items: center;
@@ -879,7 +865,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   width: auto;
 }
 
-/* Second column - Academy text */
 .header-home .nav-brand .columns > div > div:nth-child(2) {
   display: flex;
   align-items: center;
@@ -942,12 +927,10 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   margin: 0;
 }
 
-/* Third column - hidden on mobile */
 .header-home .nav-brand .columns > div > div:nth-child(3) {
   display: none;
 }
 
-/* Mobile search trigger - use !important to override nav-sections class that gets incorrectly added */
 .header-home .mobile-search-trigger {
   display: flex !important;
   visibility: visible !important;
@@ -977,7 +960,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   opacity: 0.8;
 }
 
-/* Mobile menu panel */
 .header-home .mobile-menu-panel {
   display: none;
 }
@@ -1007,7 +989,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 }
 
 .header-home nav.nav-home[aria-expanded='true'] {
-  /* Override base header expanded styles - keep layout identical to closed state */
   grid-template: unset;
   min-height: unset;
   height: var(--nav-height);
@@ -1016,14 +997,12 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   gap: 0;
 }
 
-/* Keep header elements visible when menu is expanded */
 .header-home nav.nav-home[aria-expanded='true'] .nav-brand,
 .header-home nav.nav-home[aria-expanded='true'] .mobile-search-trigger,
 .header-home nav.nav-home[aria-expanded='true'] .nav-hamburger {
   display: flex;
 }
 
-/* Mobile menu links */
 .header-home .mobile-menu-panel .mobile-menu-link {
   display: inline-block;
   padding: 12px 0 4px;
@@ -1063,7 +1042,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   background-color: #0d7fd4;
 }
 
-/* Search dropdown */
 .header-home .home-search-dropdown {
   position: absolute;
   top: 100%;
@@ -1134,7 +1112,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   color: #ec553a;
 }
 
-/* >= 400px - Small mobile+ */
 @media (width >= 400px) {
   .header-home .nav-brand .columns > div > div:first-child img {
     height: 24px;
@@ -1167,7 +1144,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   }
 }
 
-/* >= 576px - Medium mobile+ */
 @media (width >= 576px) {
   .header-home .nav-brand .columns > div > div:first-child img {
     height: 28px;
@@ -1184,7 +1160,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   }
 }
 
-/* >= 768px - Tablet+ */
 @media (width >= 768px) {
   .header-home .nav-brand .columns > div > div:first-child img {
     height: 32px;
@@ -1209,9 +1184,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   }
 }
 
-/* >= 1281px - Desktop */
 @media (width >= 1281px) {
-  /* Hide mobile elements */
   .header-home .nav-hamburger,
   .header-home .nav-three-dots,
   .header-home .mobile-search-trigger {
@@ -1252,7 +1225,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     width: auto;
   }
 
-  /* First column - Logo */
   .header-home .nav-brand .columns > div > div:first-child {
     padding-right: var(--spacing-large);
     border-right: 2px solid rgb(255 255 255 / 24%);
@@ -1275,7 +1247,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     text-decoration: none;
   }
 
-  /* Second column - Academy text */
   .header-home .nav-brand .columns > div > div:nth-child(2) {
     padding-left: 20px;
     margin-left: 5px;
@@ -1319,7 +1290,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     color: rgb(255 255 255 / 80%);
   }
 
-  /* Third column - Navigation links (show on desktop) */
   .header-home .nav-brand .columns > div > div:nth-child(3) {
     flex: 1 1 auto;
     display: flex;
@@ -1386,8 +1356,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   .header-home .nav-brand .columns > div > div:nth-child(3) .lp-search.active {
     color: var(--white);
   }
-  
-  /* Desktop search dropdown */
+
   .header-home .home-search-dropdown {
     width: calc(100% - 120px);
     max-width: 1280px;
