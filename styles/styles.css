@@ -836,3 +836,17 @@ html.adobe-ue-edit {
     height: 600px;
   }
 }
+
+/* Template - program-detail */
+
+/* General section spacing */
+body.program-detail main .section {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+body.program-detail main .section:first-of-type h1 {
+  padding-top: var(--spacing-huge);
+  padding-bottom: var(--spacing-large);
+  margin: 0;
+}
