@@ -201,11 +201,12 @@ header nav .nav-hamburger .megamenu-content .tabs-list {
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-tab {
+  height: auto;
   color: var(--white);
   background-color: var(--accent-blue-primary-90);
   border: 0;
   border-radius: 8px;
-  padding: 16px 24px;
+  padding: 10px 40px 10px 20px;
   font-size: var(--font-size-600);
   justify-content: left;
   text-align: left;
@@ -217,7 +218,14 @@ header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
   background-color: var(--white);
   color: var(--accent-blue-primary-90);
   cursor: pointer;
-  text-decoration: underline;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p {
+  border-bottom: 1px solid var(--white);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p:hover {
+  border-bottom: 1px solid var(--divider-on-dark-default);
 }
 
 /* Mobile-first: panels hidden by default, shown when selected */
@@ -302,8 +310,8 @@ header nav .nav-hamburger .megamenu-content .tabs-panel a {
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel a:any-link:hover {
-  text-decoration: underline;
   color: var(--white);
+  border-bottom: 1px solid var(--white);
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li {
@@ -978,6 +986,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
     padding-top: 40px;
     margin-top: 40px;
     border-top: 1px solid var(--divider-on-dark-default);
+    display: flex;
     flex-direction: row;
   }
 
