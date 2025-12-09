@@ -554,9 +554,6 @@ export default async function decorate(block) {
     const homeColumnsBlock = nav.querySelector('.columns');
     const homeThirdColumn = homeColumnsBlock?.querySelectorAll(':scope > div > div')[2];
 
-    // Variables to store back link content
-    let backLinkContent = null;
-
     if (homeThirdColumn) {
       // The menu links are in a <ul> list, find all list items with links
       const menuList = homeThirdColumn.querySelector('ul');
@@ -564,22 +561,7 @@ export default async function decorate(block) {
         const listItems = menuList.querySelectorAll('li');
         listItems.forEach((li) => {
           const linkElement = li.querySelector('a');
-          const hasBackIcon = li.querySelector('.icon-back');
           const hasSearchIcon = li.querySelector('.icon-search');
-
-          // Check if this has the back icon - hide it from desktop and extract for mobile footer
-          if (hasBackIcon) {
-            if (linkElement) {
-              backLinkContent = {
-                text: linkElement.textContent,
-                url: linkElement.href,
-              };
-            }
-            // Hide this item from desktop view immediately
-            li.style.display = 'none';
-            li.classList.add('mobile-back-link-source');
-            return; // Skip to next item
-          }
 
           // Skip items with search icon or other icon-only items
           if (hasSearchIcon || (li.querySelector('.icon') && !linkElement)) {
@@ -603,13 +585,16 @@ export default async function decorate(block) {
       mobileMenuPanel.appendChild(mobileMenuLinks);
     }
 
-    // Back to link - only add if content with :back: marker exists in Universal Editor
-    if (backLinkContent) {
-      const backLink = document.createElement('div');
-      backLink.className = 'mobile-menu-back';
-      // Entire text is a link, with worldbank.org in bold
-      backLink.innerHTML = `<a href="${backLinkContent.url}">back to <strong>${backLinkContent.text}</strong></a>`;
-      mobileMenuPanel.appendChild(backLink);
+    // Mobile footer - find paragraphs in third column (authored directly in Universal Editor)
+    if (homeThirdColumn) {
+      const footerParagraphs = homeThirdColumn.querySelectorAll(':scope > p');
+      footerParagraphs.forEach((p) => {
+        const footerItem = p.cloneNode(true);
+        footerItem.classList.add('mobile-menu-footer');
+        mobileMenuPanel.appendChild(footerItem);
+        // Hide original paragraph (only show in mobile menu)
+        p.style.display = 'none';
+      });
     }
 
     nav.appendChild(mobileMenuPanel);
