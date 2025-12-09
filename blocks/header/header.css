@@ -214,6 +214,10 @@ header nav .nav-hamburger .megamenu-content .tabs-tab {
   margin-bottom: 8px;
 }
 
+header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
+  font-weight: 700;
+}
+
 header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
   background-color: var(--white);
   color: var(--accent-blue-primary-90);
