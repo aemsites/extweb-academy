@@ -604,3 +604,9 @@ border-radius: var(--border-radius-medium);
   }
 }
 
+/* Left Image, Right Text Card Variant */
+.cards.left-right-card > ul {
+  grid-template-columns: 1fr;
+  gap: var(--spacing-large);
+}
+
