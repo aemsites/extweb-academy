@@ -546,55 +546,15 @@ export default async function decorate(block) {
     });
     mobileMenuPanel.appendChild(closeButton);
 
-    // Menu links container
-    const mobileMenuLinks = document.createElement('div');
-    mobileMenuLinks.className = 'mobile-menu-links';
-
-    // Get links from the third column content (from Universal Editor)
+    // Clone the entire home-nav-links (third column) into the mobile panel
+    // This allows CSS to handle all styling via selectors without complex JS
     const homeColumnsBlock = nav.querySelector('.columns');
     const homeThirdColumn = homeColumnsBlock?.querySelectorAll(':scope > div > div')[2];
 
     if (homeThirdColumn) {
-      // The menu links are in a <ul> list, find all list items with links
-      const menuList = homeThirdColumn.querySelector('ul');
-      if (menuList) {
-        const listItems = menuList.querySelectorAll('li');
-        listItems.forEach((li) => {
-          const linkElement = li.querySelector('a');
-          const hasSearchIcon = li.querySelector('.icon-search');
-
-          // Skip items with search icon or other icon-only items
-          if (hasSearchIcon || (li.querySelector('.icon') && !linkElement)) {
-            return; // Skip to next item
-          }
-
-          // Regular menu link - add to mobile menu
-          if (linkElement) {
-            const link = document.createElement('a');
-            link.href = linkElement.href;
-            link.textContent = linkElement.textContent;
-            link.className = 'mobile-menu-link';
-            mobileMenuLinks.appendChild(link);
-          }
-        });
-      }
-    }
-
-    // Only add menu links container if there's content from Universal Editor
-    if (mobileMenuLinks.children.length > 0) {
-      mobileMenuPanel.appendChild(mobileMenuLinks);
-    }
-
-    // Mobile footer - find paragraphs in third column (authored directly in Universal Editor)
-    if (homeThirdColumn) {
-      const footerParagraphs = homeThirdColumn.querySelectorAll(':scope > p');
-      footerParagraphs.forEach((p) => {
-        const footerItem = p.cloneNode(true);
-        footerItem.classList.add('mobile-menu-footer');
-        mobileMenuPanel.appendChild(footerItem);
-        // Hide original paragraph (only show in mobile menu)
-        p.style.display = 'none';
-      });
+      const mobileNavLinks = homeThirdColumn.cloneNode(true);
+      mobileNavLinks.classList.add('mobile-nav-links');
+      mobileMenuPanel.appendChild(mobileNavLinks);
     }
 
     nav.appendChild(mobileMenuPanel);
