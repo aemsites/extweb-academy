@@ -513,10 +513,15 @@ header nav[aria-expanded='true'] .nav-links .default-content-wrapper {
   width: 100%;
 }
 
-.header-home .mobile-menu-panel .mobile-nav-links > p {
-  margin-top: 24px;
-  padding-top: 1px;
+.header-home .mobile-menu-panel .mobile-nav-links > p:first-of-type {
+  margin-top: 20px;
+  margin-bottom: -7px;
+  padding-top: 12px;
   border-top: 1px solid #e0e0e0;
+}
+
+.header-home .mobile-menu-panel .mobile-nav-links > p {
+  margin-top: 20px;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
