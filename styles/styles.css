@@ -524,6 +524,11 @@ header {
   height: var(--nav-height);
 }
 
+/* Home page: no reserved header height (transparent header overlays content) */
+body.homepage header {
+  height: 0;
+}
+
 header .header,
 footer .footer {
   visibility: hidden;

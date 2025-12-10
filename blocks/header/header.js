@@ -23,6 +23,122 @@ let listOfAllPlaceholdersData = {};
 // swapna-search-close-on-focus: Variable to store search container reference
 let searchContainer;
 
+// Home page search dropdown - tracks if dropdown is currently open
+let isHomeSearchOpen = false;
+
+/**
+ * Closes the home page search dropdown and removes it from DOM
+ */
+function closeHomeSearchDropdown() {
+  const dropdown = document.querySelector('.home-search-dropdown');
+  if (!dropdown) return;
+
+  dropdown.classList.remove('open');
+  dropdown.setAttribute('aria-hidden', 'true');
+
+  const searchIcon = document.querySelector('.header-home .lp-search');
+  if (searchIcon) {
+    searchIcon.classList.remove('active');
+  }
+
+  setTimeout(() => {
+    dropdown.remove();
+  }, 300);
+
+  isHomeSearchOpen = false;
+}
+
+/**
+ * Handles click outside to close dropdown
+ */
+function handleClickOutside(e) {
+  const dropdown = document.querySelector('.home-search-dropdown');
+  if (dropdown && !dropdown.contains(e.target) && !e.target.closest('.lp-search')) {
+    closeHomeSearchDropdown();
+    document.removeEventListener('click', handleClickOutside);
+  }
+}
+
+/**
+ * Opens the home page search dropdown
+ */
+function openHomeSearchDropdown() {
+  if (isHomeSearchOpen) return;
+
+  const headerHome = document.querySelector('.header-home');
+  if (!headerHome) return;
+
+  const dropdown = document.createElement('div');
+  dropdown.className = 'home-search-dropdown';
+  dropdown.setAttribute('aria-hidden', 'true');
+
+  const container = document.createElement('div');
+  container.className = 'home-search-container';
+
+  const inputWrapper = document.createElement('div');
+  inputWrapper.className = 'home-search-input-wrapper';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'home-search-input';
+  input.placeholder = 'Search Academy';
+  input.setAttribute('aria-label', 'Search Academy');
+
+  const searchBtn = document.createElement('button');
+  searchBtn.className = 'home-search-btn lp lp-search';
+  searchBtn.setAttribute('aria-label', 'Submit search');
+  searchBtn.type = 'button';
+
+  const performSearch = () => {
+    const query = input.value.trim();
+    if (query) {
+      const searchUrl = listOfAllPlaceholdersData.searchRedirectUrl
+        || 'https://academy.worldbank.org/en/search?q=';
+      window.location.href = searchUrl + encodeURIComponent(query);
+    }
+  };
+
+  searchBtn.addEventListener('click', performSearch);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') performSearch();
+    if (e.key === 'Escape') closeHomeSearchDropdown();
+  });
+
+  inputWrapper.appendChild(input);
+  inputWrapper.appendChild(searchBtn);
+  container.appendChild(inputWrapper);
+  dropdown.appendChild(container);
+
+  headerHome.appendChild(dropdown);
+  isHomeSearchOpen = true;
+
+  requestAnimationFrame(() => {
+    dropdown.classList.add('open');
+    dropdown.setAttribute('aria-hidden', 'false');
+    input.focus();
+  });
+
+  const searchIcon = document.querySelector('.header-home .lp-search');
+  if (searchIcon) {
+    searchIcon.classList.add('active');
+  }
+
+  setTimeout(() => {
+    document.addEventListener('click', handleClickOutside);
+  }, 10);
+}
+
+/**
+ * Toggles the home page search dropdown
+ */
+function toggleHomeSearchDropdown() {
+  if (isHomeSearchOpen) {
+    closeHomeSearchDropdown();
+  } else {
+    openHomeSearchDropdown();
+  }
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -130,7 +246,9 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 function createInlineSearchBox(navTools) {
   const contentWrapper = navTools.querySelector('.default-content-wrapper');
+  if (!contentWrapper) return; // Exit early if no content wrapper found
   const searchIconParagraph = contentWrapper.querySelector('p');
+  if (!searchIconParagraph) return; // Exit early if no search icon paragraph found
 
   // swapna-search: Create wrapper for search box
   const searchWrapper = div({ class: 'inline-search-wrapper' });
@@ -214,6 +332,7 @@ function createInlineSearchBox(navTools) {
  * @param {Element} contentWrapper - The content wrapper element
  */
 function setAccessibilityAttrForSearchIcon(contentWrapper) {
+  if (!contentWrapper) return; // Exit early if no content wrapper found
   // swapna-search: Find the icon element (not the input)
   const iconTag = [...contentWrapper.children].find((child) => child.classList.contains('icon') || child.querySelector('.icon'));
   if (iconTag) {
@@ -318,18 +437,127 @@ export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+
+  // Add home-specific class IMMEDIATELY (before loading fragment) to prevent flash
+  const isHomeNav = navPath.includes('nav-home');
+  if (isHomeNav) {
+    block.classList.add('header-home');
+  }
+
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
+
+  // Add nav-home class for CSS targeting
+  if (isHomeNav) {
+    nav.classList.add('nav-home');
+  }
+
   if (fragment) {
     // prevent header content from appearing in UE tree
     stripAueAttributes(fragment);
 
     // Append all sections from fragment
     while (fragment.firstElementChild) { nav.append(fragment.firstElementChild); }
+  }
+
+  // Process home nav structure - add search icon and mobile support
+  if (isHomeNav) {
+    const columnsBlock = nav.querySelector('.columns');
+    if (columnsBlock) {
+      const columns = columnsBlock.querySelectorAll(':scope > div > div');
+
+      // Process third column (navigation links)
+      if (columns.length >= 3) {
+        const thirdColumn = columns[2];
+        thirdColumn.classList.add('home-nav-links');
+
+        // Add font-based search icon to the navigation (for desktop)
+        const searchIcon = document.createElement('span');
+        searchIcon.className = 'lp lp-search home-search-icon';
+        searchIcon.setAttribute('role', 'button');
+        searchIcon.setAttribute('tabindex', '0');
+        searchIcon.setAttribute('aria-label', 'Search');
+
+        searchIcon.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleHomeSearchDropdown();
+        });
+
+        searchIcon.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleHomeSearchDropdown();
+          }
+        });
+
+        thirdColumn.appendChild(searchIcon);
+
+        // Hide the original SVG search icon
+        const svgIcon = thirdColumn.querySelector('.icon-search');
+        if (svgIcon) {
+          svgIcon.style.display = 'none';
+        }
+      }
+    }
+
+    // Create mobile search trigger (for mobile/tablet views)
+    const mobileSearchTrigger = document.createElement('div');
+    mobileSearchTrigger.className = 'mobile-search-trigger';
+
+    const mobileSearchIcon = document.createElement('span');
+    mobileSearchIcon.className = 'lp lp-search';
+    mobileSearchIcon.setAttribute('role', 'button');
+    mobileSearchIcon.setAttribute('tabindex', '0');
+    mobileSearchIcon.setAttribute('aria-label', 'Search');
+
+    mobileSearchIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleHomeSearchDropdown();
+    });
+
+    mobileSearchIcon.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHomeSearchDropdown();
+      }
+    });
+
+    mobileSearchTrigger.appendChild(mobileSearchIcon);
+    nav.appendChild(mobileSearchTrigger);
+
+    // Create mobile menu panel for home navigation
+    const mobileMenuPanel = document.createElement('div');
+    mobileMenuPanel.className = 'mobile-menu-panel';
+
+    // Close button
+    const closeButton = document.createElement('button');
+    closeButton.className = 'mobile-menu-close';
+    closeButton.setAttribute('aria-label', 'Close menu');
+    closeButton.innerHTML = '<span class="close-icon">×</span>';
+    closeButton.addEventListener('click', () => {
+      nav.setAttribute('aria-expanded', 'false');
+      document.body.style.overflowY = '';
+    });
+    mobileMenuPanel.appendChild(closeButton);
+
+    // Clone the entire home-nav-links (third column) into the mobile panel
+    // This allows CSS to handle all styling via selectors without complex JS
+    const homeColumnsBlock = nav.querySelector('.columns');
+    const homeThirdColumn = homeColumnsBlock?.querySelectorAll(':scope > div > div')[2];
+
+    if (homeThirdColumn) {
+      const mobileNavLinks = homeThirdColumn.cloneNode(true);
+      mobileNavLinks.classList.add('mobile-nav-links');
+      mobileMenuPanel.appendChild(mobileNavLinks);
+    }
+
+    nav.appendChild(mobileMenuPanel);
   }
 
   const classes = ['brand', 'sections', 'tools', 'links'];
@@ -423,8 +651,19 @@ export default async function decorate(block) {
 
   // swapna-DOM-helper: start - Create hamburger menu using DOM helper functions
   // instead of innerHTML for better performance and security
+  const hamburgerClickHandler = () => {
+    if (isHomeNav) {
+      // For home nav, toggle the mobile menu panel
+      const expanded = nav.getAttribute('aria-expanded') === 'true';
+      nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      document.body.style.overflowY = expanded ? '' : 'hidden';
+    } else if (navSections) {
+      toggleMenu(nav, navSections);
+    }
+  };
+
   const hamburger = div(
-    { class: 'nav-hamburger', onclick: () => { toggleMenu(nav, navSections); } },
+    { class: 'nav-hamburger', onclick: hamburgerClickHandler },
     button(
       {
         type: 'button',
@@ -485,13 +724,15 @@ export default async function decorate(block) {
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load
   // Only call toggleMenu for mobile to prevent setting aria-expanded='true' on desktop
   // This ensures hamburger icon shows 3 lines (not X) on desktop when page loads
-  if (!isDesktop.matches) {
+  if (!isDesktop.matches && navSections) {
     toggleMenu(nav, navSections, false);
   }
   // swapna-desktop-hamburger: end - Keep aria-expanded='false' on desktop page load
 
   // prevent mobile nav behavior on window resize
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  if (navSections) {
+    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  }
 
   // Swapna-mobile: start - Handle 3-dots menu behavior on window resize
   showThreeDotsMenu.addEventListener('change', () => {
