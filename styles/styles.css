@@ -359,6 +359,14 @@
   src: local('Arial');
 }
 
+
+body.program-detail .hero {
+  padding:0;
+  margin:0;
+  min-height: auto;
+  padding-bottom: 48px;
+}
+
 @media (width >= 768px) {
   :root {
     /* responsive spacing */
@@ -403,7 +411,17 @@
     --eyebrow-font-size-m: 14px;
     --eyebrow-font-size-s: 12px;
   }
+
+  body.program-detail .cards > ul {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    margin-top: 150px;
+  }
+
+  body.program-detail .hero {
+    padding-bottom: 100px;
+  }
 }
+
 
 @media (width >= 900px) {
   :root {
@@ -450,6 +468,11 @@
   main > .section > div {
     padding: 0 32px;
   }
+
+  body.program-detail .hero {
+    padding-bottom: 160px;
+  }
+
 }
 
 
@@ -473,7 +496,7 @@
     --font-size-400: 1.125rem;
     --font-size-500: 1.25rem;
     --font-size-600: 1.5rem;
-    --font-size-700: 1.75rem;
+    --font-size-700: 1.25rem;
     --font-size-800: 2rem;
     --font-size-900: 2.25rem;
     --font-size-1000: 2.5rem;
@@ -486,6 +509,24 @@
     /* main-heading styles */
     --main-heading-font-size: 40px;
     --main-heading-spacing: 0 0 48px;
+  }
+
+  body.program-detail .cards > ul {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+}
+
+
+@media (width >= 1440px) {
+  :root { 
+    --font-size-1000: 3rem;
+    --font-size-600: 1.75rem;
+  }
+
+  body.program-detail .hero {
+    padding-bottom: 260px;
   }
 }
 
@@ -518,6 +559,8 @@ header .header[data-block-status="loaded"],
 footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
+
+
 
 h1,
 h2,
@@ -559,6 +602,8 @@ h4 {
 h5 { font-size: var(--font-size-700); }
 h6 { font-size: var(--font-size-700); }
 
+
+
 p,
 dl,
 ol,
@@ -584,6 +629,11 @@ pre {
 
 strong {
   font-weight: var(--font-weight-700);
+}
+
+body.program-detail .cards > ul {
+  grid-gap: 23px;
+  margin-top: 65px;
 }
 
 main pre {
@@ -764,6 +814,11 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
+body.program-detail main .section > div > p {
+    margin-left: 40px;
+  margin-bottom: var(--spacing-small);
+  }
+
 /* Homepage Sticky Card Section */
 .section[data-id="sticky-section"] > .default-content-wrapper {
   place-self: center;
@@ -811,6 +866,60 @@ main > .section:first-of-type {
   margin: 0;
 }
 
+/* Template - program-detail */
+
+/* General section spacing */
+body.program-detail main .section:first-of-type h1 {
+  padding-top: var(--spacing-huge);
+  margin: 0;
+  font-size: var(--font-size-1000);
+  line-height: 112%;
+  margin-bottom: -15px;
+}
+
+body.program-detail main .section {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+body.program-detail main .section > div {
+  margin: 0;
+  padding: 0;
+  padding-bottom: var(--spacing-large);
+  font-size: var(--font-size-500);
+  display: block;
+  margin-block: 1em;
+  margin-inline: 0;
+  unicode-bidi: isolate;
+}
+
+body.program-detail .hero picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  padding-bottom: 64px;
+  inset: auto;
+}
+
+body.program-detail .cards > ul > li img {
+  display: block;
+  width: 90px;
+  margin: 0 auto 16px;
+  aspect-ratio: auto;
+}
+
+body.program-detail .cards .cards-card-body {
+  text-align: center;
+}
+
+body.program-detail .cards .cards-card-body h3 {
+  font-size: var(--font-size-600);
+  line-height: 150%;
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {
@@ -835,18 +944,6 @@ html.adobe-ue-edit {
   .section.iframe-container > .iframe-wrapper {
     height: 600px;
   }
+
 }
 
-/* Template - program-detail */
-
-/* General section spacing */
-body.program-detail main .section {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-body.program-detail main .section:first-of-type h1 {
-  padding-top: var(--spacing-huge);
-  padding-bottom: var(--spacing-large);
-  margin: 0;
-}

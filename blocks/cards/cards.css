@@ -16,7 +16,7 @@ border-radius: var(--border-radius-medium);
 }
 
 .cards.left-text-border .cards-card-body {
-  border-left: 2px solid #000000;
+  border-left: 2px solid black;
   padding-left: var(--spacing-regular);
 }
 

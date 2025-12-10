@@ -15,6 +15,7 @@
   
   
   }
+  
     @media (width <=390px) {
       .auto-image-container-v1 picture img {
       height: 272px;
