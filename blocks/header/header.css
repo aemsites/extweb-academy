@@ -202,38 +202,20 @@ header nav .nav-hamburger .megamenu-content .tabs-list {
 
 header nav .nav-hamburger .megamenu-content .tabs-tab {
   height: auto;
-  color: var(--white);
+  color: var(--text-on-dark-default);
   background-color: var(--accent-blue-primary-90);
   border: 0;
   border-radius: 8px;
   padding: 10px 40px 10px 20px;
-  font-size: var(--font-size-600);
+  font-size: var(--font-size-1100);
   justify-content: left;
   text-align: left;
   cursor: pointer;
   margin-bottom: 8px;
 }
 
-header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
-  font-weight: 700;
-}
-
-header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
-  background-color: var(--white);
-  color: var(--accent-blue-primary-90);
-  cursor: pointer;
-}
-
-header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p {
-  border-bottom: 1px solid var(--white);
-}
-
-header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p:hover {
-  border-bottom: 1px solid var(--divider-on-dark-default);
-}
-
-/* Chevron icon for selected tabs in megamenu */
-header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true']::before {
+/* Chevron icon for all tabs in megamenu */
+header nav .nav-hamburger .megamenu-content .tabs-tab::before {
   content: '';
   display: inline-block;
   width: 0.3em;
@@ -243,6 +225,17 @@ header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true']::bef
   transform: rotate(-45deg);
   margin-right: 0.5em;
   vertical-align: middle;
+}
+
+/* override default styles for selected tab */
+header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
+  background-color: var(--accent-blue-primary-90);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
+  font-weight: 700;
+  font-size: var(--font-size-1100);
+  pointer-events: none;
 }
 
 /* Mobile-first: panels hidden by default, shown when selected */
@@ -946,6 +939,37 @@ header nav[aria-expanded='true'] .nav-three-dots {
     margin-bottom: 0;
   }
 
+  header nav .nav-hamburger .megamenu-content .tabs-tab a {
+    pointer-events: auto;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
+    background-color: var(--white);
+    color: var(--accent-blue-primary-90);
+    cursor: pointer;
+  }
+  
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p {
+    border-bottom: 1px solid var(--white);
+  }
+  
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p:hover {
+    border-bottom: 1px solid var(--divider-on-dark-default);
+  }
+  
+  /* Chevron icon for selected tabs in megamenu */
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true']::before {
+    content: '';
+    display: inline-block;
+    width: 0.3em;
+    height: 0.3em;
+    border-right: 2px solid var(--accent-blue-primary-40);
+    border-bottom: 2px solid var(--accent-blue-primary-40);
+    transform: rotate(-45deg);
+    margin-right: 0.5em;
+    vertical-align: middle;
+  }
+  
   /* Show panels on desktop (restore original behavior) */
   header nav .nav-hamburger .megamenu-content .tabs-panel {
     display: flex;
