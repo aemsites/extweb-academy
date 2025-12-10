@@ -201,6 +201,7 @@ header nav .nav-hamburger .megamenu-content .tabs-list {
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-tab {
+  position: relative;
   height: auto;
   color: var(--text-on-dark-default);
   background-color: var(--accent-blue-primary-90);
@@ -225,6 +226,21 @@ header nav .nav-hamburger .megamenu-content .tabs-tab::before {
   transform: rotate(-45deg);
   margin-right: 0.5em;
   vertical-align: middle;
+  z-index: 1;
+}
+
+/* Black circle under chevron icon */
+header nav .nav-hamburger .megamenu-content .tabs-tab::after {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-color: var(--accent-blue-primary-120);
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* override default styles for selected tab */
