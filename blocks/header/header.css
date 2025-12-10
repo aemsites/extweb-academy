@@ -955,7 +955,8 @@ header nav[aria-expanded='true'] .nav-three-dots {
     margin-bottom: 0;
   }
 
-  header nav .nav-hamburger .megamenu-content .tabs-tab a {
+  header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
+    font-size: var(--font-size-500);
     pointer-events: auto;
   }
 
@@ -972,6 +973,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p:hover {
     border-bottom: 1px solid var(--divider-on-dark-default);
   }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab::before {
+    display: none;
+  }
   
   /* Chevron icon for selected tabs in megamenu */
   header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true']::before {
@@ -984,6 +989,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
     transform: rotate(-45deg);
     margin-right: 0.5em;
     vertical-align: middle;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab::after {
+    display: none;
   }
   
   /* Show panels on desktop (restore original behavior) */
