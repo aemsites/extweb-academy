@@ -783,6 +783,12 @@ export default async function decorate(block) {
     institutions.classList.add('footer');
   }
 
+  const browseByCountry = Array.from(hamburger.querySelectorAll('li'))
+    .find((li) => li.textContent.includes('Browse by Country'));
+  if (browseByCountry) {
+    browseByCountry.classList.add('browse-by-country');
+  }
+
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
 
   // Swapna-mobile: start - Create 3-dots menu button for mobile/tablet (< 1500px)

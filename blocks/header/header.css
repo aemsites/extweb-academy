@@ -400,6 +400,12 @@ header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:last-child
   border-bottom: none;
 }
 
+header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--divider-on-dark-default);
+}
+
 /* Close button - default position top left */
 header nav .nav-hamburger .megamenu-close {
   position: fixed;
