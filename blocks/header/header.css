@@ -937,6 +937,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
     overflow-y: auto;
   }
 
+  header nav .nav-hamburger .megamenu-content .tabs-wrapper {
+    padding: 0 110px;
+  }
+
   header nav .nav-hamburger .megamenu-content .tabs.vertical {
     flex-direction: row;
   }
@@ -1062,6 +1066,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
     flex-direction: row;
   }
 
+  header nav .nav-hamburger .megamenu-content .tabs-panel .footer p {
+    line-height: unset;
+  }
+  
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
     border: none;
     flex-direction: row;
