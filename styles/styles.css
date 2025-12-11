@@ -413,7 +413,7 @@ body.program-detail .hero {
   }
 
   body.program-detail .cards > ul {
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
     margin-top: 150px;
   }
 
@@ -465,6 +465,11 @@ body.program-detail .hero {
     --font-size-1200: 3.75rem;
   }
   
+  body.program-detail .cards > ul {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    margin-top: 150px;
+  }
+
   main > .section > div {
     padding: 0 32px;
   }
@@ -899,7 +904,7 @@ body.program-detail .hero picture {
   display: block;
   max-width: 100%;
   height: auto;
-  width: auto;
+  width: 100%;
   padding-bottom: 64px;
   inset: auto;
 }
