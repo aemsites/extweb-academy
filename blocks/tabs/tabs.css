@@ -193,7 +193,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: -1.5rem;
+    margin-left: 3rem;
   }
 }
 
@@ -211,25 +211,50 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   main .section.tab-carousel-section >.tabs-wrapper {
     margin-top: 50px;
   }
+  
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper {
+    overflow: visible;
+    width: 100%;
+  }
+  
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button {
+    overflow: visible;
+    width: 100%;
+  }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-    padding-left: 72px;
-    padding-right: 72px;
-    justify-content: center;
-    margin-right: auto;
-    margin-left: 150px;
-    align-items: center;
-    float: left;
+    padding-left: max(72px, calc((100vw - (455px * 3 + 50px)) / 2));
+    padding-right: max(72px, calc((100vw - (455px * 3 + 50px)) / 2 + 400px));
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 25px;
+    width: auto;
+    max-width: none;
+    overflow: scroll hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul::-webkit-scrollbar {
+    display: none;
   }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
-    flex: 0 0 calc((100% - rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
-    min-width: clamp(360px, 28vw, 455px);
-    max-width: clamp(360px, 28vw, 455px);
+    flex: 0 0 455px;
+    min-width: 455px;
+    max-width: 455px;
+    width: 455px;
     height: auto;
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
   }
+
+
 
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
