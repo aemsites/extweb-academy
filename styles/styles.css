@@ -413,7 +413,7 @@ body.program-detail .hero {
   }
 
   body.program-detail .cards > ul {
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
     margin-top: 150px;
   }
 
@@ -464,7 +464,7 @@ body.program-detail .hero {
     --font-size-1100: 3rem;
     --font-size-1200: 3.75rem;
   }
-  
+
   body.program-detail .cards > ul {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
     margin-top: 150px;
@@ -527,7 +527,7 @@ body.program-detail .hero {
 @media (width >= 1440px) {
   :root { 
     --font-size-1000: 3rem;
-    --font-size-600: 1.75rem;
+    --font-size-700:1.75rem;
   }
 
   body.program-detail .hero {
@@ -887,6 +887,7 @@ body.program-detail main .section {
   margin-left: auto;
   padding-left: var(--grid-margin);
   padding-right: var(--grid-margin);
+  max-width: 1456px;
 }
 
 body.program-detail main .section > div {
@@ -921,7 +922,7 @@ body.program-detail .cards .cards-card-body {
 }
 
 body.program-detail .cards .cards-card-body h3 {
-  font-size: var(--font-size-600);
+  font-size: var(--font-size-700);
   line-height: 150%;
 }
 
