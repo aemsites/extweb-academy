@@ -193,7 +193,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: 1.5rem;
+    margin-left: -1.5rem;
   }
 }
 
@@ -204,16 +204,22 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     border-bottom: 3px solid transparent;
   }
 
+  body.program-detail main .section > div {
+    max-width: 1800px; /* Enough space for 4+ cards with proper margins */
+  }
+
   main .section.tab-carousel-section >.tabs-wrapper {
     margin-top: 50px;
   }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-    padding-left: var(--grid-margin);
-    padding-right: var(--grid-margin);
+    padding-left: 72px;
+    padding-right: 72px;
     justify-content: center;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: 150px;
+    align-items: center;
+    float: left;
   }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
@@ -227,7 +233,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: 3rem;
+    margin-left: 7rem;
   }
 
 }
