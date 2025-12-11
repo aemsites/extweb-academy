@@ -17,7 +17,7 @@
 }
 
 .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
-  margin-top: 25px;
+  margin-top: 30px;
   margin-left: -1.5rem;
   flex: 0 0 auto;
   display: flex;
@@ -30,15 +30,14 @@
 }
 
 .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
-  margin-top: -36px;
-  margin-left: -1.1rem;
+  margin-left: -5px;
 }
 
 .tabs .tabs-list {
   display: flex;
-  gap: 5.15px;
+  gap: 5.5px;
   max-width: 100%;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-300);
   overflow-x: auto;
   position: relative;
   white-space: nowrap;
@@ -46,11 +45,12 @@
   justify-content: flex-start;
   scrollbar-width: none;
   left: 0;
-  scroll-snap-type: x mandatory;
   padding: 0;
   padding-inline-start: 0;
   border-bottom: 3px solid var(--divider-on-light-subdued); /* Grey line under all tabs */
   scroll-padding-left: 0;
+  margin-left: 1.5rem;
+  margin-bottom: 0;
 }
 
 /* Hide scrollbar for webkit browsers */
@@ -60,7 +60,6 @@
 
 .tabs .tabs-list button {
   flex: 0 0 max-content;
-  margin: 0;
   margin-bottom: 0;
   border-bottom: none;
   border-radius: 0;
@@ -89,7 +88,10 @@
 
   main .section.tab-carousel-section .swipe-carousel.with-button .cards-card-body > *:first-child {
     color: white; 
+    margin-bottom: 4px;
 }
+
+
 
 main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
   gap: 1rem;
@@ -99,11 +101,16 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   padding-right: var(--grid-margin);
 }
 
+main .section.tab-carousel-section .swipe-carousel.with-button > ul > li {
+  min-width: clamp(240px, 82vw, 551px);
+  max-width: clamp(240px, 82vw, 551px);
+  margin-left: -2px;
+
+}
+
 main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
-  width:280px;
   height: auto;
   min-height: 500px;
-
 }
 
 @media (width >= 768px) {
@@ -116,11 +123,18 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
       flex-shrink: 0;
     }
 
+    main .section.tab-carousel-section >.tabs-wrapper {
+      margin-top: 15px;
+    }
+
      /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
     gap: 1rem;
     justify-content: flex-start; /* Align cards to the left */
-    margin-left: -6.5rem;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-left: 0;
+    padding-right: 0;
   }
     
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
@@ -144,18 +158,34 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     border-bottom: 3px solid transparent;
   }
 
+    /* First tab stays fixed on the left */
+    .tabs .tabs-list button:first-child {
+      flex-shrink: 0;
+    }
+
+   .tabs .tabs-panel {
+   align-items: center;
+   justify-content: center;
+   }
+
+   main .section.tab-carousel-section >.tabs-wrapper {
+    margin-top: 40px;
+  }
+
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
       gap: 0 25px;
-      justify-content: flex-start; /* Align cards to the left */
-      margin-left: -4.5rem;
+      justify-content: flex-start;
+      margin-left: 0;
+      margin-right: -12px;
+      padding-left: var(--grid-margin);
+      padding-right: var(--grid-margin);
     }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
     flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
-    min-width: 330px;
-    max-width: 485px;
-    height: auto;
+    min-width: clamp(360px, 28vw, 455px);
+    max-width: clamp(360px, 28vw, 455px);
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
     line-height: 22.4px;
@@ -163,7 +193,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: 1.7rem;
+    margin-left: 3rem;
   }
 }
 
@@ -174,35 +204,68 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     border-bottom: 3px solid transparent;
   }
 
+  body.program-detail main .section > div {
+    max-width: 1800px; /* Enough space for 4+ cards with proper margins */
+  }
+
+  main .section.tab-carousel-section >.tabs-wrapper {
+    margin-top: 50px;
+  }
+  
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper {
+    overflow: visible;
+    width: 100%;
+  }
+  
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button {
+    overflow: visible;
+    width: 100%;
+  }
+
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-    padding-right: 2rem; /* Reduced right padding */
+    padding-left: max(72px, calc((100vw - (455px * 3 + 50px)) / 2));
+    padding-right: max(72px, calc((100vw - (455px * 3 + 50px)) / 2 + 400px));
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 25px;
+    width: auto;
+    max-width: none;
+    overflow: scroll hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul::-webkit-scrollbar {
+    display: none;
   }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
-    flex: 0 0 calc((100% - rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
+    flex: 0 0 455px;
     min-width: 455px;
     max-width: 455px;
+    width: 455px;
     height: auto;
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
   }
 
+
+
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: 3rem;
+    margin-left: 7rem;
   }
 
 }
 
-
-
 .tabs .tabs-list button p {
   margin: 0;
 }
-
-
-
-
 
 /* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
 main .section.tab-carousel-section > div > p {
@@ -211,7 +274,7 @@ main .section.tab-carousel-section > div > p {
   font-weight: var(--body-font-weight-regular);
   line-height: 150%;
   margin: var(--spacing-none);
-  margin-bottom: 15px;
+  margin-bottom: 0;
   color: var(--text-on-light-default);
   text-align: center;
   letter-spacing: -0.25px;
@@ -234,7 +297,7 @@ main .section.tab-carousel-section > div > p {
   margin-top: 20px;
   margin-bottom: 40px;
   border: 1px solid transparent;
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -272,11 +335,11 @@ main .section.tab-carousel-section .tabs-panel p {
   font-size: var(--font-size-300);
   font-weight: var(--body-font-weight-regular);
   line-height: 22.4px;
-  margin: 0 0 var(--spacing-regular);
   color: var(--text-on-dark-subdued);
   position: relative;
   z-index: 2;
   height: auto;
   overflow: visible;
-  
+  margin-top: 0.5rem;  
 }
+
