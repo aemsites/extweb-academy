@@ -165,7 +165,7 @@ header nav .nav-hamburger .megamenu-overlay {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgb(0 0 0 / 0%);
   z-index: 1000;
   overflow-y: auto;
 }
@@ -178,7 +178,7 @@ header nav .nav-hamburger .megamenu-overlay.active {
 header nav .nav-hamburger .megamenu-content {
   position: relative;
   width: 100%;
-  max-height: 100vh;
+  height: 100vh;
   color: var(--white);
   background-color: var(--accent-blue-primary-90);
   padding: 80px 0 40px;
@@ -246,6 +246,7 @@ header nav .nav-hamburger .megamenu-content .tabs-tab::after {
 /* override default styles for selected tab */
 header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
   background-color: var(--accent-blue-primary-90);
+  border: 0;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
@@ -932,13 +933,13 @@ header nav[aria-expanded='true'] .nav-three-dots {
 @media (width >= 1024px) {
   /* Restore desktop megamenu layout */
   header nav .nav-hamburger .megamenu-content {
-    padding: 100px 0;
-    max-height: 900px;
+    padding: 100px 0 0;
+    height: 700px;
     overflow-y: auto;
   }
 
   header nav .nav-hamburger .megamenu-content .tabs-wrapper {
-    padding: 0 110px;
+    padding: 0 0 0 110px;
   }
 
   header nav .nav-hamburger .megamenu-content .tabs.vertical {
@@ -953,6 +954,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
     max-width: 340px;
     row-gap: 5px;
     padding: 0;
+    border-right: 1px solid var(--divider-on-dark-default);
   }
 
   header nav .nav-hamburger .megamenu-content .tabs-tab {
@@ -963,6 +965,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     margin-bottom: 0;
+    transition: none;
   }
 
   header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
@@ -1009,12 +1012,8 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-hamburger .megamenu-content .tabs-panel {
     display: flex;
     flex-flow: column wrap;
-    padding: 0 0 0 56px;
-    border-style: solid;
-    border-width: 0 0 0 1px;
-    border-color: var(--divider-on-dark-default);
-    width: 900px;
-    max-width: 900px;
+    padding: 0 0 0 72px;
+    max-width: 828px;
   }
 
   header nav .nav-hamburger .megamenu-content .tabs-panel[aria-hidden='true'] {
@@ -1055,6 +1054,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
     flex-flow: column wrap;
     max-height: none;
     gap: 48px;
+    padding-inline: 0;
   }
 
   /* Restore desktop footer styling */
@@ -1069,7 +1069,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer p {
     line-height: unset;
   }
-  
+
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
     border: none;
     flex-direction: row;
@@ -1099,11 +1099,12 @@ header nav[aria-expanded='true'] .nav-three-dots {
 /* Desktop styles - consolidated media query for all width >= 1400px */
 @media (width >= 1400px) {
   header nav .nav-hamburger .megamenu-content .tabs-panel {
+    width: 828px;
     padding: 0 0 0 72px;
   }
 
   header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
-    max-height: 600px;
+    max-height: 500px;
   }
 
   /* Desktop flexbox layout for horizontal organization */
