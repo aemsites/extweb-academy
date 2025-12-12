@@ -16,7 +16,7 @@ border-radius: var(--border-radius-medium);
 }
 
 .cards.left-text-border .cards-card-body {
-  border-left: 2px solid #000000;
+  border-left: 2px solid #000;
   padding-left: var(--spacing-regular);
 }
 
@@ -187,7 +187,7 @@ border-radius: var(--border-radius-medium);
   font-weight: var(--body-font-weight-regular);
   line-height: 150%;
   letter-spacing: -0.25px;
-  color: rgba(255 255 255 / 0.75);
+  color: rgb(255 255 255 / 75%);
   padding: 2.5rem;
   padding-top: 0;
 }
@@ -356,6 +356,7 @@ border-radius: var(--border-radius-medium);
   padding-bottom: var(--spacing-xxsmall);
   border-bottom: 2px solid var(--divider-on-dark-emphasis);
 }
+
 .cards.sticky-columns-card > ul > li:hover p:last-child > a {
   border-bottom: 2px solid var(--divider-on-dark-highlight);
 }
@@ -472,8 +473,10 @@ border-radius: var(--border-radius-medium);
   padding-bottom: var(--spacing-xxsmall);
   background: transparent; /* Remove button background */
   color: #fff; /* White text like other links */
+
    /* Add underline */
   text-decoration-thickness: 1px;
+
    /* Remove button padding */
   border: none; /* Remove button border */
   border-radius: 0; /* Remove button rounded corners */
@@ -605,8 +608,90 @@ border-radius: var(--border-radius-medium);
 }
 
 /* Left Image, Right Text Card Variant */
+.cards.left-right-card {
+  --left-right-card-gap: 16px;
+}
+
 .cards.left-right-card > ul {
   grid-template-columns: 1fr;
+  gap: var(--spacing-xlarge);
+}
+
+.cards.left-right-card > ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   gap: var(--spacing-large);
+}
+
+.cards.left-right-card .cards-card-image {
+  flex: 0 0 263px;
+}
+
+.cards.left-right-card .cards-card-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.cards.left-right-card .cards-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 1st paragraph - Title */
+.cards.left-right-card .cards-card-body p:nth-of-type(1) {
+  margin-bottom: var(--left-right-card-gap);
+}
+
+.cards.left-right-card .cards-card-body p:nth-of-type(1) a {
+  all: unset;
+  color: var(--text-on-light-link-primary-enabled);
+  font-size: var(--font-size-600);
+  cursor: pointer;
+}
+
+/* 2nd paragraph - Tags/categories (gray text) */
+.cards.left-right-card .cards-card-body p:nth-of-type(2) {
+  font-size: var(--font-size-300);
+  color: var(--text-on-light-subdued);
+  line-height: 150%;
+  letter-spacing: 1px;
+  margin-bottom: var(--left-right-card-gap);
+}
+
+/* 3rd+ paragraphs - Description text */
+.cards.left-right-card .cards-card-body p:nth-of-type(n+3) {
+  font-size: var(--font-size-500);
+  line-height: 150%;
+  color: var(--text-on-light-default);
+  margin: 0;
+}
+
+/* Responsive gap adjustments */
+@media (width <= 768px) {
+  .cards.left-right-card {
+    --left-right-card-gap: 12px;
+  }
+}
+
+@media (width <= 425px) {
+  .cards.left-right-card {
+    --left-right-card-gap: 8px;
+  }
+}
+
+/* Mobile: Stack vertically on small screens */
+@media (width < 600px) {
+  .cards.left-right-card > ul > li {
+    flex-direction: column;
+  }
+
+  .cards.left-right-card .cards-card-image {
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
