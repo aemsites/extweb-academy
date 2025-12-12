@@ -790,6 +790,11 @@ export default async function decorate(block) {
     browseByCountry.classList.add('browse-by-country');
   }
 
+  /* stop propagation of selection click event to hamburger menu */
+  browseByCountry.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
   /* Append country select to browse by country */
   const countrySelect = document.createElement('select');
   countrySelect.id = 'country-select';
@@ -811,7 +816,7 @@ export default async function decorate(block) {
   browseByCountry.appendChild(countrySelect);
 
   /* Add event listener to go to country page when country is selected */
-  countrySelect.addEventListener('change', function () {
+  countrySelect.addEventListener('change', () => {
     if (this.value) {
       window.location.href = this.value;
     }
