@@ -343,3 +343,79 @@ main .section.tab-carousel-section .tabs-panel p {
   margin-top: 0.5rem;  
 }
 
+/* Vertical tabs variant - tabs on left, panels on right */
+.tabs.vertical {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+
+.tabs.vertical .tabs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 200px;
+  max-width: 250px;
+  font-size: var(--body-font-size-xs);
+  overflow-x: visible;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+@media (width >= 600px) {
+  .tabs.vertical .tabs-list {
+    font-size: var(--body-font-size-s);
+    min-width: 220px;
+    max-width: 280px;
+  }
+}
+
+@media (width >= 900px) {
+  .tabs.vertical .tabs-list {
+    font-size: var(--body-font-size-m);
+    min-width: 250px;
+    max-width: 300px;
+  }
+}
+
+.tabs.vertical .tabs-list button {
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #dadada;
+  border-radius: 0;
+  padding: 0.5em;
+  background-color: var(--light-color);
+  color: initial;
+  font-weight: bold;
+  line-height: unset;
+  text-align: left;
+  text-overflow: unset;
+  overflow: unset;
+  white-space: unset;
+  transition: background-color 0.2s;
+}
+
+.tabs.vertical .tabs-list button p {
+  margin: 0;
+}
+
+.tabs.vertical .tabs-list button[aria-selected='true'] {
+  border-right: 3px solid var(--background-color);
+  background-color: var(--background-color);
+  cursor: initial;
+}
+
+.tabs.vertical .tabs-panel {
+  flex: 1;
+  margin-top: 0;
+  margin-left: -1px;
+  padding: 24px;
+  border: 1px solid #dadada;
+  overflow: auto;
+  min-height: 300px;
+}
+
+.tabs.vertical .tabs-panel[aria-hidden='true'] {
+  display: none;
+}

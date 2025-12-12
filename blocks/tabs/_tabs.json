@@ -50,7 +50,7 @@
       "id": "tabs-item",
       "fields": [
         { 
-          "component": "text",
+          "component": "richtext",
           "name": "tab-name",
           "label": "Tab Name",
           "valueType": "string"
