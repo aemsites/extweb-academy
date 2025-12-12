@@ -963,6 +963,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-hamburger .megamenu-content .tabs-list {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     min-height: 600px;
     width: 340px;
     max-width: 340px;
