@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { countryList } from './country-list.js';
 
 // swapna-search: DOM helper functions imported for creating search elements
 // swapna-DOM-helper: Added button and span for hamburger menu creation
@@ -788,6 +789,33 @@ export default async function decorate(block) {
   if (browseByCountry) {
     browseByCountry.classList.add('browse-by-country');
   }
+
+  /* Append country select to browse by country */
+  const countrySelect = document.createElement('select');
+  countrySelect.id = 'country-select';
+  countrySelect.name = 'country';
+  countrySelect.placeholder = 'Select a country';
+
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = 'Select a country';
+  countrySelect.appendChild(placeholder);
+
+  countryList.forEach((country) => {
+    const option = document.createElement('option');
+    option.value = country.url;
+    option.textContent = country.countryName;
+    countrySelect.appendChild(option);
+  });
+
+  browseByCountry.appendChild(countrySelect);
+
+  /* Add event listener to go to country page when country is selected */
+  countrySelect.addEventListener('change', function () {
+    if (this.value) {
+      window.location.href = this.value;
+    }
+  });
 
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
 
