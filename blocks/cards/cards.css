@@ -465,6 +465,11 @@
     max-width: 100%;
     width: 100%;
   }
+
+  /* Add top margin only when image is stacked on top */
+  .cards.left-right-card .cards-card-body p:nth-of-type(1) {
+    margin-top: var(--left-right-card-gap);
+  }
 }
 
 @media (width <= 600px) {
@@ -480,7 +485,47 @@
   }
 }
 
+/* Medium screens (600px - 768px): text wraps around image */
+@media (width >= 600px) and (width < 768px) {
+  .cards.left-right-card > ul > li {
+    display: block;
+  }
+
+  /* Clearfix for the list item container */
+  .cards.left-right-card > ul > li::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .cards.left-right-card .cards-card-image {
+    float: left;
+    width: 263px;
+    max-width: 40%;
+    margin-right: var(--spacing-regular);
+    margin-bottom: var(--spacing-small);
+  }
+
+  .cards.left-right-card .cards-card-body {
+    display: block;
+    flex: unset;
+    min-width: unset;
+  }
+}
+
 @media (width >= 768px) {
+  .cards.left-right-card > ul {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xlarge);
+  }
+
+  .cards.left-right-card > ul > li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-large);
+  }
+
   .cards.sticky-card.block > ul > li:nth-child(2) {
     margin-top: 10%;
     right: -24rem;
@@ -557,18 +602,6 @@
 @media (width >= 1024px) {
   .cards > ul {
     grid-template-columns: repeat(3, minmax(257px, 1fr));
-  }
-
-  .cards.left-right-card > ul {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xlarge);
-  }
-
-  .cards.left-right-card > ul > li {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--spacing-large);
   }
 
   .cards.sticky-card.block > ul {
