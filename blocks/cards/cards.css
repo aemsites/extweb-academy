@@ -59,6 +59,7 @@
 /* Left Right Card Variant */
 .cards.left-right-card {
   --left-right-card-gap: 16px;
+  margin-top: var(--spacing-medium);
 }
 
 .cards.left-right-card .cards-card-image {
