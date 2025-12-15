@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-:root {
+ :root {
   /* Colors: Primitive */
   --black: #000;
   --transparent: #fff0;
@@ -373,6 +373,8 @@
   size-adjust: 99.529%;
   src: local('Arial');
 }
+
+
 
 @media (width >= 768px) {
   :root {
@@ -768,6 +770,19 @@ main > .section {
   margin: 40px 0;
 }
 
+main .section:nth-of-type(2) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+  }
+
+  main .section:nth-of-type(2) h2 {
+    font-weight: 400; /* Not bold */
+    border-bottom: 2px solid var(--divider-on-light-emphasis);
+    padding-bottom: var(--spacing-regular);
+  }
+
 main > .section > div {
   max-width: var(--screen-width);
   margin: auto;
@@ -808,6 +823,23 @@ main > .section:first-of-type {
   padding: 320px 0;
   z-index: 0;
   }
+
+  main .section:nth-of-type(2) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
+    width: 66.66%;
+   }
+
+ main .section:nth-of-type(2) h2 {
+  font-weight: 400; /* Not bold */
+  border-bottom: 2px solid var(--divider-on-light-emphasis);
+  padding-bottom: var(--spacing-regular);
+
+}
+
 }
 
 .section[id="sticky-section"] > .default-content-wrapper h2 {
