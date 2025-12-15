@@ -31,7 +31,6 @@
         {
           "component": "richtext",
           "valueType": "string",
-          "hidden": "true",
           "name": "description",
           "label": "Description"
         }

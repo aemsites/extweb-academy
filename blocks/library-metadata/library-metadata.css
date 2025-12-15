@@ -1,0 +1,5 @@
+/* Hide library metadata blocks from displaying on the page */
+.library-metadata {
+  display: none !important;
+}
+
