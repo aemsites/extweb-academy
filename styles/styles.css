@@ -829,7 +829,7 @@ main > .section > div.swipe-carousel-wrapper {
    main > .section:first-of-type {
     width: 100%;
 }
-
+}
 .section[id="sticky-section"] > .default-content-wrapper h2 {
   font-family: var(--global-font-family);
   color: var(--text-on-light-highlight);
