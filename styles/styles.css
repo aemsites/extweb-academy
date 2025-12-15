@@ -565,6 +565,9 @@ h1 {
 h2 { 
   font-size: var(--font-size-1000); 
   margin-bottom: var(--spacing-medium);
+  font-weight: 400; /* Not bold */
+  border-bottom: 2px solid var(--divider-on-light-emphasis);
+  padding-bottom: var(--spacing-regular);
 }
 
 h3 { 
@@ -777,11 +780,6 @@ main .section:nth-of-type(2) {
   padding-right: var(--grid-margin);
   }
 
-  main .section:nth-of-type(2) h2 {
-    font-weight: 400; /* Not bold */
-    border-bottom: 2px solid var(--divider-on-light-emphasis);
-    padding-bottom: var(--spacing-regular);
-  }
 
 main > .section > div {
   max-width: var(--screen-width);
@@ -832,13 +830,6 @@ main > .section:first-of-type {
     padding-right: var(--grid-margin);
     width: 66.66%;
    }
-
- main .section:nth-of-type(2) h2 {
-  font-weight: 400; /* Not bold */
-  border-bottom: 2px solid var(--divider-on-light-emphasis);
-  padding-bottom: var(--spacing-regular);
-
-}
 
 }
 
