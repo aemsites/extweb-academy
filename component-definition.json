@@ -206,7 +206,9 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Dropdown Item",
-                  "model": "dropdown-item"
+                  "model": "dropdown-item",
+                  "label": "Select Option",
+                  "cardbodytext": "<p>Option 1, Option 2, Option 3</p>"
                 }
               }
             }
