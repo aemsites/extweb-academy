@@ -467,10 +467,6 @@
   main > .section {
     max-width: 871px;
   }
-
-  main > .section > div {
-    padding: 0 32px;
-  }
 }
 
 
@@ -776,19 +772,18 @@ main img {
 main > .section {
   margin-right: auto;
   margin-left: auto;
-
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
 }
 
 main > .section:first-of-type {
   margin-top: 40px;
-  width: 100%;
   max-width: 100%;
 }
 
 main > .section > div {
   max-width: var(--screen-width);
   margin: auto;
-  padding: 0 1.75rem;
 }
 
 /* Swipe carousel container should extend beyond default section width */
@@ -827,6 +822,7 @@ main > .section > div.swipe-carousel-wrapper {
 
   main > .section {
     width: 66.66%;
+    max-width: 930px;
    }
 
    main > .section:first-of-type {
