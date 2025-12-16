@@ -157,6 +157,341 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 } */
 
+/* Megamenu overlay styles - Mobile first */
+header nav .nav-hamburger .megamenu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 0%);
+  z-index: 1000;
+}
+
+header nav .nav-hamburger .megamenu-overlay.active {
+  display: block;
+}
+
+/* Mobile-first: megamenu content base styles */
+header nav .nav-hamburger .megamenu-content {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 20%);
+  color: var(--white);
+  background-color: var(--accent-blue-primary-90);
+  padding-top: 80px;
+  overflow-y: auto;
+}
+
+/* Mobile-first: tabs list shows all tabs vertically */
+header nav .nav-hamburger .megamenu-content .tabs.vertical {
+  flex-direction: column;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-height: auto;
+  padding: 0 24px;
+  row-gap: 5px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab {
+  position: relative;
+  height: auto;
+  color: var(--text-on-dark-default);
+  background-color: var(--accent-blue-primary-90);
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 40px 10px 20px;
+  font-size: var(--font-size-1100);
+  justify-content: left;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+/* Chevron icon for all tabs in megamenu */
+header nav .nav-hamburger .megamenu-content .tabs-tab::before {
+  content: '';
+  display: inline-block;
+  width: 0.3em;
+  height: 0.3em;
+  border-right: 2px solid var(--accent-blue-primary-40);
+  border-bottom: 2px solid var(--accent-blue-primary-40);
+  transform: rotate(-45deg);
+  margin-right: 0.5em;
+  vertical-align: middle;
+  z-index: 1;
+}
+
+/* Black circle under chevron icon */
+header nav .nav-hamburger .megamenu-content .tabs-tab::after {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-color: var(--accent-blue-primary-120);
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* override default styles for selected tab */
+header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
+  background-color: var(--accent-blue-primary-90);
+  border: 0;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
+  font-weight: 700;
+  font-size: var(--font-size-1100);
+  pointer-events: none;
+}
+
+/* Mobile-first: panels hidden by default, shown when selected */
+header nav .nav-hamburger .megamenu-content .tabs-panel {
+  display: none;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  padding: 24px;
+  border: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Mobile: When mobile-panel-active is set, hide the tabs list */
+header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .tabs-list {
+  display: none;
+}
+
+/* Mobile: Show only the active panel */
+header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .tabs-panel.mobile-active {
+  display: block;
+}
+
+/* Mobile back button styling - fixed position top left */
+header nav .nav-hamburger .megamenu-content .mobile-back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  background-color: rgb(255 255 255 / 15%);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1001;
+}
+
+header nav .nav-hamburger .megamenu-content .mobile-back-button:hover {
+  background-color: rgb(255 255 255 / 25%);
+}
+
+/* Back arrow icon */
+header nav .nav-hamburger .megamenu-content .mobile-back-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+header nav .nav-hamburger .megamenu-content .mobile-back-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  transform: translate(-30%, -50%) rotate(45deg);
+}
+
+/* Mobile-first: panel content layout */
+header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
+  display: flex;
+  flex-flow: column wrap;
+  list-style: none;
+  max-height: none;
+  gap: 24px;
+  font-size: var(--font-size-300);
+  letter-spacing: 0.06em;
+  color: rgb(255 255 255 / 89.8%);
+  padding: 0;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel a {
+  text-decoration: none;
+  font-size: var(--font-size-300);
+  color: rgb(255 255 255 / 75%);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel a:any-link:hover {
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-top: 16px;
+  padding-top: 16px;
+  padding-left: 0;
+  border-width: 1px 0 0;
+  border-style: solid;
+  border-color: var(--divider-on-dark-default);
+  row-gap: 8px;
+  text-transform: none;
+  font-size: var(--font-size-300);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li {
+  display: flex;
+  flex-direction: column;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel div > ul > li > ul > li > ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  row-gap: 8px;
+}
+
+/* Mobile-first: footer in panels */
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer {
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
+  border: none;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding-top: 16px;
+  margin-left: 0;
+  border-top: 1px solid var(--divider-on-dark-default);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li {
+  /* padding: 10px 0; */
+  margin: 0;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:last-child {
+  border-bottom: none;
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: nowrap;
+  gap: 16px;
+  padding-top: 20px;
+  margin-top: 16px;
+  border-top: 1px solid var(--divider-on-dark-default);
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country select {
+  border: 1px solid var(--accent-blue-primary-70);
+  border-radius: 40px;
+  padding: 8px 16px;
+  font-size: var(--font-size-300);
+  color: var(--text-on-dark-default);
+  background-color: var(--accent-blue-primary-70);
+  width: 100%
+}
+
+header nav .nav-hamburger .megamenu-content .tabs-panel .tabs-panel-title {
+  font-size: var(--font-size-700);
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  height: 70px;
+}
+
+/* Close button - default position top left */
+header nav .nav-hamburger .megamenu-close {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  right: auto;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #fff;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  transition: background-color 0.3s ease, left 0.2s ease, right 0.2s ease;
+}
+
+/* Mobile: move close button to right when panel is active (back button on left) */
+header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .megamenu-close {
+  left: auto;
+  right: 24px;
+}
+
+header nav .nav-hamburger .megamenu-close:hover {
+  background-color: #003e7e;
+}
+
+header nav .nav-hamburger .megamenu-close-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+header nav .nav-hamburger .megamenu-close:hover .megamenu-close-icon::before,
+header nav .nav-hamburger .megamenu-close:hover .megamenu-close-icon::after {
+  background-color: #fff;
+}
+
+header nav .nav-hamburger .megamenu-close-icon::before,
+header nav .nav-hamburger .megamenu-close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: #003e7e;
+  border-radius: 2px;
+}
+
+header nav .nav-hamburger .megamenu-close-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+header nav .nav-hamburger .megamenu-close-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
 /* brand */
 
 /* swapna-header-nav-layout: Brand logo sizing and positioning */
@@ -616,6 +951,180 @@ header nav[aria-expanded='true'] .nav-three-dots {
   display: none;
 }
 
+/* DESKTOP MEGAMENU STYLES (>= 1024px) */
+
+@media (width >= 768px) {
+  header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (width >= 1024px) {
+  /* Restore desktop megamenu layout */
+  header nav .nav-hamburger .megamenu-content {
+    padding: 100px 0 0;
+    height: 700px;
+    overflow-y: auto;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-wrapper {
+    padding: 0 0 0 110px;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs.vertical {
+    flex-direction: row;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 600px;
+    width: 340px;
+    max-width: 340px;
+    row-gap: 5px;
+    padding: 0;
+    border-right: 1px solid var(--divider-on-dark-default);
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab {
+    padding: 10px 40px 10px 20px;
+    font-size: var(--font-size-500);
+    text-align: left;
+    border-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-bottom: 0;
+    transition: none;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
+    font-size: var(--font-size-500);
+    pointer-events: auto;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] {
+    background-color: var(--white);
+    color: var(--accent-blue-primary-90);
+    cursor: pointer;
+  }
+  
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p {
+    border-bottom: 1px solid var(--white);
+  }
+  
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true'] p:hover {
+    border-bottom: 1px solid var(--divider-on-dark-default);
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab::before {
+    display: none;
+  }
+  
+  /* Chevron icon for selected tabs in megamenu */
+  header nav .nav-hamburger .megamenu-content .tabs-tab[aria-selected='true']::before {
+    content: '';
+    display: inline-block;
+    width: 0.3em;
+    height: 0.3em;
+    border-right: 2px solid var(--accent-blue-primary-40);
+    border-bottom: 2px solid var(--accent-blue-primary-40);
+    transform: rotate(-45deg);
+    margin-right: 0.5em;
+    vertical-align: middle;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-tab::after {
+    display: none;
+  }
+  
+  /* Show panels on desktop (restore original behavior) */
+  header nav .nav-hamburger .megamenu-content .tabs-panel {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0 0 0 72px;
+    max-width: 828px;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel[aria-hidden='true'] {
+    display: none;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel[aria-hidden='false'] {
+    display: flex;
+  }
+
+  /* Disable mobile-specific panel classes on desktop */
+  header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .tabs-list {
+    display: flex;
+  }
+
+  header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .tabs-panel.mobile-active {
+    display: none;
+  }
+
+  header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .tabs-panel.mobile-active[aria-hidden='false'] {
+    display: flex;
+  }
+
+  /* Hide back button on desktop */
+  header nav .nav-hamburger .megamenu-content .mobile-back-button {
+    display: none;
+  }
+
+  /* Reset close button position on desktop (override mobile-panel-active) */
+  header nav .nav-hamburger .megamenu-overlay.mobile-panel-active .megamenu-close {
+    left: 24px;
+    right: auto;
+  }
+
+  /* Restore desktop panel content layout */
+  header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
+    display: flex;
+    flex-flow: column wrap;
+    max-height: none;
+    gap: 48px;
+    padding-inline: 0;
+  }
+
+  /* Restore desktop footer styling */
+  header nav .nav-hamburger .megamenu-content .tabs-panel .footer {
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid var(--divider-on-dark-default);
+    display: flex;
+    flex-direction: row;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel .footer p {
+    line-height: unset;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
+    border: none;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li {
+    padding: 0 25px;
+    margin: 0;
+    border-bottom: none;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:not(:last-child) {
+    border-right: 1px solid var(--divider-on-dark-default);
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel .tabs-panel-title {
+    display: none;
+  }
+}
+
 /* ======================================== */
 
 /* DESKTOP STYLES (1400px and above)        */
@@ -624,6 +1133,15 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
 /* Desktop styles - consolidated media query for all width >= 1400px */
 @media (width >= 1400px) {
+  header nav .nav-hamburger .megamenu-content .tabs-panel {
+    width: 828px;
+    padding: 0 0 0 72px;
+  }
+
+  header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
+    max-height: 500px;
+  }
+
   /* Desktop flexbox layout for horizontal organization */
   header nav {
     display: flex;

@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { countryList } from './country-list.js';
 
 // swapna-search: DOM helper functions imported for creating search elements
 // swapna-DOM-helper: Added button and span for hamburger menu creation
@@ -642,7 +643,7 @@ export default async function decorate(block) {
   };
 
   const hamburger = div(
-    { class: 'nav-hamburger', onclick: hamburgerClickHandler },
+    { class: 'nav-hamburger' },
     button(
       {
         type: 'button',
@@ -652,8 +653,188 @@ export default async function decorate(block) {
       span({ class: 'nav-hamburger-icon' }),
     ),
   );
+
+  // Load megamenu content fragment and add it to hamburger
+  const megamenuFragment = await loadFragment('/fragments/megamenu');
+  const megamenuOverlay = div(
+    { class: 'megamenu-overlay' },
+    div(
+      { class: 'megamenu-content' },
+      button(
+        {
+          type: 'button',
+          class: 'megamenu-close',
+          'aria-label': 'Close menu',
+        },
+        span({ class: 'megamenu-close-icon' }),
+      ),
+      megamenuFragment,
+    ),
+  );
+  hamburger.appendChild(megamenuOverlay);
+
+  // Toggle megamenu overlay on hamburger click
+  const hamButton = hamburger.querySelector('button:not(.megamenu-close)');
+  hamButton.addEventListener('click', () => {
+    megamenuOverlay.classList.toggle('active');
+    document.body.style.overflow = megamenuOverlay.classList.contains('active') ? 'hidden' : '';
+  });
+
+  // Close megamenu on close button click
+  const megamenuCloseButton = megamenuOverlay.querySelector('.megamenu-close');
+  megamenuCloseButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    megamenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    // Reset mobile menu state when closing
+    megamenuOverlay.classList.remove('mobile-panel-active');
+  });
+
+  // Mobile hamburger menu behavior (< 1024px)
+  const isMobileMenu = window.matchMedia('(max-width: 1023px)');
+
+  // Function to reset mobile menu to initial state (tabs list view)
+  function resetMobileMenuState() {
+    megamenuOverlay.classList.remove('mobile-panel-active');
+    const tabsPanels = megamenuOverlay.querySelectorAll('.tabs-panel');
+    tabsPanels.forEach((panel) => {
+      panel.classList.remove('mobile-active');
+    });
+  }
+
+  // Function to setup mobile menu behavior
+  function setupMobileMenuBehavior() {
+    const tabButtons = megamenuOverlay.querySelectorAll('.tabs-tab');
+    const tabsPanels = megamenuOverlay.querySelectorAll('.tabs-panel');
+
+    // Add back buttons to each panel if not already added
+    tabsPanels.forEach((panel) => {
+      if (!panel.querySelector('.mobile-back-button')) {
+        const backButton = button(
+          {
+            type: 'button',
+            class: 'mobile-back-button',
+            'aria-label': 'Back to menu',
+          },
+          span({ class: 'mobile-back-icon' }),
+        );
+        backButton.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (isMobileMenu.matches) {
+            megamenuOverlay.classList.remove('mobile-panel-active');
+            panel.classList.remove('mobile-active');
+          }
+        });
+        panel.prepend(backButton);
+      }
+    });
+
+    // Add click handlers to tab buttons for mobile behavior
+    tabButtons.forEach((tabBtn, index) => {
+      // Remove existing mobile handler if any
+      tabBtn.removeEventListener('click', tabBtn.mobileClickHandler);
+
+      // Create mobile click handler
+      tabBtn.mobileClickHandler = (e) => {
+        if (isMobileMenu.matches) {
+          e.stopPropagation();
+          // Hide tabs list and show selected panel
+          megamenuOverlay.classList.add('mobile-panel-active');
+          // Mark the corresponding panel as active
+          tabsPanels.forEach((panel, i) => {
+            if (i === index) {
+              panel.classList.add('mobile-active');
+            } else {
+              panel.classList.remove('mobile-active');
+            }
+          });
+        }
+      };
+
+      tabBtn.addEventListener('click', tabBtn.mobileClickHandler);
+    });
+  }
+
+  // Setup mobile behavior after megamenu fragment is loaded
+  // Wait for tabs to be decorated
+  setTimeout(() => {
+    setupMobileMenuBehavior();
+  }, 100);
+
+  // Reset mobile state when menu is opened
+  hamButton.addEventListener('click', () => {
+    if (isMobileMenu.matches) {
+      resetMobileMenuState();
+    }
+  });
+
+  // Handle resize events
+  isMobileMenu.addEventListener('change', () => {
+    if (!isMobileMenu.matches) {
+      resetMobileMenuState();
+    }
+  });
+
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+
+  const institutions = Array.from(hamburger.querySelectorAll('li'))
+    .find((li) => li.textContent.includes('Institutions'));
+  if (institutions) {
+    institutions.classList.add('footer');
+  }
+
+  const browseByCountry = Array.from(hamburger.querySelectorAll('li'))
+    .find((li) => li.textContent.includes('Browse by Country'));
+  if (browseByCountry) {
+    browseByCountry.classList.add('browse-by-country');
+  }
+
+  /* stop propagation of selection click event to hamburger menu */
+  browseByCountry.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  /* Append country select to browse by country */
+  const countrySelect = document.createElement('select');
+  countrySelect.id = 'country-select';
+  countrySelect.name = 'country';
+  countrySelect.placeholder = 'Select a country';
+
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = 'Select a country';
+  countrySelect.appendChild(placeholder);
+
+  countryList.forEach((country) => {
+    const option = document.createElement('option');
+    option.value = country.url;
+    option.textContent = country.countryName;
+    countrySelect.appendChild(option);
+  });
+
+  browseByCountry.appendChild(countrySelect);
+
+  /* Add event listener to go to country page when country is selected */
+  countrySelect.addEventListener('change', () => {
+    if (this.value) {
+      window.location.href = this.value;
+    }
+  });
+
+  /* Add title to tab panels for mobile sizes */
+  const tabs = megamenuOverlay.querySelectorAll('.tabs-tab');
+  tabs.forEach((tab) => {
+    const id = tab.id.replace(/^tab-/, 'tabpanel-');
+    const tabTitle = tab.querySelector('p a');
+    const text = tabTitle.textContent;
+    const panel = megamenuOverlay.querySelector(`#${id}.tabs-panel div`);
+    const panelTitle = document.createElement('p');
+    panelTitle.classList.add('tabs-panel-title');
+    panelTitle.textContent = text;
+    panel.insertBefore(panelTitle, panel.firstChild);
+  });
+
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
 
   // Swapna-mobile: start - Create 3-dots menu button for mobile/tablet (< 1500px)
