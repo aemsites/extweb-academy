@@ -975,6 +975,7 @@
     max-width: 1600px;
     margin: 0 auto;
     padding: 48px var(--section-gutter-space);
+    box-sizing: border-box;
   }
 }
 
