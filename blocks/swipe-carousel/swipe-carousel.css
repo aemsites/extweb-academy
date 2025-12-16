@@ -962,3 +962,19 @@
   }
 }
 
+/* Fix for carousel overlapping library-metadata on desktop */
+@media only screen and (width > 1024px) {
+  .section.swipe-carousel-container.library-metadata-container {
+    flex-direction: column;
+  }
+
+  .section.swipe-carousel-container.library-metadata-container > .library-metadata-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 48px var(--section-gutter-space);
+  }
+}
+
