@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-:root {
+ :root {
   /* Colors: Primitive */
   --black: #000;
   --transparent: #fff0;
@@ -363,6 +363,8 @@
   src: local('Arial');
 }
 
+
+
 @media (width >= 768px) {
   :root {
     /* responsive spacing */
@@ -451,8 +453,8 @@
     --font-size-1200: 3.75rem;
   }
   
-  main > .section > div {
-    padding: 0 32px;
+  main > .section {
+    max-width: 871px;
   }
 }
 
@@ -503,6 +505,9 @@ body {
   font-weight: var(--body-font-weight-regular);
   line-height: 1.4;
   overflow-x: hidden;
+  background-image: url("/icons/Background-Swoosh.png");
+  background-repeat: no-repeat;
+  background-position: top left;
 }
 
 body.appear {
@@ -552,6 +557,9 @@ h1 {
 h2 { 
   font-size: var(--font-size-1000); 
   margin-bottom: var(--spacing-medium);
+  font-weight: 400; /* Not bold */
+  border-bottom: 2px solid var(--divider-on-light-emphasis);
+  padding-bottom: var(--spacing-regular);
 }
 
 h3 { 
@@ -754,13 +762,20 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+main > .section:first-of-type {
+  margin-top: 40px;
+  max-width: 100%;
 }
 
 main > .section > div {
   max-width: var(--screen-width);
   margin: auto;
-  padding: 0 1.75rem;
 }
 
 /* Swipe carousel container should extend beyond default section width */
@@ -769,9 +784,7 @@ main > .section > div.swipe-carousel-wrapper {
   padding: 0;
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
-}
+
 
 /* Homepage Sticky Card Section */
 .section[id="sticky-section"] > .default-content-wrapper {
@@ -796,6 +809,19 @@ main > .section:first-of-type {
   width: 44%;
   padding: 320px 0;
   }
+
+
+  main > .section {
+    width: 66.66%;
+    max-width: 930px;
+   }
+
+   main > .section:first-of-type {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    width:auto;
+   }  
 }
 
 .section[id="sticky-section"] > .default-content-wrapper h2 {
