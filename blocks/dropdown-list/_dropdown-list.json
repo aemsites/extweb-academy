@@ -11,7 +11,14 @@
                         "template": {
                             "name": "Dropdown List",
                             "model": "dropdown-list",
-                            "filter": "dropdown-list"
+                            "filter": "dropdown-list",
+                            "item1": {
+                                "sling:resourceType": "core/franklin/components/block/v1/block/item",
+                                "name": "Dropdown Item",
+                                "model": "dropdown-item",
+                                "label": "Select Topic",
+                                "cardbodytext": "<p>Option 1, Option 2, Option 3</p>"
+                            }
                         }
                     }
                 }
