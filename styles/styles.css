@@ -464,6 +464,10 @@
     --font-size-1200: 3.75rem;
   }
   
+  main > .section {
+    max-width: 871px;
+  }
+
   main > .section > div {
     padding: 0 32px;
   }
@@ -772,14 +776,12 @@ main img {
 main > .section {
   margin-right: auto;
   margin-left: auto;
-  padding-left: var(--grid-margin);
-  padding-right: var(--grid-margin);
+
 }
 
 main > .section:first-of-type {
   margin-top: 40px;
   width: 100%;
-  padding-left: 0;
   max-width: 100%;
 }
 
@@ -822,13 +824,18 @@ main > .section > div.swipe-carousel-wrapper {
   z-index: 0;
   }
 
+
   main > .section {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1600px;
     width: 66.66%;
    }
 
+   main > .section:first-of-type {
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+   }  
 }
 
 .section[id="sticky-section"] > .default-content-wrapper h2 {
