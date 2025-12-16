@@ -447,6 +447,37 @@
     ]
   },
   {
+    "id": "dropdown-list",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Title",
+        "name": "subtitle",
+        "value": "",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "dropdown-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Select Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "cardbodytext",
+        "value": "",
+        "label": "Card Body Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "dm-asset",
     "fields": [
       {

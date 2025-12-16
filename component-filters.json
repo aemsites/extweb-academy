@@ -56,6 +56,12 @@
     "components": []
   },
   {
+    "id": "dropdown-list",
+    "components": [
+      "dropdown-item"
+    ]
+  },
+  {
     "id": "hero",
     "components": [
       "content-fragment"
