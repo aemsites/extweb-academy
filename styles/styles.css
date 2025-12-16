@@ -516,7 +516,7 @@ body {
   font-weight: var(--body-font-weight-regular);
   line-height: 1.4;
   overflow-x: hidden;
-  background-image: url(/icons/Background-Swoosh.png);
+  background-image: url("/icons/Background-Swoosh.png");
   background-repeat: no-repeat;
   background-position: top left;
 }
