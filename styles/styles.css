@@ -777,7 +777,10 @@ main > .section {
 }
 
 main > .section:first-of-type {
-  margin: 0 40px 0 0;
+  margin-top: 40px;
+  width: 100%;
+  padding-left: 0;
+  max-width: 100%;
 }
 
 main > .section > div {
@@ -826,10 +829,8 @@ main > .section > div.swipe-carousel-wrapper {
     width: 66.66%;
    }
 
-   main > .section:first-of-type {
-    width: 100%;
 }
-}
+
 .section[id="sticky-section"] > .default-content-wrapper h2 {
   font-family: var(--global-font-family);
   color: var(--text-on-light-highlight);
