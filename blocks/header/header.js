@@ -643,7 +643,7 @@ export default async function decorate(block) {
   };
 
   const hamburger = div(
-    { class: 'nav-hamburger', onclick: hamburgerClickHandler },
+    { class: 'nav-hamburger' },
     button(
       {
         type: 'button',
