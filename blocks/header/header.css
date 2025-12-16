@@ -167,7 +167,6 @@ header nav .nav-hamburger .megamenu-overlay {
   height: 100%;
   background-color: rgb(0 0 0 / 0%);
   z-index: 1000;
-  overflow-y: auto;
 }
 
 header nav .nav-hamburger .megamenu-overlay.active {
@@ -178,10 +177,10 @@ header nav .nav-hamburger .megamenu-overlay.active {
 header nav .nav-hamburger .megamenu-content {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 20%);
   color: var(--white);
   background-color: var(--accent-blue-primary-90);
-  padding: 80px 0 40px;
+  padding-top: 80px;
   overflow-y: auto;
 }
 
@@ -259,6 +258,7 @@ header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
 header nav .nav-hamburger .megamenu-content .tabs-panel {
   display: none;
   flex-flow: column wrap;
+  align-items: flex-start;
   padding: 24px;
   border: none;
   width: 100%;
@@ -328,6 +328,7 @@ header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
   font-size: var(--font-size-300);
   letter-spacing: 0.06em;
   color: rgb(255 255 255 / 89.8%);
+  padding: 0;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel a {
@@ -402,8 +403,8 @@ header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:last-child
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   white-space: nowrap;
   gap: 16px;
   padding-top: 20px;
@@ -952,6 +953,13 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
 /* DESKTOP MEGAMENU STYLES (>= 1024px) */
 
+@media (width >= 768px) {
+  header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
 @media (width >= 1024px) {
   /* Restore desktop megamenu layout */
   header nav .nav-hamburger .megamenu-content {
@@ -1111,7 +1119,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:not(:last-child) {
     border-right: 1px solid var(--divider-on-dark-default);
   }
-  
+
   header nav .nav-hamburger .megamenu-content .tabs-panel .tabs-panel-title {
     display: none;
   }
