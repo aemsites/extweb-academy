@@ -77,7 +77,8 @@
         "video",
         "swipe-carousel",
         "tabs",
-        "content-fragment"
+        "content-fragment",
+        "dropdown-list"
       ]
     }
   ]
