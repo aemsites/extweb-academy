@@ -822,6 +822,19 @@ export default async function decorate(block) {
     }
   });
 
+  /* Add title to tab panels for mobile sizes */
+  const tabs = megamenuOverlay.querySelectorAll('.tabs-tab');
+  tabs.forEach((tab) => {
+    const id = tab.id.replace(/^tab-/, 'tabpanel-');
+    const tabTitle = tab.querySelector('p a');
+    const text = tabTitle.textContent;
+    const panel = megamenuOverlay.querySelector(`#${id}.tabs-panel div`);
+    const panelTitle = document.createElement('p');
+    panelTitle.classList.add('tabs-panel-title');
+    panelTitle.textContent = text;
+    panel.insertBefore(panelTitle, panel.firstChild);
+  });
+
   // swapna-DOM-helper: end - Create hamburger menu using DOM helper functions
 
   // Swapna-mobile: start - Create 3-dots menu button for mobile/tablet (< 1500px)

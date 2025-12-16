@@ -421,6 +421,14 @@ header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country selec
   width: 100%
 }
 
+header nav .nav-hamburger .megamenu-content .tabs-panel .tabs-panel-title {
+  font-size: var(--font-size-700);
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  height: 70px;
+}
+
 /* Close button - default position top left */
 header nav .nav-hamburger .megamenu-close {
   position: fixed;
@@ -1102,6 +1110,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
   header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li:not(:last-child) {
     border-right: 1px solid var(--divider-on-dark-default);
+  }
+  
+  header nav .nav-hamburger .megamenu-content .tabs-panel .tabs-panel-title {
+    display: none;
   }
 }
 
