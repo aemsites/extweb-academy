@@ -1,9 +1,59 @@
 .swipe-carousel > ul {
   list-style: none;
   margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 455px);
+  grid-template-rows: 508px;
+  gap: 0 30px;
+  overflow: scroll hidden;
+  scroll-snap-type: both mandatory;
+  scroll-padding: 0;
+  scrollbar-width: none;
+  cursor: default;
+  user-select: none;
+}
+
+/* Unlimited cards for with-button variant */
+.swipe-carousel.with-button>ul {
+  grid-auto-flow: column;
+  grid-auto-columns: 455px;
+  grid-template-columns: none;
+}
+
+.swipe-carousel>ul.is-dragging {
+  cursor: default;
+  scroll-snap-type: none;
+}
+
+.swipe-carousel>ul.is-dragging * {
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+}
+
+.swipe-carousel>ul::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-carousel>ul img {
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* Carousel element ordering within wrapper */
+.swipe-carousel-wrapper > .swipe-carousel {
+  order: 1;
+}
+
+.section>div.swipe-carousel-wrapper .swipe-carousel {
+  overflow: hidden;
 }
 
 .swipe-carousel > ul > li {
+  scroll-snap-align: start;
+  border: 0;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -31,6 +81,12 @@
   overflow: hidden;
   margin: 0;
   padding: 0;
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  aspect-ratio: auto;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
 }
 
 .swipe-carousel .cards-card-image picture {
@@ -66,6 +122,15 @@
   align-items: flex-start;
   overflow: hidden;
   min-height: 0;
+}
+
+/* Default (non-with-button) card body styles */
+.swipe-carousel:not(.with-button) .cards-card-body {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: var(--neutral-alpha-95-a);
+  padding: 48px 48px 0;
 }
 
 .swipe-carousel > ul > li:hover .cards-card-body {
@@ -219,6 +284,47 @@
   opacity: unset;
 }
 
+/* Active and opacity states for non-with-button variant */
+.swipe-carousel:not(.with-button) > ul > li.active {
+  opacity: 1;
+  scroll-snap-type: x;
+}
+
+.swipe-carousel:not(.with-button) > ul > li.opacity {
+  opacity: 0.2;
+}
+
+/* Responsive grid adjustments for default (non-with-button) carousel */
+@media only screen and (width <=1024px) {
+  .swipe-carousel:not(.with-button) > ul {
+    grid-template-columns: repeat(7, 430px);
+    grid-template-rows: 480px;
+    gap: 0 8px;
+  }
+
+  /* Unlimited cards for carousel-with-button variant */
+  .carousel.carousel-with-button>ul,
+  .swipe-carousel.carousel-with-button>ul {
+    grid-auto-columns: 430px;
+    grid-template-columns: none;
+  }
+}
+
+@media only screen and (width < 768px) {
+  .swipe-carousel:not(.with-button) > ul {
+    grid-template-columns: repeat(7, 360px);
+    grid-template-rows: 430px;
+    gap: 0 4px;
+  }
+
+  /* Unlimited cards for carousel-with-button variant */
+  .carousel.carousel-with-button>ul,
+  .swipe-carousel.carousel-with-button>ul {
+    grid-auto-columns: 360px;
+    grid-template-columns: none;
+  }
+}
+
 /* Responsive adjustments for with-button variant */
 
 /* Mobile: 240px - 639px - Cards scale from 551px down to 158px width */
@@ -336,6 +442,7 @@
     flex: 0 0 min(421px, 42vw);
     min-width: min(421px, 42vw);
     max-width: min(421px, 42vw);
+    height: auto;
     gap: 0;
   }
 
@@ -400,6 +507,7 @@
     flex: 0 0 min(288px, 28vw);
     min-width: min(288px, 28vw);
     max-width: min(288px, 28vw);
+    height: auto;
     gap: 0;
   }
 
@@ -476,7 +584,7 @@
     flex: 0 0 max(264px, min(360px, 30vw));
     min-width: max(264px, min(360px, 30vw));
     max-width: max(264px, min(360px, 30vw));
-    height: 533px;
+    height: auto;
     gap: 0;
   }
 
@@ -961,4 +1069,3 @@
     width: 100%;
   }
 }
-
