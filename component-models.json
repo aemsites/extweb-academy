@@ -451,9 +451,8 @@
     "fields": [
       {
         "component": "text",
-        "label": "Title",
-        "name": "subtitle",
-        "value": "",
+        "label": "Dropdown Styles",
+        "name": "classes",
         "valueType": "string"
       }
     ]
@@ -465,15 +464,8 @@
         "component": "text",
         "valueType": "string",
         "name": "label",
-        "label": "Select Text",
+        "label": "Label Text",
         "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "cardbodytext",
-        "value": "",
-        "label": "Card Body Text",
-        "valueType": "string"
       }
     ]
   },

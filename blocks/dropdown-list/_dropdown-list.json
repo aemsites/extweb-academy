@@ -11,14 +11,7 @@
                         "template": {
                             "name": "Dropdown List",
                             "model": "dropdown-list",
-                            "filter": "dropdown-list",
-                            "item1": {
-                                "sling:resourceType": "core/franklin/components/block/v1/block/item",
-                                "name": "Dropdown Item",
-                                "model": "dropdown-item",
-                                "label": "Select Topic",
-                                "cardbodytext": "<p>Option 1, Option 2, Option 3</p>"
-                            }
+                            "filter": "dropdown-list"
                         }
                     }
                 }
@@ -35,7 +28,7 @@
                             "name": "Dropdown Item",
                             "model": "dropdown-item",
                             "label": "Select Option",
-                            "cardbodytext": "<p>Option 1, Option 2, Option 3</p>"
+                            "content": "<p>Option 1</p>"
                         }
                     }
                 }
@@ -48,9 +41,8 @@
             "fields": [
                 {
                     "component": "text",
-                    "label": "Title",
-                    "name": "subtitle",
-                    "value": "",
+                    "label": "Dropdown Styles",
+                    "name": "classes",
                     "valueType": "string"
                 }
             ]
@@ -62,15 +54,8 @@
                     "component": "text",
                     "valueType": "string",
                     "name": "label",
-                    "label": "Select Text",
+                    "label": "Label Text",
                     "value": ""
-                },
-                {
-                    "component": "richtext",
-                    "name": "cardbodytext",
-                    "value": "",
-                    "label": "Card Body Text",
-                    "valueType": "string"
                 }
             ]
         }
