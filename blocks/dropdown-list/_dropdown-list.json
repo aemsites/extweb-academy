@@ -56,6 +56,13 @@
                     "name": "label",
                     "label": "Label Text",
                     "value": ""
+                },
+                {
+                  "component": "richtext",
+                  "name": "content",
+                  "value": "",
+                  "label": "Content",
+                  "valueType": "string"
                 }
             ]
         }
