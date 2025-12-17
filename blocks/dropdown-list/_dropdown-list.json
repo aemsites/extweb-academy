@@ -11,7 +11,14 @@
                         "template": {
                             "name": "Dropdown List",
                             "model": "dropdown-list",
-                            "filter": "dropdown-list"
+                            "filter": "dropdown-list",
+                            "placeholder": "Select Option",
+                            "item1": {
+                                "sling:resourceType": "core/franklin/components/block/v1/block/item",
+                                "name": "Item",
+                                "model": "dropdown-item",
+                                "option": "Option 1"
+                            }
                         }
                     }
                 }
@@ -27,8 +34,7 @@
                         "template": {
                             "name": "Item",
                             "model": "dropdown-item",
-                            "label": "Select Option",
-                            "content": "<p>Option 1</p>"
+                            "option": "Option"
                         }
                     }
                 }
@@ -39,6 +45,13 @@
         {
             "id": "dropdown-list",
             "fields": [
+                {
+                    "component": "text",
+                    "label": "Placeholder Text",
+                    "name": "placeholder",
+                    "value": "Select Option",
+                    "valueType": "string"
+                },
                 {
                     "component": "text",
                     "label": "Dropdown Styles",
@@ -53,16 +66,9 @@
                 {
                     "component": "text",
                     "valueType": "string",
-                    "name": "label",
-                    "label": "Label Text",
+                    "name": "option",
+                    "label": "Option Text",
                     "value": ""
-                },
-                {
-                  "component": "richtext",
-                  "name": "content",
-                  "value": "",
-                  "label": "Content",
-                  "valueType": "string"
                 }
             ]
         }
