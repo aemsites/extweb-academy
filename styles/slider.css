@@ -1,5 +1,6 @@
 .swipe-carousel-container {
   display: flex;
+  flex-direction: column;
   max-width: calc(1600px - var(--section-gutter-space));
   margin: auto;
   padding: 0 var(--section-gutter-space);
