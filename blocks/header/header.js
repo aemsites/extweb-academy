@@ -450,6 +450,41 @@ export default async function decorate(block) {
     if (columnsBlock) {
       const columns = columnsBlock.querySelectorAll(':scope > div > div');
 
+      // Process first column (logo) - handle :home-logo: placeholder
+      if (columns.length >= 1) {
+        const firstColumn = columns[0];
+        const homeLogoIcon = firstColumn.querySelector('.icon-home-logo');
+
+        if (homeLogoIcon) {
+          const paragraph = homeLogoIcon.closest('p');
+          if (paragraph) {
+            // Create the logo link
+            const logoLink = document.createElement('a');
+            logoLink.href = 'https://academy.worldbank.org';
+            logoLink.className = 'nav-logo-link';
+            logoLink.setAttribute('aria-label', 'Academy Home');
+
+            // Reuse the existing img element and update its properties
+            const existingImg = homeLogoIcon.querySelector('img');
+            const picture = document.createElement('picture');
+            const logoImg = existingImg || document.createElement('img');
+
+            logoImg.src = `${window.hlx.codeBasePath}/icons/home-logo.svg`;
+            logoImg.alt = 'World Bank Group Academy';
+            logoImg.loading = 'eager';
+            logoImg.removeAttribute('data-icon-name');
+            logoImg.removeAttribute('width');
+            logoImg.removeAttribute('height');
+
+            picture.appendChild(logoImg);
+            logoLink.appendChild(picture);
+
+            // Replace the paragraph with the logo link
+            paragraph.parentNode.replaceChild(logoLink, paragraph);
+          }
+        }
+      }
+
       // Process third column (navigation links)
       if (columns.length >= 3) {
         const thirdColumn = columns[2];
