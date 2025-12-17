@@ -760,6 +760,95 @@ main img {
   width: 100%;
 }
 
+/* colors */
+
+main > .color-wrapper > .color-animation {
+  display: flex;
+  width: 2869px;
+  height: 1130px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 15vh;
+  padding: 0 70px;
+  gap: 469px;
+ }
+ 
+ main > .color-wrapper > .gradient-left-side {
+  opacity: 0.4;
+  filter: blur(60px);
+  width: 1130px;
+  height: 1130px;
+  transform: rotate(90deg);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  left: -35%;
+  border-radius: 1130px;
+  background: linear-gradient(rgb(1 125 141) 0%, rgb(1 125 141 / 0%) 85%);
+ }
+ 
+ main > .color-wrapper > .gradient-right-side {
+  opacity: 0.4;
+  filter: blur(60px);
+  width: 1130px;
+  height: 1130px;
+  transform: rotate(270deg);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  right: -35%;
+  border-radius: 1130px;
+  background: linear-gradient(rgb(33 50 176) 0%, rgb(33 50 176 / 0%) 85%);
+ }
+ 
+ @media (width >=768px) {
+ .gradient-left-side {
+      left: -35%;
+     }
+ 
+ .gradient-right-side {
+          right: -35%;
+     }
+ }
+ 
+ main > .color-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  box-sizing: border-box;
+ }
+ 
+ main > .color-wrapper .gradient-left-side {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0.6;
+  transition: 5s;
+ }
+ 
+ main > .color-wrapper .gradient-right-side {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0.6;
+  transition: 5s;
+ }
+ 
+ .color-wrapper.centered .gradient-left-side {
+   left: 25%;
+ }
+ 
+ .color-wrapper.centered .gradient-right-side {
+   right: 25%;
+ }
+
 /* sections */
 main > .section {
   margin-right: auto;
