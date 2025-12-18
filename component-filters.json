@@ -24,7 +24,8 @@
       "video",
       "swipe-carousel",
       "tabs",
-      "content-fragment"
+      "content-fragment",
+      "dropdown-list"
     ]
   },
   {
@@ -54,6 +55,12 @@
   {
     "id": "content-fragment",
     "components": []
+  },
+  {
+    "id": "dropdown-list",
+    "components": [
+      "dropdown-item"
+    ]
   },
   {
     "id": "hero",

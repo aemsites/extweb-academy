@@ -447,6 +447,30 @@
     ]
   },
   {
+    "id": "dropdown-list",
+    "fields": [
+      {
+        "component": "text",
+        "label": "Placeholder Text",
+        "name": "placeholder",
+        "value": "Select Option",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "dropdown-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "option",
+        "label": "Option Text",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "dm-asset",
     "fields": [
       {
