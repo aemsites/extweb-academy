@@ -455,12 +455,6 @@
         "name": "placeholder",
         "value": "Select Option",
         "valueType": "string"
-      },
-      {
-        "component": "text",
-        "label": "Dropdown Styles",
-        "name": "classes",
-        "valueType": "string"
       }
     ]
   },
@@ -468,7 +462,7 @@
     "id": "dropdown-item",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "option",
         "label": "Option Text",
