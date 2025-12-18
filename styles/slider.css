@@ -1,5 +1,8 @@
+/* Container and layout styles for swipe-carousel sections */
+
 .swipe-carousel-container {
   display: flex;
+  flex-direction: column;
   max-width: calc(1600px - var(--section-gutter-space));
   margin: auto;
   padding: 0 var(--section-gutter-space);
@@ -16,12 +19,7 @@
   padding: 0;
 }
 
-/* Button styles moved to swipe-carousel.css for better specificity */
-
-.swipe-carousel-wrapper > .swipe-carousel {
-  order: 1;
-}
-
+/* Carousel wrapper layout within sections */
 .section>div.swipe-carousel-wrapper {
   flex: 2;
   overflow: visible;
@@ -35,167 +33,7 @@
   gap: 24px;
 }
 
-.section>div.swipe-carousel-wrapper .swipe-carousel {
-  overflow: hidden;
-}
-
-.swipe-carousel>ul {
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(7, 455px);
-  grid-template-rows: 508px;
-  gap: 0 30px;
-  overflow: scroll hidden;
-  scroll-snap-type: both mandatory;
-  scroll-padding: 0;
-  scrollbar-width: none;
-  cursor: default;
-  user-select: none;
-}
-
-/* Unlimited cards for with-button variant */
-.swipe-carousel.with-button>ul {
-  grid-auto-flow: column;
-  grid-auto-columns: 455px;
-  grid-template-columns: none;
-}
-
-.swipe-carousel>ul.is-dragging {
-  cursor: default;
-  scroll-snap-type: none;
-}
-
-.swipe-carousel>ul.is-dragging * {
-  cursor: default;
-  user-select: none;
-  pointer-events: none;
-}
-
-.swipe-carousel>ul::-webkit-scrollbar {
-  display: none;
-}
-
-.swipe-carousel>ul img {
-  pointer-events: none;
-  user-select: none;
-}
-
-.swipe-carousel>ul a {
-  user-select: none;
-  cursor: pointer;
-}
-
-.swipe-carousel>ul a:hover {
-  cursor: pointer;
-}
-
-.swipe-carousel>ul>li {
-  scroll-snap-align: start;
-  border: 0;
-}
-
-.swipe-carousel>ul>li>.cards-card-image {
-  background-color: #fcfcfc;
-  border-radius: 10px;
-  aspect-ratio: auto;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-}
-
-/* Default navigation button positioning (for non-with-button variant) */
-.swipe-carousel-wrapper > .carousel-navigation-buttons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
-  order: 2;
-  margin-top: 24px;
-  padding-right: var(--section-gutter-space);
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container {
-  display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--accent-blue-primary-60);
-  background-color: transparent;
-  color: var(--accent-blue-primary-60);
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button.prev::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  border: 2px solid currentcolor;
-  border-width: 2px 0 0 2px;
-  transform: rotate(-45deg);
-  margin-right: 2px;
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button.next::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  border: 2px solid currentcolor;
-  border-width: 2px 2px 0 0;
-  transform: rotate(45deg);
-  margin-left: 2px;
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button:hover {
-  background-color: var(--accent-blue-primary-60);
-  color: var(--background-white);
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-  background-color: transparent;
-}
-
-.swipe-carousel-wrapper > .carousel-navigation-buttons .button-container button:disabled:hover {
-  background-color: transparent;
-  color: var(--accent-blue-primary-60);
-  border-color: var(--accent-blue-primary-60);
-  opacity: 0.35;
-}
-
-.swipe-carousel .cards-card-body {
-  font-size: 14px;
-  line-height: 17px;
-  font-weight: 400;
-  color: var(--neutral-alpha-95-a);
-  padding: 48px 48px 0;
-  margin: 0;
-}
-
-.swipe-carousel>ul>li.active {
-  opacity: 1;
-  scroll-snap-type: x;
-}
-
-.swipe-carousel>ul>li.opacity {
-  opacity: 0.2;
-}
-
+/* Responsive container adjustments */
 @media only screen and (width <=1024px) {
   .section.carousel-container,
   .section.swipe-carousel-container {
@@ -203,20 +41,6 @@
     margin: auto;
     flex-direction: column;
     padding: 64px 0;
-  }
-
-  .carousel>ul,
-  .swipe-carousel>ul {
-    grid-template-columns: repeat(7, 430px);
-    grid-template-rows: 480px;
-    gap: 0 8px;
-  }
-
-  /* Unlimited cards for carousel-with-button variant */
-  .carousel.carousel-with-button>ul,
-  .swipe-carousel.carousel-with-button>ul {
-    grid-auto-columns: 430px;
-    grid-template-columns: none;
   }
 
   .swipe-carousel-container>div.swipe-carousel-wrapper {
@@ -232,20 +56,6 @@
     flex-direction: column;
     padding: 48px 0;
   }
-
-  .carousel>ul,
-  .swipe-carousel>ul {
-    grid-template-columns: repeat(7, 360px);
-    grid-template-rows: 430px;
-    gap: 0 4px;
-  }
-
-  /* Unlimited cards for carousel-with-button variant */
-  .carousel.carousel-with-button>ul,
-  .swipe-carousel.carousel-with-button>ul {
-    grid-auto-columns: 360px;
-    grid-template-columns: none;
-  }
 }
 
 @media only screen and (width > 1024px) {
@@ -254,4 +64,3 @@
     padding-left: var(--section-gutter-space);
   }
 }
-
