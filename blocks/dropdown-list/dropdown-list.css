@@ -22,7 +22,6 @@
   border-radius: 12px;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%235a5a8f' d='M8 11L3 6h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 16px;
@@ -30,14 +29,13 @@
 }
 
 .dropdown-list select:hover {
-  border-color: #9999cc;
+  border-color: pink;
   background-color: #dcdcf0;
 }
 
 .dropdown-list select:focus {
   outline: none;
   border-color: #0071bc;
-  box-shadow: 0 0 0 3px rgba(0, 113, 188, 0.1);
 }
 
 /* Dropdown options styling */
@@ -70,8 +68,7 @@
 
 .dropdown-list button:hover {
   background-color: #005a96;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 113, 188, 0.3);
+  transform: translateY(-2px);;
 }
 
 .dropdown-list button:active {
