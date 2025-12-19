@@ -134,7 +134,11 @@ export default async function decorate(block) {
   // decorate footer DOM
   block.textContent = '';
   const section = document.createElement('section');
-  section.className = 'default-content-wrapper section bg-primary-blue-90';
+  if (footerPath === '/footer-home') {
+    section.className = 'default-content-wrapper section bg-primary-blue-90 footer-home';
+  } else {
+    section.className = 'default-content-wrapper section bg-primary-blue-90';
+  }
 
   const rows = fragment.firstElementChild.querySelectorAll('.columns-wrapper');
   const classes = ['ft-social', 'ft-main', 'ft-legal'];
@@ -177,7 +181,9 @@ export default async function decorate(block) {
       }
     });
     rowValue.removeChild(rowValue.firstElementChild);
-    section.append(rowValue);
+    if (!(footerPath === '/footer-home' && rowValue.className === 'ft-main')) {
+      section.append(rowValue);
+    }
   });
   block.append(section);
 }
