@@ -223,7 +223,6 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-    padding-left: max(72px, calc((100vw - (455px * 3 + 50px)) / 2));
     padding-right: max(72px, calc((100vw - (455px * 3 + 50px)) / 2 + 400px));
     display: flex;
     flex-flow: row nowrap;
