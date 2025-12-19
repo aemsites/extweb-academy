@@ -562,6 +562,11 @@ h2 {
   padding-bottom: var(--spacing-regular);
 }
 
+.homepage h2 {
+ padding-bottom: 0;
+ border-bottom: none;
+}
+
 h3 { 
   font-size: var(--font-size-800); 
   line-height: 1.1;
@@ -771,6 +776,10 @@ main > .section {
 main > .section:first-of-type {
   margin-top: 40px;
   max-width: 100%;
+}
+
+.homepage main > .section:first-of-type {
+  margin-top: 0;
 }
 
 main > .section > div {
