@@ -181,7 +181,7 @@ export default async function decorate(block) {
       }
     });
     rowValue.removeChild(rowValue.firstElementChild);
-    if ( !(footerPath === '/footer-home' && rowValue.className === 'ft-main')) {
+    if (!(footerPath === '/footer-home' && rowValue.className === 'ft-main')) {
       section.append(rowValue);
     }
   });
