@@ -1,3 +1,13 @@
+main .section.breadcrumb-container {
+  padding-top: var(--spacing-regular);
+  margin: 0;
+}
+
+main .breadcrumb-wrapper {
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
 main .breadcrumb-wrapper ol {
   display: flex;
   flex-wrap: wrap;
@@ -33,6 +43,10 @@ main .breadcrumb-wrapper ol li span.breadcrumb-separator {
   margin: 0 14px;
 }
 
+main .breadcrumb-wrapper ol li:not(:first-child, :last-child) {
+  display: none;
+}
+
 main .breadcrumb-wrapper ol li:last-child span.breadcrumb-separator {
   display: none;
 }
@@ -43,15 +57,22 @@ main .breadcrumb-wrapper img {
 }
 
 @media (width >= 1024px){
-  
   main .breadcrumb-wrapper ol li {
     line-height: 16.8px;
   }
   
 }
+
+@media (width > 1200px){
+  main .breadcrumb-wrapper ol li:not(:first-child, :last-child) {
+  display: inherit;
+}
+}
+
 .breadcrumb-container {
   padding: var(--spacing-regular) 0 0 0!important;
 }
+
 main .breadcrumb-wrapper ol li:last-child,
 main .breadcrumb-wrapper a[aria-current="page"] {
   color: var(--text-on-light-subdued);
