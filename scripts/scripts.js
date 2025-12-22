@@ -357,7 +357,7 @@ function buildAutoBreadcrumbs(main) {
   }
 
   // Check if breadcrumbs are disabled via page metadata
-  if (getMetadata('disableBreadcrumbs') === 'true') {
+  if (getMetadata('disablebreadcrumbs') === 'true') {
     return;
   }
 
