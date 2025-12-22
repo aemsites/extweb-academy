@@ -29,6 +29,8 @@ body:has(main > div.section.hero-video-section) {
    margin-top: -104px;
    height: auto;
    z-index: -2;
+   max-width: unset;
+   width: unset;
  }
 
 
