@@ -189,10 +189,6 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     margin-top: 40px;
   }
 
-  .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
-    padding-left: var(--grid-margin);
-    padding-right: var(--grid-margin);
-  } 
 
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
