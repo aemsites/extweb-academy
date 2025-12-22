@@ -36,6 +36,7 @@ body:has(main > div.section.hero-video-section) {
 
  .homepage .section.hero-video-section {
   margin-top: 0;
+  max-width: 100%;
  }
  
  .section.hero-video-section::before {
