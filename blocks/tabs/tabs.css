@@ -161,6 +161,12 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     padding-right: 0;
   }
 
+  .tabs.vertical .tabs-list {
+    font-size: var(--body-font-size-m);
+    min-width: 250px;
+    max-width: 300px;
+  }
+
 }
 
 @media (width >= 1024px) {
@@ -398,13 +404,6 @@ main .section.tab-carousel-section .tabs-panel p {
   }
 }
 
-@media (width >= 900px) {
-  .tabs.vertical .tabs-list {
-    font-size: var(--body-font-size-m);
-    min-width: 250px;
-    max-width: 300px;
-  }
-}
 
 .tabs.vertical .tabs-list button {
   flex: 0 0 auto;
