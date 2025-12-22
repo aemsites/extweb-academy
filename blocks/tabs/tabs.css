@@ -264,7 +264,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     width: auto;
     max-width: none;
     overflow: scroll hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
