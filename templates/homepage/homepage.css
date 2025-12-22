@@ -1,1 +1,17 @@
 /* homepage placeholder styles */
+
+.homepage h2 {
+    padding-bottom: 0;
+    border-bottom: none;
+   }
+
+.homepage main > .section:first-of-type {
+    margin-top: 0;
+  }
+
+  @media (width >=1024px) {
+    .homepage main > .section {
+        width: 100%;
+        max-width: 1600px;
+       }
+    }
