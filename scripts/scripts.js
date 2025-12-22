@@ -23,7 +23,6 @@ import {
 
 export const LANGUAGE_ROOT = `/${getLanguage()}`;
 
-
 /**
  * Function to add a div as the first child of the main element with the class 'color-wrapper',
  * and within that div add two div sibling divs with classes 'gradient-left-side'
@@ -35,7 +34,8 @@ function addColorWrapper() {
   if (main.querySelector('.color-wrapper')) {
     return;
   }
-  //check that the currently loaded page is the home page, by checking that .hero-video-section exists
+
+  //  Check if loaded page is homepage, by checking if .hero-video-section exists
   if (!document.querySelector('.hero-video-section')) {
     return;
   }
