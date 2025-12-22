@@ -18,20 +18,16 @@
 
 .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
   margin-top: 30px;
-  margin-left: -1.5rem;
   flex: 0 0 auto;
   display: flex;
-  padding-left: calc((89vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
-  padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
 } 
 
 .section.tab-carousel-section .swipe-carousel.with-button .cards-card-image {
   zoom: 80%;
 }
 
-.section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
-  margin-left: -5px;
-}
 
 .tabs .tabs-list {
   display: flex;
@@ -151,6 +147,22 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 }
 }
 
+@media (width >= 900px) {
+  main > .section.tab-carousel-section {
+    max-width:none
+  }
+
+  main > .section.tab-carousel-section > div {
+    padding: 0 32px;
+  }
+
+ .section.tab-carousel-section .swipe-carousel-wrapper:has(.with-button) > .swipe-carousel-container > .swipe-carousel-wrapper:has(.with-button) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}
+
 @media (width >= 1024px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
@@ -168,9 +180,19 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
    justify-content: center;
    }
 
+   main .section.tab-carousel-section {
+    width: 100%;
+    max-width: none;
+   }
+
    main .section.tab-carousel-section >.tabs-wrapper {
     margin-top: 40px;
   }
+
+  .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
+  } 
 
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
@@ -193,7 +215,7 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
 
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: 3rem;
+    
   }
 }
 
@@ -222,8 +244,14 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     width: 100%;
   }
 
+  .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls {
+  padding-left: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+  padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+}
+
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-    padding-right: max(72px, calc((100vw - (455px * 3 + 50px)) / 2 + 400px));
+    padding-left: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
+    padding-right: calc((100vw - min(1600px, 100vw - var(--section-gutter-space) * 2)) / 2 + var(--section-gutter-space));
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -253,17 +281,23 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     color: var(--text-on-dark-emphasys);
   }
 
-
-
   .section.tab-carousel-section .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container a.button:any-link, .swipe-carousel-wrapper > .carousel-controls > .carousel-button .button-container .button {
     margin-top: -20px;
-    margin-left: 7rem;
   }
 
 }
 
 .tabs .tabs-list button p {
   margin: 0;
+}
+
+main > .section.tab-carousel-section {
+  margin: 40px 0;
+  padding: 0;
+}
+
+main > .section.tab-carousel-section > div {
+  padding: 0 1.75rem;
 }
 
 /* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
@@ -357,7 +391,6 @@ main .section.tab-carousel-section .tabs-panel p {
   max-width: 250px;
   font-size: var(--body-font-size-xs);
   overflow-x: visible;
-  overflow-y: auto;
   flex-shrink: 0;
 }
 
