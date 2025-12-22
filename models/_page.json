@@ -21,6 +21,14 @@
           "name": "keywords",
           "multi": true,
           "label": "Keywords"
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "disableBreadcrumbs",
+          "value": "false",
+          "label": "Disable Breadcrumbs",
+          "description": "If toggled on, breadcrumbs will not be displayed on the page. By default, breadcrumbs are displayed if the page's path is more than 2 levels deep."
         }
       ]
     }

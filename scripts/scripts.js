@@ -342,7 +342,7 @@ function shouldHaveAutoBreadcrumbs() {
  * Adds breadcrumb as the first child of main if:
  * - Path level is greater than 2
  * - No breadcrumb block already exists on the page
- * - We haven't already added an auto-breadcrumb (using a flag)
+ * - disableBreadcrumbs meta property is not set to 'true'
  * @param {Element} main The main container element
  */
 function buildAutoBreadcrumbs(main) {
@@ -353,6 +353,11 @@ function buildAutoBreadcrumbs(main) {
 
   // Use a flag on the window to prevent multiple executions
   if (window.autoBreadcrumbAdded) {
+    return;
+  }
+
+  // Check if breadcrumbs are disabled via page metadata
+  if (getMetadata('disableBreadcrumbs') === 'true') {
     return;
   }
 
