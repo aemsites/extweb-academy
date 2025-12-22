@@ -9,9 +9,16 @@
     margin-top: 0;
   }
 
+
+  .homepage .section.hero-video-section {
+    margin-top: 0;
+    max-width: 100%;
+   }
+
   @media (width >=1024px) {
     .homepage main > .section {
         width: 100%;
         max-width: 1600px;
        }
+
     }
