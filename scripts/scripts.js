@@ -329,12 +329,64 @@ export function buildFragmentBlocks(main) {
 }
 
 /**
+ * Determines if the current page should have auto-breadcrumbs based on path level.
+ * @returns {boolean} true if path has more than 2 segments
+ */
+function shouldHaveAutoBreadcrumbs() {
+  const pathSegments = window.location.pathname.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+  return pathSegments.length > 2;
+}
+
+/**
+ * Builds auto-breadcrumb block if needed.
+ * Adds breadcrumb as the first child of main if:
+ * - Path level is greater than 2
+ * - No breadcrumb block already exists on the page
+ * - We haven't already added an auto-breadcrumb (using a flag)
+ * @param {Element} main The main container element
+ */
+function buildAutoBreadcrumbs(main) {
+  // Only add auto-breadcrumbs to the document's main element, not fragments
+  if (main !== document.querySelector('main')) {
+    return;
+  }
+
+  // Use a flag on the window to prevent multiple executions
+  if (window.autoBreadcrumbAdded) {
+    return;
+  }
+
+  // Check if breadcrumb already exists in the main element
+  if (main.querySelector('.breadcrumb')) {
+    return;
+  }
+
+  // Check if path level is > 2
+  if (!shouldHaveAutoBreadcrumbs()) {
+    return;
+  }
+
+  // Set flag immediately to prevent concurrent calls
+  window.autoBreadcrumbAdded = true;
+
+  // Create the breadcrumb block structure
+  // The block should be a direct child of the section div,
+  // decorateSections will wrap it properly
+  const breadcrumbBlock = buildBlock('breadcrumb', '');
+  const breadcrumbSection = document.createElement('div');
+  breadcrumbSection.appendChild(breadcrumbBlock);
+
+  // Insert as first child of main
+  main.insertBefore(breadcrumbSection, main.firstChild);
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
+    buildAutoBreadcrumbs(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
