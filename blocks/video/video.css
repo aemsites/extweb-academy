@@ -32,6 +32,7 @@ body:has(main > div.section.hero-video-section) {
    max-width: unset;
    width: unset;
  }
+
  
  .section.hero-video-section::before {
    background: linear-gradient(to bottom, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 0%) 100%);

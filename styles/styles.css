@@ -850,6 +850,7 @@ main > .section:first-of-type {
   max-width: 100%;
 }
 
+
 main > .section > div {
   max-width: var(--screen-width);
   margin: auto;
@@ -877,6 +878,27 @@ main > .section > div.swipe-carousel-wrapper {
   max-width: 100%;
   width: 100%;
   padding: 200px 0;
+}
+
+@media (width >=1024px) {
+.section[id="sticky-section"] > .default-content-wrapper {
+  width: 44%;
+  padding: 320px 0;
+  }
+
+
+  main > .section {
+    width: 66.66%;
+    max-width: 930px;
+   }
+
+
+   main > .section:first-of-type {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    width:auto;
+   }  
 }
 
 .section[id="sticky-section"] > .default-content-wrapper h2 {
@@ -916,12 +938,11 @@ main > .section > div.swipe-carousel-wrapper {
   padding: 320px 0;
   }
 
-
   main > .section {
     width: 66.66%;
     max-width: 930px;
    }
-
+  
    main > .section:first-of-type {
     margin-left: 0;
     margin-right: 0;
