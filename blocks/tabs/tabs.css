@@ -228,10 +228,6 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     border-bottom: 3px solid transparent;
   }
 
-  body.program-detail main .section > div {
-    max-width: 1800px; /* Enough space for 4+ cards with proper margins */
-  }
-
   main .section.tab-carousel-section >.tabs-wrapper {
     margin-top: 50px;
   }
