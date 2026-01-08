@@ -1870,6 +1870,10 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     transition: color 0.3s ease;
   }
 
+  .header-home .home-nav-links .lp-search::before {
+    content: "\e132";
+  }
+
   .header-home .home-nav-links .lp-search:hover,
   .header-home .home-nav-links .lp-search.active {
     color: var(--white);
