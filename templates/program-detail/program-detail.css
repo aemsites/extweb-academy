@@ -47,18 +47,6 @@ body.program-detail .columns.columns-4-cols > div {
   align-items: stretch;
 }
 
-body.program-detail .columns.columns-3-cols > div {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-body.program-detail .columns.columns-4-cols > div {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-body.program-detail .columns.columns-5-cols > div {
-  grid-template-columns: repeat(5, 1fr);
-}
-
 body.program-detail .columns.columns-5-cols > div > div,
 body.program-detail .columns.columns-3-cols > div > div,
 body.program-detail .columns.columns-4-cols > div > div {
@@ -302,6 +290,19 @@ body.program-detail main > .section:nth-child(2) p {
     flex-direction: row;
     gap: var(--spacing-huge, 48px);
     align-items: flex-start;
+  }
+
+  /* Auto-adjust metadata columns to multiple columns on desktop */
+  body.program-detail .columns.columns-3-cols > div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  body.program-detail .columns.columns-4-cols > div {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  body.program-detail .columns.columns-5-cols > div {
+    grid-template-columns: repeat(5, 1fr);
   }
 
   body.program-detail .columns.columns-5-cols > div,
