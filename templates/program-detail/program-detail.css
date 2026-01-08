@@ -6,7 +6,7 @@ body.program-detail .breadcrumb-wrapper {
 }
 
 body.program-detail .breadcrumb-wrapper  .breadcrumb-navtab{
-    padding: 10px 20px
+    padding: 10px 20px;
   }
 
 /* Override page swoosh background size */
@@ -21,12 +21,18 @@ body.program-detail main .section {
   padding-bottom: var(--spacing-xxlarge);
 }
 
+/* Hero section with 2 columns - more specific selectors first */
+body.program-detail .columns.columns-2-cols {
+  background-color: var(--neutral-solid-05-s, #f5f5f5);
+  padding: var(--spacing-xsmall, 12px) 0;
+}
+
 /* Metadata Section - columns with darker background */
 body.program-detail .columns.columns-5-cols,
 body.program-detail .columns.columns-3-cols,
 body.program-detail .columns.columns-4-cols {
   background-color: var(--neutral-solid-10-s);
-  padding: var(--spacing-large) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
+  padding: var(--spacing-medium) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
   border-radius: 0 0 8px 8px;
 }
 
@@ -38,6 +44,19 @@ body.program-detail .columns.columns-4-cols > div {
   gap: 0;
   max-width: 1440px;
   margin: 0 auto;
+  align-items: stretch;
+}
+
+body.program-detail .columns.columns-3-cols > div {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+body.program-detail .columns.columns-4-cols > div {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+body.program-detail .columns.columns-5-cols > div {
+  grid-template-columns: repeat(5, 1fr);
 }
 
 body.program-detail .columns.columns-5-cols > div > div,
@@ -46,7 +65,8 @@ body.program-detail .columns.columns-4-cols > div > div {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: var(--spacing-regular);
+  margin-bottom: var(--spacing-small);
+  height: 100%;
 }
 
 body.program-detail .columns.columns-5-cols > div > div:first-child,
@@ -60,7 +80,7 @@ body.program-detail .columns.columns-5-cols p,
 body.program-detail .columns.columns-3-cols p,
 body.program-detail .columns.columns-4-cols p {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.4;
   font-family: var(--body-font-family);
   font-weight: 400;
@@ -74,23 +94,8 @@ body.program-detail .columns.columns-4-cols p strong {
   margin-bottom: var(--spacing-xsmall, 8px);
   font-family: var(--heading-font-family);
   font-weight: 700;
+  font-size: 18px;
   color: var(--text-on-light-emphasis, #024);
-}
-
-/* Hero section with 2 columns */
-body.program-detail .columns.columns-2-cols {
-  background-color: var(--neutral-solid-05-s, #f5f5f5);
-  padding: var(--spacing-large) 0;
-}
-
-body.program-detail .columns.columns-2-cols > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xlarge, 40px);
-  align-items: flex-start;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-huge, 48px);
 }
 
 body.program-detail .columns.columns-2-cols h1 {
@@ -125,13 +130,13 @@ body.program-detail .columns.columns-2-cols p a {
   font-style: normal;
   font-weight: 700;
   line-height: 1.5rem;
-  letter-spacing: var (--lift-button-label-letter-spacing);
+  letter-spacing: var(--lift-button-label-letter-spacing);
   padding: 12px 28px;
   border-radius: 32px;
   border: 1px solid transparent;
   text-decoration: none;
   background: var(--accent-blue-primary-70);
-  color: #ffffff;
+  color: #fff;
   transition: all 0.2s ease;
 }
 
@@ -165,13 +170,74 @@ body.program-detail .columns.columns-2-cols > div > div:last-child img {
   display: block;
 }
 
+/* First section styling - override default styles.css */
+body.program-detail main > .section:first-of-type {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Apply padding to the ACTUAL content container inside (breadcrumb-container) */
+body.program-detail main .section.breadcrumb-container {
+  padding-left: var(--grid-margin) !important;
+  padding-right: var(--grid-margin) !important;
+}
+
+/* Second section styling - narrower than first section at all breakpoints */
+body.program-detail main > .section:nth-child(2) {
+  margin: var(--spacing-huge) auto var(--spacing-small) auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+body.program-detail main > .section:nth-child(2) h2{
+  font-size: 28px;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-medium);
+  letter-spacing: var(--lift-button-label-letter-spacing);
+  color: var(--text-on-light-emphasis);
+  border-bottom: 2px solid var(--neutral-alpha-16-a);
+  padding-bottom: var(--spacing-medium);
+}
+
+/* Mobile font sizes for second section */
+body.program-detail main > .section:nth-child(2) p {
+  font-size: 16px;
+}
+
 /* Tablet breakpoint */
 @media (width >= 768px) {
+  /* Increase font sizes from tablet up */
+  body.program-detail main > .section:nth-child(2) p {
+    font-size: 18px;
+  }
+
+  body.program-detail main > .section:nth-child(2) h2 {
+    font-size: 32px;
+  }
+
+  /* Second section narrower starting from tablet */
+  body.program-detail main > .section:nth-child(2) {
+    width: 70%;
+  }
+
   body.program-detail .columns.columns-5-cols > div,
   body.program-detail .columns.columns-3-cols > div,
   body.program-detail .columns.columns-4-cols > div {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0;
+    gap: var(--spacing-small) 0;
+  }
+
+  body.program-detail .columns.columns-2-cols > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xlarge, 40px);
+    align-items: flex-start;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-huge, 48px);
   }
 
   body.program-detail .columns.columns-5-cols > div > div,
@@ -206,11 +272,50 @@ body.program-detail .columns.columns-2-cols > div > div:last-child img {
     background-size: 25%;
   }
 
+  /* Larger font sizes for columns metadata on desktop */
+  body.program-detail .columns.columns-5-cols p,
+  body.program-detail .columns.columns-3-cols p,
+  body.program-detail .columns.columns-4-cols p {
+    font-size: 20px;
+  }
+
+  body.program-detail .columns.columns-5-cols p strong,
+  body.program-detail .columns.columns-3-cols p strong,
+  body.program-detail .columns.columns-4-cols p strong {
+    font-size: 20px;
+  }
+
+  /* Second section even narrower on desktop */
+  body.program-detail main > .section:nth-child(2) {
+    width: 60%;
+    padding-left: var(--spacing-huge);
+    padding-right: var(--spacing-huge);
+  }
+
+  /* Second section h2 larger on desktop */
+  body.program-detail main > .section:nth-child(2) h2 {
+    font-size: var(--font-size-1000);
+  }
+
   /* Hero section desktop layout */
   body.program-detail .columns.columns-2-cols > div {
     flex-direction: row;
     gap: var(--spacing-huge, 48px);
     align-items: flex-start;
+  }
+
+  body.program-detail .columns.columns-5-cols > div,
+  body.program-detail .columns.columns-3-cols > div,
+  body.program-detail .columns.columns-4-cols > div {
+    padding: 0;
+    row-gap: 0;
+  }
+  
+  body.program-detail .columns.columns-5-cols > div > div,
+  body.program-detail .columns.columns-3-cols > div > div,
+  body.program-detail .columns.columns-4-cols > div > div {
+    padding: 0 var(--spacing-medium, 24px);
+    margin-bottom: 0;
   }
 
   body.program-detail .columns.columns-2-cols > div > div:first-child {
@@ -229,32 +334,6 @@ body.program-detail .columns.columns-2-cols > div > div:last-child img {
   body.program-detail .columns.columns-2-cols > div > div:last-child picture {
     display: block;
     width: 100%;
-  }
-
-  /* Auto-adjust metadata columns based on content */
-  body.program-detail .columns.columns-3-cols > div {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  body.program-detail .columns.columns-4-cols > div {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  body.program-detail .columns.columns-5-cols > div {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  body.program-detail .columns.columns-5-cols > div,
-  body.program-detail .columns.columns-3-cols > div,
-  body.program-detail .columns.columns-4-cols > div {
-    padding: 0;
-    row-gap: 0;
-  }
-
-  body.program-detail .columns.columns-5-cols > div > div,
-  body.program-detail .columns.columns-3-cols > div > div,
-  body.program-detail .columns.columns-4-cols > div > div {
-    padding: 0 var(--spacing-medium, 24px);
   }
 
   /* Add left border to all columns except the first one */
