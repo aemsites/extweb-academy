@@ -50,7 +50,7 @@
             "id": "dropdown-item",
             "fields": [
                 {
-                    "component": "richtext",
+                    "component": "text",
                     "valueType": "string",
                     "name": "test",
                     "label": "Option Text",
