@@ -52,7 +52,7 @@
                 {
                     "component": "richtext",
                     "valueType": "string",
-                    "name": "option",
+                    "name": "test",
                     "label": "Option Text",
                     "value": ""
                 }
