@@ -232,9 +232,9 @@ body.program-detail main > .section:nth-child(2) p {
     padding:var(--spacing-xlarge, 32px) var(--spacing-xlarge, 32px) var(--spacing-xsmall, 8px) var(--spacing-xlarge , 32px);
   }
 
-  body.program-detail .columns.columns-5-cols > div > div,
-  body.program-detail .columns.columns-3-cols > div > div,
-  body.program-detail .columns.columns-4-cols > div > div {
+  body.program-detail .columns.columns-5-cols > div > div:not(:empty),
+  body.program-detail .columns.columns-3-cols > div > div:not(:empty),
+  body.program-detail .columns.columns-4-cols > div > div:not(:empty) {
     border-top: none;
     border-left: 1px solid var(--gray-alpha-black-24-a);
     padding: 0 0 0 var(--spacing-medium, 24px);
@@ -254,6 +254,13 @@ body.program-detail main > .section:nth-child(2) p {
   body.program-detail .columns.columns-3-cols > div > div:nth-child(2),
   body.program-detail .columns.columns-4-cols > div > div:nth-child(2) {
     padding-right: 0;
+  }
+
+  /* Hide empty columns to prevent spacing issues */
+  body.program-detail .columns.columns-5-cols > div > div:empty,
+  body.program-detail .columns.columns-3-cols > div > div:empty,
+  body.program-detail .columns.columns-4-cols > div > div:empty {
+    display: none;
   }
 }
 
@@ -341,19 +348,12 @@ body.program-detail main > .section:nth-child(2) p {
     width: 100%;
   }
 
-  /* Add left border to all columns except the first one */
-  body.program-detail .columns.columns-5-cols > div > div:not(:first-child),
-  body.program-detail .columns.columns-3-cols > div > div:not(:first-child),
-  body.program-detail .columns.columns-4-cols > div > div:not(:first-child) {
-    border-left: 1px solid var(--gray-alpha-black-24-a);
-    padding-left: var(--spacing-medium, 24px);
-  }
-
   /* First child has no left border and no left padding */
   body.program-detail .columns.columns-5-cols > div > div:first-child,
   body.program-detail .columns.columns-3-cols > div > div:first-child,
   body.program-detail .columns.columns-4-cols > div > div:first-child {
     padding-left: 0;
+    border-left: none;
   }
 
   /* Last child has no right padding */
@@ -361,6 +361,21 @@ body.program-detail main > .section:nth-child(2) p {
   body.program-detail .columns.columns-3-cols > div > div:last-child,
   body.program-detail .columns.columns-4-cols > div > div:last-child {
     padding-right: 0;
+  }
+
+  /* Hide empty columns */
+  body.program-detail .columns.columns-5-cols > div > div:empty,
+  body.program-detail .columns.columns-3-cols > div > div:empty,
+  body.program-detail .columns.columns-4-cols > div > div:empty {
+    display: none;
+  }
+
+  /* Add left border to all non-empty columns except the first one */
+  body.program-detail .columns.columns-5-cols > div > div:not(:first-child, :empty),
+  body.program-detail .columns.columns-3-cols > div > div:not(:first-child, :empty),
+  body.program-detail .columns.columns-4-cols > div > div:not(:first-child, :empty) {
+    border-left: 1px solid var(--gray-alpha-black-24-a);
+    padding-left: var(--spacing-medium, 24px);
   }
 }
 
