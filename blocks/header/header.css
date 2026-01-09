@@ -1,6 +1,5 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
   width: 100%;
   z-index: 100;
   position: fixed;
@@ -12,7 +11,7 @@ header nav {
   grid-template:
     'hamburger brand sections tools' var(--nav-height) / auto auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 16px;
   margin: auto;
   height: var(--nav-height);
   padding: 0;
@@ -576,7 +575,7 @@ header nav .nav-tools .inline-search-wrapper {
   align-items: center;
   background-color: #e7edf3;
   border-radius: 24px;
-  padding: 4px 4px 4px 16px;
+  padding: 0 0 0 16px;
   width: 65%;
   max-width: 250px;
 }
@@ -586,7 +585,7 @@ header nav .nav-tools .inline-search-input {
   background: transparent;
   outline: none;
   flex: 1;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
 }
 
@@ -598,8 +597,8 @@ header nav .nav-tools .inline-search-icon {
   justify-content: center;
   background-color: #003e7e;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   transition: background-color 0.3s ease;
 }
@@ -1156,9 +1155,9 @@ header nav[aria-expanded='true'] .nav-three-dots {
   }
 
   header .nav-wrapper {
-    max-width: 1452px;
-    margin: 0 auto;
-    padding: 0 24px;
+    max-width: 1456px;
+    margin: auto;
+    padding: 0 72px 0 72px;
     width: unset;
     position: unset;
   }
@@ -1297,6 +1296,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
     align-items: center;
     width: 100%;  
     justify-content: flex-end;
+    padding-right: 20px;
   }
 
   /* Desktop navigation links horizontal layout */
@@ -1325,8 +1325,8 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-links .default-content-wrapper a {
     text-decoration: none;
     color: var(--blue-70);
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     transition: color 0.3s ease;
   }
 
