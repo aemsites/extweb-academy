@@ -472,7 +472,7 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "option",
+        "name": "Option",
         "label": "Option Text",
         "value": ""
       }
