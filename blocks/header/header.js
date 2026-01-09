@@ -488,32 +488,33 @@ export default async function decorate(block) {
         const thirdColumn = columns[2];
         thirdColumn.classList.add('home-nav-links');
 
-        // Add font-based search icon to the navigation (for desktop)
-        const searchIcon = document.createElement('span');
-        searchIcon.className = 'lp lp-search home-search-icon';
-        searchIcon.setAttribute('role', 'button');
-        searchIcon.setAttribute('tabindex', '0');
-        searchIcon.setAttribute('aria-label', 'Search');
+        // Find and convert the manually authored :search: icon to loopicon font
+        const searchIconWrapper = thirdColumn.querySelector('.icon-search');
+        if (searchIconWrapper) {
+          // Replace SVG icon with loopicon font-based icon
+          const searchIcon = document.createElement('span');
+          searchIcon.className = 'lp lp-search';
+          searchIcon.setAttribute('role', 'button');
+          searchIcon.setAttribute('tabindex', '0');
+          searchIcon.setAttribute('aria-label', 'Search');
 
-        searchIcon.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleHomeSearchDropdown();
-        });
-
-        searchIcon.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          // Add click handler
+          searchIcon.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             toggleHomeSearchDropdown();
-          }
-        });
+          });
 
-        thirdColumn.appendChild(searchIcon);
+          // Add keyboard handler
+          searchIcon.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleHomeSearchDropdown();
+            }
+          });
 
-        // Hide the original SVG search icon
-        const svgIcon = thirdColumn.querySelector('.icon-search');
-        if (svgIcon) {
-          svgIcon.style.display = 'none';
+          // Replace the SVG icon with the font icon
+          searchIconWrapper.parentNode.replaceChild(searchIcon, searchIconWrapper);
         }
       }
     }
