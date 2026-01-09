@@ -26,7 +26,8 @@
                         "resourceType": "core/franklin/components/block/v1/block/item",
                         "template": {
                             "name": "Item",
-                            "model": "dropdown-item"
+                            "model": "dropdown-item",
+                            "option": "Item"
                         }
                     }
                 }
@@ -52,7 +53,7 @@
                 {
                     "component": "text",
                     "valueType": "string",
-                    "name": "test",
+                    "name": "option",
                     "label": "Option Text",
                     "value": ""
                 }
