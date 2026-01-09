@@ -470,7 +470,7 @@
     "id": "dropdown-item",
     "fields": [
       {
-        "component": "text",
+        "component": "select",
         "valueType": "string",
         "name": "option",
         "label": "Option Text",
