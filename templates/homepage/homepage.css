@@ -15,10 +15,24 @@
     max-width: 100%;
    }
 
-  @media (width >=1024px) {
+  body.homepage .section.hero-video-section > .default-content-wrapper {
+    height: 60vh;
+  }
+
+ @media (width >= 768px) {
+  body.homepage .section.hero-video-section > .default-content-wrapper {
+    height: 102vh;
+    } 
+ }
+
+  @media (width >= 1024px) {
     .homepage main > .section {
         width: 100%;
         max-width: 1600px;
        }
+
+    body.homepage .section.hero-video-section > .default-content-wrapper {
+      height: 112vh;
+      } 
 
     }
