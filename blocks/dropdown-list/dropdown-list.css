@@ -150,7 +150,7 @@
 
 .section.dropdown-list-container{
   justify-content: center;
-  padding-bottom: 60px;
+  padding: 60px 48px;
 }
 
 main > .section.dropdown-list-container > .finder-row{
@@ -242,6 +242,7 @@ main > .section.dropdown-list-container > .finder-row{
 
   .section.dropdown-list-container{
     max-width: var(--screen-width);
+    padding: 88px 0;
   }
 
   .section.dropdown-list-container > .default-content-wrapper{
@@ -291,7 +292,7 @@ main > .section.dropdown-list-container > .finder-row{
 
   /* Smaller dropdown width to fit all on one line */
   .section.dropdown-list-container  .custom-dropdown {
-    width: 209px;
+    min-width: 250px;
   }
 
   /* Middle dropdowns: no rounded corners, with border */
@@ -345,3 +346,14 @@ main > .section.dropdown-list-container > .finder-row{
   }
 }
 
+@media (width >= 1024px) {
+  .section.dropdown-list-container{
+    padding: 96px 0;
+    max-width: 1600px;
+    width: 100%;
+  }
+
+  .section.dropdown-list-container  .custom-dropdown {
+    width: 265px;
+  }
+}
