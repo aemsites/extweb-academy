@@ -3,6 +3,11 @@ body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
 }
 
+body.program-detail .breadcrumb-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 body.program-detail .breadcrumb-wrapper  .breadcrumb-navtab{
     padding: 10px 20px;
   }
