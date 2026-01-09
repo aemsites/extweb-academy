@@ -339,7 +339,7 @@ function shouldHaveAutoBreadcrumbs() {
 
 /**
  * Builds auto-breadcrumb block if needed.
- * Adds breadcrumb as the first child of main if:
+ * Prepends breadcrumb to the first section in main if:
  * - Path level is greater than 2
  * - No breadcrumb block already exists on the page
  * - disableBreadcrumbs meta property is not set to 'true'
@@ -371,18 +371,19 @@ function buildAutoBreadcrumbs(main) {
     return;
   }
 
+  // Find the first section (div) in main to prepend breadcrumb to
+  const firstSection = main.querySelector(':scope > div');
+  if (!firstSection) {
+    return;
+  }
+
   // Set flag immediately to prevent concurrent calls
   window.autoBreadcrumbAdded = true;
 
-  // Create the breadcrumb block structure
-  // The block should be a direct child of the section div,
-  // decorateSections will wrap it properly
+  // Create the breadcrumb block and prepend it to the first section
+  // decorateSections will wrap it in .breadcrumb-wrapper
   const breadcrumbBlock = buildBlock('breadcrumb', '');
-  const breadcrumbSection = document.createElement('div');
-  breadcrumbSection.appendChild(breadcrumbBlock);
-
-  // Insert as first child of main
-  main.insertBefore(breadcrumbSection, main.firstChild);
+  firstSection.prepend(breadcrumbBlock);
 }
 
 /**
