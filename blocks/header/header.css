@@ -1,8 +1,10 @@
 /* header and nav layout */
 header .nav-wrapper {
-  width: 100%;
+  width: calc(100% - var(--grid-margin) * 2);
   z-index: 100;
   position: fixed;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
 }
 
 header nav {
@@ -48,7 +50,6 @@ header nav .nav-hamburger {
   height: 22px;
   display: flex;
   align-items: center;
-  padding-left: 24px;
 }
 
 header nav .nav-hamburger button {
@@ -251,6 +252,7 @@ header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
   font-weight: 700;
   font-size: var(--font-size-1100);
   pointer-events: none;
+  line-height: 38.13px;
 }
 
 /* Mobile-first: panels hidden by default, shown when selected */
