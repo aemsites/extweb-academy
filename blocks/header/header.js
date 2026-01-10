@@ -915,7 +915,7 @@ export default async function decorate(block) {
   );
 
   // Swapna-mobile: Append close button to nav
-  nav.appendChild(closeButton);
+  navToolsElement.insertBefore(closeButton, navToolsElement.firstChild);
   // Swapna-mobile: end - Create close button for 3-dots menu
 
   // swapna-desktop-hamburger: start - Keep aria-expanded='false' on desktop page load

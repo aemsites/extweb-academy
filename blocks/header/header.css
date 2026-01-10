@@ -657,7 +657,6 @@ header nav .nav-three-dots button {
 /* Swapna-mobile: Close button container - fixed position in top right corner */
 header nav .nav-close-button {
   display: none;
-  position: fixed;
   top: 24px;
   right: 24px;
   z-index: 10;
@@ -678,7 +677,6 @@ header nav .nav-close-button button {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  margin-right: 50px;
 }
 
 .header-home .nav-hamburger button {
@@ -779,9 +777,12 @@ header nav .nav-sections .default-content-wrapper p {
 /* Swapna-mobile: Show nav-tools when menu is expanded with proper styling */
 header nav[aria-expanded='true'] .nav-tools {
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 50px;
   visibility: visible;
   grid-area: tools;
-  padding: 100px 24px 20px;
+  padding: 20px 24px 20px;
   background-color: #e5ebf1;
 }
 
@@ -866,7 +867,7 @@ header nav[aria-expanded='true'] .nav-links .default-content-wrapper {
 
 /* Swapna-mobile: Style nav-links items for mobile menu */
 header nav[aria-expanded='true'] .nav-links .default-content-wrapper p {
-  margin: 0 0 20px;
+  margin: 0 0 8px;
   padding: 0;
   border-bottom: none;
   display: flex;
