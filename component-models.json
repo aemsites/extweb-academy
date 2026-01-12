@@ -5,6 +5,13 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "template",
+        "label": "Template",
+        "description": "Apply a specific template. This will override the template from metadata spreadsheet"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "jcr:title",
         "label": "Title"
       },
