@@ -1,1 +1,396 @@
-/* program detail placeholder styles */
+/* Template - program-detail */
+body.program-detail .columns.columns-2-cols > div {
+  padding: 40px;
+}
+
+body.program-detail .breadcrumb-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body.program-detail .breadcrumb-wrapper  .breadcrumb-navtab{
+    padding: 10px 20px;
+  }
+
+/* Override page swoosh background size */
+body.program-detail.page-swoosh-half-curve::before {
+  background-size: 30%;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+/* General section spacing */
+body.program-detail main .section {
+  padding-bottom: var(--spacing-xxlarge);
+}
+
+/* Hero section with 2 columns - more specific selectors first */
+body.program-detail .columns.columns-2-cols {
+  background-color: var(--neutral-solid-05-s, #f5f5f5);
+  padding: var(--spacing-xsmall, 12px) 0;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Metadata Section - columns with darker background */
+body.program-detail .columns.columns-5-cols,
+body.program-detail .columns.columns-3-cols,
+body.program-detail .columns.columns-4-cols {
+  background-color: var(--neutral-solid-10-s);
+  padding: var(--spacing-medium) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
+  border-radius: 0 0 8px 8px;
+}
+
+body.program-detail .columns.columns-5-cols > div,
+body.program-detail .columns.columns-3-cols > div,
+body.program-detail .columns.columns-4-cols > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 1440px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+body.program-detail .columns.columns-5-cols > div > div,
+body.program-detail .columns.columns-3-cols > div > div,
+body.program-detail .columns.columns-4-cols > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--spacing-small);
+  height: 100%;
+}
+
+body.program-detail .columns.columns-5-cols > div > div:first-child,
+body.program-detail .columns.columns-3-cols > div > div:first-child,
+body.program-detail .columns.columns-4-cols > div > div:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+body.program-detail .columns.columns-5-cols p,
+body.program-detail .columns.columns-3-cols p,
+body.program-detail .columns.columns-4-cols p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  color: var(--neutral-alpha-70-a);
+}
+
+body.program-detail .columns.columns-5-cols p strong,
+body.program-detail .columns.columns-3-cols p strong,
+body.program-detail .columns.columns-4-cols p strong {
+  display: block;
+  margin-bottom: var(--spacing-xsmall, 8px);
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-on-light-emphasis, #024);
+}
+
+body.program-detail .columns.columns-2-cols h1 {
+  margin-bottom: var(--spacing-small);
+  line-height: 112%;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  color: var(--text-on-light-highlight);
+}
+
+body.program-detail .columns.columns-2-cols p {
+  color: var(--text-on-light-default);
+  font-size: var(--font-size-300);
+  font-style: normal;
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  margin-bottom: var(--spacing-medium);
+}
+
+body.program-detail .columns.columns-2-cols .button-container {
+  margin: 0;
+}
+
+/* Style links as buttons in hero section */
+body.program-detail .columns.columns-2-cols p a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: var(--global-font-family);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: var(--lift-button-label-letter-spacing);
+  padding: 12px 28px;
+  border-radius: 32px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  background: var(--accent-blue-primary-70);
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+body.program-detail .columns.columns-2-cols p a:hover,
+body.program-detail .columns.columns-2-cols p a:focus {
+  background: var(--accent-blue-primary-40);
+  color: var(--accent-blue-primary-70);
+}
+
+body.program-detail .columns.columns-2-cols > div > div:first-child {
+  order: 2;
+}
+
+body.program-detail .columns.columns-2-cols > div > div:last-child {
+  order: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+body.program-detail .columns.columns-2-cols > div > div:last-child picture {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+body.program-detail .columns.columns-2-cols > div > div:last-child img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  display: block;
+}
+
+/* First section styling - override default styles.css */
+body.program-detail main > .section:first-of-type {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Apply padding to the ACTUAL content container inside (breadcrumb-container) */
+body.program-detail main .section.breadcrumb-container {
+  padding-left: var(--grid-margin) !important;
+  padding-right: var(--grid-margin) !important;
+}
+
+/* Second section styling - narrower than first section at all breakpoints */
+body.program-detail main > .section:nth-child(2) {
+  margin: var(--spacing-huge) auto var(--spacing-small) auto;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+body.program-detail main > .section:nth-child(2) h2{
+  font-size: 28px;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-medium);
+  letter-spacing: var(--lift-button-label-letter-spacing);
+  color: var(--text-on-light-emphasis);
+  border-bottom: 2px solid var(--neutral-alpha-16-a);
+  padding-bottom: var(--spacing-medium);
+}
+
+/* Mobile font sizes for second section */
+body.program-detail main > .section:nth-child(2) p {
+  font-size: 16px;
+}
+
+/* Tablet breakpoint */
+@media (width >= 768px) {
+  /* Increase font sizes from tablet up */
+  body.program-detail main > .section:nth-child(2) p {
+    font-size: 18px;
+  }
+
+  body.program-detail main > .section:nth-child(2) h2 {
+    font-size: 32px;
+  }
+
+  /* Second section narrower starting from tablet */
+  body.program-detail main > .section:nth-child(2) {
+    width: 70%;
+  }
+
+  body.program-detail .columns.columns-5-cols > div,
+  body.program-detail .columns.columns-3-cols > div,
+  body.program-detail .columns.columns-4-cols > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-small) 0;
+  }
+
+  body.program-detail .columns.columns-2-cols > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xlarge, 40px);
+    align-items: flex-start;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding:var(--spacing-xlarge, 32px) var(--spacing-xlarge, 32px) var(--spacing-xsmall, 8px) var(--spacing-xlarge , 32px);
+  }
+
+  body.program-detail .columns.columns-5-cols > div > div:not(:empty),
+  body.program-detail .columns.columns-3-cols > div > div:not(:empty),
+  body.program-detail .columns.columns-4-cols > div > div:not(:empty) {
+    border-top: none;
+    border-left: 1px solid var(--gray-alpha-black-24-a);
+    padding: 0 0 0 var(--spacing-medium, 24px);
+  }
+
+  body.program-detail .columns.columns-5-cols > div > div:first-child,
+  body.program-detail .columns.columns-5-cols > div > div:nth-child(odd),
+  body.program-detail .columns.columns-3-cols > div > div:first-child,
+  body.program-detail .columns.columns-3-cols > div > div:nth-child(odd),
+  body.program-detail .columns.columns-4-cols > div > div:first-child,
+  body.program-detail .columns.columns-4-cols > div > div:nth-child(odd) {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  body.program-detail .columns.columns-5-cols > div > div:nth-child(2),
+  body.program-detail .columns.columns-3-cols > div > div:nth-child(2),
+  body.program-detail .columns.columns-4-cols > div > div:nth-child(2) {
+    padding-right: 0;
+  }
+
+  /* Hide empty columns to prevent spacing issues */
+  body.program-detail .columns.columns-5-cols > div > div:empty,
+  body.program-detail .columns.columns-3-cols > div > div:empty,
+  body.program-detail .columns.columns-4-cols > div > div:empty {
+    display: none;
+  }
+}
+
+/* Desktop breakpoint */
+@media (width >= 1024px) {
+  /* Make swoosh background even smaller on desktop */
+  body.program-detail.page-swoosh-half-curve::before {
+    background-size: 25%;
+  }
+
+  /* Larger font sizes for columns metadata on desktop */
+  body.program-detail .columns.columns-5-cols p,
+  body.program-detail .columns.columns-3-cols p,
+  body.program-detail .columns.columns-4-cols p {
+    font-size: 20px;
+  }
+
+  body.program-detail .columns.columns-5-cols p strong,
+  body.program-detail .columns.columns-3-cols p strong,
+  body.program-detail .columns.columns-4-cols p strong {
+    font-size: 20px;
+  }
+
+  /* Second section even narrower on desktop */
+  body.program-detail main > .section:nth-child(2) {
+    width: 60%;
+    padding-left: var(--spacing-huge);
+    padding-right: var(--spacing-huge);
+  }
+
+  /* Second section h2 larger on desktop */
+  body.program-detail main > .section:nth-child(2) h2 {
+    font-size: var(--font-size-1000);
+  }
+
+  /* Hero section desktop layout */
+  body.program-detail .columns.columns-2-cols > div {
+    flex-direction: row;
+    gap: var(--spacing-huge, 48px);
+    align-items: flex-start;
+  }
+
+  /* Auto-adjust metadata columns to multiple columns on desktop */
+  body.program-detail .columns.columns-3-cols > div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  body.program-detail .columns.columns-4-cols > div {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  body.program-detail .columns.columns-5-cols > div {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  body.program-detail .columns.columns-5-cols > div,
+  body.program-detail .columns.columns-3-cols > div,
+  body.program-detail .columns.columns-4-cols > div {
+    padding: 0;
+    row-gap: 0;
+  }
+  
+  body.program-detail .columns.columns-5-cols > div > div,
+  body.program-detail .columns.columns-3-cols > div > div,
+  body.program-detail .columns.columns-4-cols > div > div {
+    padding: 0 var(--spacing-medium, 24px);
+    margin-bottom: 0;
+  }
+
+  body.program-detail .columns.columns-2-cols > div > div:first-child {
+    order: 1;
+    flex: 1 1 auto;
+    max-width: 60%;
+  }
+
+  body.program-detail .columns.columns-2-cols > div > div:last-child {
+    order: 2;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 40%;
+  }
+  
+  body.program-detail .columns.columns-2-cols > div > div:last-child picture {
+    display: block;
+    width: 100%;
+  }
+
+  /* First child has no left border and no left padding */
+  body.program-detail .columns.columns-5-cols > div > div:first-child,
+  body.program-detail .columns.columns-3-cols > div > div:first-child,
+  body.program-detail .columns.columns-4-cols > div > div:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  /* Last child has no right padding */
+  body.program-detail .columns.columns-5-cols > div > div:last-child,
+  body.program-detail .columns.columns-3-cols > div > div:last-child,
+  body.program-detail .columns.columns-4-cols > div > div:last-child {
+    padding-right: 0;
+  }
+
+  /* Hide empty columns */
+  body.program-detail .columns.columns-5-cols > div > div:empty,
+  body.program-detail .columns.columns-3-cols > div > div:empty,
+  body.program-detail .columns.columns-4-cols > div > div:empty {
+    display: none;
+  }
+
+  /* Add left border to all non-empty columns except the first one */
+  body.program-detail .columns.columns-5-cols > div > div:not(:first-child, :empty),
+  body.program-detail .columns.columns-3-cols > div > div:not(:first-child, :empty),
+  body.program-detail .columns.columns-4-cols > div > div:not(:first-child, :empty) {
+    border-left: 1px solid var(--gray-alpha-black-24-a);
+    padding-left: var(--spacing-medium, 24px);
+  }
+}
+
+@media (width >= 1200px) {
+  body.program-detail .breadcrumb-wrapper {
+    background-color: var(--neutral-solid-05-s);
+    padding: 10px 0;
+    border-radius: 8px 8px 0 0;
+  }
+
+  body.program-detail .columns.columns-2-cols {
+    border-radius: 0;
+  }
+
+  body.program-detail .columns.columns-2-cols > div { 
+    padding: 0 var(--spacing-xxlarge, 64px);
+  }
+}

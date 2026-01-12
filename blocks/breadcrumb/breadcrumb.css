@@ -75,6 +75,6 @@ main .breadcrumb-wrapper img {
 
 main .breadcrumb-wrapper ol li:last-child,
 main .breadcrumb-wrapper a[aria-current="page"] {
-  color: var(--text-on-light-subdued);
+  color: var(--accent-blue-primary-70);
   pointer-events: none;
 }
