@@ -795,7 +795,7 @@ header nav[aria-expanded='true'] .nav-tools .default-content-wrapper {
 /* Swapna-mobile: Adjust nav-tools search wrapper for mobile menu */
 header nav[aria-expanded='true'] .nav-tools .inline-search-wrapper {
   max-width: 100%;
-  width: 95%;
+  width: calc(100% - 20px);
   background-color: #fff;
   border-radius: 30px;
   padding: 8px 8px 8px 24px;
@@ -840,7 +840,6 @@ header nav[aria-expanded='true'] .nav-links {
   display: block;
   visibility: visible;
   grid-area: links;
-  width: 100%;
   padding: 12px 24px 40px;
   background-color: #e5ebf1;
 }
