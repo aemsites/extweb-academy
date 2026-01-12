@@ -6,8 +6,8 @@
         {
           "component": "text",
           "valueType": "string",
-          "name": "templateOverride",
-          "label": "Template Override",
+          "name": "template",
+          "label": "Template",
           "description": "Apply a specific template. This will override the template from metadata spreadsheet"
         },
         {
