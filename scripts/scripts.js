@@ -473,7 +473,8 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  const templateName = getMetadata('template');
+  // Check for templateOverride first (from page properties), fallback to template (from metadata spreadsheet)
+  const templateName = getMetadata('templateoverride') || getMetadata('template');
   if (templateName) {
     await loadTemplate(doc, templateName);
   }

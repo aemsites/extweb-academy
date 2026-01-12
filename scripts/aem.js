@@ -344,7 +344,8 @@ function decorateTemplateAndTheme() {
       element.classList.add(toClassName(c.trim()));
     });
   };
-  const template = getMetadata('template');
+  // Check for templateOverride first (from page properties), fallback to template (from metadata spreadsheet)
+  const template = getMetadata('templateoverride') || getMetadata('template');
   if (template) addClasses(document.body, template);
   const theme = getMetadata('theme');
   if (theme) addClasses(document.body, theme);
