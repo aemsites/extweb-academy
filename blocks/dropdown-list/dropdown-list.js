@@ -1,4 +1,4 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
+/* import { moveInstrumentation } from '../../scripts/scripts.js'; */
 
 /**
  * Wraps dropdown lists and GO button in a container for easier styling.
@@ -52,12 +52,14 @@ export default function decorate(block) {
   // Get all dropdown items (remaining children after metadata)
   const items = [...block.children].slice(1);
 
-  // If no items, show placeholder message in a paragraph
+  // If no items, show placeholder message
   if (items.length === 0) {
     const emptyMessage = document.createElement('p');
     emptyMessage.className = 'dropdown-empty-message';
     emptyMessage.textContent = 'Please add Dropdown Items in the Universal Editor.';
-    block.textContent = '';
+    emptyMessage.style.padding = '1rem';
+    emptyMessage.style.textAlign = 'center';
+    emptyMessage.style.color = '#999';
     block.appendChild(emptyMessage);
     return;
   }
@@ -65,11 +67,6 @@ export default function decorate(block) {
   // Create custom dropdown wrapper
   const dropdownWrapper = document.createElement('div');
   dropdownWrapper.className = 'custom-dropdown';
-
-  // Preserve block metadata instrumentation on wrapper
-  if (blockMetadata) {
-    moveInstrumentation(blockMetadata, dropdownWrapper);
-  }
 
   // Create selected display
   const selectedDiv = document.createElement('div');
@@ -85,7 +82,7 @@ export default function decorate(block) {
   optionsDiv.className = 'options';
   optionsDiv.style.display = 'none';
 
-  // Process each dropdown-item (preserve instrumentation)
+  // Process each dropdown-item (DON'T move instrumentation, just clone content)
   items.forEach((item) => {
     const optionDiv = item.querySelector(':scope > div');
     if (!optionDiv) return;
@@ -93,14 +90,13 @@ export default function decorate(block) {
     const optionText = optionDiv.textContent.trim();
     if (!optionText) return;
 
-    // Create new option element
+    // Create new option element for display
     const option = document.createElement('div');
     option.className = 'option';
     option.textContent = optionText;
 
-    // Preserve Universal Editor instrumentation - only move item, NOT its child
-    // This keeps Option Text as a child of Dropdown Item in the UE tree
-    moveInstrumentation(item, option);
+    // DON'T move instrumentation - keep it on the original item
+    // This preserves the parent-child relationship in Universal Editor
 
     // Add click handler
     option.addEventListener('click', () => {
@@ -149,9 +145,14 @@ export default function decorate(block) {
     optionsDiv.style.display = 'none';
   });
 
-  // Hide original block structure (keep for Universal Editor)
+  // Hide original block structure (but KEEP IT for Universal Editor)
+  // Set position absolute and opacity 0 so UE can still interact with it
   [...block.children].forEach((child) => {
-    child.style.display = 'none';
+    child.style.position = 'absolute';
+    child.style.opacity = '0';
+    child.style.pointerEvents = 'none';
+    child.style.height = '0';
+    child.style.overflow = 'hidden';
   });
 
   // Add custom dropdown for display
