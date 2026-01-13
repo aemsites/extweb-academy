@@ -506,6 +506,12 @@ body {
   background-image: url("/icons/Background-Swoosh.png");
   background-repeat: no-repeat;
   background-position: top left;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4.5rem;
+  padding-right: 4.5rem;
+  box-sizing: border-box;
 }
 
 body.appear {
@@ -607,6 +613,12 @@ main pre {
   border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
+}
+
+main {
+  max-width: 1456px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 main > div {
