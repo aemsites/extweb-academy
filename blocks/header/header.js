@@ -481,7 +481,9 @@ export default async function decorate(block) {
 
             logoImg.src = `${window.hlx.codeBasePath}/icons/home-logo.svg`;
             logoImg.alt = 'World Bank Group Academy';
-            logoImg.loading = 'lazy';
+            logoImg.width = '200';
+            logoImg.height = '40';
+            logoImg.loading = 'eager';
             logoImg.removeAttribute('data-icon-name');
 
             picture.appendChild(logoImg);
