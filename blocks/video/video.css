@@ -27,8 +27,7 @@ body:has(main > div.section.hero-video-section) {
    padding: 0;
    position: relative;
    margin-top: -104px;
-   height: 112vh;
-   min-height: 600px;
+   height: auto;
    z-index: -2;
    max-width: unset;
    width: unset;
