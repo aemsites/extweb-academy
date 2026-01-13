@@ -1,6 +1,10 @@
 /* Global Footer  */
 footer {
   background-color: var(--accent-blue-primary-90);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 footer .block {
