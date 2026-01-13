@@ -26,6 +26,8 @@
 
    .homepage  .section.hero-video-section > .default-content-wrapper {
     height: 70vh;
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
   }
 
   @media (width >= 500px) {
