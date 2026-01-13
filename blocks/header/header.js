@@ -603,6 +603,13 @@ export default async function decorate(block) {
         elementToWrap.parentNode.insertBefore(logoLink, elementToWrap);
         logoLink.appendChild(elementToWrap);
       }
+      /* add globe-only logo for viewport <450px */
+      if (picture) {
+        const sourceSmall = document.createElement('source');
+        sourceSmall.media='(max-width: 450px)';
+        sourceSmall.srcset = `${window.hlx.codeBasePath}/icons/globe-wb.svg`;
+        picture.insertBefore(sourceSmall, picture.firstChild);
+      }
     }
     // swapna-logo-click: end - Make logo clickable and redirect to World Bank homepage
   }
