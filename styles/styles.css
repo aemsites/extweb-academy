@@ -615,6 +615,12 @@ main pre {
   white-space: pre;
 }
 
+main {
+  max-width: 1456px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 main > div {
   margin: 40px 16px;
 }
