@@ -27,7 +27,8 @@ body:has(main > div.section.hero-video-section) {
    padding: 0;
    position: relative;
    margin-top: -104px;
-   height: auto;
+   height: 112vh;
+   min-height: 600px;
    z-index: -2;
    max-width: unset;
    width: unset;
@@ -64,11 +65,12 @@ body:has(main > div.section.hero-video-section) {
  .section.hero-video-section > .video-wrapper::after {
    content: "";
    position: absolute;
-   bottom: -115px;
+   bottom: 0;
    left: 0;
-   height: 82%;
+   height: 100%;
    width: 100%;
    z-index: 1;
+   transform: translateY(calc(82% - 115px));
    background: linear-gradient(to bottom, rgb(231 237 243 / 0%) 0%, rgb(231 237 243 / 100%) 60%, rgb(231 237 243 / 100%) 100%, rgb(231 237 243 / 0%) 100%);
  }
  
