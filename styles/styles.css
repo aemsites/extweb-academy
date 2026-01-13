@@ -809,7 +809,6 @@ main > .color-wrapper {
   pointer-events: none;
   z-index: -1;
   box-sizing: border-box;
-  will-change: transform;
 }
 
 main > .color-wrapper .gradient-left-side {
