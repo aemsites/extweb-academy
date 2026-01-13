@@ -5,14 +5,39 @@
     border-bottom: none;
    }
 
+.homepage main {
+  max-width: none
+}
+
 .homepage main > .section:first-of-type {
     margin-top: 0;
   }
 
+  body.homepage {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
 
   .homepage .section.hero-video-section {
     margin-top: 0;
     max-width: 100%;
+   }
+
+   .homepage  .section.hero-video-section > .default-content-wrapper {
+    height: 70vh;
+  }
+
+  @media (width >= 500px) {
+    .homepage  .section.hero-video-section > .default-content-wrapper {
+      height: 60vh;
+     }
+   }
+   
+   @media (width >= 769px) {
+    .homepage  .section.hero-video-section > .default-content-wrapper {
+      height: 105vh;
+     }
    }
 
   @media (width >=1024px) {
@@ -21,4 +46,7 @@
         max-width: 1600px;
        }
 
+    .homepage  .section.hero-video-section > .default-content-wrapper {
+        height: 112vh;
+       }
     }
