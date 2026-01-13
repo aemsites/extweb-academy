@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, decorateIcons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { countryList } from './country-list.js';
 
@@ -37,7 +37,7 @@ function closeHomeSearchDropdown() {
   dropdown.classList.remove('open');
   dropdown.setAttribute('aria-hidden', 'true');
 
-  const searchIcon = document.querySelector('.header-home .lp-search');
+  const searchIcon = document.querySelector('.header-home .icon-search');
   if (searchIcon) {
     searchIcon.classList.remove('active');
   }
@@ -54,7 +54,7 @@ function closeHomeSearchDropdown() {
  */
 function handleClickOutside(e) {
   const dropdown = document.querySelector('.home-search-dropdown');
-  if (dropdown && !dropdown.contains(e.target) && !e.target.closest('.lp-search')) {
+  if (dropdown && !dropdown.contains(e.target) && !e.target.closest('.icon-search')) {
     closeHomeSearchDropdown();
     document.removeEventListener('click', handleClickOutside);
   }
@@ -86,9 +86,19 @@ function openHomeSearchDropdown() {
   input.setAttribute('aria-label', 'Search Academy');
 
   const searchBtn = document.createElement('button');
-  searchBtn.className = 'home-search-btn lp lp-search';
+  searchBtn.className = 'home-search-btn';
   searchBtn.setAttribute('aria-label', 'Submit search');
   searchBtn.type = 'button';
+
+  // Create search icon using EDS icon structure
+  const searchBtnIcon = document.createElement('span');
+  searchBtnIcon.className = 'icon icon-search';
+  const searchBtnImg = document.createElement('img');
+  searchBtnImg.src = `${window.hlx.codeBasePath}/icons/search.svg`;
+  searchBtnImg.alt = '';
+  searchBtnImg.loading = 'lazy';
+  searchBtnIcon.appendChild(searchBtnImg);
+  searchBtn.appendChild(searchBtnIcon);
 
   const performSearch = () => {
     const query = input.value.trim();
@@ -119,7 +129,7 @@ function openHomeSearchDropdown() {
     input.focus();
   });
 
-  const searchIcon = document.querySelector('.header-home .lp-search');
+  const searchIcon = document.querySelector('.header-home .icon-search');
   if (searchIcon) {
     searchIcon.classList.add('active');
   }
@@ -488,61 +498,99 @@ export default async function decorate(block) {
         const thirdColumn = columns[2];
         thirdColumn.classList.add('home-nav-links');
 
-        // Add font-based search icon to the navigation (for desktop)
-        const searchIcon = document.createElement('span');
-        searchIcon.className = 'lp lp-search home-search-icon';
-        searchIcon.setAttribute('role', 'button');
-        searchIcon.setAttribute('tabindex', '0');
-        searchIcon.setAttribute('aria-label', 'Search');
+        // Decorate icons in the third column if not already decorated
+        // Check if icons already have img elements (already decorated by EDS)
+        const iconsAlreadyDecorated = thirdColumn.querySelector('.icon img');
+        if (!iconsAlreadyDecorated) {
+          decorateIcons(thirdColumn);
+        }
 
-        searchIcon.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleHomeSearchDropdown();
-        });
+        // Find all search icons (EDS decorated) and add click handlers
+        const searchIcons = thirdColumn.querySelectorAll('.icon-search');
 
-        searchIcon.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+        searchIcons.forEach((searchIcon) => {
+          // Make the icon clickable and accessible
+          searchIcon.setAttribute('role', 'button');
+          searchIcon.setAttribute('tabindex', '0');
+          searchIcon.setAttribute('aria-label', 'Search');
+
+          // Add click handler
+          searchIcon.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             toggleHomeSearchDropdown();
-          }
+          });
+
+          // Add keyboard handler
+          searchIcon.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleHomeSearchDropdown();
+            }
+          });
         });
 
-        thirdColumn.appendChild(searchIcon);
+        // Create mobile icons container (shows all icons from third column on mobile)
+        const mobileIconsContainer = document.createElement('div');
+        mobileIconsContainer.className = 'mobile-icons-container';
+        mobileIconsContainer.setAttribute('role', 'navigation');
+        mobileIconsContainer.setAttribute('aria-label', 'Quick actions');
 
-        // Hide the original SVG search icon
-        const svgIcon = thirdColumn.querySelector('.icon-search');
-        if (svgIcon) {
-          svgIcon.style.display = 'none';
+        // Find ALL icons in the third column
+        const allIcons = thirdColumn.querySelectorAll('.icon');
+
+        allIcons.forEach((icon) => {
+          // Clone the icon for mobile use
+          const mobileIcon = icon.cloneNode(true);
+
+          // If it's a search icon, add special handlers
+          if (mobileIcon.classList.contains('icon-search')) {
+            mobileIcon.setAttribute('role', 'button');
+            mobileIcon.setAttribute('tabindex', '0');
+            mobileIcon.setAttribute('aria-label', 'Search');
+
+            mobileIcon.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleHomeSearchDropdown();
+            });
+
+            mobileIcon.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleHomeSearchDropdown();
+              }
+            });
+          } else {
+            // For other icons (like home), check if they're in a link
+            const parentListItem = icon.closest('li');
+            if (parentListItem) {
+              const link = parentListItem.querySelector('a');
+              if (link) {
+                // Wrap the icon in a link
+                const mobileLink = document.createElement('a');
+                mobileLink.href = link.href;
+                mobileLink.setAttribute('aria-label', link.textContent.trim() || 'Link');
+                mobileLink.appendChild(mobileIcon);
+                mobileIconsContainer.appendChild(mobileLink);
+                return; // Skip adding the bare icon
+              }
+            }
+
+            // If no link found, make it a button (in case it has other functionality)
+            mobileIcon.setAttribute('role', 'button');
+            mobileIcon.setAttribute('tabindex', '0');
+          }
+
+          mobileIconsContainer.appendChild(mobileIcon);
+        });
+
+        // Only add the container if there are icons
+        if (allIcons.length > 0) {
+          nav.appendChild(mobileIconsContainer);
         }
       }
     }
-
-    // Create mobile search trigger (for mobile/tablet views)
-    const mobileSearchTrigger = document.createElement('div');
-    mobileSearchTrigger.className = 'mobile-search-trigger';
-
-    const mobileSearchIcon = document.createElement('span');
-    mobileSearchIcon.className = 'lp lp-search';
-    mobileSearchIcon.setAttribute('role', 'button');
-    mobileSearchIcon.setAttribute('tabindex', '0');
-    mobileSearchIcon.setAttribute('aria-label', 'Search');
-
-    mobileSearchIcon.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleHomeSearchDropdown();
-    });
-
-    mobileSearchIcon.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleHomeSearchDropdown();
-      }
-    });
-
-    mobileSearchTrigger.appendChild(mobileSearchIcon);
-    nav.appendChild(mobileSearchTrigger);
 
     // Create mobile menu panel for home navigation
     const mobileMenuPanel = document.createElement('div');
