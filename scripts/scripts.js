@@ -60,7 +60,7 @@ function addColorWrapper() {
 
     // Track if user has scrolled to minimize CLS on initial load
     let hasScrolled = false;
-    
+
     window.addEventListener('scroll', () => {
       hasScrolled = true;
     }, { once: true });
@@ -69,7 +69,7 @@ function addColorWrapper() {
       (entries) => {
         // Only animate after user has scrolled to reduce CLS impact
         if (!hasScrolled) return;
-        
+
         const anyInView = entries.some((entry) => entry.isIntersecting);
         if (anyInView) {
           wrapper.classList.add('centered');
