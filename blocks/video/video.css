@@ -65,12 +65,12 @@ body:has(main > div.section.hero-video-section) {
  .section.hero-video-section > .video-wrapper::after {
    content: "";
    position: absolute;
-   bottom: -115px;
+   bottom: 0;
    left: 0;
-   height: 82%;
+   height: 100%;
    width: 100%;
    z-index: 1;
-   background: linear-gradient(to bottom, rgb(231 237 243 / 0%) 0%, rgb(231 237 243 / 100%) 60%, rgb(231 237 243 / 100%) 100%, rgb(231 237 243 / 0%) 100%);
+   background: linear-gradient(to bottom, rgb(231 237 243 / 0%) 0%, rgb(231 237 243 / 0%) 10%, rgb(231 237 243 / 100%) 70%, rgb(231 237 243 / 100%) 100%);
  }
  
  .section.hero-video-section > .video-wrapper > .video.block {
