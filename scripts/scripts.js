@@ -1,5 +1,4 @@
 import {
-  applyTemplateOverride,
   loadHeader,
   loadFooter,
   buildBlock,
@@ -451,8 +450,6 @@ async function loadTemplate(doc, templateName) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
-  // Apply template override from page properties before decorating
-  await applyTemplateOverride();
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
