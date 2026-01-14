@@ -1,9 +1,10 @@
 /* header and nav layout */
 header .nav-wrapper {
   background-color: var(--background-color);
-  width: 100%;
+  width: 100vw;
   z-index: 100;
   position: fixed;
+  left: 0;
 }
 
 header nav {
@@ -15,9 +16,10 @@ header nav {
   gap: 0 24px;
   margin: auto;
   height: var(--nav-height);
-  padding: 0;
   font-family: var(--body-font-family);
   border-bottom: 1px solid #00396b14;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
 header nav[aria-expanded='true'] {
@@ -49,7 +51,6 @@ header nav .nav-hamburger {
   height: 22px;
   display: flex;
   align-items: center;
-  padding-left: 24px;
 }
 
 header nav .nav-hamburger button {
@@ -954,6 +955,11 @@ header nav[aria-expanded='true'] .nav-three-dots {
 /* DESKTOP MEGAMENU STYLES (>= 1024px) */
 
 @media (width >= 768px) {
+  header nav {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
   header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
     flex-direction: row;
     align-items: center;
@@ -962,7 +968,12 @@ header nav[aria-expanded='true'] .nav-three-dots {
 
 @media (width >= 1024px) {
   /* Restore desktop megamenu layout */
-  header nav .nav-hamburger .megamenu-content {
+  header nav {
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  
+  .nav-hamburger .megamenu-content {
     padding: 100px 0 0;
     height: 700px;
     overflow-y: auto;
@@ -1147,7 +1158,9 @@ header nav[aria-expanded='true'] .nav-three-dots {
     display: flex;
     justify-content: flex-start;
     align-items: center;    
-    border-bottom: 1px solid #00396b14;    
+    border-bottom: 1px solid #00396b14; 
+    padding-left: 0;
+    padding-right: 0;
   }
 
   header nav[aria-expanded='true'] {
@@ -1158,7 +1171,6 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header .nav-wrapper {
     max-width: 1452px;
     margin: 0 auto;
-    padding: 0 24px;
     width: unset;
     position: unset;
   }
