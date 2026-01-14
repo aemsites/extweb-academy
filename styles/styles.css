@@ -760,9 +760,6 @@ main img {
 
 /* colors */
 
-/* colors */
-
-/* Legacy - kept for backwards compatibility if JS gradients still exist */
 main > .color-wrapper > .color-animation {
   display: flex;
   width: 2869px;
