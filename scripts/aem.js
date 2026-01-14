@@ -153,34 +153,6 @@ function setup() {
 }
 
 /**
- * Checks for template override in page properties and injects it as a meta tag.
- * This allows page-level template to override metadata spreadsheet value.
- */
-async function applyTemplateOverride() {
-  try {
-    const pagePath = window.location.pathname;
-    const jsonUrl = pagePath.endsWith('/') ? `${pagePath}index.json` : `${pagePath}.json`;
-    const response = await fetch(jsonUrl);
-
-    if (response.ok) {
-      const json = await response.json();
-      // If page property has template defined, override the meta tag
-      if (json.template) {
-        let metaTag = document.querySelector('meta[name="template"]');
-        if (!metaTag) {
-          metaTag = document.createElement('meta');
-          metaTag.setAttribute('name', 'template');
-          document.head.appendChild(metaTag);
-        }
-        metaTag.setAttribute('content', json.template);
-      }
-    }
-  } catch (error) {
-    // Silently fail - spreadsheet value will be used
-  }
-}
-
-/**
  * Auto initialization.
  */
 
@@ -760,7 +732,6 @@ async function loadSections(element) {
 init();
 
 export {
-  applyTemplateOverride,
   buildBlock,
   createOptimizedPicture,
   decorateBlock,
