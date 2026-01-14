@@ -55,11 +55,21 @@ function addColorWrapper() {
   document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.querySelector('.color-wrapper');
 
-    // Select all sections whose ID ends in '-center'
-    const centerSections = document.querySelectorAll('.section');
+    // Select all sections to observe (excludes hero section)
+    const centerSections = document.querySelectorAll('.section:not(.hero-video-section)');
+
+    // Track if user has scrolled to minimize CLS on initial load
+    let hasScrolled = false;
+    
+    window.addEventListener('scroll', () => {
+      hasScrolled = true;
+    }, { once: true });
 
     const observer = new IntersectionObserver(
       (entries) => {
+        // Only animate after user has scrolled to reduce CLS impact
+        if (!hasScrolled) return;
+        
         const anyInView = entries.some((entry) => entry.isIntersecting);
         if (anyInView) {
           wrapper.classList.add('centered');
@@ -68,7 +78,7 @@ function addColorWrapper() {
         }
       },
       {
-        threshold: 0.2, // Trigger when 60% of the section is visible
+        threshold: 0.1, // Trigger when 10% of the section is visible
       },
     );
 

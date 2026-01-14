@@ -821,8 +821,7 @@ top: 0;
 width: 50%;
 height: 100%;
 opacity: 0.6;
-transition: transform 5s ease;
-will-change: transform;
+transition: 5s;
 }
 
 main > .color-wrapper .gradient-right-side {
@@ -831,18 +830,16 @@ top: 0;
 width: 50%;
 height: 100%;
 opacity: 0.6;
-transition: transform 5s ease;
-will-change: transform;
+transition: 5s;
 }
 
 /* Use transform instead of left/right to avoid layout shifts */
-/* Original movement: from -35% to 25% = 60% difference */
 .color-wrapper.centered .gradient-left-side {
-  transform: translateX(53%);
+  transform: translateX(110%);
 }
 
 .color-wrapper.centered .gradient-right-side {
-  transform: translateX(-53%);
+  transform: translateX(-110%);
 }
 
 /* sections */
