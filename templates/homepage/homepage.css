@@ -25,18 +25,24 @@
    }
 
    .homepage  .section.hero-video-section > .default-content-wrapper {
-    height: 70vh;
+    height: 112vh;
     padding-left: var(--grid-margin);
     padding-right: var(--grid-margin);
   }
 
-  @media (width >= 500px) {
+  @media (width <= 500px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
       height: 60vh;
      }
    }
    
-   @media (width >= 769px) {
+   @media (width <= 769px) and (width > 500px) {
+    .homepage  .section.hero-video-section > .default-content-wrapper {
+      height: 70vh;
+     }
+   }
+
+   @media (width > 769px) and (width <= 1400px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
       height: 105vh;
      }
@@ -46,9 +52,5 @@
     .homepage main > .section {
         width: 100%;
         max-width: 1600px;
-       }
-
-    .homepage  .section.hero-video-section > .default-content-wrapper {
-        height: 112vh;
        }
     }
