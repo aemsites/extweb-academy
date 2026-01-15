@@ -830,12 +830,13 @@ opacity: 0.6;
 transition: 5s;
 }
 
+/* Use transform instead of left/right to avoid layout shifts */
 .color-wrapper.centered .gradient-left-side {
-  left: 25%;
+  transform: translateX(110%);
 }
 
 .color-wrapper.centered .gradient-right-side {
-  right: 25%;
+  transform: translateX(-110%);
 }
 
 /* sections */

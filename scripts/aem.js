@@ -495,7 +495,11 @@ function decorateSections(main) {
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section');
     section.dataset.sectionStatus = 'initialized';
-    section.style.display = 'none';
+
+    // Don't hide hero-video-section to prevent CLS on mobile
+    if (!section.classList.contains('hero-video-section')) {
+      section.style.display = 'none';
+    }
 
     // Process section metadata
     const sectionMeta = section.querySelector('div.section-metadata');
