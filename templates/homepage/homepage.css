@@ -32,13 +32,13 @@
 
   @media (width <= 500px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
-      height: 60vh;
+      height: 70vh;
      }
    }
    
    @media (width <= 769px) and (width > 500px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
-      height: 70vh;
+      height: 60vh;
      }
    }
 
