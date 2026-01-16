@@ -226,6 +226,17 @@ body:has(main > div.section.hero-video-section) {
  will-change: auto;
  }
  
+ /* Style the div BEFORE default-content-wrapper class is added */
+ .section.hero-video-section > div:not(.video-wrapper):not(.section-metadata) {
+ display: block;
+ height: auto;
+ padding-top: 240px;
+ padding-bottom: 10vh;
+ padding-left: 1rem;
+ padding-right: 1rem;
+ text-align: center;
+ }
+ 
  .section.hero-video-section > .default-content-wrapper {
  display: block;
  height: auto;
@@ -236,7 +247,8 @@ body:has(main > div.section.hero-video-section) {
  text-align: center;
  }
  
- .section.hero-video-section > .default-content-wrapper h1 {
+ .section.hero-video-section > .default-content-wrapper h1,
+ .section.hero-video-section > div:not(.video-wrapper):not(.section-metadata) > h1 {
  font-size: 36px !important;
  line-height: 40px !important;
  margin: 0 auto 16px auto !important;
@@ -244,7 +256,8 @@ body:has(main > div.section.hero-video-section) {
  text-align: center;
  }
  
- .section.hero-video-section > .default-content-wrapper p:nth-child(2) {
+ .section.hero-video-section > .default-content-wrapper p:nth-child(2),
+ .section.hero-video-section > div:not(.video-wrapper):not(.section-metadata) > p:nth-child(2) {
  font-size: 16px !important;
  line-height: 24px !important;
  margin: 0 auto 16px auto !important;
@@ -252,12 +265,14 @@ body:has(main > div.section.hero-video-section) {
  text-align: center;
  }
  
- .section.hero-video-section > .default-content-wrapper p:nth-child(3) {
+ .section.hero-video-section > .default-content-wrapper p:nth-child(3),
+ .section.hero-video-section > div:not(.video-wrapper):not(.section-metadata) > p:nth-child(3) {
  margin: 16px auto !important;
  text-align: center;
  }
  
- .section.hero-video-section > .default-content-wrapper p:nth-child(4) {
+ .section.hero-video-section > .default-content-wrapper p:nth-child(4),
+ .section.hero-video-section > div:not(.video-wrapper):not(.section-metadata) > p:nth-child(4) {
  margin: 0 auto !important;
  display: block;
  width: 28px;
