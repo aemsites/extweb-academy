@@ -226,35 +226,34 @@ body:has(main > div.section.hero-video-section) {
  }
  
  .section.hero-video-section > .default-content-wrapper {
+ display: block;
  height: auto;
- min-height: 0;
- justify-content: flex-start;
- padding-top: calc(68vh - 300px);
+ padding-top: 240px;
  padding-bottom: 10vh;
- gap: 16px;
- will-change: auto;
+ padding-left: 1rem;
+ padding-right: 1rem;
  }
  
  .section.hero-video-section > .default-content-wrapper h1 {
  font-size: 36px !important;
  line-height: 40px !important;
- margin: 0 !important;
+ margin: 0 0 16px 0 !important;
  height: 80px;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(2) {
  font-size: 16px !important;
  line-height: 24px !important;
- margin: 0 !important;
+ margin: 0 0 16px 0 !important;
  min-height: 96px;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(3) {
- margin-top: 16px !important;
+ margin: 16px 0 !important;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(4) {
- margin-top: 0 !important;
+ margin: 0 !important;
  }
 }
  
