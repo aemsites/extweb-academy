@@ -226,9 +226,10 @@ body:has(main > div.section.hero-video-section) {
  }
  
  .section.hero-video-section > .default-content-wrapper {
- height: 68vh;
- min-height: 490px;
- justify-content: flex-end;
+ height: auto;
+ min-height: 0;
+ justify-content: flex-start;
+ padding-top: calc(68vh - 300px);
  padding-bottom: 10vh;
  gap: 16px;
  will-change: auto;
