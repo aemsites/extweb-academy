@@ -230,20 +230,30 @@ body:has(main > div.section.hero-video-section) {
  min-height: 490px;
  justify-content: flex-end;
  padding-bottom: 10vh;
+ gap: 16px;
  will-change: auto;
- contain: layout;
  }
  
  .section.hero-video-section > .default-content-wrapper h1 {
- font-size: 36px;
- line-height: 40px;
- margin: 0;
+ font-size: 36px !important;
+ line-height: 40px !important;
+ margin: 0 !important;
+ height: 80px;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(2) {
- font-size: 16px;
- line-height: 24px;
- margin: 0;
+ font-size: 16px !important;
+ line-height: 24px !important;
+ margin: 0 !important;
+ min-height: 96px;
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(3) {
+ margin-top: 16px !important;
+ }
+ 
+ .section.hero-video-section > .default-content-wrapper p:nth-child(4) {
+ margin-top: 0 !important;
  }
 }
  
