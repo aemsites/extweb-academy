@@ -1,1 +1,22 @@
-/* wide placeholder styles */
+/* wide template styles */
+
+/* Reset all sections to have the same width as the first one (full width) */
+.wide main > .section {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Override the default narrower widths at larger breakpoints */
+@media (width >= 900px) {
+  .wide main > .section {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (width >= 1024px) {
+  .wide main > .section {
+    max-width: 100%;
+    width: 100%;
+  }
+}
