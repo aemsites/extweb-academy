@@ -82,14 +82,16 @@ body:has(main > div.section.hero-video-section) {
  }
  
  .section.hero-video-section > .default-content-wrapper {
-   text-align: center;
-   height: 112vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: flex-end;
-   gap: var(--spacing-regular);
- }
+  text-align: center;
+  height: 112vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-regular);
+  position: relative;
+  z-index: 1;
+}
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(2) {
    max-width: 700px;
@@ -218,10 +220,16 @@ body:has(main > div.section.hero-video-section) {
  height: 40vh;
  }
  
+ .section.hero-video-section > .video-wrapper video {
+ aspect-ratio: 16 / 9;
+ will-change: auto;
+ }
+ 
  .section.hero-video-section > .default-content-wrapper {
  height: 68vh;
  justify-content: flex-end;
  padding-bottom: 10vh;
+ will-change: auto;
  }
 }
  
