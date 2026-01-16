@@ -49,7 +49,7 @@ body:has(main > div.section.hero-video-section) {
    margin: 0;
    padding: 0;
    width: 100%;
-   height: 70vh;
+   height: 112vh;
    position: absolute;
    z-index: -1;
    max-width: unset;
@@ -200,7 +200,7 @@ body:has(main > div.section.hero-video-section) {
  }
  
  .section.hero-video-section > .video-wrapper {
- height: 60vh;
+ height: 50vh;
  }
  
  .section.hero-video-section > .default-content-wrapper {
@@ -210,16 +210,18 @@ body:has(main > div.section.hero-video-section) {
 
 @media (width <= 500px) {
  .section.hero-video-section {
- height: 70vh;
- min-height: 500px;
+ height: 68vh;
+ min-height: 490px;
  }
  
  .section.hero-video-section > .video-wrapper {
- height: 70vh;
+ height: 40vh;
  }
  
  .section.hero-video-section > .default-content-wrapper {
- height: 70vh;
+ height: 68vh;
+ justify-content: flex-end;
+ padding-bottom: 10vh;
  }
 }
  
