@@ -830,6 +830,27 @@ opacity: 0.6;
 transition: 5s;
 }
 
+/* Mobile-specific adjustments for blobs */
+@media (width < 768px) {
+  main > .color-wrapper .gradient-left-side {
+    top: 30vh;
+    opacity: 0.4;
+    left: 50%;
+    transform: translateX(-60%);
+    width: 70%;
+    will-change: auto;
+  }
+
+  main > .color-wrapper .gradient-right-side {
+    top: 30vh;
+    opacity: 0.4;
+    left: 50%;
+    transform: translateX(-40%);
+    width: 70%;
+    will-change: auto;
+  }
+}
+
 /* Use transform instead of left/right to avoid layout shifts */
 .color-wrapper.centered .gradient-left-side {
   transform: translateX(110%);
