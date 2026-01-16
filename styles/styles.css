@@ -838,6 +838,7 @@ transition: 5s;
     left: 50%;
     transform: translateX(-60%);
     width: 70%;
+    will-change: auto;
   }
 
   main > .color-wrapper .gradient-right-side {
@@ -846,6 +847,7 @@ transition: 5s;
     left: 50%;
     transform: translateX(-40%);
     width: 70%;
+    will-change: auto;
   }
 }
 
