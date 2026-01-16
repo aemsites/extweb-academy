@@ -214,6 +214,7 @@ body:has(main > div.section.hero-video-section) {
  .section.hero-video-section {
  height: 68vh;
  min-height: 490px;
+ margin-bottom: 0;
  }
  
  .section.hero-video-section > .video-wrapper {
@@ -232,28 +233,40 @@ body:has(main > div.section.hero-video-section) {
  padding-bottom: 10vh;
  padding-left: 1rem;
  padding-right: 1rem;
+ text-align: center;
  }
  
  .section.hero-video-section > .default-content-wrapper h1 {
  font-size: 36px !important;
  line-height: 40px !important;
- margin: 0 0 16px 0 !important;
+ margin: 0 auto 16px auto !important;
  height: 80px;
+ text-align: center;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(2) {
  font-size: 16px !important;
  line-height: 24px !important;
- margin: 0 0 16px 0 !important;
+ margin: 0 auto 16px auto !important;
  min-height: 96px;
+ text-align: center;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(3) {
- margin: 16px 0 !important;
+ margin: 16px auto !important;
+ text-align: center;
  }
  
  .section.hero-video-section > .default-content-wrapper p:nth-child(4) {
- margin: 0 !important;
+ margin: 0 auto !important;
+ display: block;
+ width: 28px;
+ height: 28px;
+ }
+ 
+ .section.hero-video-section + .section {
+ margin-top: 0 !important;
+ padding-top: 40px !important;
  }
 }
  
