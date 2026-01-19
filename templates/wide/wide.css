@@ -1,12 +1,41 @@
 /* wide template styles */
-
-/* Reset all sections to have the same width as the first one (full width) */
 .wide main > .section {
   max-width: 100%;
   width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-/* Override the default narrower widths at larger breakpoints */
+.wide main > .section > div {
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+.wide main > .section:first-of-type > div {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.wide main > .section:first-of-type > div > h1 {
+  margin-top: var(--spacing-xlarge);
+  margin-bottom: var(--spacing-medium);
+}
+
+.wide main > .section:first-of-type > div > p:not(:has(picture)) {
+  margin-top: var(--spacing-huge);
+}
+
+.wide main > .section:first-of-type picture,
+.wide main > .section:first-of-type img {
+  width: 100%;
+  display: block;
+}
+
+.wide main > .section > div > h2 {
+  margin-top: var(--spacing-huge);
+  margin-bottom: var(--spacing-xlarge);
+}
+
 @media (width >= 900px) {
   .wide main > .section {
     max-width: 100%;
