@@ -1924,12 +1924,10 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 600;
-    letter-spacing: -0.3px;
   }
 
   .header-home .nav-brand .columns > div > div:nth-child(2) a {
     font-size: 18px;
-    letter-spacing: -0.3px;
     line-height: normal;
     height: auto;
   }
