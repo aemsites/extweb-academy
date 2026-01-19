@@ -1,1 +1,54 @@
-/* wide placeholder styles */
+/* wide template styles */
+.wide main > .section {
+  max-width: 100%;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.wide main > .section > div {
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+.wide main > .section:first-of-type > div > h1 {
+  margin-top: var(--spacing-xlarge);
+  margin-bottom: var(--spacing-medium);
+}
+
+.wide main > .section .default-content-wrapper p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.wide main > .section:first-of-type > div > p:not(:has(picture)) {
+  margin-top: var(--spacing-huge);
+}
+
+.wide main > .section:first-of-type picture,
+.wide main > .section:first-of-type img {
+  width: 100%;
+  display: block;
+}
+
+.wide main > .section > div > h2 {
+  margin-top: var(--spacing-huge);
+  margin-bottom: var(--spacing-xlarge);
+}
+
+@media (width >= 768px) {
+  .wide main > .section .default-content-wrapper p {
+    font-size: 18px;
+  }
+}
+
+@media (width >= 1024px) {
+  .wide main > .section {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .wide main > .section .default-content-wrapper p {
+    font-size: 20px;
+  }
+}
