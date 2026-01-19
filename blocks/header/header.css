@@ -1861,7 +1861,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 
   .header-home .home-nav-links ul li {
     display: flex;
-    margin-left: 24px;
+    margin-left: 32px;
     padding: 0;
     white-space: nowrap;
     align-items: center;
