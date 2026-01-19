@@ -987,6 +987,11 @@ html.adobe-ue-preview,
 html.adobe-ue-edit {
   height: unset;
 
+  .section.hero-video-section {
+    height: 600px;
+    min-height: 600px;
+  }
+
   .section.hero-video-section > .default-content-wrapper {
     height: 600px;
   }
@@ -996,6 +1001,16 @@ html.adobe-ue-edit {
   }
 
   .section.iframe-container > .iframe-wrapper {
+    height: 600px;
+  }
+
+  /* Override mobile vh properties - padding-bottom fix */
+  .section.hero-video-section .default-content-wrapper {
+    padding-bottom: 80px;
+  }
+
+  /* Override homepage-specific vh heights */
+  .homepage .section.hero-video-section > .default-content-wrapper {
     height: 600px;
   }
 }
