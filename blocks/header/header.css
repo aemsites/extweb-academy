@@ -937,7 +937,8 @@ header nav[aria-expanded='true'] .nav-close-button {
 }
 
 .header-home .nav-brand {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   order: 1;
   color: var(--white);
 }
@@ -948,6 +949,7 @@ header nav[aria-expanded='true'] .nav-close-button {
   padding: 0;
   margin-left: 16px;
   order: 3;
+  flex-shrink: 0;
 }
 
 /* Swapna-mobile: Hide hamburger, brand, sections and 3-dots when menu is expanded */
@@ -1365,7 +1367,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   border-bottom: none;
   z-index: 1000;
   position: relative;
-  padding-top: 16px;
 }
 
 .header-home nav.nav-home {
@@ -1373,10 +1374,12 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   justify-content: space-between;
   align-items: center;
   gap: 0;
-  padding: 16px 24px;
+  padding: 32px 28px;
   color: var(--white);
   background-color: transparent;
   border-bottom: none;
+  height: auto;
+  min-height: auto;
 }
 
 .header-home .nav-brand img {
@@ -1394,6 +1397,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   order: 2;
   align-items: center;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 .header-home .mobile-icons-container .icon,
@@ -1483,29 +1487,39 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   flex-flow: row nowrap;
   align-items: center;
   gap: 0;
+  min-width: 0;
 }
 
 .header-home .nav-brand .columns > div > div {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  min-width: 0;
   order: unset;
 }
 
 .header-home .nav-brand .columns > div > div:first-child {
   display: flex;
-  align-items: center;
-  padding-right: 6px;
+  align-items: flex-end;
+  padding-right: 10px;
+  max-width: calc(100vw - 260px);
+  overflow: hidden;
+  border-right: 2px solid rgb(255 255 255 / 24%);
 }
 
 .header-home .nav-brand .columns > div > div:first-child img {
-  height: 20px;
+  height: auto;
   width: auto;
+  max-width: 100%;
+  max-height: 40px;
+  display: block;
 }
 
 .header-home .nav-brand .columns > div > div:nth-child(2) {
   display: flex;
-  align-items: center;
-  padding-left: 6px;
-  border-left: 1px solid rgb(255 255 255 / 40%);
+  align-items: flex-end;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .header-home .nav-brand .columns > div > div:nth-child(2) ul {
@@ -1538,6 +1552,10 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 
 .header-home .nav-brand .columns > div > div:nth-child(2) a {
   font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--white);
+  display: block;
 }
 
 
@@ -1566,9 +1584,9 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 .header-home nav.nav-home[aria-expanded='true'] {
   grid-template: unset;
   min-height: unset;
-  height: var(--nav-height);
+  height: auto;
   background-color: transparent;
-  padding: 16px 24px;
+  padding: 32px 28px;
   gap: 0;
 }
 
@@ -1671,27 +1689,30 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   opacity: 0.8;
 }
 
-@media (width >= 400px) {
-  .header-home .nav-brand .columns > div > div:first-child img {
-    height: 24px;
+@media (width >= 430px) {
+  .header-home .nav-brand .columns > div > div {
+    flex: 0 0 auto;
   }
 
   .header-home .nav-brand .columns > div > div:first-child {
-    padding-right: 8px;
+    padding-right: 12px;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .header-home .nav-brand .columns > div > div:first-child img {
+    height: 40px;
+    width: auto;
+    max-width: 200px;
   }
 
   .header-home .nav-brand .columns > div > div:nth-child(2) {
-    padding-left: 8px;
-  }
-
-  .header-home .nav-brand .columns > div > div:nth-child(2) a {
-    font-size: 16px;
-    line-height: 24px;
-    height: 24px;
+    padding-left: 12px;
+    padding-bottom: 3px;
   }
 
   .header-home nav.nav-home {
-    padding: 16px 24px;
+    padding: 32px;
   }
 
   .header-home .home-nav-links .icon-search {
@@ -1705,42 +1726,36 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 }
 
 @media (width >= 576px) {
-  .header-home .nav-brand .columns > div > div:first-child img {
-    height: 28px;
+  .header-home .nav-brand .columns > div > div:first-child {
+    padding-right: 14px;
   }
 
-  .header-home .nav-brand .columns > div > div:nth-child(2) a {
-    font-size: 18px;
-    line-height: 28px;
-    height: 28px;
+  .header-home .nav-brand .columns > div > div:nth-child(2) {
+    padding-left: 14px;
   }
 
   .header-home nav.nav-home {
-    padding: 16px 24px;
+    padding: 32px 40px;
   }
 }
 
 @media (width >= 768px) {
-  .header-home .nav-brand .columns > div > div:first-child img {
-    height: 32px;
-  }
-
   .header-home .nav-brand .columns > div > div:first-child {
-    padding-right: 12px;
+    padding-right: 16px;
   }
 
   .header-home .nav-brand .columns > div > div:nth-child(2) {
-    padding-left: 12px;
+    padding-left: 16px;
+    padding-bottom: 4px;
   }
 
   .header-home .nav-brand .columns > div > div:nth-child(2) a {
-    font-size: 20px;
-    line-height: 32px;
-    height: 32px;
+    font-size: 18px;
+    line-height: 1;
   }
 
   .header-home nav.nav-home {
-    padding: 16px 24px;
+    padding: 32px 72px;
   }
 }
 
@@ -1750,8 +1765,13 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     display: none;
   }
 
+  .header-home .nav-wrapper {
+    max-width: 1600px;
+    width: 100%;
+  }
+
   .header-home nav.nav-home {
-    max-width: 1452px;
+    width: 100%;
     margin: 0 auto;
     padding: 32px 72px;
     justify-content: flex-start;
@@ -1796,6 +1816,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 
   .header-home .nav-brand .columns > div > div:first-child img {
     height: 40px;
+    width: auto;
     max-width: 200px;
     filter: none;
   }
@@ -1809,10 +1830,10 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   .header-home .nav-brand .columns > div > div:nth-child(2) {
     padding-left: 20px;
     margin-left: 5px;
-    align-self: stretch;
     min-width: fit-content;
-    height: 36px;
     border-left: none;
+    align-items: flex-end;
+    padding-bottom: 3px;
   }
 
   .header-home .home-nav-links a {
