@@ -1,4 +1,4 @@
-import { decorateDMImagesWithRendition } from '../../scripts/scripts.js';
+import { decorateDMImagesWithRendition, moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
@@ -7,6 +7,11 @@ export default function decorate(block) {
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
+      // Move UE instrumentation from nested elements to column wrapper
+      [...col.children].forEach((child) => {
+        moveInstrumentation(child, col);
+      });
+
       const pic = col.querySelector('picture');
       if (pic) {
         const picWrapper = pic.closest('div');
