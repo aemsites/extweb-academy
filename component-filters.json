@@ -45,10 +45,7 @@
       "text",
       "image",
       "button",
-      "title",
-      "custom-image",
-      "dm-asset",
-      "content-fragment"
+      "title"
     ]
   },
   {
