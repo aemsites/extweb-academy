@@ -38,6 +38,10 @@
     margin-left: -8px;
    }
 
+   .homepage .swipe-carousel.with-button .main-heading {
+    padding-top: 80px;
+   }
+
    .homepage .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
     padding-left: var(--grid-margin);
    }
