@@ -761,7 +761,7 @@ main img {
 
 /* colors */
 
-main > .color-wrapper > .color-animation {
+.section.hero-video-section > .color-wrapper > .color-animation {
   display: flex;
   width: 2869px;
   height: 1130px;
@@ -775,7 +775,7 @@ main > .color-wrapper > .color-animation {
   gap: 469px;
 }
 
-main > .color-wrapper > .gradient-left-side {
+.section.hero-video-section > .color-wrapper > .gradient-left-side {
 opacity: 0.4;
 filter: blur(60px);
 width: 1130px;
@@ -788,7 +788,7 @@ border-radius: 1130px;
 background: linear-gradient(rgb(1 125 141) 0%, rgb(1 125 141 / 0%) 85%);
 }
 
-main > .color-wrapper > .gradient-right-side {
+.section.hero-video-section > .color-wrapper > .gradient-right-side {
 opacity: 0.4;
 filter: blur(60px);
 width: 1130px;
@@ -801,18 +801,9 @@ border-radius: 1130px;
 background: linear-gradient(rgb(33 50 176) 0%, rgb(33 50 176 / 0%) 85%);
 }
 
-main > .color-wrapper {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-pointer-events: none;
-z-index: -1;
-box-sizing: border-box;
-}
+.section.hero-video-section > .color-wrapper {position: fixed;top: 0;left: 0;right: 0;width: 100%;height: 100%;pointer-events: none;z-index: -1;box-sizing: border-box;}
 
-main > .color-wrapper .gradient-left-side {
+.section.hero-video-section > .color-wrapper .gradient-left-side {
 position: absolute;
 top: 0;
 width: 50%;
@@ -821,7 +812,7 @@ opacity: 0.6;
 transition: 5s;
 }
 
-main > .color-wrapper .gradient-right-side {
+.section.hero-video-section > .color-wrapper .gradient-right-side {
 position: absolute;
 top: 0;
 width: 50%;
@@ -832,7 +823,7 @@ transition: 5s;
 
 /* Mobile-specific adjustments for blobs */
 @media (width < 768px) {
-  main > .color-wrapper .gradient-left-side {
+  .section.hero-video-section > .color-wrapper .gradient-left-side {
     top: 30vh;
     opacity: 0.4;
     left: 50%;
@@ -841,7 +832,7 @@ transition: 5s;
     will-change: auto;
   }
 
-  main > .color-wrapper .gradient-right-side {
+  .section.hero-video-section > .color-wrapper .gradient-right-side {
     top: 30vh;
     opacity: 0.4;
     left: 50%;
@@ -852,11 +843,11 @@ transition: 5s;
 }
 
 /* Use transform instead of left/right to avoid layout shifts */
-.color-wrapper.centered .gradient-left-side {
+.section.hero-video-section > .color-wrapper.centered .gradient-left-side {
   transform: translateX(110%);
 }
 
-.color-wrapper.centered .gradient-right-side {
+.section.hero-video-section > .color-wrapper.centered .gradient-right-side {
   transform: translateX(-110%);
 }
 

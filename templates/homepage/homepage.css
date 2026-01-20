@@ -6,7 +6,8 @@
    }
 
 .homepage main {
-  max-width: none
+  max-width: none;
+  overflow: hidden;
 }
 
 .homepage main > .section:first-of-type {
@@ -50,7 +51,6 @@
 
   @media (width >=1024px) {
     .homepage main > .section {
-        width: 100%;
         max-width: 1600px;
        }
     }
