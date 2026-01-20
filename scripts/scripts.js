@@ -24,24 +24,25 @@ import {
 export const LANGUAGE_ROOT = `/${getLanguage()}`;
 
 /**
- * Function to add a div as the first child of the main element with the class 'color-wrapper',
+ * Function to add a div inside .hero-video-section with the class 'color-wrapper',
  * and within that div add two div sibling divs with classes 'gradient-left-side'
  * and 'gradient-right-side', and add the class 'color-animation' to both these divs
  */
 function addColorWrapper() {
-  const main = document.querySelector('main');
-  // Check if color-wrapper already exists
-  if (main.querySelector('.color-wrapper')) {
+  const heroSection = document.querySelector('.section.hero-video-section');
+  // Check if hero section exists (homepage only)
+  if (!heroSection) {
     return;
   }
 
-  //  Check if loaded page is homepage, by checking if .hero-video-section exists
-  if (!document.querySelector('.hero-video-section')) {
+  // Check if color-wrapper already exists
+  if (heroSection.querySelector('.color-wrapper')) {
     return;
   }
+
   const colorWrapper = document.createElement('div');
   colorWrapper.classList.add('color-wrapper');
-  main.insertBefore(colorWrapper, main.firstChild);
+  heroSection.insertBefore(colorWrapper, heroSection.firstChild);
   const gradientLeftSide = document.createElement('div');
   gradientLeftSide.classList.add('gradient-left-side');
   gradientLeftSide.classList.add('color-animation');
