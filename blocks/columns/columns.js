@@ -1,4 +1,4 @@
-import { decorateDMImagesWithRendition } from '../../scripts/scripts.js';
+// import { decorateDMImagesWithRendition } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
@@ -17,5 +17,5 @@ export default function decorate(block) {
       }
     });
   });
-  decorateDMImagesWithRendition(block);
+  // decorateDMImagesWithRendition(block); // TODO: Disabled for testing - check if this causes image disappearing
 }
