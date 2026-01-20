@@ -9,7 +9,23 @@
             "resourceType": "core/franklin/components/columns/v1/columns",
             "template": {
               "columns": "2",
-              "rows": "1"
+              "rows": "1",
+              "filter": "columns"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Column",
+      "id": "column",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Column",
+              "filter": "column"
             }
           }
         }
