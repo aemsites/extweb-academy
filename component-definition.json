@@ -144,20 +144,6 @@
           }
         },
         {
-          "title": "Column",
-          "id": "column",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "filter": "column"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "AEM Content Fragment",
           "id": "content-fragment",
           "plugins": {
