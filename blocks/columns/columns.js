@@ -17,5 +17,4 @@ export default function decorate(block) {
       }
     });
   });
-  // decorateDMImagesWithRendition(block); // TODO: Disabled for testing - check if this causes image disappearing
 }
