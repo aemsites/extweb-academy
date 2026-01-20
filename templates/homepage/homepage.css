@@ -34,10 +34,6 @@
     padding: 1rem 0;
    }
 
-   .homepage .tabs .tabs-panel {
-    margin-left: -8px;
-   }
-
    .homepage .swipe-carousel.with-button .main-heading {
     padding-top: 80px;
    }
@@ -134,6 +130,7 @@
 
     .homepage .section.swipe-carousel-container:has(.with-button) {
       padding-left: 0 !important;
+      padding-right: 0 !important;
     }
     }
 
