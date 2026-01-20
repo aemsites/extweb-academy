@@ -73,7 +73,10 @@
         "text",
         "image",
         "button",
-        "title"
+        "title",
+        "custom-image",
+        "dm-asset",
+        "content-fragment"
       ]
     }
   ]
