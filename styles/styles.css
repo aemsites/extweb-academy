@@ -609,11 +609,6 @@ main pre {
   white-space: pre;
 }
 
-
-main > div {
-  margin: 40px 16px;
-}
-
 input,
 textarea,
 select,
@@ -801,7 +796,18 @@ border-radius: 1130px;
 background: linear-gradient(rgb(33 50 176) 0%, rgb(33 50 176 / 0%) 85%);
 }
 
-.section.hero-video-section > .color-wrapper {position: fixed;top: 0;left: 0;right: 0;width: 100%;height: 100%;pointer-events: none;z-index: -1;box-sizing: border-box;}
+.section.hero-video-section > .color-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  box-sizing: 
+  border-box;
+}
 
 .section.hero-video-section > .color-wrapper .gradient-left-side {
 position: absolute;
@@ -998,10 +1004,5 @@ html.adobe-ue-edit {
   /* Override mobile vh properties - padding-bottom fix */
   .section.hero-video-section .default-content-wrapper {
     padding-bottom: 80px;
-  }
-
-  /* Override homepage-specific vh heights */
-  .homepage .section.hero-video-section > .default-content-wrapper {
-    height: 600px;
   }
 }

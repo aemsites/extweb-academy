@@ -3,6 +3,7 @@
 .homepage h2 {
     padding-bottom: 0;
     border-bottom: none;
+    letter-spacing: -0.6px;
    }
 
 .homepage main {
@@ -20,15 +21,60 @@
     max-width: 100%;
   }
 
+  .homepage main > .section.tab-carousel-section > div {
+    padding-top: 1rem;
+   }
+
   .homepage .section.hero-video-section {
     margin-top: 0;
     max-width: 100%;
    }
 
+   .homepage .cards.sticky-columns-card > ul {
+    padding: 1rem 0;
+   }
+
+   .homepage .tabs .tabs-panel {
+    margin-left: -8px;
+   }
+
+   .homepage .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
+    padding-left: var(--grid-margin);
+   }
+
+   .homepage .swipe-carousel.with-button .main-heading p {
+    font-size: var(--font-size-500);
+    color: var(--text-on-light-default);
+   }
+
    .homepage  .section.hero-video-section > .default-content-wrapper {
-    height: 112vh;
+    height: 600px;
     padding-left: var(--grid-margin);
     padding-right: var(--grid-margin);
+  }
+
+  .homepage .section[id="sticky-section"] > .default-content-wrapper > p > strong > a:any-link {
+    display: inline-block;
+    background-color: var(--accent-blue-primary-70);
+    border: 2px solid var(--accent-blue-primary-70);
+    border-radius: var(--border-radius-x-large);
+    color: #ffffffe5;
+    font-weight: var(--body-font-weight-bold);
+    font-size: var(--font-size-300);
+    padding: 0.5rem 1.25rem;
+    letter-spacing: -0.5px;
+    line-height: 1.5rem;
+    text-decoration: none;
+  }
+
+  .homepage .section[id="sticky-section"] > .default-content-wrapper > p > strong > a:any-link:hover {
+    background-color: var(--accent-blue-primary-40);
+    border: 2px solid var(--accent-blue-primary-40);
+    color: var(--text-on-light-link-primary-enabled);
+  }
+
+  .homepage .section.hero-video-section > .default-content-wrapper p:nth-child(4)::before:hover {
+    background-color: var(--accent-blue-primary-40);
   }
 
   @media (width <= 500px) {
@@ -41,16 +87,55 @@
     .homepage  .section.hero-video-section > .default-content-wrapper {
       height: 60vh;
      }
+
+     .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
+      padding-left: 0;
+     }
    }
 
    @media (width > 769px) and (width <= 1400px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
       height: 105vh;
      }
+
+     .homepage .section[id="sticky-section"] > .default-content-wrapper > p > strong > a:any-link {
+      padding: 0.75rem 1.27rem;
+     }
+
+     .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
+      padding-left: 0;
+     }
    }
 
   @media (width >=1024px) {
     .homepage main > .section {
         max-width: 1600px;
+       }
+
+       .homepage .section[id="sticky-section"] > .default-content-wrapper > p > strong > a:any-link{
+        padding: 1rem 2rem;
+       }
+
+    .homepage .section[id="sticky-section"] > .default-content-wrapper {
+       margin-left: 220px;
+       }
+
+    .homepage .cards.sticky-card.block > ul {
+        width: calc(100% - 144px);
+    }
+
+    .homepage .section.swipe-carousel-container:has(.with-button) {
+      padding-left: 0 !important;
+    }
+    }
+
+    @media (width >=1400px) {
+      .homepage .section[id="sticky-section"] > .default-content-wrapper {
+         margin-left: auto;
+         margin-right: auto;
+      }
+  
+      .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
+        padding-left: 0;
        }
     }
