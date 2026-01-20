@@ -77,6 +77,10 @@
     background-color: var(--accent-blue-primary-40);
   }
 
+  .homepage .section:has(.cards.sticky-columns-card) h2 {
+    padding-top: 200px;
+  }
+
   @media (width <= 500px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
       height: 70vh;
