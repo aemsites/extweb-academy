@@ -121,11 +121,13 @@
        }
 
     .homepage .section[id="sticky-section"] > .default-content-wrapper {
-       margin-left: 220px;
+       margin-left: 180px;
+       width: 60%;
        }
 
     .homepage .cards.sticky-card.block > ul {
-        width: calc(100% - 144px);
+        width: calc(100% + 144px);
+        margin-left: -72px;
     }
 
     .homepage .section.swipe-carousel-container:has(.with-button) {
@@ -138,6 +140,7 @@
       .homepage .section[id="sticky-section"] > .default-content-wrapper {
          margin-left: auto;
          margin-right: auto;
+         padding-top: 0;
       }
   
       .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
