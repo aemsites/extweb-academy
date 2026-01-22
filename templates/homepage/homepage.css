@@ -125,6 +125,59 @@
        width: 70%;
        }
 
+    /* Override cards.css to apply 2-column layout from 1024px */
+    .homepage .cards.sticky-columns-card > ul {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem 2rem;
+      padding: 2rem;
+      justify-content: center;
+      max-width: 1520px;
+    }
+
+    .homepage .cards.sticky-columns-card > ul > li {
+      width: auto;
+      max-width: 613px;
+      min-width: 428px;
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+
+    .homepage .cards.sticky-columns-card .cards-card-image {
+      border-radius: 8px 8px 0 0;
+    }
+
+    .homepage .cards.sticky-columns-card .cards-card-image img {
+      aspect-ratio: 713 / 401.29;
+      border-radius: 8px 8px 0 0;
+      margin: unset;
+    }
+
+    .homepage .cards.sticky-columns-card .cards-card-body {
+      padding: var(--spacing-xlarge);
+      border-radius: 0 0 8px 8px;
+    }
+
+    .homepage .cards.sticky-columns-card > ul > li:first-child {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      position: sticky;
+      top: 2rem;
+      bottom: 2rem;
+      height: fit-content;
+      align-self: start;
+    }
+
+    .homepage .cards.sticky-columns-card > ul > li:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .homepage .cards.sticky-columns-card > ul > li:nth-child(3) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
     .homepage .cards.sticky-card.block > ul {
         width: calc(100% + var(--section-padding)*2);
         margin-left: -100px;
@@ -146,20 +199,19 @@
       .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
         padding-left: 0;
        }
-
+      
      .homepage .cards.sticky-columns-card > ul > li {
       min-width: 613px;
       width: 50%;
-
      }  
 
      .homepage .cards.sticky-columns-card > ul > li:first-child {
       min-width: 613px;
-      margin-left: 6rem;
+
     }
   
      .homepage .cards.sticky-columns-card > ul > li:nth-child(2) {
-      max-inline-size: 613px;
+      min-width: 613px;
      }
 
      .homepage .cards.sticky-columns-card > ul > li:nth-child(3) {
