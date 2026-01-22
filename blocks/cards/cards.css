@@ -58,7 +58,6 @@
 
 /* Left Right Card Variant */
 .cards.left-right-card {
-  --left-right-card-gap: 16px;
   margin-top: var(--spacing-medium);
 }
 
@@ -667,7 +666,6 @@
 
   .cards.sticky-columns-card > ul > li {
     max-width: 713px;
-    width: 713px;
     min-width: 713px;
     flex-shrink: 0;
     border-radius: 8px;
@@ -696,21 +694,18 @@
     bottom: 2rem;
     height: fit-content;
     align-self: start;
-    width: 713px;
     max-width: 713px;
   }
 
   .cards.sticky-columns-card > ul > li:nth-child(2) {
     grid-column: 2;
     grid-row: 1;
-    width: 713px;
     max-width: 713px;
   }
 
   .cards.sticky-columns-card > ul > li:nth-child(3) {
     grid-column: 2;
     grid-row: 2;
-    width: 713px;
     max-width: 713px;
   }
 }
