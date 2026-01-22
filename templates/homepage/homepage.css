@@ -8,7 +8,7 @@
 
 .homepage main {
   max-width: none;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .homepage main > .section:first-of-type {
@@ -146,5 +146,23 @@
       .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
         padding-left: 0;
        }
+
+     .homepage .cards.sticky-columns-card > ul > li {
+      min-width: 613px;
+      width: 50%;
+
+     }  
+
+     .homepage .cards.sticky-columns-card > ul > li:first-child {
+      min-width: 613px;
+      margin-left: 6rem;
+    }
   
+     .homepage .cards.sticky-columns-card > ul > li:nth-child(2) {
+      max-inline-size: 613px;
+     }
+
+     .homepage .cards.sticky-columns-card > ul > li:nth-child(3) {
+      min-width: 613px;
+     }
     }
