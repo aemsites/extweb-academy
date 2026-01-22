@@ -21,8 +21,8 @@
     max-width: 100%;
   }
 
-  .homepage main > .section.tab-carousel-section > div {
-    padding-top: 1rem;
+  .homepage main > .section.tab-carousel-section {
+    padding-top: var(--section-padding);
    }
 
   .homepage .section.hero-video-section {
@@ -35,7 +35,7 @@
    }
 
    .homepage .swipe-carousel.with-button .main-heading {
-    padding-top: 80px;
+    padding-top: 200px;
    }
 
    .homepage .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
@@ -48,7 +48,6 @@
    }
 
    .homepage  .section.hero-video-section > .default-content-wrapper {
-    height: 600px;
     padding-left: var(--grid-margin);
     padding-right: var(--grid-margin);
   }
@@ -76,6 +75,8 @@
   .homepage .section.hero-video-section > .default-content-wrapper p:nth-child(4)::before:hover {
     background-color: var(--accent-blue-primary-40);
   }
+
+ 
 
   .homepage .section:has(.cards.sticky-columns-card) h2 {
     padding-top: 200px;
@@ -116,31 +117,30 @@
         max-width: 1600px;
        }
 
-       .homepage .section[id="sticky-section"] > .default-content-wrapper > p > strong > a:any-link{
+    .homepage .section[id="sticky-section"] > .default-content-wrapper > p > strong > a:any-link{
         padding: 1rem 2rem;
        }
 
     .homepage .section[id="sticky-section"] > .default-content-wrapper {
-       margin-left: 180px;
-       width: 60%;
+       width: 70%;
        }
 
     .homepage .cards.sticky-card.block > ul {
-        width: calc(100% + 144px);
-        margin-left: -72px;
+        width: calc(100% + var(--section-padding)*2);
+        margin-left: -100px;
     }
 
     .homepage .section.swipe-carousel-container:has(.with-button) {
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
+
     }
 
     @media (width >=1400px) {
       .homepage .section[id="sticky-section"] > .default-content-wrapper {
          margin-left: auto;
          margin-right: auto;
-         padding-top: 0;
       }
   
       .homepage .swipe-carousel-container>div.swipe-carousel-wrapper {
