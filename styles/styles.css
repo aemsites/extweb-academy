@@ -334,6 +334,7 @@
   --main-heading-font-size: 28px;
   --main-heading-spacing: 0 0 36px;
   --main-heading-line-height: 112%;
+  --section-padding: 60px;
   
   /* Eyebrow Styles */
   --eyebrow-font-size-l: 14px;
@@ -406,6 +407,7 @@
     --eyebrow-font-size-l: 16px;
     --eyebrow-font-size-m: 14px;
     --eyebrow-font-size-s: 12px;
+    --section-padding: 88px;
   }
 }
 
@@ -490,6 +492,7 @@
     /* main-heading styles */
     --main-heading-font-size: 40px;
     --main-heading-spacing: 0 0 48px;
+    --section-padding: 96px;
   }
 }
 
@@ -1005,4 +1008,9 @@ html.adobe-ue-edit {
   .section.hero-video-section .default-content-wrapper {
     padding-bottom: 80px;
   }
+
+    /* Override homepage-specific vh heights */
+    .homepage .section.hero-video-section > .default-content-wrapper {
+      height: 600px;
+    }
 }
