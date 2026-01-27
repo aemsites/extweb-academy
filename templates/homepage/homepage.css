@@ -82,6 +82,10 @@
     padding-top: 200px;
   }
 
+  .homepage .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
+    padding-left: var(--grid-margin);
+    }
+
   @media (width <= 500px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
       height: 70vh;
