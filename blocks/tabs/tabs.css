@@ -129,7 +129,6 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     justify-content: flex-start; /* Align cards to the left */
     margin-left: -8px;
     margin-right: -8px;
-    padding-left: 0;
     padding-right: 0;
   }
     
