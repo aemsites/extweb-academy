@@ -334,6 +334,7 @@
   --main-heading-font-size: 28px;
   --main-heading-spacing: 0 0 36px;
   --main-heading-line-height: 112%;
+  --section-padding: 60px;
   
   /* Eyebrow Styles */
   --eyebrow-font-size-l: 14px;
@@ -406,6 +407,7 @@
     --eyebrow-font-size-l: 16px;
     --eyebrow-font-size-m: 14px;
     --eyebrow-font-size-s: 12px;
+    --section-padding: 88px;
   }
 }
 
@@ -490,6 +492,7 @@
     /* main-heading styles */
     --main-heading-font-size: 40px;
     --main-heading-spacing: 0 0 48px;
+    --section-padding: 96px;
   }
 }
 
@@ -607,11 +610,6 @@ main pre {
   border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
-}
-
-
-main > div {
-  margin: 40px 16px;
 }
 
 input,
@@ -801,7 +799,18 @@ border-radius: 1130px;
 background: linear-gradient(rgb(33 50 176) 0%, rgb(33 50 176 / 0%) 85%);
 }
 
-.section.hero-video-section > .color-wrapper {position: fixed;top: 0;left: 0;right: 0;width: 100%;height: 100%;pointer-events: none;z-index: -1;box-sizing: border-box;}
+.section.hero-video-section > .color-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  box-sizing: 
+  border-box;
+}
 
 .section.hero-video-section > .color-wrapper .gradient-left-side {
 position: absolute;
@@ -1000,8 +1009,8 @@ html.adobe-ue-edit {
     padding-bottom: 80px;
   }
 
-  /* Override homepage-specific vh heights */
-  .homepage .section.hero-video-section > .default-content-wrapper {
-    height: 600px;
-  }
+    /* Override homepage-specific vh heights */
+    .homepage .section.hero-video-section > .default-content-wrapper {
+      height: 600px;
+    }
 }
