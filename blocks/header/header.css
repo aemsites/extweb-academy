@@ -1547,6 +1547,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   padding-left: 8px;
   flex-shrink: 0;
   white-space: nowrap;
+  padding-bottom: 1px;
 }
 
 .header-home .nav-brand .columns > div > div:nth-child(2) ul {
