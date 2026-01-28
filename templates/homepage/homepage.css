@@ -1,5 +1,77 @@
 /* homepage placeholder styles */
 
+/* Ensure homepage header logo styling is not affected by non-homepage header changes */
+.header-home nav .nav-brand {
+  position: static !important;
+  overflow: visible !important;
+  max-width: none !important;
+}
+
+.header-home nav .nav-brand img {
+  object-fit: initial !important;
+  object-position: center !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.header-home .nav-brand .columns > div > div:first-child {
+  overflow: hidden !important;
+  max-width: 60vw !important;
+}
+
+.header-home .nav-brand .columns > div > div:first-child img {
+  object-fit: initial !important;
+  object-position: center !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: calc(100% - 0.5rem) !important;
+  max-height: 40px !important;
+}
+
+@media (width >= 768px) {
+  .header-home nav .nav-brand {
+    position: static !important;
+    overflow: visible !important;
+    max-width: none !important;
+  }
+
+  .header-home nav .nav-brand img {
+    object-fit: initial !important;
+    object-position: center !important;
+  }
+
+  .header-home .nav-brand .columns > div > div:first-child {
+    overflow: hidden !important;
+    max-width: 60vw !important;
+  }
+
+  .header-home .nav-brand .columns > div > div:first-child img {
+    object-fit: initial !important;
+    object-position: center !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: calc(100% - 0.5rem) !important;
+    max-height: 40px !important;
+  }
+}
+
+@media (width >= 1281px) {
+  .header-home nav .nav-brand {
+    position: static !important;
+    overflow: visible !important;
+    max-width: none !important;
+  }
+
+  .header-home .nav-brand .columns > div > div:first-child img {
+    height: 40px !important;
+    width: auto !important;
+    max-width: 200px !important;
+    filter: none !important;
+    object-fit: initial !important;
+    object-position: center !important;
+  }
+}
+
 .homepage h2 {
     padding-bottom: 0;
     border-bottom: none;
