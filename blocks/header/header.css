@@ -12,7 +12,7 @@ header nav {
   grid-template:
     'hamburger brand sections tools' var(--nav-height) / auto auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 10px;
   margin: auto;
   height: var(--nav-height);
   padding: 0;
@@ -510,7 +510,7 @@ header .nav-brand {
 
 header nav .nav-brand img {
   width: auto;
-  height: 44px;
+  height: 36px;
   display: block;
 }
 
@@ -1489,15 +1489,14 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 
 .header-home .nav-brand .columns > div > div {
   flex: 0 1 auto;
-  min-width: 0;
+  min-width: 166px;
   order: unset;
 }
 
 .header-home .nav-brand .columns > div > div:first-child {
   display: flex;
   align-items: flex-end;
-  padding-right: 40px;
-  max-width: calc(100vw - 260px);
+  max-width: 60vw;
   overflow: hidden;
   border-right: 2px solid rgb(255 255 255 / 24%);
 }
@@ -1505,7 +1504,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 .header-home .nav-brand .columns > div > div:first-child img {
   height: auto;
   width: auto;
-  max-width: calc(100% + 2rem);
+  max-width: calc(100% - 0.5rem);
   max-height: 40px;
   display: block;
 }
@@ -1513,8 +1512,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
 .header-home .nav-brand .columns > div > div:nth-child(2) {
   display: flex;
   align-items: flex-end;
-  padding-left: 10px;
-  padding-bottom: 2px;
+  padding-left: 8px;
   flex-shrink: 0;
   white-space: nowrap;
 }
