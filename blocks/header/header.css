@@ -282,6 +282,22 @@ header nav[aria-expanded='true'] .nav-links .default-content-wrapper a {
   letter-spacing: -0.54px;
 }
 
+.header-home .mobile-menu-panel .mobile-nav-links ul li a {
+  display: inline-block;
+  padding: 12px 0 4px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.header-home .mobile-menu-panel .mobile-nav-links > p a:hover {
+  border-bottom-color: #169af3;
+}
+
 header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
   font-weight: 700;
   font-size: var(--font-size-1100);
@@ -390,6 +406,9 @@ header nav .nav-hamburger .megamenu-content .tabs-panel > div > ul {
   display: block;
 }
 
+.header-home .mobile-menu-panel .mobile-nav-links ul li a:hover {
+  border-bottom-color: #169af3;
+}
 
 header nav .nav-hamburger .megamenu-content .tabs-panel a:any-link:hover {
   color: var(--white);
@@ -445,6 +464,27 @@ header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul {
   padding-top: 16px;
   margin-left: 0;
   border-top: 1px solid var(--divider-on-dark-default);
+}
+
+.header-home .mobile-icons-container .icon {
+  width: 22px;
+  height: 22px;
+  padding-right: 0.75rem;
+}
+
+.header-home .home-search-btn .icon-search {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide search icons in mobile menu panel (we only want them in desktop nav-links or mobile trigger) */
+.header-home .mobile-menu-panel .mobile-nav-links ul li:has(.icon-search),
+.header-home .mobile-menu-panel .mobile-nav-links .icon-search,
+.header-home .mobile-menu-panel .mobile-nav-links .icon {
+  display: none;
 }
 
 header nav .nav-hamburger .megamenu-content .tabs-panel .footer ul li {
@@ -1439,11 +1479,7 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   flex-shrink: 0;
 }
 
-.header-home .mobile-icons-container .icon {
-  width: 22px;
-  height: 22px;
-  padding-right: 0.75rem;
-}
+
 
 .header-home .mobile-icons-container .icon img {
   width: 100%;
@@ -1460,35 +1496,6 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-
-
-/* Hide search icons in mobile menu panel (we only want them in desktop nav-links or mobile trigger) */
-.header-home .mobile-menu-panel .mobile-nav-links ul li:has(.icon-search),
-.header-home .mobile-menu-panel .mobile-nav-links .icon-search,
-.header-home .mobile-menu-panel .mobile-nav-links .icon {
-  display: none;
-}
-
-.header-home .mobile-menu-panel .mobile-nav-links ul li a {
-  display: inline-block;
-  padding: 12px 0 4px;
-  font-size: 20px;
-  font-weight: 400;
-  color: #333;
-  text-decoration: none;
-  font-family: 'Open Sans', sans-serif;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.header-home .mobile-menu-panel .mobile-nav-links > p a:hover {
-  border-bottom-color: #169af3;
-}
-
-.header-home .mobile-menu-panel .mobile-nav-links ul li a:hover {
-  border-bottom-color: #169af3;
 }
 
 /* Ensure strong tag inside link maintains bold */
@@ -1518,6 +1525,12 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   max-width: 60vw;
   overflow: hidden;
   border-right: 2px solid rgb(255 255 255 / 24%);
+}
+
+.header-home .home-search-btn .icon-search img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(38%) sepia(82%) saturate(2234%) hue-rotate(344deg) brightness(97%) contrast(88%);
 }
 
 .header-home .nav-brand .columns > div > div:first-child img {
@@ -1674,27 +1687,11 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   justify-content: center;
 }
 
-.header-home .home-search-btn .icon-search {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-home .home-search-btn .icon-search img {
-  width: 100%;
-  height: 100%;
-  filter: brightness(0) saturate(100%) invert(38%) sepia(82%) saturate(2234%) hue-rotate(344deg) brightness(97%) contrast(88%);
-}
-
 .header-home .home-search-btn:hover {
   background: transparent;
 }
 
-.header-home .home-search-btn:hover .icon-search img {
-  opacity: 0.8;
-}
+
 
 @media (width >= 430px) {
   .header-home .nav-brand .columns > div > div {
@@ -1705,6 +1702,10 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     padding-right: 12px;
     max-width: none;
     overflow: visible;
+  }
+
+  .header-home .home-search-btn:hover .icon-search img {
+    opacity: 0.8;
   }
 
   .header-home .nav-brand .columns > div > div:first-child img {
@@ -1828,10 +1829,32 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
     filter: brightness(0) saturate(100%) invert(14%) sepia(94%) saturate(2819%) hue-rotate(204deg) brightness(91%) contrast(102%);
   }
 
+  .header-home .home-nav-links .icon img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Search icon specific styling */
+  .header-home .home-nav-links .icon-search img {
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+  }
+
   .header-home .home-search-btn:hover .icon-search img {
     opacity: 0.8;
   }
 
+  .header-home .home-nav-links .icon-search.active img,
+  .header-home .home-nav-links .icon-search:hover img
+   {
+    opacity: 1;
+  }
+
+  /* Other icons (like :home:) styling */
+  .header-home .home-nav-links .icon:not(.icon-search) img {
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+  }
 
   .header-home .nav-brand .columns > div > div:first-child img {
     height: 40px;
@@ -1981,32 +2004,11 @@ body:has(.header-home nav.nav-home[aria-expanded='true']) {
   }
 
   /* Remove margin from last icon in a group */
-  .header-home .home-nav-links .icon:last-child,
-  .header-home .home-nav-links li:has(a) .icon {
-    margin-right: 0;
+  .header-home .home-nav-links li:has(a) .icon,
+  .header-home .home-nav-links .icon:last-child {
+     margin-right: 0;
   }
 
-  .header-home .home-nav-links .icon img {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Search icon specific styling */
-  .header-home .home-nav-links .icon-search img {
-    filter: brightness(0) invert(1);
-    opacity: 0.75;
-  }
-
-  .header-home .home-nav-links .icon-search:hover img,
-  .header-home .home-nav-links .icon-search.active img {
-    opacity: 1;
-  }
-
-  /* Other icons (like :home:) styling */
-  .header-home .home-nav-links .icon:not(.icon-search) img {
-    filter: brightness(0) invert(1);
-    opacity: 0.75;
-  }
 
   .header-home .home-nav-links .icon:not(.icon-search):hover img {
     opacity: 1;
