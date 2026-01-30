@@ -24,7 +24,11 @@
       "swipe-carousel",
       "tabs",
       "content-fragment",
-      "dropdown-list"
+      "dropdown-list",
+      "table",
+      "table-2-columns",
+      "table-3-columns",
+      "table-4-columns"
     ]
   },
   {
@@ -75,6 +79,30 @@
     "id": "swipe-carousel",
     "components": [
       "swipe-carousel-card"
+    ]
+  },
+  {
+    "id": "table",
+    "components": [
+      "table-row"
+    ]
+  },
+  {
+    "id": "table-2-columns",
+    "components": [
+      "table-col-2"
+    ]
+  },
+  {
+    "id": "table-3-columns",
+    "components": [
+      "table-col-3"
+    ]
+  },
+  {
+    "id": "table-4-columns",
+    "components": [
+      "table-col-4"
     ]
   },
   {
