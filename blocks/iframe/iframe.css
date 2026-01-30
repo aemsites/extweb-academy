@@ -15,7 +15,7 @@
 
 .iframe-wrapper {
   position: relative;
-  width: 100%;
+  width: auto;
   min-height: 400px;
   overflow: hidden;
 }

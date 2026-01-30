@@ -14,12 +14,22 @@ const setupDynamicHeight = (iframe, url) => {
   if (!wrapper) return;
 
   let heightApplied = false;
+  let isSameOrigin = false;
+  let messageListenerActive = false;
+  let cleanupTimeout = null;
+  let waitingForResizeUpdate = false;
 
-  const applyHeight = (height) => {
+  const applyHeight = (height, stopListening = false) => {
     if (typeof height === 'number' && height > 0) {
       iframe.style.height = `${height}px`;
       wrapper.style.minHeight = `${height}px`;
       heightApplied = true;
+      // Optionally stop listening immediately after applying height
+      if (stopListening && messageListenerActive) {
+        if (cleanupTimeout) clearTimeout(cleanupTimeout);
+        window.removeEventListener('message', messageHandler);
+        messageListenerActive = false;
+      }
     }
   };
 
@@ -40,31 +50,79 @@ const setupDynamicHeight = (iframe, url) => {
 
     // Handle height messages (common formats: height or frameHeight)
     if (data && (data.height || data.frameHeight)) {
-      applyHeight(data.height || data.frameHeight);
+      // Stop listening immediately if this is a resize update
+      applyHeight(data.height || data.frameHeight, waitingForResizeUpdate);
+      waitingForResizeUpdate = false;
     }
   };
 
-  window.addEventListener('message', messageHandler);
+  const startListening = () => {
+    if (!messageListenerActive) {
+      window.addEventListener('message', messageHandler);
+      messageListenerActive = true;
+    }
+    // Clear any pending cleanup
+    if (cleanupTimeout) {
+      clearTimeout(cleanupTimeout);
+      cleanupTimeout = null;
+    }
+  };
 
-  // Stop listening after iframe has loaded and we've given it time to send resize messages
-  iframe.addEventListener('load', () => {
-    // For same-origin iframes, try to measure content height directly
+  const stopListeningAfterDelay = (delay = 3000) => {
+    cleanupTimeout = setTimeout(() => {
+      if (heightApplied && messageListenerActive) {
+        window.removeEventListener('message', messageHandler);
+        messageListenerActive = false;
+      }
+    }, delay);
+  };
+
+  const measureSameOrigin = () => {
     try {
       const contentHeight = iframe.contentWindow.document.body.scrollHeight;
       if (contentHeight > 0) {
         applyHeight(contentHeight);
-        // Same-origin worked, remove listener immediately
-        window.removeEventListener('message', messageHandler);
+        return true;
       }
     } catch (e) {
-      // Cross-origin iframe - keep listening for postMessage
-      // Remove listener after a delay to catch late resize messages
-      setTimeout(() => {
-        if (heightApplied) {
-          window.removeEventListener('message', messageHandler);
-        }
-      }, 3000);
+      // Cross-origin iframe
     }
+    return false;
+  };
+
+  // Start listening for postMessage
+  startListening();
+
+  // Stop listening after iframe has loaded and we've given it time to send resize messages
+  iframe.addEventListener('load', () => {
+    // For same-origin iframes, try to measure content height directly
+    if (measureSameOrigin()) {
+      isSameOrigin = true;
+      // Same-origin worked, remove listener immediately
+      window.removeEventListener('message', messageHandler);
+      messageListenerActive = false;
+    } else {
+      // Cross-origin iframe - stop listening after a delay
+      stopListeningAfterDelay();
+    }
+  });
+
+  // Re-measure on window resize (debounced)
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      if (isSameOrigin) {
+        // Same-origin: measure directly
+        measureSameOrigin();
+      } else {
+        // Cross-origin: re-enable listener temporarily to catch new height
+        waitingForResizeUpdate = true;
+        startListening();
+        // Fallback: stop listening after delay if no height message received
+        stopListeningAfterDelay();
+      }
+    }, 250);
   });
 };
 
