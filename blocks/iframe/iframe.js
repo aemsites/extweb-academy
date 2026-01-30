@@ -19,6 +19,9 @@ const setupDynamicHeight = (iframe, url) => {
   let cleanupTimeout = null;
   let waitingForResizeUpdate = false;
 
+  // Forward declaration for removeEventListener in applyHeight
+  let messageHandler;
+
   const applyHeight = (height, stopListening = false) => {
     if (typeof height === 'number' && height > 0) {
       iframe.style.height = `${height}px`;
@@ -34,12 +37,12 @@ const setupDynamicHeight = (iframe, url) => {
   };
 
   // Listen for postMessage from cross-origin iframes that support it
-  const messageHandler = (event) => {
+  messageHandler = (event) => {
     // Verify the message is from our iframe's origin
     if (event.origin !== url.origin) return;
 
     // Parse data if it's a string
-    let data = event.data;
+    let { data } = event;
     if (typeof data === 'string') {
       try {
         data = JSON.parse(data);
