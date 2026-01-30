@@ -16,22 +16,20 @@
 .iframe-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 75%;
+  min-height: 400px;
   overflow: hidden;
 }
 
 .iframe-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
+  min-height: inherit;
   border: 0;
 }
 
-/* When custom mobile height is set, switch from aspect ratio to fixed height */
+/* When custom mobile height is set, use fixed height */
 .iframe.block[style*="--iframe-height-mobile"] .iframe-wrapper {
-  padding-bottom: 0;
+  min-height: var(--iframe-height-mobile);
   height: var(--iframe-height-mobile);
 }
 
