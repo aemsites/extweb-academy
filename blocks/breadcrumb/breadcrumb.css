@@ -4,8 +4,8 @@ main .section.breadcrumb-container {
 }
 
 main .breadcrumb-wrapper {
-  padding-left: var(--grid-margin);
-  padding-right: var(--grid-margin);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 main .breadcrumb-wrapper ol {
@@ -67,10 +67,6 @@ main .breadcrumb-wrapper img {
   main .breadcrumb-wrapper ol li:not(:first-child, :last-child) {
   display: inherit;
 }
-}
-
-.breadcrumb-container {
-  padding: var(--spacing-regular) 0 0 0!important;
 }
 
 main .breadcrumb-wrapper ol li:last-child,
