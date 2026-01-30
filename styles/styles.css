@@ -549,10 +549,12 @@ h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { 
-  font-size: var(--font-size-1100); 
+h1 {
+  font-size: var(--font-size-1100);
   line-height: 1.1;
   margin-bottom: var(--spacing-large);
+  padding-top: var(--spacing-xlarge);
+  margin-top: 0;
 }
 
 h2 { 
