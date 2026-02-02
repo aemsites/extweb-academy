@@ -553,7 +553,6 @@ h1 {
   font-size: var(--font-size-1100);
   line-height: 1.1;
   margin-bottom: var(--spacing-large);
-  padding-top: var(--spacing-xlarge);
   margin-top: 0;
 }
 
@@ -586,6 +585,18 @@ ul,
 pre,
 blockquote {
   margin: 0;
+}
+
+body:not(.homepage) p {
+  margin-bottom: var(--spacing-small);
+}
+
+main .section ul, ol {
+  
+}
+
+main .section li {
+  margin-bottom: var(--spacing-small);
 }
 
 code,
@@ -873,6 +884,10 @@ main > .section {
 main > .section:first-of-type {
   margin-top: 40px;
   max-width: 100%;
+}
+
+body:not(.homepage) > main .section {
+  margin-bottom: 3rem;
 }
 
 

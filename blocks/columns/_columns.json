@@ -38,6 +38,10 @@
                 {
                   "name": "Heading With Description",
                   "value": "columns-heading-with-description"
+                },
+                {
+                  "name": "Icon With Description",
+                  "value": "columns-icon-with-description"
                 }
               ]
             }

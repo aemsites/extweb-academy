@@ -6,6 +6,7 @@ main .section.breadcrumb-container {
 main .breadcrumb-wrapper {
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: var(--spacing-xlarge);
 }
 
 main .breadcrumb-wrapper ol {

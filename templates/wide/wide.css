@@ -11,29 +11,19 @@
   padding-right: var(--grid-margin);
 }
 
-.wide main > .section:first-of-type > div > h1 {
-  margin-top: var(--spacing-xlarge);
-  margin-bottom: var(--spacing-medium);
-}
-
 .wide main > .section .default-content-wrapper p {
     font-size: 16px;
     line-height: 1.5;
 }
 
-.wide main > .section:first-of-type > div > p:not(:has(picture)) {
-  margin-top: var(--spacing-huge);
+.wide main > .section:first-of-type > div > p:has(picture) {
+  padding-bottom: var(--spacing-xhuge);
 }
 
 .wide main > .section:first-of-type picture,
 .wide main > .section:first-of-type img {
   width: 100%;
   display: block;
-}
-
-.wide main > .section > div > h2 {
-  margin-top: var(--spacing-huge);
-  margin-bottom: var(--spacing-xlarge);
 }
 
 @media (width >= 768px) {
