@@ -65,3 +65,22 @@
   .table.block.bordered table td {
     border: 1px solid;
   }
+
+  /* center align variant - center the table block */
+  .table.block.center-align {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .table.block.center-align table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* center align text in cells when center-align is applied */
+  .table.block.center-align table th,
+  .table.block.center-align table td {
+    text-align: center;
+  }
