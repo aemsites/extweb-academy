@@ -15,10 +15,13 @@
   order: 0;
 }
 
+.columns.columns-icon-with-description img {
+  width: 54px;
+}
+
 .columns > div > .columns-img-col img {
   display: block;
 }
-
 
 
 /* Styling for h3 headers in columns */
@@ -57,6 +60,38 @@
   height: 90px;
   object-fit: contain;
 }
+
+/* Styling .columns-icon-with-description */
+.columns.columns-icon-with-description > div > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.columns.columns-icon-with-description p:has(img) {
+ display: inline-block;
+}
+
+.columns.columns-icon-with-description p:has(a):nth-child(2) {
+  max-width: 75%;
+}
+
+.columns.columns-icon-with-description a {
+font-size: var(--font-size-200);
+  font-style: normal;
+  line-height: 150%;
+  font-weight: bold;
+}
+
+.columns.columns-icon-with-description p:has(a):nth-child(2) > a {
+  font-size: var(--font-size-500);
+  font-style: normal;
+  font-weight: var(--body-font-weight-bold);
+  line-height: 150%;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+}
+
 
 @media (width >= 900px) {
   .columns > div {
