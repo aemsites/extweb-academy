@@ -20,10 +20,20 @@ export default async function decorate(block) {
     const tr = document.createElement('tr');
     moveInstrumentation(row, tr);
 
-    [...row.children].forEach((cell) => {
+    [...row.children].forEach((cell, colIndex) => {
       const td = document.createElement(i === 0 && header ? 'th' : 'td');
 
       if (i === 0) td.setAttribute('scope', 'column');
+      
+      // Add column index class for targeting specific columns with CSS
+      td.classList.add(`col-${colIndex + 1}`);
+      
+      // Check if cell has a data-width attribute and apply it
+      const cellWidth = cell.getAttribute('data-width');
+      if (cellWidth) {
+        td.style.width = cellWidth;
+      }
+      
       td.innerHTML = cell.innerHTML;
       tr.append(td);
     });

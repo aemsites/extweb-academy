@@ -1,13 +1,21 @@
 .table.block {
     width: 100%;
-    overflow-x: auto;
+    border: 0;
+    margin: 0 0 16px;
+    border-bottom: 1px solid #e5e5e5;
+    overflow: scroll;
   }
   
   .table.block table {
     width: 100%;
     max-width: 100%;
     border-collapse: collapse;
-    font-size: var(--body-font-size-xs);
+    font-size: var(--font-size-200);
+    border: 1px solid #e5e5e5;
+    border-left: 0;
+    border-right: 0;
+    min-width: 680px;
+    min-height: 223px
   }
   
   @media (width >= 600px) {
@@ -23,27 +31,28 @@
   }
   
   .table.block table thead tr {
-    border-top: 2px solid;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid #e5e5e5;
+    min-height: 30px;
   }
   
   .table.block table tbody tr {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #e5e5e5;
   }
   
   .table.block table th {
     font-weight: 700;
+    height: 30px;
   }
   
   .table.block table th,
   .table.block table td {
-    padding: 0.5em;
+    padding: var(--spacing-xsmall);
     text-align: left;
   }
   
   .table table th p,
   .table table td p {
-    margin: 0;
+    margin: 0 0 8px;
   }
   
   .table table td p + p {
@@ -83,4 +92,26 @@
   .table.block.center-align table th,
   .table.block.center-align table td {
     text-align: center;
+  }
+
+  /* Column-specific widths using column classes */
+  .table.block table th.col-1,
+  .table.block table td.col-1 {
+    width: 36%;
+  }
+
+  .table.block table th.col-2,
+  .table.block table td.col-2 {
+    width: 5%;
+  }
+
+  .table.block table th.col-3,
+  .table.block table td.col-3 {
+    width: 22%;
+  }
+
+  .table.block table th.col-4,
+  .table.block table td.col-4 {
+    width: 60%;
+
   }
