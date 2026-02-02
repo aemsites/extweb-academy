@@ -591,10 +591,6 @@ body:not(.homepage) p {
   margin-bottom: var(--spacing-small);
 }
 
-main .section ul, ol {
-  
-}
-
 main .section li {
   margin-bottom: var(--spacing-small);
 }
@@ -644,7 +640,7 @@ a:any-link {
 }
 
 a:hover {
-  color: var(--accent-blue-primary-40);
+  color: var(--text-on-light-link-hover);
 }
 
 a:focus,
