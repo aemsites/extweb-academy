@@ -29,8 +29,7 @@
       "table-2-columns",
       "table-3-columns",
       "table-4-columns",
-      "table-5-columns",
-      "table-6-columns"
+      "table-5-columns"
     ]
   },
   {
@@ -110,6 +109,10 @@
   {
     "id": "table-5-columns",
     "components": [
+      "table-row",
+      "table-col-2",
+      "table-col-3",
+      "table-col-4",
       "table-col-5"
     ]
   },
