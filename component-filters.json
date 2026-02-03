@@ -109,10 +109,6 @@
   {
     "id": "table-5-columns",
     "components": [
-      "table-row",
-      "table-col-2",
-      "table-col-3",
-      "table-col-4",
       "table-col-5"
     ]
   },
