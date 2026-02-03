@@ -168,7 +168,12 @@
             {
               "name": "5 Columns",
               "value": "table-5-columns"
+            },
+            {
+              "name": "6 Columns",
+              "value": "table-6-columns"
             }
+
           ]
         }
       ]
