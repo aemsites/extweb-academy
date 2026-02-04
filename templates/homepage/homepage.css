@@ -38,10 +38,6 @@
     padding-top: 200px;
    }
 
-   .homepage .section > .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
-    padding-left: var(--grid-margin);
-   }
-
    .homepage .swipe-carousel.with-button .main-heading p {
     font-size: var(--font-size-500);
     color: var(--text-on-light-default);
@@ -81,10 +77,6 @@
   .homepage .section:has(.cards.sticky-columns-card) h2 {
     padding-top: 200px;
   }
-
-  .homepage .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper:has(.with-button) .swipe-carousel > ul {
-    padding-left: var(--grid-margin);
-    }
 
   @media (width <= 500px) {
     .homepage  .section.hero-video-section > .default-content-wrapper {
