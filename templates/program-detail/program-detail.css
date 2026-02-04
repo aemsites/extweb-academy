@@ -1,10 +1,16 @@
 /* Template - program-detail */
 
-/* CRITICAL: Mobile CLS fix - reserve space for hero section */
+/* CRITICAL: Mobile CLS fix - set explicit dimensions on images */
 @media (max-width: 767px) {
-  body.program-detail .columns-wrapper:has(.columns-2-cols),
-  body.program-detail .section .columns-wrapper:first-child {
-    min-height: 650px !important;
+  body.program-detail .columns-2-cols img {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    min-height: 211px !important;
+  }
+  
+  body.program-detail .columns-2-cols > div > div:first-child {
+    min-height: 300px !important;
   }
 }
 
