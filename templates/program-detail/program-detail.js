@@ -1,12 +1,13 @@
 /* program detail - inject critical CSS immediately */
 
-// Inject critical CSS as inline style to prevent CLS
-// This runs immediately when the script loads, before any blocks are decorated
+// Inject critical CSS as inline style to prevent CLS on mobile only
 (function injectCriticalCSS() {
   const style = document.createElement('style');
   style.textContent = `
-    body.program-detail .columns-wrapper:has(.columns-2-cols) {
-      min-height: 500px !important;
+    @media (max-width: 1023px) {
+      body.program-detail .columns-container .columns-wrapper {
+        min-height: 650px !important;
+      }
     }
   `;
   document.head.appendChild(style);
