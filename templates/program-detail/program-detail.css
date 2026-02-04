@@ -2,8 +2,9 @@
 
 /* CRITICAL: Mobile CLS fix - reserve space for hero section */
 @media (max-width: 767px) {
-  body.program-detail .section:first-of-type .columns-wrapper {
-    min-height: 500px;
+  body.program-detail .columns-wrapper:has(.columns-2-cols),
+  body.program-detail .section .columns-wrapper:first-child {
+    min-height: 650px !important;
   }
 }
 
