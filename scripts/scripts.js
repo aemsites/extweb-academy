@@ -462,13 +462,13 @@ async function loadTemplate(doc, templateName) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  
+
   // CRITICAL CLS FIX: Load program-detail template CSS early to prevent layout shift
   const templateName = getMetadata('template');
   if (templateName === 'program-detail') {
     loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
   }
-  
+
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
