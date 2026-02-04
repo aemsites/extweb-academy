@@ -1,8 +1,12 @@
 .table.block {
     width: 100%;
     border: 0;
-    margin: 0 0 16px;
+    margin: 0 auto 16px;
     border-bottom: 1px solid #e5e5e5;
+    overflow: scroll;
+  }
+
+  .table.block.center-align {
     overflow: scroll;
   }
   
@@ -17,15 +21,52 @@
     min-width: 680px;
     min-height: 223px
   }
+
+    /* Center-align table: use fixed layout to respect column widths */
+    .table.block.center-align table {
+      width: 100%;
+      max-width: 1200px;
+      table-layout: fixed;
+      min-height: 190px;
+      min-width: 1020px;
+    }
   
-  
-  .table.block table thead tr {
-    border-bottom: 1px solid #e5e5e5;
+    .table.block table tbody tr {
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .table.block table thead tr {
+      border-bottom: 1px solid #e5e5e5;
+      min-height: 30px;
+    }
+
+    .table.block.center-align table tbody tr {
+      letter-spacing: -0.25px ;
+    }
+
+
+
+    .table table th p,
+    .table table td p {
+      margin: 0 0 8px;
+    }
+    
+    .table table td p + p {
+      margin-top: 0.25em;
+    }
+
+     .table.block.center-align table thead tr p {
+      width:900px;
+       }
+
+  .table.block.center-align table thead tr {
     min-height: 30px;
+    width: 75%;
+    text-align: center;
   }
   
-  .table.block table tbody tr {
-    border-bottom: 1px solid #e5e5e5;
+  .table.block.center-align table tbody tr.single-column-row td p{
+    width: 900px;
   }
   
   .table.block table th {
@@ -39,24 +80,20 @@
     text-align: left;
   }
   
-  .table table th p,
-  .table table td p {
-    margin: 0 0 8px;
-  }
-  
-  .table table td p + p {
-    margin-top: 0.25em;
-  }
+
   
   /* no header variant */
   .table.block.no-header table tbody tr {
     border-top: 1px solid;
   }
   
+
   /* striped variant */
   .table.block.striped tbody tr:nth-child(odd) {
     background-color: var(--overlay-background-color);
   }
+
+
   
   /* bordered variant */
   .table.block.bordered table th,
@@ -64,29 +101,16 @@
     border: 1px solid;
   }
 
-  /* center align variant - center the table block */
-  .table.block.center-align {
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    max-width: 100%;
-  }
 
-  .table.block.center-align table {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* center align text in cells when center-align is applied */
-  .table.block.center-align table th,
-  .table.block.center-align table td {
-    text-align: center;
-  }
-
-  /* Column-specific widths using column classes */
+  /* Column-specific widths for default tables */
   .table.block table th.col-1,
   .table.block table td.col-1 {
     width: 36%;
+  }
+
+  .table.block.center-align table th.col-1,
+  .table.block.center-align table td.col-1 {
+    width: 40px;
   }
 
   .table.block table th.col-2,
@@ -94,16 +118,37 @@
     width: 5%;
   }
 
+  .table.block.center-align table th.col-2,
+  .table.block.center-align table td.col-2 {
+    width: 142px;
+  }
+
   .table.block table th.col-3,
   .table.block table td.col-3 {
     width: 22%;
   }
 
+  .table.block.center-align table th.col-3,
+  .table.block.center-align table td.col-3 {
+    width: 142px;
+  }
+
   .table.block table th.col-4,
   .table.block table td.col-4 {
     width: 60%;
-
   }
+
+
+  /* Center align text in all cells for center-align tables */
+  .table.block.center-align table th,
+  .table.block.center-align table td {
+    text-align: center;
+    white-space: nowrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+
 
   @media (width >= 768px) {
     .table.block {
@@ -111,6 +156,8 @@
      padding-left: 8px;
      width: 650px;
      overflow: hidden;
+     margin-left: auto;
+     margin-right: auto;
     }
 
     .table.block.center-align {
@@ -120,48 +167,90 @@
     .table.block table {
         min-width: 600px;
     }
+
+    .table.block.center-align table{
+      min-width: 600px;
+
+    }
  
     .table.block table th {
         height: 55px;
     }
+    
+    
 
     .table table th p, .table table td p {
-        margin: 0 0 12px;
+      margin: 0 0 12px;
+  }
+
+    .table.block.center-align table thead tr p {
+      width:600px;
+       }
+
+    .table.block.center-align table tbody tr.single-column-row td p{
+        width: 600px;
     }
 
     .table.block table th.col-1, .table.block table td.col-1 {
         width: 30%;
     }
 
+    .table.block.center-align table th.col-1, .table.block.center-align table td.col-1 {
+      width:20%;
+      vertical-align: top;
+    }
+
     .table.block table th.col-2, .table.block table td.col-2 {
         width: 14%;
+    }
+
+    .table.block.center-align table th.col-2, .table.block.center-align table td.col-2 {
+      vertical-align: top;
     }
 
     .table.block table th.col-3, .table.block table td.col-3 {
         width: 18%;
     }
+
+    .table.block.center-align table th.col-5, .table.block.center-align table td.col-5 {
+      vertical-align: top;
+    }
+
+    .table.block.center-align table th,
+.table.block.center-align table td {
+  white-space: normal;
+
+  }
   }
 
   @media (width >= 1024px) {
     .table.block {
         padding-right: 12px;
         padding-left: 12px;
-        width: 580px;
+        width: 740px;
         overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
        }
 
-       .table.block.center-align {
-        width: 580px;
-        margin-left: 0;
-        margin-right: 0;
+    .table.block.center-align {
+        padding-right: 12px;
+        padding-left: 12px;
+        overflow: hidden;
+        width:700px;
        }
 
     .table table th p, .table table td p {
         margin: 0 0 18px;
     }
 
+
+    .table.block.center-align table thead tr p {
+      width:700px;
+       }
+
     .table.block table th.col-1, .table.block table td.col-1 {
-        width: 25%;
+        width: 30%;
     }
 
     .table.block table th.col-2, .table.block table td.col-2 {
@@ -175,4 +264,41 @@
     .table.block table th.col-4, .table.block table td.col-4 {
         width: 50%;
     }
+
+    /* Center-align table column widths at 1024px+ - ensure all columns fit */
+    .table.block.center-align table {
+        width: 100%;
+        max-width: 1200px;
+        table-layout: fixed;
+    }
+
+    .table.block.center-align table th.col-1,
+    .table.block.center-align table td.col-1 {
+        width: 20%;
+    }
+
+    .table.block.center-align table th.col-2,
+    .table.block.center-align table td.col-2 {
+        width: 20%;
+    }
+
+    .table.block.center-align table th.col-3,
+    .table.block.center-align table td.col-3 {
+        width: 20%;
+    }
+
+    .table.block.center-align table th.col-4,
+    .table.block.center-align table td.col-4 {
+        width: 20%;
+    }
+
+    .table.block.center-align table th.col-5,
+    .table.block.center-align table td.col-5 {
+        width: 20%;
+    }
+
+    .table.block.center-align table tbody tr.single-column-row td p{
+      width: 700px;
+  }
+
 }
