@@ -1,4 +1,10 @@
 /* Template - program-detail */
+
+/* CRITICAL: Reserve space for hero wrapper to prevent CLS - MUST BE FIRST */
+body.program-detail .columns-wrapper:has(.columns-2-cols) {
+  min-height: 650px !important;
+}
+
 body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
 }
@@ -30,6 +36,7 @@ body.program-detail .columns.columns-2-cols {
   padding: var(--spacing-xsmall, 12px) 0;
   border-radius: 8px 8px 0 0;
 }
+
 
 /* Metadata Section - columns with darker background */
 body.program-detail .columns.columns-5-cols,
@@ -160,6 +167,10 @@ body.program-detail .columns.columns-2-cols > div > div:last-child img {
   height: auto;
   border-radius: 0;
   display: block;
+  
+  /* Reserve space for image on mobile to prevent CLS - based on typical 780x439 dimensions */
+  aspect-ratio: 16 / 9;
+  min-height: 200px;
 }
 
 /* First section styling - override default styles.css */
@@ -201,6 +212,15 @@ body.program-detail main > .section:nth-child(2) p {
 
 /* Tablet breakpoint */
 @media (width >= 768px) {
+  /* Adjust columns min-height for tablet */
+  body.program-detail .columns-wrapper:has(.columns-2-cols) {
+    min-height: 750px !important;
+  }
+
+  body.program-detail .columns.columns-2-cols > div > div:last-child img {
+    min-height: 250px;
+  }
+
   /* Increase font sizes from tablet up */
   body.program-detail main > .section:nth-child(2) p {
     font-size: 18px;
@@ -266,6 +286,16 @@ body.program-detail main > .section:nth-child(2) p {
 
 /* Desktop breakpoint */
 @media (width >= 1024px) {
+  /* Remove constraints on desktop as layout is stable */
+  body.program-detail .columns-wrapper:has(.columns-2-cols) {
+    min-height: unset !important;
+  }
+
+  body.program-detail .columns.columns-2-cols > div > div:last-child img {
+    aspect-ratio: auto;
+    min-height: unset;
+  }
+
   /* Make swoosh background even smaller on desktop */
   body.program-detail.page-swoosh-half-curve::before {
     background-size: 25%;
