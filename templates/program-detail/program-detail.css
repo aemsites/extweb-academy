@@ -1,10 +1,5 @@
 /* Template - program-detail */
 
-/* CRITICAL: Reserve space for hero wrapper to prevent CLS - MUST BE FIRST */
-body.program-detail .columns-wrapper:has(.columns-2-cols) {
-  min-height: 650px !important;
-}
-
 body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
 }
@@ -31,10 +26,12 @@ body.program-detail main .section {
 }
 
 /* Hero section with 2 columns - more specific selectors first */
+/* CRITICAL: Reserve space to prevent CLS on mobile */
 body.program-detail .columns.columns-2-cols {
   background-color: var(--neutral-solid-05-s, #f5f5f5);
   padding: var(--spacing-xsmall, 12px) 0;
   border-radius: 8px 8px 0 0;
+  min-height: 500px;
 }
 
 
