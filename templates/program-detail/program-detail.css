@@ -26,12 +26,18 @@ body.program-detail main .section {
 }
 
 /* Hero section with 2 columns - more specific selectors first */
-/* CRITICAL: Reserve space to prevent CLS on mobile */
 body.program-detail .columns.columns-2-cols {
   background-color: var(--neutral-solid-05-s, #f5f5f5);
   padding: var(--spacing-xsmall, 12px) 0;
   border-radius: 8px 8px 0 0;
-  min-height: 500px;
+}
+
+/* CRITICAL CLS Fix - Reserve space and isolate layout on mobile */
+@media (max-width: 1023px) {
+  body.program-detail .section:first-of-type .columns-wrapper {
+    min-height: 650px;
+    contain: layout style paint;
+  }
 }
 
 
