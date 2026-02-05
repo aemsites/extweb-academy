@@ -212,6 +212,10 @@
         width: 18%;
     }
 
+    .table.block.center-align table th.col-3, .table.block.center-align table td.col-3 {
+      vertical-align: top;
+    }
+
     .table.block.center-align table th.col-5, .table.block.center-align table td.col-5 {
       vertical-align: top;
     }
