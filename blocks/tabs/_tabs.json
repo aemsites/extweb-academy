@@ -39,10 +39,30 @@
       "id": "tabs",
       "fields": [
         {
-          "component": "text",
+          "component": "multiselect",
           "valueType": "string",
           "name": "classes",
-          "label": "Style"
+          "label": "Style",
+          "value": "",
+          "options": [
+            {
+              "name": "Layout",
+              "children": [
+                {
+                  "name": "Default",
+                  "value": ""
+                },
+                {
+                  "name": "Vertical",
+                  "value": "vertical"
+                },
+                {
+                  "name": "Mobile Style",
+                  "value": "mobile-style"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
