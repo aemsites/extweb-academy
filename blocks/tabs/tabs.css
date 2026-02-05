@@ -441,3 +441,145 @@ main .section.tab-carousel-section .tabs-panel p {
 .tabs.vertical .tabs-panel[aria-hidden='true'] {
   display: none;
 }
+
+/* Mobile Style - Vertical stacked tabs with colored backgrounds */
+.tabs.mobile-style .tabs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: none;
+  margin-left: 0;
+  padding: 0;
+  align-items: stretch;
+}
+
+.tabs.mobile-style .tabs-list button {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #114E86; /* Darker blue for inactive tabs */
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: var(--font-size-300);
+  line-height: 1.4;
+  transition: background-color 0.2s ease;
+  white-space: normal;
+}
+
+.tabs.mobile-style .tabs-list button p {
+  margin: 0;
+  color: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+}
+
+/* Active tab - bright blue background */
+.tabs.mobile-style .tabs-list button[aria-selected='true'] {
+  background-color: #1A71C2; /* Bright blue for active tab */
+  color: white;
+  border-bottom: none;
+}
+
+.tabs.mobile-style .tabs-list button[aria-selected='true'] p {
+  border-bottom: none;
+}
+
+/* Inactive tabs - darker blue background */
+.tabs.mobile-style .tabs-list button[aria-selected='false'] {
+  background-color: #114E86; /* Darker blue for inactive tabs */
+  color: white;
+}
+
+/* Mobile Style - Horizontal tabs with underline (for larger mobile screens) */
+@media (width >= 480px) and (width < 768px) {
+  .tabs.mobile-style .tabs-list {
+    flex-direction: row;
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0; /* Grey baseline */
+    justify-content: flex-start;
+    padding-bottom: 0;
+  }
+
+  .tabs.mobile-style .tabs-list button {
+    background-color: transparent;
+    color: #004a7c; /* Dark blue for inactive tabs */
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-radius: 0;
+    position: relative;
+    border-bottom: none;
+  }
+
+  .tabs.mobile-style .tabs-list button p {
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  /* Active tab - bold text with blue underline */
+  .tabs.mobile-style .tabs-list button[aria-selected='true'] {
+    background-color: transparent;
+    color: #222; /* Dark text for active tab */
+    font-weight: bold;
+  }
+
+  .tabs.mobile-style .tabs-list button[aria-selected='true'] p {
+    border-bottom: 3px solid #007bff; /* Bright blue underline */
+    padding-bottom: 0;
+    margin-bottom: -1px; /* Align with grey baseline */
+    display: inline-block;
+  }
+
+  /* Inactive tabs - regular dark blue text */
+  .tabs.mobile-style .tabs-list button[aria-selected='false'] {
+    background-color: transparent;
+    color: #004a7c; /* Dark blue for inactive tabs */
+    font-weight: normal;
+  }
+}
+
+/* Desktop: revert to default horizontal style */
+@media (width >= 768px) {
+  .tabs.mobile-style .tabs-list {
+    flex-direction: row;
+    gap: 5.5px;
+    border-bottom: 3px solid var(--divider-on-light-subdued);
+    justify-content: flex-start;
+    margin-left: 1.5rem;
+  }
+
+  .tabs.mobile-style .tabs-list button {
+    background-color: transparent;
+    color: var(--text-on-light-link-primary-enabled);
+    font-weight: bold;
+    text-transform: none;
+    padding: 0.5em;
+    border-radius: 0;
+    width: auto;
+  }
+
+  .tabs.mobile-style .tabs-list button p {
+    color: inherit;
+    font-weight: inherit;
+    text-transform: none;
+  }
+
+  .tabs.mobile-style .tabs-list button[aria-selected='true'] {
+    background-color: transparent;
+    color: var(--text-on-light-emphasis);
+  }
+
+  .tabs.mobile-style .tabs-list button[aria-selected='true'] p {
+    border-bottom: 4px solid var(--blue-40);
+    width: auto;
+  }
+
+  .tabs.mobile-style .tabs-list button[aria-selected='false'] {
+    background-color: transparent;
+    color: var(--text-on-light-link-primary-enabled);
+  }
+}
