@@ -501,6 +501,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
   margin-left: 0;
   padding: 0;
   align-items: stretch;
+  padding-top: 38px;
 }
 
 .tabs.mobile-style .tabs-list button {
