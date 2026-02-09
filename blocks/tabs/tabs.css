@@ -40,7 +40,7 @@
   scrollbar-width: none;
   left: 0;
   padding: 0;
-  padding-top: 38px;
+  padding-top: 48px;
   border-bottom: none;
   scroll-padding-left: 0;
   margin-left: 0;
@@ -296,6 +296,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
     flex-direction: row;
     border-bottom: 1px solid var(--divider-on-light-subdued);
     justify-content: flex-start;
+    padding-top: 64px;
     }
 
     .tabs .tabs-panel {
@@ -422,6 +423,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
     font-size: var(--body-font-size-m);
     justify-content: flex-start;
     border-bottom: 1px solid var(--divider-on-light-subdued);
+    padding-top: 96px;
   }
 
     /* First tab stays fixed on the left */
@@ -506,7 +508,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
 
 @media (width >=1280px) {
   .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(n+3) {
-    padding-top:20px;
+    padding-top:45px;
   }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
@@ -521,7 +523,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
     justify-content: flex-start;
-    border-bottom: 3px solid transparent;
+    border-bottom:1px solid var(--divider-on-light-subdued);
   }
 
   main .section.tab-carousel-section >.tabs-wrapper {
