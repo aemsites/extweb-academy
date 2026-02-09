@@ -397,6 +397,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
 
   .tabs .tabs-list button:last-child {
     padding: 0.5em;
+    border-bottom: none;
   }
 
    
@@ -446,6 +447,10 @@ main .section.tab-carousel-section .tabs-panel h2 {
     margin-top: 40px;
   }
 
+    .tabs .tabs-list button:last-child {
+    padding: 0.5em;
+    border-bottom: none;
+  }
 
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
