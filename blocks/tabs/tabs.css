@@ -476,11 +476,18 @@ main .section.tab-carousel-section .tabs-panel h2 {
     
   }
 
+  
+
   /* Table width within mobile-style tabs panels */
   .tabs .tabs-panel .table.block {
     width: 980px;
     padding-left: 0;
     margin:0;
+    margin-bottom: 16px;
+  }
+
+  .tabs .tabs-panel p {
+    font-size: var(--font-size-500);
   }
 
   .tabs .tabs-panel .table.block.center-align table {
@@ -509,6 +516,8 @@ main .section.tab-carousel-section .tabs-panel h2 {
   .tabs .tabs-panel .table.block.center-align table tbody tr.single-column-row td p {
       min-width: 930px;
   }
+
+
 }
 
 @media (width >=1280px) {
