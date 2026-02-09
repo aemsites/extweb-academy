@@ -256,7 +256,7 @@
        }
 
        .homepage .tabs .tabs-list {
-        gap: 2.2rem;
+        gap: 2rem;
         margin-left:auto;
         margin-right: auto;
         justify-content: flex-start;
@@ -371,11 +371,24 @@
       }
   }
 
-    @media (width >=1400px) {
-      .homepage .tabs .tabs-list {
-        gap: var(--spacing-medium);
-      }
+  @media (width >=1280px) {
+    .homepage .tabs .tabs-list {
+      max-width: 50%;
+      gap:0;
+     }
 
+    .homepage main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+      min-width: max(264px, min(360px, 28vw));
+      max-width: max(264px, min(360px, 28vw));
+    }
+
+    .homepage main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+    gap: 0 35px;}
+  
+  
+  }
+
+    @media (width >=1400px) {
       .homepage .section[id="sticky-section"] > .default-content-wrapper {
          margin-left: auto;
          margin-right: auto;
@@ -416,5 +429,10 @@
 
      .homepage .cards.sticky-columns-card > ul > li:nth-child(3) {
       min-width: 0;
+     }
+
+     .homepage main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+      min-width: max(264px, min(390px, 28vw));
+      max-width: max(264px, min(390px, 28vw));
      }
     }
