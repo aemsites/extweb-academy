@@ -28,7 +28,6 @@
   zoom: 80%;
 }
 
-
 .tabs .tabs-list {
   display: flex;
   gap: 5.5px;
@@ -37,16 +36,17 @@
   overflow-x: auto;
   position: relative;
   white-space: nowrap;
-  align-items: center;
   justify-content: flex-start;
   scrollbar-width: none;
   left: 0;
   padding: 0;
-  padding-inline-start: 0;
-  border-bottom: 3px solid var(--divider-on-light-subdued); /* Grey line under all tabs */
+  padding-top: 48px;
+  border-bottom: none;
   scroll-padding-left: 0;
-  margin-left: 1.5rem;
+  margin-left: 0;
   margin-bottom: 0;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 /* Hide scrollbar for webkit browsers */
@@ -59,22 +59,25 @@
   margin-bottom: 0;
   border-bottom: none;
   border-radius: 0;
-  border-bottom-width: 3px;
-  padding: 0.5em;
-  background-color: transparent;
-  color: var(--text-on-light-link-primary-enabled);
+  padding: 8px 16px;
+  background-color: #114E86; 
+  color: white;
   font-weight: bold;
-  line-height: 40px;
-  text-align: initial;
+  line-height: 1.4;
+  text-align: center;
   text-overflow: unset;
   overflow: unset;
-  white-space: unset;
   transition: background-color 0.2s;
   font-size: var(--font-size-300);
   scroll-snap-align: start;
   scroll-snap-stop: always;
   min-width: fit-content;
   width: 100%;
+  margin-top: 0;
+  order: 0;
+  text-transform: uppercase;
+  white-space: normal;
+  border: none;
 }
 
   /* First tab stays fixed on the left */
@@ -87,12 +90,10 @@
     margin-bottom: 4px;
 }
 
-
-
 main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
   gap: 1rem;
   justify-content: flex-start; /* Align cards to the left */
-  margin-left: -1.5rem;
+  margin-left: -25px;
   padding-left: var(--grid-margin);
   padding-right: var(--grid-margin);
 }
@@ -101,7 +102,6 @@ main .section.tab-carousel-section .swipe-carousel.with-button > ul > li {
   min-width: clamp(240px, 82vw, 551px);
   max-width: clamp(240px, 82vw, 551px);
   margin-left: -2px;
-
 }
 
 main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
@@ -109,42 +109,6 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
   min-height: 500px;
 }
 
-@media (width >= 768px) {
-  .tabs .tabs-list {
-    font-size: var(--body-font-size-s);
-    border-bottom: 2px solid var(--divider-on-light-subdued);
-    }
-
-    .tabs .tabs-list button:first-child {
-      flex-shrink: 0;
-    }
-
-    main .section.tab-carousel-section >.tabs-wrapper {
-      margin-top: 15px;
-    }
-
-     /* Set gap between carousel cards */
-    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
-    gap: 1rem;
-    justify-content: flex-start; /* Align cards to the left */
-    margin-left: -8px;
-    margin-right: -8px;
-    padding-right: 0;
-  }
-    
-    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
-      flex: 0 0 calc((100% - 2rem) / 3);
-      min-width: 330px;
-      max-width: 430px;
-      height: auto;
-      min-height: 500px;
-  }
-
-  main .section.tab-carousel-section .swipe-carousel.with-button .cards-card-body > *:first-child {
-    color: #ffffffe5; 
-    font-size: var(--font-size-600);
-}
-}
 
 @media (width >= 900px) {
   main > .section.tab-carousel-section {
@@ -159,26 +123,315 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     padding-left: 0;
     padding-right: 0;
   }
+}
 
-  .tabs.vertical .tabs-list {
-    font-size: var(--body-font-size-m);
-    min-width: 250px;
-    max-width: 300px;
+/* Mobile-style tabs panels - paragraph font size for mobile */
+.tabs .tabs-panel p {
+  font-size: 16px;
+  letter-spacing: -0.25px;
+  line-height: 150%;
+}
+
+.tabs .tabs-list button p {
+  margin: 0;
+}
+
+main > .section.tab-carousel-section {
+  margin: 40px 0;
+  padding: 0;
+}
+
+main > .section.tab-carousel-section > div {
+  padding: 0 1.75rem;
+}
+
+/* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
+main .section.tab-carousel-section > div > p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-500);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 150%;
+  margin: var(--spacing-none);
+  margin-bottom: 0;
+  color: var(--text-on-light-default);
+  text-align: center;
+  letter-spacing: -0.25px;
+}
+
+/* Scoped to tabs-panel to avoid affecting tab buttons */
+main .section.tab-carousel-section .tabs-panel .body-text,
+main .section.tab-carousel-section .tabs-panel p {
+  font-family: var(--global-font-family);
+  font-size: var(--font-size-300);
+  font-weight: var(--body-font-weight-regular);
+  line-height: 22.4px;
+  color: var(--text-on-dark-subdued);
+  position: relative;
+  z-index: 2;
+  height: auto;
+  overflow: visible;
+  margin-top: 0.5rem;  
+}
+
+
+.tabs .tabs-list button[aria-selected='true'] p {
+  border-bottom: none;
+}
+
+.tabs .tabs-panel .cards.left-right-card .cards-card-body p {
+  font-size: 16px;
+  color: var(--text-on-light-highlight);
+  letter-spacing:-0.25px;
+}
+
+/* Video bottom margin within mobile-style tabs panels */
+.tabs .tabs-panel .video > div {
+  margin-bottom: 32px;
+}
+
+/* Link styling within mobile-style tabs panels */
+.tabs .tabs-panel a:any-link {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.25px;
+}
+
+/* Center-align table first column width within mobile-style tabs panels */
+.tabs .tabs-panel .table.block.center-align table th.col-1,
+.tabs .tabs-panel .table.block.center-align table td.col-1 {
+  width: 60px;
+}
+
+
+.tabs .tabs-panel {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border: 1px solid transparent;
+  overflow: hidden;
+  width: 100%;
+}
+
+.tabs .tabs-panel[aria-hidden='true'] {
+  display: none;
+}
+
+
+/* h2 styling for tab-carousel-section */
+main .section.tab-carousel-section h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--font-size-1000);
+  line-height: 115%;
+  margin-bottom: var(--spacing-small);
+  color: var(--accent-blue-primary-90);
+  text-align: center;
+}
+
+/* Scoped to tabs-panel to avoid affecting tab buttons */
+main .section.tab-carousel-section .tabs-panel h2 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  font-size: var(--font-size-600);
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-medium);
+}
+
+/* Active tab - bright blue background */
+.tabs .tabs-list button[aria-selected='true'] {
+  background-color: #114E86; /* Darker blue for inactive tabs */
+  color: white;
+  border-bottom: none;
+}
+
+/* Inactive tabs - darker blue background */
+.tabs .tabs-list button[aria-selected='false'] {
+  color: #0071bc;
+  background-color: transparent;
+}
+
+/* Bottom border on last button - for vertical mobile layout */
+.tabs .tabs-list button:last-child {
+  margin-bottom: 0;
+  padding-bottom: 12px; /* Add some padding above the border */
+  border-bottom: 1px solid var(--divider-on-light-subdued);
+}
+
+
+/* Mobile Style - Horizontal tabs with underline (for larger mobile screens) */
+@media (width >= 550px) and (width < 768px) {
+  .tabs .tabs-list {
+    flex-direction: row;
+    border-bottom: 2px solid var(--divider-on-light-subdued);
+  }
+
+  .tabs .tabs-list button {
+    background-color: transparent;
+    color: #004a7c; /* Dark blue for inactive tabs */
+    min-width: 140px;
+  }
+
+  /* Active tab - bold text with blue underline */
+  .tabs .tabs-list button[aria-selected='true'] {
+    background-color: transparent;
+    color: #004a7c;; /* Dark text for active tab */
+    font-weight: bold;
+    border-bottom: 3px solid #00538A;
+    margin-bottom: 1px;
+  }
+
+  .tabs .tabs-list button[aria-selected='true'] p {
+ /* Bright blue underline */
+    padding-bottom: 0;
+    margin-bottom: -1px; /* Align with grey baseline */
+    display: inline-block;
   }
 
 }
 
+
+/* Desktop: revert to default horizontal style */
+@media (width >= 768px) {
+  .tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+    flex-direction: row;
+    border-bottom: 1px solid var(--divider-on-light-subdued);
+    justify-content: flex-start;
+    padding-top: 64px;
+    }
+
+    .tabs .tabs-panel {
+      margin-top: 30px;
+    }
+
+    .tabs .tabs-panel p {
+     font-size: var(--body-font-size);
+    }
+
+    .tabs .tabs-list button {
+      background-color: transparent;
+      color: #0071bc;
+      font-weight: bold;
+      text-transform: none;
+      padding: 8px 16px;
+      border-radius: 0;
+      width: auto;
+      min-width: 140px;
+    }
+    
+    .tabs .tabs-list button:first-child {
+      flex-shrink: 0;
+    }
+
+    .tabs .tabs-list button p {
+      color: inherit;
+      font-weight: inherit;
+      text-transform: none;
+    }
+
+
+
+    main .section.tab-carousel-section >.tabs-wrapper {
+      margin-top: 15px;
+    }
+
+     /* Set gap between carousel cards */
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
+    gap: 1rem;
+    justify-content: flex-start; /* Align cards to the left */
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-right: 0;
+  }
+
+  .tabs .tabs-panel .cards.left-right-card > ul > li {
+    gap: var(--spacing-regular);
+    }
+    
+    main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+      flex: 0 0 calc((100% - 2rem) / 3);
+      min-width: 330px;
+      max-width: 430px;
+      height: auto;
+      min-height: 500px;
+  }
+
+  main .section.tab-carousel-section .swipe-carousel.with-button .cards-card-body > *:first-child {
+    color: #ffffffe5; 
+    font-size: var(--font-size-600);
+}
+
+    .tabs .tabs-list button[aria-selected='true'] {
+      border-bottom: 3px solid var(--text-on-light-link-primary-enabled);
+      background-color: transparent;
+      color: var(--text-on-light-emphasis);
+    }
+
+    .tabs .tabs-list button[aria-selected='true'] p {
+      width: auto;
+      color: #00538A;
+    }
+
+
+    .tabs .tabs-panel a:any-link {
+      font-size: var(--font-size-500);
+      color: var(--text-on-light-link-primary-enabled);
+      cursor: pointer;
+    }
+
+  .tabs .tabs-panel .table.block table thead tr p, .tabs .tabs-panel .table.block table tbody tr p {
+      font-size: var(--font-size-200);
+    }
+
+    /* Center-align table thead paragraph styling within mobile-style tabs panels */
+ .tabs .tabs-panel .table.block.center-align table thead tr p, .tabs .tabs-panel .table.block.center-align table tbody tr p {
+  font-size: var(--font-size-200);
+  letter-spacing: -0.25px;
+}
+
+
+
+.tabs .tabs-panel .table.block.center-align table th.col-1, .tabs .tabs-panel .table.block.center-align table td.col-1 {
+  width: 85px;
+}
+
+
+  .tabs .tabs-list button:last-child {
+    padding: 0.5em;
+    border-bottom: none;
+  }
+
+   
+  .tabs .tabs-panel .cards.left-right-card .cards-card-image img {
+      min-width: 360px
+      }
+      
+
+  .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(2) {
+    font-size: var(--font-size-500);
+    margin-bottom: var(--spacing-small);
+    padding-top:20px;
+  }
+
+  .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(n+3) {
+    font-size: var(--font-size-500);
+    margin-left: -380px;
+  }
+}
+
+
 @media (width >= 1024px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
-    justify-content: center;
-    border-bottom: 3px solid transparent;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--divider-on-light-subdued);
+    padding-top: 96px;
   }
 
     /* First tab stays fixed on the left */
     .tabs .tabs-list button:first-child {
       flex-shrink: 0;
     }
+
 
    .tabs .tabs-panel {
    align-items: center;
@@ -194,21 +447,25 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     margin-top: 40px;
   }
 
+    .tabs .tabs-list button:last-child {
+    padding: 0.5em;
+    border-bottom: none;
+  }
 
     /* Set gap between carousel cards */
     main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul {
       gap: 0 25px;
       justify-content: flex-start;
-      margin-left: 0;
-      margin-right: -12px;
+      margin-left: auto;
+      margin-right: auto;
       padding-left: var(--grid-margin);
       padding-right: var(--grid-margin);
     }
 
   main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
     flex: 0 0 calc((100% - 5rem) / 3); /* 3 cards with 2 gaps of 2.5rem = 5rem total */
-    min-width: clamp(360px, 28vw, 455px);
-    max-width: clamp(360px, 28vw, 455px);
+    min-width: max(264px, min(360px, 28vw));
+    max-width: max(264px, min(360px, 28vw));
     min-height: 600px;
     color: var(--text-on-dark-emphasys);
     line-height: 22.4px;
@@ -218,13 +475,69 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     margin-top: -20px;
     
   }
+
+  
+
+  /* Table width within mobile-style tabs panels */
+  .tabs .tabs-panel .table.block {
+    width: 980px;
+    padding-left: 0;
+    margin:0;
+    margin-bottom: 16px;
+  }
+
+  .tabs .tabs-panel p {
+    font-size: var(--font-size-500);
+  }
+
+  .tabs .tabs-panel .table.block.center-align table {
+    min-width: 930px; 
+  }
+
+  .tabs .tabs-panel .table.block.center-align table thead tr p {
+    min-width: 930px;
+    }
+
+  .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(1) {
+    padding-bottom: 20px;
+  }
+
+  .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(2) {
+    font-size: var(--font-size-500);
+    margin-bottom: var(--spacing-small);
+    padding-top: 0;
+    line-height: 150%;
+  }
+
+  .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(n+3) {
+    font-size: var(--font-size-500);
+  }
+
+  .tabs .tabs-panel .table.block.center-align table tbody tr.single-column-row td p {
+      min-width: 930px;
+  }
+
+
 }
+
+@media (width >=1280px) {
+  .tabs .tabs-panel .cards.left-right-card .cards-card-body p:nth-of-type(n+3) {
+    padding-top:45px;
+  }
+
+  main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .swipe-carousel.with-button > ul > li {
+    min-width: max(264px, min(360px, 30vw));
+    max-width: max(264px, min(360px, 30vw));
+
+}
+}
+
 
 @media (width >= 1600px) {
   .tabs .tabs-list {
     font-size: var(--body-font-size-m);
-    justify-content: center;
-    border-bottom: 3px solid transparent;
+    justify-content: flex-start;
+    border-bottom:1px solid var(--divider-on-light-subdued);
   }
 
   main .section.tab-carousel-section >.tabs-wrapper {
@@ -282,162 +595,4 @@ main .section.tab-carousel-section .tabs .tabs-panel .swipe-carousel-wrapper .sw
     margin-top: -20px;
   }
 
-}
-
-.tabs .tabs-list button p {
-  margin: 0;
-}
-
-main > .section.tab-carousel-section {
-  margin: 40px 0;
-  padding: 0;
-}
-
-main > .section.tab-carousel-section > div {
-  padding: 0 1.75rem;
-}
-
-/* paragraph styling for tab-carousel-section (above tabs, excluding tab buttons) */
-main .section.tab-carousel-section > div > p {
-  font-family: var(--global-font-family);
-  font-size: var(--font-size-500);
-  font-weight: var(--body-font-weight-regular);
-  line-height: 150%;
-  margin: var(--spacing-none);
-  margin-bottom: 0;
-  color: var(--text-on-light-default);
-  text-align: center;
-  letter-spacing: -0.25px;
-}
-
-.tabs .tabs-list button[aria-selected='true'] p{
-  border-bottom: 4px solid var(--blue-40);
-  width: auto;
-}
-
-
-.tabs .tabs-list button[aria-selected='true'] {
-  background-color: transparent;
-  cursor: initial;
-  color: var(--text-on-light-emphasis);
-  width: auto;
-}
-
-.tabs .tabs-panel {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  border: 1px solid transparent;
-  overflow: hidden;
-  width: 100%;
-}
-
-.tabs .tabs-panel[aria-hidden='true'] {
-  display: none;
-}
-
-
-/* h2 styling for tab-carousel-section */
-main .section.tab-carousel-section h2 {
-  font-family: var(--heading-font-family);
-  font-weight: var(--heading-font-weight);
-  font-size: var(--font-size-1000);
-  line-height: 115%;
-  margin-bottom: var(--spacing-small);
-  color: var(--accent-blue-primary-90);
-  text-align: center;
-}
-
-/* Scoped to tabs-panel to avoid affecting tab buttons */
-main .section.tab-carousel-section .tabs-panel h2 {
-  font-family: var(--heading-font-family);
-  font-weight: var(--heading-font-weight);
-  font-size: var(--font-size-600);
-  line-height: 1.2;
-  margin: 0 0 var(--spacing-medium);
-}
-
-/* body-text styling for tab-carousel-section */
-
-/* Scoped to tabs-panel to avoid affecting tab buttons */
-main .section.tab-carousel-section .tabs-panel .body-text,
-main .section.tab-carousel-section .tabs-panel p {
-  font-family: var(--global-font-family);
-  font-size: var(--font-size-300);
-  font-weight: var(--body-font-weight-regular);
-  line-height: 22.4px;
-  color: var(--text-on-dark-subdued);
-  position: relative;
-  z-index: 2;
-  height: auto;
-  overflow: visible;
-  margin-top: 0.5rem;  
-}
-
-/* Vertical tabs variant - tabs on left, panels on right */
-.tabs.vertical {
-  display: flex;
-  gap: 0;
-  align-items: flex-start;
-}
-
-.tabs.vertical .tabs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  min-width: 200px;
-  max-width: 250px;
-  font-size: var(--body-font-size-xs);
-  overflow-x: visible;
-  flex-shrink: 0;
-}
-
-@media (width >= 600px) {
-  .tabs.vertical .tabs-list {
-    font-size: var(--body-font-size-s);
-    min-width: 220px;
-    max-width: 280px;
-  }
-}
-
-
-.tabs.vertical .tabs-list button {
-  flex: 0 0 auto;
-  width: 100%;
-  margin: 0;
-  border: 1px solid #dadada;
-  border-radius: 0;
-  padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
-  font-weight: bold;
-  line-height: unset;
-  text-align: left;
-  text-overflow: unset;
-  overflow: unset;
-  white-space: unset;
-  transition: background-color 0.2s;
-}
-
-.tabs.vertical .tabs-list button p {
-  margin: 0;
-}
-
-.tabs.vertical .tabs-list button[aria-selected='true'] {
-  border-right: 3px solid var(--background-color);
-  background-color: var(--background-color);
-  cursor: initial;
-}
-
-.tabs.vertical .tabs-panel {
-  flex: 1;
-  margin-top: 0;
-  margin-left: -1px;
-  padding: 24px;
-  border: 1px solid #dadada;
-  overflow: auto;
-  min-height: 300px;
-}
-
-.tabs.vertical .tabs-panel[aria-hidden='true'] {
-  display: none;
 }
