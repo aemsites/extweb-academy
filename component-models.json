@@ -895,6 +895,13 @@
         "valueType": "string"
       },
       {
+        "component": "text",
+        "name": "tab-id",
+        "label": "Tab ID",
+        "valueType": "string",
+        "value": ""
+      },
+      {
         "component": "richtext",
         "name": "content",
         "value": "",
