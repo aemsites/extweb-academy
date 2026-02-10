@@ -59,4 +59,23 @@ export default async function decorate(block) {
   });
 
   block.prepend(tablist);
+
+  // open tab from URL hash on load (e.g. /#2 selects tab with id "2")
+  const hash = window.location.hash.slice(1);
+  if (hash) {
+    const tabIdFromUrl = decodeURIComponent(hash).trim();
+    const buttons = tablist.querySelectorAll('button');
+    const panels = block.querySelectorAll('[role=tabpanel]');
+    const idx = [...buttons].findIndex((btn) => btn.dataset.tabId === tabIdFromUrl);
+    if (idx >= 0 && panels[idx]) {
+      block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
+        panel.setAttribute('aria-hidden', true);
+      });
+      tablist.querySelectorAll('button').forEach((btn) => {
+        btn.setAttribute('aria-selected', false);
+      });
+      panels[idx].setAttribute('aria-hidden', false);
+      buttons[idx].setAttribute('aria-selected', true);
+    }
+  }
 }
