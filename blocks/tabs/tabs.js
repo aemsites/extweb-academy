@@ -14,14 +14,8 @@ export default async function decorate(block) {
 
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
-  const tabIds = [];
   tabs.forEach((tab, i) => {
-    const tabItem = block.children[i];
     const id = toClassName(tab.textContent);
-    const tabIdEl = tabItem.querySelector('[class*="tab-id"]') || tabItem.children[1];
-    const tabId = (tabItem.dataset.tabId || tabIdEl?.textContent?.trim() || String(i + 1)).trim();
-    if (tabIdEl && tabIdEl.parentElement === tabItem) tabIdEl.remove();
-    tabIds.push({ tabId, index: i });
 
     // decorate tabpanel
     const tabpanel = block.children[i];
@@ -30,13 +24,11 @@ export default async function decorate(block) {
     tabpanel.setAttribute('aria-hidden', !!i);
     tabpanel.setAttribute('aria-labelledby', `tab-${id}`);
     tabpanel.setAttribute('role', 'tabpanel');
-    tabpanel.dataset.tabId = tabId;
 
     // build tab button
     const button = document.createElement('button');
     button.className = 'tabs-tab';
     button.id = `tab-${id}`;
-    button.dataset.tabId = tabId;
 
     moveInstrumentation(tab.parentElement, tabpanel.lastElementChild);
     button.innerHTML = tab.innerHTML;
@@ -54,9 +46,6 @@ export default async function decorate(block) {
       });
       tabpanel.setAttribute('aria-hidden', false);
       button.setAttribute('aria-selected', true);
-      if (tabId) {
-        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${encodeURIComponent(tabId)}`);
-      }
     });
     tablist.append(button);
     tab.remove();
@@ -64,25 +53,4 @@ export default async function decorate(block) {
   });
 
   block.prepend(tablist);
-
-  // open tab from URL hash on load
-  const hash = window.location.hash.slice(1);
-  if (hash) {
-    const decodedHash = decodeURIComponent(hash);
-    const match = tabIds.find(({ tabId }) => tabId === decodedHash);
-    if (match && match.index > 0) {
-      const targetPanel = block.querySelector(`[data-tab-id="${CSS.escape(decodedHash)}"][role="tabpanel"]`);
-      const targetButton = tablist.querySelector(`button[data-tab-id="${CSS.escape(decodedHash)}"]`);
-      if (targetPanel && targetButton) {
-        block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
-          panel.setAttribute('aria-hidden', true);
-        });
-        tablist.querySelectorAll('button').forEach((btn) => {
-          btn.setAttribute('aria-selected', false);
-        });
-        targetPanel.setAttribute('aria-hidden', false);
-        targetButton.setAttribute('aria-selected', true);
-      }
-    }
-  }
 }
