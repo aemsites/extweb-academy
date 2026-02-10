@@ -400,6 +400,7 @@ main .section.tab-carousel-section .tabs-panel h2 {
     border-bottom: none;
   }
 
+  
   .tabs .tabs-list button:last-child[aria-selected='true'] {
     border-bottom: 3px solid var(--text-on-light-link-primary-enabled);
   }
