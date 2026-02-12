@@ -889,7 +889,7 @@
     "id": "tabs-item",
     "fields": [
       {
-        "component": "richtext",
+        "component": "text",
         "name": "tab-name",
         "label": "Tab Name",
         "valueType": "string"
