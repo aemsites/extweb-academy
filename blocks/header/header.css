@@ -1,9 +1,10 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
+  width: calc(100% - var(--grid-margin) * 2);
   z-index: 100;
   position: fixed;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
 }
 
 header nav {
@@ -12,7 +13,7 @@ header nav {
   grid-template:
     'hamburger brand sections tools' var(--nav-height) / auto auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 16px;
   margin: auto;
   height: var(--nav-height);
   padding: 0;
@@ -49,7 +50,6 @@ header nav .nav-hamburger {
   height: 22px;
   display: flex;
   align-items: center;
-  padding-left: 24px;
 }
 
 header nav .nav-hamburger button {
@@ -252,6 +252,7 @@ header nav .nav-hamburger .megamenu-content .tabs-tab a:any-link {
   font-weight: 700;
   font-size: var(--font-size-1100);
   pointer-events: none;
+  line-height: 38.13px;
 }
 
 /* Mobile-first: panels hidden by default, shown when selected */
@@ -532,6 +533,11 @@ header nav[aria-expanded='true'] .nav-sections {
   display: none;
 }
 
+header nav .nav-sections a {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
@@ -576,7 +582,7 @@ header nav .nav-tools .inline-search-wrapper {
   align-items: center;
   background-color: #e7edf3;
   border-radius: 24px;
-  padding: 4px 4px 4px 16px;
+  padding: 0 0 0 16px;
   width: 65%;
   max-width: 250px;
 }
@@ -586,7 +592,7 @@ header nav .nav-tools .inline-search-input {
   background: transparent;
   outline: none;
   flex: 1;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
 }
 
@@ -598,8 +604,8 @@ header nav .nav-tools .inline-search-icon {
   justify-content: center;
   background-color: #003e7e;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   transition: background-color 0.3s ease;
 }
@@ -656,7 +662,6 @@ header nav .nav-three-dots button {
 /* Swapna-mobile: Close button container - fixed position in top right corner */
 header nav .nav-close-button {
   display: none;
-  position: fixed;
   top: 24px;
   right: 24px;
   z-index: 10;
@@ -677,7 +682,6 @@ header nav .nav-close-button button {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  margin-right: 50px;
 }
 
 .header-home .nav-hamburger button {
@@ -778,9 +782,12 @@ header nav .nav-sections .default-content-wrapper p {
 /* Swapna-mobile: Show nav-tools when menu is expanded with proper styling */
 header nav[aria-expanded='true'] .nav-tools {
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 50px;
   visibility: visible;
   grid-area: tools;
-  padding: 100px 24px 20px;
+  padding: 20px 24px 20px;
   background-color: #e5ebf1;
 }
 
@@ -793,7 +800,7 @@ header nav[aria-expanded='true'] .nav-tools .default-content-wrapper {
 /* Swapna-mobile: Adjust nav-tools search wrapper for mobile menu */
 header nav[aria-expanded='true'] .nav-tools .inline-search-wrapper {
   max-width: 100%;
-  width: 95%;
+  width: calc(100% - 20px);
   background-color: #fff;
   border-radius: 30px;
   padding: 8px 8px 8px 24px;
@@ -838,7 +845,6 @@ header nav[aria-expanded='true'] .nav-links {
   display: block;
   visibility: visible;
   grid-area: links;
-  width: 100%;
   padding: 12px 24px 40px;
   background-color: #e5ebf1;
 }
@@ -865,7 +871,7 @@ header nav[aria-expanded='true'] .nav-links .default-content-wrapper {
 
 /* Swapna-mobile: Style nav-links items for mobile menu */
 header nav[aria-expanded='true'] .nav-links .default-content-wrapper p {
-  margin: 0 0 20px;
+  margin: 0 0 8px;
   padding: 0;
   border-bottom: none;
   display: flex;
@@ -959,6 +965,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-hamburger .megamenu-content .tabs-panel .browse-by-country {
     flex-direction: row;
     align-items: center;
+  }
+
+  header nav .nav-sections a {
+    font-size: 24px;
   }
 }
 
@@ -1158,9 +1168,9 @@ header nav[aria-expanded='true'] .nav-three-dots {
   }
 
   header .nav-wrapper {
-    max-width: 1452px;
-    margin: 0 auto;
-    padding: 0 24px;
+    max-width: 1456px;
+    margin: auto;
+    padding: 0 72px 0 72px;
     width: unset;
     position: unset;
   }
@@ -1181,6 +1191,10 @@ header nav[aria-expanded='true'] .nav-three-dots {
     visibility: visible;
     white-space: nowrap;
     flex-shrink: 0;
+  }
+
+  header nav .nav-sections a {
+    font-size: 28px;
   }
 
   header nav .nav-sections .default-content-wrapper {
@@ -1299,6 +1313,7 @@ header nav[aria-expanded='true'] .nav-three-dots {
     align-items: center;
     width: 100%;  
     justify-content: flex-end;
+    padding-right: 20px;
   }
 
   /* Desktop navigation links horizontal layout */
@@ -1327,8 +1342,8 @@ header nav[aria-expanded='true'] .nav-three-dots {
   header nav .nav-links .default-content-wrapper a {
     text-decoration: none;
     color: var(--blue-70);
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     transition: color 0.3s ease;
   }
 
