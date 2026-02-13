@@ -400,6 +400,11 @@ main .section.tab-carousel-section .tabs-panel h2 {
     border-bottom: none;
   }
 
+  
+  .tabs .tabs-list button:last-child[aria-selected='true'] {
+    border-bottom: 3px solid var(--text-on-light-link-primary-enabled);
+  }
+
    
   .tabs .tabs-panel .cards.left-right-card .cards-card-image img {
       min-width: 360px
@@ -450,6 +455,10 @@ main .section.tab-carousel-section .tabs-panel h2 {
     .tabs .tabs-list button:last-child {
     padding: 0.5em;
     border-bottom: none;
+  }
+
+  .tabs .tabs-list button:last-child[aria-selected='true'] {
+    border-bottom: 3px solid var(--text-on-light-link-primary-enabled);
   }
 
     /* Set gap between carousel cards */
