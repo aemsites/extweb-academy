@@ -1,19 +1,37 @@
 import { scriptEnabled } from '../../scripts/utils.js';
 
-const getDefaultEmbed = (url) => `<div class="embed-video">
-    <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position:absolute;" allowfullscreen="" frameborder="0" 
-      scrolling="no" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      title="Content from ${url.hostname}" loading="lazy" height="100%" width="100%">
-    </iframe>
-  </div>`;
+const getDefaultEmbed = (url) => {
+  // Add autoplay parameter to YouTube URLs
+  const embedUrl = new URL(url.href);
+  if (embedUrl.hostname.includes('youtube.com') || embedUrl.hostname.includes('youtu.be')) {
+    embedUrl.searchParams.set('autoplay', '1');
+  }
 
-const loadEmbed = (block, link) => {
+  return `<iframe src="${embedUrl.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position:absolute;" allowfullscreen="" frameborder="0" 
+    scrolling="no" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    title="Content from ${url.hostname}" loading="lazy" height="100%" width="100%">
+  </iframe>`;
+};
+
+const loadEmbed = (block, link, wrapper) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
 
   const url = new URL(link);
-  block.innerHTML = getDefaultEmbed(url);
+  const embedHTML = getDefaultEmbed(url);
+
+  // If wrapper exists, replace its content to maintain dimensions
+  if (wrapper) {
+    // Replace wrapper content and update classes to maintain same container
+    wrapper.innerHTML = embedHTML;
+    wrapper.classList.remove('embed-placeholder');
+    wrapper.classList.add('embed-video');
+  } else {
+    // Fallback: replace entire block content
+    block.innerHTML = `<div class="embed-video">${embedHTML}</div>`;
+  }
+
   block.classList.add('embed-is-loaded');
 };
 
@@ -37,7 +55,7 @@ export default function decorate(block) {
       wrapper.innerHTML = '<div class="embed-placeholder-play"><button title="Play"></button></div>';
       wrapper.prepend(placeholder);
       wrapper.addEventListener('click', () => {
-        loadEmbed(block, link);
+        loadEmbed(block, link, wrapper);
       });
       block.append(wrapper);
     } else {
