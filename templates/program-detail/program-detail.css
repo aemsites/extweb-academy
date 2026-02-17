@@ -1,7 +1,9 @@
 /* Template - program-detail */
-/* CLS Fix: Reserve space for columns-wrapper to prevent expansion when image loads */
+/* CLS Fix: Constrain columns-wrapper to prevent expansion and capturing content outside */
 body.program-detail main .section .columns-wrapper {
   min-height: 480px;
+  max-height: 600px;
+  contain: layout style;
 }
 
 body.program-detail .columns.columns-2-cols > div {
@@ -11,12 +13,18 @@ body.program-detail .columns.columns-2-cols > div {
 body.program-detail .breadcrumb-wrapper {
   padding-left: 0;
   padding-right: 0;
-  /* CLS Fix: Reserve space for breadcrumb to prevent layout shift */
+  /* CLS Fix: Reserve space and prevent wrapper from collapsing */
   min-height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
   padding: 10px 20px;
+  min-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 body.program-detail .breadcrumb-wrapper ol.breadcrumb {
@@ -55,8 +63,10 @@ body.program-detail .columns.columns-4-cols {
   background-color: var(--neutral-solid-10-s);
   padding: var(--spacing-medium) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
   border-radius: 0 0 8px 8px;
-  /* CLS Fix: Reserve minimum height for metadata columns */
+  /* CLS Fix: Constrain metadata columns to prevent wrapper expansion */
   min-height: 160px;
+  max-height: 200px;
+  overflow: hidden;
 }
 
 body.program-detail .columns.columns-5-cols > div,
@@ -124,10 +134,14 @@ body.program-detail .columns.columns-2-cols p {
   font-weight: var(--body-font-weight-regular);
   line-height: 150%;
   margin-bottom: var(--spacing-medium);
+  /* CLS Fix: Reserve space for button/link to prevent shift when styles load */
+  min-height: 48px;
 }
 
 body.program-detail .columns.columns-2-cols .button-container {
   margin: 0;
+  /* CLS Fix: Reserve space for button container */
+  min-height: 48px;
 }
 
 /* Style links as buttons in hero section */
@@ -149,6 +163,9 @@ body.program-detail .columns.columns-2-cols p a {
   background: var(--accent-blue-primary-70);
   color: #fff;
   transition: all 0.2s ease;
+  /* CLS Fix: Reserve space upfront to prevent size change when styles load */
+  min-height: 44px;
+  min-width: 180px;
 }
 
 body.program-detail .columns.columns-2-cols p a:hover,
@@ -159,6 +176,8 @@ body.program-detail .columns.columns-2-cols p a:focus {
 
 body.program-detail .columns.columns-2-cols > div > div:first-child {
   order: 2;
+  /* CLS Fix: Reserve minimum height for text content including button */
+  min-height: 200px;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child {
@@ -168,6 +187,7 @@ body.program-detail .columns.columns-2-cols > div > div:last-child {
   justify-content: center;
   /* CLS Fix: Fixed height prevents container from expanding when image loads */
   height: 280px;
+  flex-shrink: 0;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child picture {
@@ -179,6 +199,7 @@ body.program-detail .columns.columns-2-cols > div > div:last-child picture {
   aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child img {
@@ -235,10 +256,30 @@ body.program-detail main > .section:nth-child(2) p {
   /* Remove mobile-specific CLS fixes on tablet and up */
   body.program-detail main .section .columns-wrapper {
     min-height: unset;
+    max-height: unset;
+    contain: unset;
+  }
+  
+  body.program-detail .columns.columns-2-cols > div > div:first-child {
+    min-height: unset;
+  }
+  
+  body.program-detail .columns.columns-2-cols p {
+    min-height: unset;
+  }
+  
+  body.program-detail .columns.columns-2-cols .button-container {
+    min-height: unset;
+  }
+  
+  body.program-detail .columns.columns-2-cols p a {
+    min-height: unset;
+    min-width: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child {
     height: auto;
+    flex-shrink: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child picture {
@@ -246,6 +287,7 @@ body.program-detail main > .section:nth-child(2) p {
     height: auto;
     position: static;
     overflow: visible;
+    flex-shrink: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child img {
@@ -258,10 +300,19 @@ body.program-detail main > .section:nth-child(2) p {
   body.program-detail .columns.columns-3-cols,
   body.program-detail .columns.columns-4-cols {
     min-height: unset;
+    max-height: unset;
+    overflow: visible;
   }
   
   body.program-detail .breadcrumb-wrapper {
     min-height: unset;
+    display: block;
+  }
+  
+  body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
+    min-width: unset;
+    width: auto;
+    display: block;
   }
   
   body.program-detail .breadcrumb-wrapper ol.breadcrumb {
