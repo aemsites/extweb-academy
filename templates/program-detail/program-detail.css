@@ -20,6 +20,7 @@ body.program-detail .breadcrumb-wrapper {
   min-height: 50px;
   display: flex;
   align-items: center;
+  padding-bottom: 0px;
 }
 
 body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
@@ -296,6 +297,7 @@ body.program-detail main > .section:nth-child(2) p {
   body.program-detail .breadcrumb-wrapper {
     min-height: unset;
     display: block;
+    padding-bottom: 0px;
   }
   
   body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
