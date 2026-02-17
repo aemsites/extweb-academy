@@ -1,11 +1,13 @@
 /* Template - program-detail */
 /* CLS Fix: Reserve space for columns-wrapper to prevent layout shift */
 body.program-detail main .section .columns-wrapper {
-  min-height: 400px;
+  min-height: 500px;
 }
 
 body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
+  /* CLS Fix: Ensure the columns container has minimum height on mobile */
+  min-height: 350px;
 }
 
 body.program-detail .breadcrumb-wrapper {
@@ -47,8 +49,8 @@ body.program-detail .columns.columns-4-cols {
   background-color: var(--neutral-solid-10-s);
   padding: var(--spacing-medium) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
   border-radius: 0 0 8px 8px;
-  /* CLS Fix: Reserve minimum height for metadata columns */
-  min-height: 120px;
+  /* CLS Fix: Reserve minimum height for metadata columns to prevent shift */
+  min-height: 150px;
 }
 
 body.program-detail .columns.columns-5-cols > div,
@@ -159,20 +161,26 @@ body.program-detail .columns.columns-2-cols > div > div:last-child {
   display: flex;
   justify-content: center;
   /* CLS Fix: Reserve space upfront on mobile to prevent layout shift */
-  min-height: 250px;
+  min-height: 280px;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child picture {
   display: block;
   width: 100%;
   max-width: 100%;
-  /* CLS Fix: Reserve space with aspect ratio */
+  /* CLS Fix: Reserve space with aspect ratio - prevents picture from growing when image loads */
   aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 0;
   display: block;
 }
@@ -221,12 +229,24 @@ body.program-detail main > .section:nth-child(2) p {
     min-height: unset;
   }
   
+  body.program-detail .columns.columns-2-cols > div {
+    min-height: unset;
+  }
+  
   body.program-detail .columns.columns-2-cols > div > div:last-child {
     min-height: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child picture {
     aspect-ratio: unset;
+    position: static;
+    overflow: visible;
+  }
+  
+  body.program-detail .columns.columns-2-cols > div > div:last-child img {
+    position: static;
+    height: auto;
+    object-fit: unset;
   }
   
   body.program-detail .columns.columns-5-cols,
