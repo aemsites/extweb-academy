@@ -463,12 +463,6 @@ async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
 
-  // CRITICAL CLS FIX: Load program-detail template CSS early to prevent layout shift
-  const templateName = getMetadata('template');
-  if (templateName === 'program-detail') {
-    loadCSS(`${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`);
-  }
-
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -492,19 +486,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   const templateName = getMetadata('template');
-  // Skip CSS loading for program-detail (already loaded in loadEager)
-  // but still load JS functionality
-  if (templateName === 'program-detail') {
-    try {
-      const module = await import(`../templates/${templateName}/${templateName}.js`);
-      if (module.default) {
-        await module.default(doc);
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(`failed to load module for ${templateName}`, error);
-    }
-  } else if (templateName) {
+  if (templateName) {
     await loadTemplate(doc, templateName);
   }
 
