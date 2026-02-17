@@ -8,6 +8,9 @@ body.program-detail main .section .columns-wrapper {
 
 body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
+  /* CLS Fix: Constrain columns container to prevent expansion when image loads */
+  min-height: 320px;
+  max-height: 400px;
 }
 
 body.program-detail .breadcrumb-wrapper {
@@ -31,10 +34,17 @@ body.program-detail .breadcrumb-wrapper ol.breadcrumb {
   /* CLS Fix: Prevent breadcrumb from wrapping and changing size on mobile */
   flex-wrap: nowrap !important;
   min-width: 200px;
+  width: 100%;
   min-height: 30px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+body.program-detail .breadcrumb-wrapper ol.breadcrumb li {
+  /* CLS Fix: Prevent breadcrumb items from changing size */
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* Override page swoosh background size */
@@ -260,6 +270,11 @@ body.program-detail main > .section:nth-child(2) p {
     contain: unset;
   }
   
+  body.program-detail .columns.columns-2-cols > div {
+    min-height: unset;
+    max-height: unset;
+  }
+  
   body.program-detail .columns.columns-2-cols > div > div:first-child {
     min-height: unset;
   }
@@ -318,10 +333,16 @@ body.program-detail main > .section:nth-child(2) p {
   body.program-detail .breadcrumb-wrapper ol.breadcrumb {
     flex-wrap: wrap !important;
     min-width: unset;
+    width: auto;
     min-height: unset;
     overflow: visible;
     white-space: normal;
     text-overflow: unset;
+  }
+  
+  body.program-detail .breadcrumb-wrapper ol.breadcrumb li {
+    flex-shrink: unset;
+    white-space: normal;
   }
   
   /* Increase font sizes from tablet up */
