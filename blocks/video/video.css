@@ -17,6 +17,26 @@
   border: 1px solid #1e1e1e;
 }
 
+.video .embed-placeholder {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #1e1e1e;
+}
+
+.video .embed-placeholder picture,
+.video .embed-placeholder img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 body:has(main > div.section.hero-video-section) {
   background: var(--neutral-solid-10-s);
  }

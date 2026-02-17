@@ -15,7 +15,10 @@ export default async function decorate(block) {
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
   tabs.forEach((tab, i) => {
+    const tabItem = block.children[i];
     const id = toClassName(tab.textContent);
+    const tabIdEl = tabItem.querySelector('[class*="tab-id"]');
+    const tabId = (tabIdEl?.textContent?.trim() || String(i + 1)).trim();
 
     // decorate tabpanel
     const tabpanel = block.children[i];
@@ -37,6 +40,7 @@ export default async function decorate(block) {
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
+    button.dataset.tabId = tabId;
     button.addEventListener(triggerEvent, () => {
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
         panel.setAttribute('aria-hidden', true);
@@ -46,6 +50,8 @@ export default async function decorate(block) {
       });
       tabpanel.setAttribute('aria-hidden', false);
       button.setAttribute('aria-selected', true);
+      const url = `${window.location.pathname}${window.location.search}#${encodeURIComponent(tabId)}`;
+      window.history.replaceState(null, '', url);
     });
     tablist.append(button);
     tab.remove();
@@ -53,4 +59,23 @@ export default async function decorate(block) {
   });
 
   block.prepend(tablist);
+
+  // open tab from URL hash on load (e.g. /#2 selects tab with id "2")
+  const hash = window.location.hash.slice(1);
+  if (hash) {
+    const tabIdFromUrl = decodeURIComponent(hash).trim();
+    const buttons = tablist.querySelectorAll('button');
+    const panels = block.querySelectorAll('[role=tabpanel]');
+    const idx = [...buttons].findIndex((btn) => btn.dataset.tabId === tabIdFromUrl);
+    if (idx >= 0 && panels[idx]) {
+      block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
+        panel.setAttribute('aria-hidden', true);
+      });
+      tablist.querySelectorAll('button').forEach((btn) => {
+        btn.setAttribute('aria-selected', false);
+      });
+      panels[idx].setAttribute('aria-hidden', false);
+      buttons[idx].setAttribute('aria-selected', true);
+    }
+  }
 }
