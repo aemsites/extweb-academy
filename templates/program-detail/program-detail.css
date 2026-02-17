@@ -29,8 +29,6 @@ body.program-detail .columns.columns-2-cols {
   background-color: var(--neutral-solid-05-s, #f5f5f5);
   padding: var(--spacing-xsmall, 12px) 0;
   border-radius: 8px 8px 0 0;
-  /* CLS Fix: Reserve minimum height on mobile to prevent layout shift */
-  min-height: 400px;
 }
 
 /* Metadata Section - columns with darker background */
@@ -149,28 +147,23 @@ body.program-detail .columns.columns-2-cols > div > div:last-child {
   width: 100%;
   display: flex;
   justify-content: center;
+  /* CLS Fix: Reserve space upfront on mobile to prevent layout shift */
+  min-height: 250px;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child picture {
   display: block;
   width: 100%;
   max-width: 100%;
-  /* CLS Fix: Reserve space for image on mobile to prevent layout shift */
-  /* Use a common aspect ratio that works for most hero images */
-  aspect-ratio: 4 / 3;
-  min-height: 200px;
-  position: relative;
-  overflow: hidden;
+  /* CLS Fix: Reserve space with aspect ratio */
+  aspect-ratio: 16 / 9;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child img {
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 0;
   display: block;
-  /* CLS Fix: Fill container and maintain aspect ratio */
-  object-fit: cover;
-  object-position: center;
 }
 
 /* First section styling - override default styles.css */
@@ -213,18 +206,12 @@ body.program-detail main > .section:nth-child(2) p {
 /* Tablet breakpoint */
 @media (width >= 768px) {
   /* Remove mobile-specific CLS fixes on tablet and up */
-  body.program-detail .columns.columns-2-cols {
+  body.program-detail .columns.columns-2-cols > div > div:last-child {
     min-height: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child picture {
     aspect-ratio: unset;
-    min-height: unset;
-  }
-  
-  body.program-detail .columns.columns-2-cols > div > div:last-child img {
-    aspect-ratio: unset;
-    object-fit: unset;
   }
   
   /* Increase font sizes from tablet up */
