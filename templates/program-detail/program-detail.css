@@ -144,14 +144,10 @@ body.program-detail .columns.columns-2-cols p {
   font-weight: var(--body-font-weight-regular);
   line-height: 150%;
   margin-bottom: var(--spacing-medium);
-  /* CLS Fix: Reserve space for button/link to prevent shift when styles load */
-  min-height: 48px;
 }
 
 body.program-detail .columns.columns-2-cols .button-container {
   margin: 0;
-  /* CLS Fix: Reserve space for button container */
-  min-height: 48px;
 }
 
 /* Style links as buttons in hero section */
@@ -173,9 +169,6 @@ body.program-detail .columns.columns-2-cols p a {
   background: var(--accent-blue-primary-70);
   color: #fff;
   transition: all 0.2s ease;
-  /* CLS Fix: Reserve space upfront to prevent size change when styles load */
-  min-height: 44px;
-  min-width: 180px;
 }
 
 body.program-detail .columns.columns-2-cols p a:hover,
@@ -186,8 +179,6 @@ body.program-detail .columns.columns-2-cols p a:focus {
 
 body.program-detail .columns.columns-2-cols > div > div:first-child {
   order: 2;
-  /* CLS Fix: Reserve minimum height for text content including button */
-  min-height: 200px;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child {
@@ -273,23 +264,6 @@ body.program-detail main > .section:nth-child(2) p {
   body.program-detail .columns.columns-2-cols > div {
     min-height: unset;
     max-height: unset;
-  }
-  
-  body.program-detail .columns.columns-2-cols > div > div:first-child {
-    min-height: unset;
-  }
-  
-  body.program-detail .columns.columns-2-cols p {
-    min-height: unset;
-  }
-  
-  body.program-detail .columns.columns-2-cols .button-container {
-    min-height: unset;
-  }
-  
-  body.program-detail .columns.columns-2-cols p a {
-    min-height: unset;
-    min-width: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child {
