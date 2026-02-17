@@ -1,4 +1,9 @@
 /* Template - program-detail */
+/* CLS Fix: Reserve space for columns-wrapper to prevent layout shift */
+body.program-detail main .section .columns-wrapper {
+  min-height: 400px;
+}
+
 body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
 }
@@ -6,10 +11,14 @@ body.program-detail .columns.columns-2-cols > div {
 body.program-detail .breadcrumb-wrapper {
   padding-left: 0;
   padding-right: 0;
+  /* CLS Fix: Reserve space for breadcrumb to prevent layout shift */
+  min-height: 44px;
 }
 
 body.program-detail .breadcrumb-wrapper  .breadcrumb-navtab{
     padding: 10px 20px;
+    /* CLS Fix: Reserve width to prevent horizontal shift */
+    min-width: 200px;
   }
 
 /* Override page swoosh background size */
@@ -38,6 +47,8 @@ body.program-detail .columns.columns-4-cols {
   background-color: var(--neutral-solid-10-s);
   padding: var(--spacing-medium) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
   border-radius: 0 0 8px 8px;
+  /* CLS Fix: Reserve minimum height for metadata columns */
+  min-height: 120px;
 }
 
 body.program-detail .columns.columns-5-cols > div,
@@ -206,12 +217,30 @@ body.program-detail main > .section:nth-child(2) p {
 /* Tablet breakpoint */
 @media (width >= 768px) {
   /* Remove mobile-specific CLS fixes on tablet and up */
+  body.program-detail main .section .columns-wrapper {
+    min-height: unset;
+  }
+  
   body.program-detail .columns.columns-2-cols > div > div:last-child {
     min-height: unset;
   }
   
   body.program-detail .columns.columns-2-cols > div > div:last-child picture {
     aspect-ratio: unset;
+  }
+  
+  body.program-detail .columns.columns-5-cols,
+  body.program-detail .columns.columns-3-cols,
+  body.program-detail .columns.columns-4-cols {
+    min-height: unset;
+  }
+  
+  body.program-detail .breadcrumb-wrapper {
+    min-height: unset;
+  }
+  
+  body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
+    min-width: unset;
   }
   
   /* Increase font sizes from tablet up */
