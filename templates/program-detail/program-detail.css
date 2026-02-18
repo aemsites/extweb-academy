@@ -189,9 +189,7 @@ body.program-detail .columns.columns-2-cols > div > div:last-child {
   width: 100%;
   display: flex;
   justify-content: center;
-
   /* CLS Fix: Fixed height prevents container from expanding when image loads */
-  height: 280px;
   flex-shrink: 0;
 }
 
