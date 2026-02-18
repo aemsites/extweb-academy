@@ -3,7 +3,6 @@
 /* CLS Fix: Constrain columns-wrapper to prevent expansion and capturing content outside */
 body.program-detail main .section .columns-wrapper {
   min-height: 480px;
-  max-height: 600px;
   contain: layout style;
 }
 
@@ -12,7 +11,6 @@ body.program-detail .columns.columns-2-cols > div {
 
   /* CLS Fix: Constrain columns container to prevent expansion when image loads */
   min-height: 320px;
-  max-height: 400px;
 }
 
 body.program-detail .breadcrumb-wrapper {
