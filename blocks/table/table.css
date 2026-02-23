@@ -55,13 +55,8 @@
       margin-top: 0.25em;
     }
 
-     .table.block.center-align table thead tr p {
-      width:900px;
-       }
-
   .table.block.center-align table thead tr {
     min-height: 30px;
-    width: 75%;
     text-align: center;
   }
   
@@ -183,9 +178,6 @@
       margin: 0 0 12px;
   }
 
-    .table.block.center-align table thead tr p {
-      width:600px;
-       }
 
     .table.block.center-align table tbody tr.single-column-row td p{
         width: 600px;
@@ -213,6 +205,10 @@
     }
 
     .table.block.center-align table th.col-3, .table.block.center-align table td.col-3 {
+      vertical-align: top;
+    }
+
+    .table.block.center-align table th.col-4, .table.block.center-align table td.col-4 {
       vertical-align: top;
     }
 
@@ -249,9 +245,6 @@
     }
 
 
-    .table.block.center-align table thead tr p {
-      width:700px;
-       }
 
     .table.block table th.col-1, .table.block table td.col-1 {
         width: 30%;
