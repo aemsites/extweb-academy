@@ -16,6 +16,9 @@ export default async function decorate(block) {
   const tbody = document.createElement('tbody');
   const header = !block.classList.contains('no-header');
 
+  // Determine max column count from all rows
+  const maxCols = Math.max(...[...block.children].map((row) => row.children.length));
+
   [...block.children].forEach((row, i) => {
     const tr = document.createElement('tr');
     moveInstrumentation(row, tr);
@@ -37,6 +40,11 @@ export default async function decorate(block) {
 
       // Add column index class for targeting specific columns with CSS
       td.classList.add(`col-${colIndex + 1}`);
+
+      // When row has fewer cells than max, add colspan so single-cell rows span full table width
+      if (cells.length < maxCols && colIndex === cells.length - 1) {
+        td.setAttribute('colspan', maxCols - cells.length + 1);
+      }
 
       // Check if cell has a data-width attribute and apply it
       const cellWidth = cell.getAttribute('data-width');
