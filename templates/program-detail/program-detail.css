@@ -1,16 +1,53 @@
 /* Template - program-detail */
+
+/* CLS Fix: Constrain columns-wrapper to prevent expansion and capturing content outside */
+body.program-detail main .section .columns-wrapper {
+  min-height: 480px;
+  contain: layout style;
+}
+
 body.program-detail .columns.columns-2-cols > div {
   padding: 40px;
+
+  /* CLS Fix: Constrain columns container to prevent expansion when image loads */
+  min-height: 320px;
 }
 
 body.program-detail .breadcrumb-wrapper {
   padding-left: 0;
   padding-right: 0;
+
+  /* CLS Fix: Reserve space and prevent wrapper from collapsing */
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0;
 }
 
-body.program-detail .breadcrumb-wrapper  .breadcrumb-navtab{
-    padding: 10px 20px;
-  }
+body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
+  padding: 10px 20px;
+  min-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+body.program-detail .breadcrumb-wrapper ol.breadcrumb {
+  /* CLS Fix: Prevent breadcrumb from wrapping and changing size on mobile */
+  flex-wrap: nowrap !important;
+  min-width: 200px;
+  width: 100%;
+  min-height: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.program-detail .breadcrumb-wrapper ol.breadcrumb li {
+  /* CLS Fix: Prevent breadcrumb items from changing size */
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 
 /* Override page swoosh background size */
 body.program-detail.page-swoosh-half-curve::before {
@@ -38,6 +75,11 @@ body.program-detail .columns.columns-4-cols {
   background-color: var(--neutral-solid-10-s);
   padding: var(--spacing-medium) var(--spacing-huge) var(--spacing-xlarge) var(--spacing-huge);
   border-radius: 0 0 8px 8px;
+
+  /* CLS Fix: Constrain metadata columns to prevent wrapper expansion */
+  min-height: 160px;
+  max-height: 200px;
+  overflow: hidden;
 }
 
 body.program-detail .columns.columns-5-cols > div,
@@ -147,17 +189,31 @@ body.program-detail .columns.columns-2-cols > div > div:last-child {
   width: 100%;
   display: flex;
   justify-content: center;
+  /* CLS Fix: Fixed height prevents container from expanding when image loads */
+  flex-shrink: 0;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child picture {
   display: block;
   width: 100%;
   max-width: 100%;
+  height: 100%;
+
+  /* CLS Fix: Aspect ratio reserves space before image loads */
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 body.program-detail .columns.columns-2-cols > div > div:last-child img {
+  /* CLS Fix: Absolute positioning fills reserved space without affecting layout */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 0;
   display: block;
 }
@@ -201,6 +257,86 @@ body.program-detail main > .section:nth-child(2) p {
 
 /* Tablet breakpoint */
 @media (width >= 768px) {
+  /* Remove mobile-specific CLS fixes on tablet and up */
+  body.program-detail main .section .columns-wrapper {
+    min-height: unset;
+    max-height: unset;
+    contain: unset;
+  }
+
+  body.program-detail .columns.columns-5-cols > div,
+  body.program-detail .columns.columns-3-cols > div,
+  body.program-detail .columns.columns-4-cols > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-small) 0;
+  }
+
+  body.program-detail .columns.columns-2-cols > div {
+    min-height: unset;
+    max-height: unset;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xlarge, 40px);
+    align-items: flex-start;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding:var(--spacing-xlarge, 32px) var(--spacing-xlarge, 32px) var(--spacing-xsmall, 8px) var(--spacing-xlarge , 32px);
+  }
+  
+  body.program-detail .columns.columns-2-cols > div > div:last-child {
+    height: auto;
+    flex-shrink: unset;
+  }
+  
+  body.program-detail .columns.columns-2-cols > div > div:last-child picture {
+    aspect-ratio: unset;
+    height: auto;
+    position: static;
+    overflow: visible;
+    flex-shrink: unset;
+  }
+  
+  body.program-detail .columns.columns-2-cols > div > div:last-child img {
+    position: static;
+    height: auto;
+    object-fit: unset;
+  }
+  
+  body.program-detail .columns.columns-5-cols,
+  body.program-detail .columns.columns-3-cols,
+  body.program-detail .columns.columns-4-cols {
+    min-height: unset;
+    max-height: unset;
+    overflow: visible;
+  }
+  
+  body.program-detail .breadcrumb-wrapper {
+    min-height: unset;
+    display: block;
+    padding-bottom: 0;
+  }
+  
+  body.program-detail .breadcrumb-wrapper .breadcrumb-navtab {
+    min-width: unset;
+    width: auto;
+    display: block;
+  }
+  
+  body.program-detail .breadcrumb-wrapper ol.breadcrumb {
+    flex-wrap: wrap !important;
+    min-width: unset;
+    width: auto;
+    min-height: unset;
+    overflow: visible;
+    white-space: normal;
+    text-overflow: unset;
+  }
+  
+  body.program-detail .breadcrumb-wrapper ol.breadcrumb li {
+    flex-shrink: unset;
+    white-space: normal;
+  }
+  
   /* Increase font sizes from tablet up */
   body.program-detail main > .section:nth-child(2) p {
     font-size: 18px;
@@ -213,23 +349,6 @@ body.program-detail main > .section:nth-child(2) p {
   /* Second section narrower starting from tablet */
   body.program-detail main > .section:nth-child(2) {
     width: 70%;
-  }
-
-  body.program-detail .columns.columns-5-cols > div,
-  body.program-detail .columns.columns-3-cols > div,
-  body.program-detail .columns.columns-4-cols > div {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-small) 0;
-  }
-
-  body.program-detail .columns.columns-2-cols > div {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xlarge, 40px);
-    align-items: flex-start;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding:var(--spacing-xlarge, 32px) var(--spacing-xlarge, 32px) var(--spacing-xsmall, 8px) var(--spacing-xlarge , 32px);
   }
 
   body.program-detail .columns.columns-5-cols > div > div:not(:empty),
