@@ -243,6 +243,7 @@
 /* Sticky Card Block Variant */
 .cards.sticky-card.block {
   padding: 0;
+  display: none;
 }
 
 .cards.sticky-card.block > ul {
