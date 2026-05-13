@@ -914,6 +914,7 @@
 /* Carousel itself - no extra padding since UL handles it */
 .section.swipe-carousel-container:has(.with-button) > .swipe-carousel-wrapper .swipe-carousel {
   padding-left: 0;
+  display: none;
 }
 
 /* Controls container - responsive flex layout */

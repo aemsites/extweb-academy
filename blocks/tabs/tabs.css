@@ -9,6 +9,7 @@
 
 .section.tab-carousel-section > .tabs-wrapper > .tabs.block {
   width: 100%;
+  display: none;
 }
 
 .section.tab-carousel-section .swipe-carousel-container {
