@@ -1,0 +1,60 @@
+{
+    "metadata": {
+      "projectType": "xwalk"
+    },
+    "templates": [
+      {
+        "name": "academy-topic-page",
+        "urls": [
+          "https://academy.worldbank.org/en/prosperity/poverty"
+        ],
+        "description": "World Bank Academy topic page with hero banner and program listing cards",
+        "blocks": [
+          {
+            "name": "breadcrumb",
+            "instances": [
+              ".lp__breadcrumb"
+            ]
+          },
+          {
+            "name": "hero",
+            "instances": [
+              ".supergrid .gridlayout:first-child"
+            ]
+          },
+          {
+            "name": "cards",
+            "instances": [
+              ".list_navigation"
+            ]
+          }
+        ],
+        "sections": [
+          {
+            "id": "section-1",
+            "name": "Hero",
+            "selector": ".lang-toggler",
+            "style": "hero",
+            "blocks": [
+              "breadcrumb",
+              "hero"
+            ],
+            "defaultContent": []
+          },
+          {
+            "id": "section-2",
+            "name": "Poverty Practitioner Programs",
+            "selector": ".supergrid .gridlayout:nth-child(2)",
+            "style": "cards",
+            "blocks": [
+              "cards"
+            ],
+            "defaultContent": [
+              ".lp__lead_lgtitle"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
